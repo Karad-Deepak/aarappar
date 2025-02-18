@@ -1,0 +1,131 @@
+"use client";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import dosa from "@/public/Dosa.jpg";
+
+const dishes = [
+  {
+    id: 1,
+    name: "Crispy Masala Dosa",
+    price: "$8.99",
+    image: dosa,
+  },
+  {
+    id: 2,
+    name: "Steamed Idli & Sambar",
+    price: "$6.99",
+    image: dosa,
+  },
+  {
+    id: 3,
+    name: "Delicious Pongal",
+    price: "$7.49",
+    image: dosa,
+  },
+];
+
+export default function MenuSection() {
+  return (
+    <div className="text-white py-16 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-darkbg">
+      {/* Section Title */}
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-xl lg:text-4xl font-bold text-rose-500 mb-4"
+      >
+        A Taste of Tradition, A Feast of Flavors!
+      </motion.h2>
+      <p className="text-[12px] lg:text-lg text-gray-300 pb-6 lg:pb-10 max-w-2xl mx-auto">
+        Step into a world of rich aromas and authentic flavors with our
+        specially curated South Indian menu. Every dish is a masterpiece,
+        prepared with traditional recipes and the finest ingredients to bring
+        you a taste of home.
+      </p>
+
+      {/* SCROLLABLE ON SMALL SCREENS, GRID ON LARGE SCREENS */}
+      <div className="relative">
+        {/* Small Screens: Horizontal Scrollable Cards with No Scrollbar */}
+        <div className="flex gap-6 overflow-x-auto lg:hidden no-scrollbar px-1 py-4">
+          {dishes.map((dish) => (
+            <motion.div
+              key={dish.id}
+              className="bg-gray-800 rounded-2xl shadow-lg p-4 sm:p-6 text-center w-56 sm:w-64 flex-shrink-0 hover:scale-105 transition-transform"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: dish.id * 0.2 }}
+            >
+              {/* Dish Image */}
+              <div className="relative w-full h-32 sm:h-40 rounded-xl overflow-hidden">
+                <Image
+                  src={dish.image}
+                  alt={dish.name}
+                  layout="fill"
+                  className="rounded-xl object-cover"
+                />
+              </div>
+
+              {/* Dish Name & Price */}
+              <h3 className="text-sm sm:text-lg font-semibold mt-3">
+                {dish.name}
+              </h3>
+              <p className="text-xs sm:text-md text-rose-400 font-medium mt-1">
+                {dish.price}
+              </p>
+
+              {/* Order Now Button */}
+              <button className="mt-3 bg-rose-500 text-white text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+                Order Now
+              </button>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Large Screens: Grid Layout */}
+        <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {dishes.map((dish) => (
+            <motion.div
+              key={dish.id}
+              className="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition-transform"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: dish.id * 0.2 }}
+            >
+              {/* Dish Image */}
+              <div className="relative w-full h-40 rounded-xl overflow-hidden">
+                <Image
+                  src={dish.image}
+                  alt={dish.name}
+                  layout="fill"
+                  className="rounded-xl object-cover"
+                />
+              </div>
+
+              {/* Dish Name & Price */}
+              <h3 className="text-lg font-semibold mt-3">{dish.name}</h3>
+              <p className="text-md text-rose-400 font-medium mt-1">
+                {dish.price}
+              </p>
+
+              {/* Order Now Button */}
+              <button className="mt-3 bg-rose-500 text-white px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+                Order Now
+              </button>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Explore Full Menu Link */}
+      <Link href="/menu">
+        <motion.button
+          className="py-3 px-6 rounded-2xl mt-10 text-lg text-white bg-rose-500 hover:bg-rose-600 transition"
+          whileHover={{ scale: 1.1 }}
+        >
+          Explore Full Menu →
+        </motion.button>
+      </Link>
+    </div>
+  );
+}
