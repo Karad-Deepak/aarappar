@@ -67,7 +67,7 @@ function Mobile() {
     <>
       <nav className="z-40 fomt-bold absolute top-12 left-0 w-[100vw] h-[90vh] flex lg:hidden flex-col gap-5 pt-4 text-[16px] font-semibold items-start pl-10 bg-zinc-900/80 backdrop-blur-md text-slate-100 ">
         <div className="flex flex-col gap-2 ">
-          <Link href="/Menu">
+          <Link href="/menu">
             <span className="">Menu</span>
           </Link>
           <Link href="/reservation">

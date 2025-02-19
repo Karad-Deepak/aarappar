@@ -27,7 +27,7 @@ const dishes = [
 
 export default function MenuSection() {
   return (
-    <div className="text-white py-16 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-darkbg">
+    <div className="text-white py-16 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-lightbg">
       {/* Section Title */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
@@ -37,7 +37,7 @@ export default function MenuSection() {
       >
         A Taste of Tradition, A Feast of Flavors!
       </motion.h2>
-      <p className="text-[12px] lg:text-lg text-gray-300 pb-6 lg:pb-10 max-w-2xl mx-auto">
+      <p className="text-[12px] lg:text-lg text-darkbg pb-6 lg:pb-10 max-w-2xl mx-auto">
         Step into a world of rich aromas and authentic flavors with our
         specially curated South Indian menu. Every dish is a masterpiece,
         prepared with traditional recipes and the finest ingredients to bring
@@ -51,7 +51,7 @@ export default function MenuSection() {
           {dishes.map((dish) => (
             <motion.div
               key={dish.id}
-              className="bg-gray-800 rounded-2xl shadow-lg p-4 sm:p-6 text-center w-56 sm:w-64 flex-shrink-0 hover:scale-105 transition-transform"
+              className="bg-darkbg rounded-2xl shadow-lg p-4 sm:p-6 text-center w-56 sm:w-64 flex-shrink-0 hover:scale-105 transition-transform"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: dish.id * 0.2 }}
@@ -61,7 +61,6 @@ export default function MenuSection() {
                 <Image
                   src={dish.image}
                   alt={dish.name}
-                  layout="fill"
                   className="rounded-xl object-cover"
                 />
               </div>
@@ -87,7 +86,7 @@ export default function MenuSection() {
           {dishes.map((dish) => (
             <motion.div
               key={dish.id}
-              className="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition-transform"
+              className="bg-darkbg rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition-transform"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: dish.id * 0.2 }}
