@@ -32,7 +32,7 @@ const ConnectSection = () => {
             Address
           </h3>
           <p className="text-sm lg:text-xl  mt-3 text-gray-300">
-            123 Street Name, City, Country
+            ALEXANDERSTRASSE 86, 60489 FRANKFURT AM MAIN, GERMANY
           </p>
         </div>
 
@@ -41,9 +41,9 @@ const ConnectSection = () => {
           <h3 className="text-sm lg:text-xl  font-semibold text-rose-400">
             Contact
           </h3>
-          <p className="mt-3 text-gray-300">Phone: +1 234 567 890</p>
+          <p className="mt-3 text-gray-300">Phone: +49 15510462634</p>
           <p className="text-sm lg:text-xl text-gray-300">
-            Email: info@example.com
+            Email: aarapparde@gmail.com
           </p>
         </div>
       </motion.div>

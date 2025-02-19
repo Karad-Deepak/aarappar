@@ -58,9 +58,11 @@ const Footer = () => {
           <h3 className="text-sm lg:text-xl font-semibold text-rose-400 mb-3">
             Contact Us
           </h3>
-          <p className="text-gray-400">123, Gourmet Street, Food City</p>
-          <p className="text-gray-400">+1 (123) 456-7890</p>
-          <p className="text-gray-400">info@aarapar.com</p>
+          <p className="text-gray-400">
+            ALEXANDERSTRASSE 86, 60489 FRANKFURT AM MAIN, GERMANY
+          </p>
+          <p className="text-gray-400">+49 15510462634</p>
+          <p className="text-gray-400">aarapparde@gmail.com</p>
           <div className="flex space-x-4 mt-4 ">
             <a
               href="#"

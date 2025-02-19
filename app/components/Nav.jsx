@@ -3,85 +3,117 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import close from "@/public/close.png";
-
 import list from "@/public/list.png";
+import logo from "@/public/logo.png"; // Import logo
 
 function Nav() {
   const [isMobileNav, setMobileNav] = useState(false);
+
   function handleMobileNav() {
     setMobileNav(!isMobileNav);
   }
 
   return (
     <>
-      <div className=" z-20 text-slate-50 border-b-1 bg-darkbg w-full fixed left-0 top-0 flex flex-row justify-between px-3 py-2 md:px-10 md:py-2">
-        <div className="flex gap-1">
+      <div className="z-20 text-slate-50 bg-darkbg w-full fixed left-0 top-0 flex flex-row justify-between items-center px-4 py-3 md:px-10 md:py-3">
+        {/* Logo & Title */}
+        <div className="flex items-center gap-2">
           <Link href="/">
-            <h1 className="font-bold text-lg lg:text-xl pt-2 text-normalbg">
-              AARAPAR
+            <Image
+              src={logo}
+              alt="AARAPPAR Logo"
+              width={40}
+              height={30}
+              className="w-9h-7"
+            />
+          </Link>
+          <Link href="/">
+            <h1 className="font-bold text-lg lg:text-xl text-normalbg">
+              AARAPPAR
             </h1>
           </Link>
         </div>
+
+        {/* Desktop Navbar */}
         <Navbar />
+
+        {/* Mobile Menu Toggle */}
         <Menu handleMobileNav={handleMobileNav} isMobileNav={isMobileNav} />
-        {isMobileNav && <Mobile />}
+
+        {/* Mobile Navigation */}
+        {isMobileNav && <Mobile handleMobileNav={handleMobileNav} />}
       </div>
     </>
   );
 }
+
 function Navbar() {
   return (
-    <nav className="font-bold hidden lg:flex flex-row gap-7 text-lg relative py-2 px-5 nav">
+    <nav className="hidden lg:flex flex-row gap-8 text-lg font-semibold text-white">
       <Link href="/menu">
-        <span className="">Menu</span>
+        <span className="hover:text-rose-500 transition duration-300">
+          Menu
+        </span>
       </Link>
       <Link href="/reservation">
-        <span className="">Reserve Table</span>
+        <span className="hover:text-rose-500 transition duration-300">
+          Reserve Table
+        </span>
       </Link>
       <Link href="/catering">
-        <span className="">Catering</span>
+        <span className="hover:text-rose-500 transition duration-300">
+          Catering
+        </span>
       </Link>
       <Link href="#">
-        <span className="">About Us</span>
+        <span className="hover:text-rose-500 transition duration-300">
+          About Us
+        </span>
       </Link>
     </nav>
   );
 }
+
 function Menu({ handleMobileNav, isMobileNav }) {
   return (
-    <>
-      <div className="flex items-center lg:hidden pt-1 pr-5 ">
-        <span onClick={handleMobileNav}>
-          <Image
-            src={!isMobileNav ? list : close}
-            alt="mobile menu"
-            className="w-7 h-8 p-1"
-          />
-        </span>
-      </div>
-    </>
+    <div className="flex items-center lg:hidden">
+      <span onClick={handleMobileNav} className="cursor-pointer">
+        <Image
+          src={!isMobileNav ? list : close}
+          alt="Menu Icon"
+          width={32}
+          height={32}
+          className="w-8 h-8"
+        />
+      </span>
+    </div>
   );
 }
-function Mobile() {
+
+function Mobile({ handleMobileNav }) {
   return (
-    <>
-      <nav className="z-40 fomt-bold absolute top-12 left-0 w-[100vw] h-[90vh] flex lg:hidden flex-col gap-5 pt-4 text-[16px] font-semibold items-start pl-10 bg-zinc-900/80 backdrop-blur-md text-slate-100 ">
-        <div className="flex flex-col gap-2 ">
-          <Link href="/menu">
-            <span className="">Menu</span>
-          </Link>
-          <Link href="/reservation">
-            <span className="">Reserve Table</span>
-          </Link>
-          <Link href="/catering">
-            <span className="">Catering</span>
-          </Link>
-          <Link href="#">
-            <span className="">About Us</span>
-          </Link>
-        </div>
-      </nav>
-    </>
+    <nav className="z-40 fixed top-14 left-0 w-full h-screen bg-zinc-900/90 backdrop-blur-lg text-white flex flex-col items-center justify-center gap-6 text-xl">
+      <Link href="/menu" onClick={handleMobileNav}>
+        <span className="hover:text-rose-500 transition duration-300">
+          Menu
+        </span>
+      </Link>
+      <Link href="/reservation" onClick={handleMobileNav}>
+        <span className="hover:text-rose-500 transition duration-300">
+          Reserve Table
+        </span>
+      </Link>
+      <Link href="/catering" onClick={handleMobileNav}>
+        <span className="hover:text-rose-500 transition duration-300">
+          Catering
+        </span>
+      </Link>
+      <Link href="#" onClick={handleMobileNav}>
+        <span className="hover:text-rose-500 transition duration-300">
+          About Us
+        </span>
+      </Link>
+    </nav>
   );
 }
 
