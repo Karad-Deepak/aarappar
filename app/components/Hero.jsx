@@ -6,24 +6,27 @@ import hero from "@/public/hero.jpg";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col mt-8 gap-6 lg:flex-row items-center justify-between px-6 md:px-12 lg:px-20 py-10 lg:py-16 bg-darkbg text-white">
+    <section className="flex flex-col mt-8 gap-6 lg:flex-row items-center px-6 md:px-12 lg:px-4 py-10 lg:py-12 bg-darkbg text-white">
       {/* Left Side - Text */}
       <motion.div
-        className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-6 lg:gap-10"
+        className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-6 lg:gap-8"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-2xl md:text-5xl lg:text-5xl font-bold text-normalbg font-[Playfair Display] leading-tight">
-          Flavours Straight from Home
+        <h1 className="text-2xl md:text-5xl lg:text4xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight">
+          AARAPPAR Restaurent
         </h1>
+        <h2 className="text-xl md:text-2xl lg:text-2xl font-bold text-lightbg font-[Playfair Display] leading-tight">
+          Flavours Straight from Home
+        </h2>
         <p className="text-sm md:text-lg text-gray-300 leading-relaxed">
           Authentic South Indian Flavors in the Heart of Germany! 🍛✨
           Experience the rich taste of **dosas, idlis, and flavorful curries**,
           crafted with traditional recipes and fresh ingredients. A true taste
           of home, away from home!
         </p>
-        <div className="flex flex-col gap-4 sm:flex-row">
+        <div className="flex  gap-4 sm:flex-row">
           <Link href="/menu">
             <button className="bg-rose-500 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform hover:scale-105">
               Order Now

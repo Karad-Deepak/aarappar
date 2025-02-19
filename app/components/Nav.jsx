@@ -24,13 +24,11 @@ function Nav() {
               alt="AARAPPAR Logo"
               width={40}
               height={30}
-              className="w-9h-7"
+              className="w-12 h-10"
             />
           </Link>
           <Link href="/">
-            <h1 className="font-bold text-lg lg:text-xl text-normalbg uppercase">
-              AARAPPAR Restaurant
-            </h1>
+            <h1 className="font-bold text-lg lg:text-xl text-normalbg uppercase"></h1>
           </Link>
         </div>
 
