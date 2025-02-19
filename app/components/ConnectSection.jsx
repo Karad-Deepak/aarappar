@@ -4,7 +4,7 @@ const ConnectSection = () => {
   return (
     <section className="bg-rose-50 text-white py-16 px-6 md:px-12 lg:px-24">
       <div className="text-center mb-10">
-        <h2 className="text-xl lg:text-4xl font-bold text-rose-500">
+        <h2 className="text-xl lg:text-5xl font-bold text-rose-500">
           Connect with Us
         </h2>
       </div>

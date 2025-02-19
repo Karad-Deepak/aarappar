@@ -33,7 +33,7 @@ export default function MenuSection() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-xl lg:text-4xl font-bold text-rose-500 mb-4"
+        className="text-xl lg:text-5xl font-bold text-rose-500 mb-4"
       >
         A Taste of Tradition, A Feast of Flavors!
       </motion.h2>

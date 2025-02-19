@@ -29,7 +29,7 @@ export default function CateringSection() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-xl lg:text-4xl font-bold text-rose-600 mb-4">
+        <h2 className="text-xl lg:text-5xl font-bold text-rose-600 mb-4">
           Elevate Your Events with Exquisite Catering
         </h2>
         <p className="text-sm lg:text-lg text-gray-300 mb-6">

@@ -14,7 +14,7 @@ export default function Hero() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-normalbg font-[Playfair Display] leading-tight">
+        <h1 className="text-2xl md:text-5xl lg:text-5xl font-bold text-normalbg font-[Playfair Display] leading-tight">
           Flavours Straight from Home
         </h1>
         <p className="text-sm md:text-lg text-gray-300 leading-relaxed">
