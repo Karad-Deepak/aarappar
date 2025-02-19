@@ -24,12 +24,16 @@ export default function Hero() {
           of home, away from home!
         </p>
         <div className="flex flex-col gap-4 sm:flex-row">
-          <button className="bg-rose-500 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform hover:scale-105">
-            Order Now
-          </button>
-          <button className="bg-gray-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-gray-700 transition-transform transform hover:scale-105">
-            Reserve Table
-          </button>
+          <Link href="/menu">
+            <button className="bg-rose-500 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform hover:scale-105">
+              Order Now
+            </button>
+          </Link>
+          <Link href="/reservation">
+            <button className="bg-gray-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-gray-700 transition-transform transform hover:scale-105">
+              Reserve Table
+            </button>
+          </Link>
         </div>
       </motion.div>
 
