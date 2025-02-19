@@ -9,6 +9,7 @@ import ConnectSection from "./components/ConnectSection";
 import Footer from "./components/Footer";
 
 import CateringSection from "./components/CateringSection";
+import CustomerFeedback from "./components/CustomerFeedback";
 
 function page() {
   return (
@@ -22,6 +23,7 @@ function page() {
         <DeliverySection />
         <CateringSection />
         <ConnectSection />
+        <CustomerFeedback />
       </main>
       <footer>
         <Footer />
