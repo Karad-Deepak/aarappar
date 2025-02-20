@@ -32,7 +32,8 @@ const ConnectSection = () => {
             Address
           </h3>
           <p className="text-sm lg:text-xl  mt-3 text-gray-300">
-            ALEXANDERSTRASSE 86, 60489 FRANKFURT AM MAIN, GERMANY
+            ALEXANDERSTRASSE 86,
+            <BR /> 60489 FRANKFURT AM MAIN, GERMANY
           </p>
         </div>
 

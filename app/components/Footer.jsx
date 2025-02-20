@@ -16,7 +16,7 @@ const Footer = () => {
         {/* Logo and About */}
         <div>
           <h2 className="text-lg lg:text-2xl font-bold text-rose-500">
-            AARAPAR
+            AARAPPAR RESTAURANT
           </h2>
           <p className="text-gray-400 mt-2 text-sm lg:text-lg">
             Experience the finest dining with our exquisite menu crafted with
@@ -59,7 +59,8 @@ const Footer = () => {
             Contact Us
           </h3>
           <p className="text-gray-400">
-            ALEXANDERSTRASSE 86, 60489 FRANKFURT AM MAIN, GERMANY
+            ALEXANDERSTRASSE 86, <br />
+            60489 FRANKFURT AM MAIN, GERMANY
           </p>
           <p className="text-gray-400">+49 15510462634</p>
           <p className="text-gray-400">aarapparde@gmail.com</p>

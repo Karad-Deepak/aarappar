@@ -15,7 +15,7 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-2xl md:text-5xl lg:text4xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight">
-          AARAPPAR Restaurent
+          AARAPPAR Restaurant
         </h1>
         <h2 className="text-xl md:text-2xl lg:text-2xl font-bold text-lightbg font-[Playfair Display] leading-tight">
           Flavours Straight from Home
