@@ -12,3 +12,13 @@ export async function fetchMenu() {
 
   return data;
 }
+export async function fetchMenuItems() {
+  const { data, error } = await supabase.from("menu_items").select("*");
+
+  if (error) {
+    console.error("Error fetching Products:", error);
+    return [];
+  }
+
+  return data;
+}
