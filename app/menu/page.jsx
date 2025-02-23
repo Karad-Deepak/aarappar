@@ -3,6 +3,7 @@ import MenuPage from "../components/MenuPage";
 import Footer from "../components/Footer";
 import { fetchMenu, fetchMenuItems } from "../_lib/actions";
 import MenuDisplay from "../components/MenuDisplay";
+import CartBottomBar from "../components/CartBottomBar";
 
 async function page() {
   const menudata = await fetchMenuItems();
@@ -13,6 +14,7 @@ async function page() {
       </header>
       <main className="bg-lightbg">
         <MenuDisplay menudata={menudata} />
+        <CartBottomBar />
       </main>
       <footer>
         <Footer />

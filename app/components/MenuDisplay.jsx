@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import QuantityControl from "./QuantityControl"; // import the new component
 
 // Helper function to group items by a key
 function groupBy(arr, key) {
@@ -13,7 +14,6 @@ function groupBy(arr, key) {
 }
 
 export default function MenuDisplay({ menudata }) {
-  // Group items by category
   const groupedByCategory = groupBy(menudata, "category");
 
   // Framer Motion variants for container and item animations
@@ -51,30 +51,36 @@ export default function MenuDisplay({ menudata }) {
                 {subcategory &&
                   subcategory.trim() !== "" &&
                   subcategory.toLowerCase() !== "others" && (
-                    <h3 className="text-lg lg:text-2xl font-medium text-gray-700 mb-4">
+                    <h3 className="text-lg lg:text-2xl font-medium text-green-700 mb-4">
                       {subcategory}
                     </h3>
                   )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {subItems.map((item) => (
                     <motion.div
-                      key={item.item_name}
-                      className="p-4 border rounded-lg shadow hover:shadow-lg transition duration-300"
+                      key={item.id} // use unique id instead of item_name
+                      className="p-4 border rounded-lg shadow hover:shadow-lg transition duration-300 flex flex-col justify-between"
                       variants={itemVariants}
                     >
-                      <div className="flex justify-between items-center">
-                        <h4 className="text-sm lg:text-xl font-semibold">
-                          {item.item_name}
-                        </h4>
-                        <span className="text-s lg:text-lg font-bold text-green-600">
-                          €{parseFloat(item.price).toFixed(2)}
-                        </span>
+                      <div>
+                        <div className="flex justify-between items-center">
+                          <h4 className="text-sm lg:text-xl font-semibold">
+                            {item.item_name}
+                          </h4>
+                          <span className="text-s lg:text-lg font-bold text-green-600">
+                            €{parseFloat(item.price).toFixed(2)}
+                          </span>
+                        </div>
+                        {item.description && (
+                          <p className="mt-2 text-gray-600 text-xs lg:text-lg">
+                            {item.description}
+                          </p>
+                        )}
                       </div>
-                      {item.description && (
-                        <p className="mt-2 text-gray-600 text-xs lg:text-lg">
-                          {item.description}
-                        </p>
-                      )}
+                      {/* Replace simple Add to Cart button with QuantityControl */}
+                      <div className="mt-4">
+                        <QuantityControl item={item} />
+                      </div>
                     </motion.div>
                   ))}
                 </div>

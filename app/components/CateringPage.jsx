@@ -1,6 +1,31 @@
+"use client";
+
 import { motion } from "framer-motion";
+import { submitEnquiry } from "@/app/_lib/actions"; // Adjust the path as needed
+import { useState, useTransition } from "react";
 
 export default function CateringPage() {
+  const [feedback, setFeedback] = useState("");
+  const [isPending, startTransition] = useTransition();
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    startTransition(async () => {
+      try {
+        await submitEnquiry(formData);
+        setFeedback("Your message has been sent successfully!");
+        event.target.reset();
+      } catch (error) {
+        console.error(error);
+        setFeedback(
+          "There was an error sending your message. Please try again later."
+        );
+      }
+    });
+  }
+
   return (
     <div className="min-h-screen bg-lightbg text-white px-6 py-12 md:px-20">
       {/* Heading Section */}
@@ -35,11 +60,7 @@ export default function CateringPage() {
         <h2 className="text-2xl font-semibold text-rose-500 mb-4 text-center">
           Enquiry Form
         </h2>
-        <form
-          action="/api/enquiry"
-          method="POST"
-          className="flex flex-col space-y-4"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             type="text"
             name="name"
@@ -48,9 +69,9 @@ export default function CateringPage() {
             required
           />
           <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
+            type="tel"
+            name="phone"
+            placeholder="Your Phone Number"
             className="p-3 bg-gray-800 text-white rounded-lg outline-none focus:ring-2 focus:ring-rose-500"
             required
           />
@@ -62,11 +83,17 @@ export default function CateringPage() {
           ></textarea>
           <button
             type="submit"
+            disabled={isPending}
             className="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 rounded-lg transition-all"
           >
-            Send Enquiry
+            {isPending ? "Sending..." : "Send Enquiry"}
           </button>
         </form>
+        {feedback && (
+          <div className="mt-4 text-center text-green-500 font-medium">
+            {feedback}
+          </div>
+        )}
       </motion.div>
     </div>
   );

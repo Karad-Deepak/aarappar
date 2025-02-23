@@ -1,4 +1,5 @@
 import { fetchMenu } from "../_lib/actions";
+import CartBottomBar from "./CartBottomBar";
 import CategorySection from "./CategorySection";
 import ScrollToTopButton from "./ScrollToTopButton"; // Import the button component
 
@@ -47,6 +48,7 @@ export default async function MenuPage() {
 
       {/* Scroll to Top Button (Client Component) */}
       <ScrollToTopButton />
+      <CartBottomBar />
     </div>
   );
 }
