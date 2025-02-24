@@ -45,6 +45,7 @@ export async function updateMenuItem(formData) {
   if (error) throw new Error("Failed to update menu item");
 
   // Revalidate the admin menu page cache.
+  revalidatePath("/menu");
   revalidatePath("/admin/menu");
 
   // Return a success message that our client component can display.

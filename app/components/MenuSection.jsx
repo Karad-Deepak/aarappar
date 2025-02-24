@@ -3,25 +3,27 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import dosa from "@/public/Dosa.jpg";
+import biryani from "@/public/Biryani.webp";
+import chicken from "@/public/chicken.webp";
 
 const dishes = [
   {
     id: 1,
     name: "Crispy Masala Dosa",
-    price: "$8.99",
+    price: "€8.99",
     image: dosa,
   },
   {
     id: 2,
-    name: "Steamed Idli & Sambar",
-    price: "$6.99",
-    image: dosa,
+    name: "Chettinad Chicken Curry",
+    price: "€13.90",
+    image: chicken,
   },
   {
     id: 3,
-    name: "Delicious Pongal",
-    price: "$7.49",
-    image: dosa,
+    name: "Chicken Biryani",
+    price: "€12",
+    image: biryani,
   },
 ];
 

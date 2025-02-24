@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import close from "@/public/close.png";
 import list from "@/public/list.png";
-import logo from "@/public/logo.png"; // Import logo
+import logo1 from "@/public/logo1.png"; // Import logo
 
 function Nav() {
   const [isMobileNav, setMobileNav] = useState(false);
@@ -20,7 +20,7 @@ function Nav() {
         <div className="flex items-center gap-2 lg:pl-24">
           <Link href="/">
             <Image
-              src={logo}
+              src={logo1}
               alt="AARAPPAR Logo"
               width={40}
               height={30}
@@ -63,7 +63,7 @@ function Navbar() {
           Catering
         </span>
       </Link>
-      <Link href="#">
+      <Link href="/aboutus">
         <span className="hover:text-rose-500 transition duration-300">
           About Us
         </span>
@@ -106,7 +106,7 @@ function Mobile({ handleMobileNav }) {
           Catering
         </span>
       </Link>
-      <Link href="#" onClick={handleMobileNav}>
+      <Link href="/aboutus" onClick={handleMobileNav}>
         <span className="hover:text-rose-500 transition duration-300">
           About Us
         </span>

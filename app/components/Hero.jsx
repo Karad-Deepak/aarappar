@@ -21,10 +21,11 @@ export default function Hero() {
           Flavours Straight from Home
         </h2>
         <p className="text-sm md:text-lg text-gray-300 leading-relaxed">
-          Authentic South Indian Flavors in the Heart of Germany! 🍛✨
-          Experience the rich taste of **dosas, idlis, and flavorful curries**,
-          crafted with traditional recipes and fresh ingredients. A true taste
-          of home, away from home!
+          Authentic Indian Flavors in the Heart of Germany! 🍛✨ Experience the
+          rich taste of traditional flavorful dishesh ,crafted with time-honored
+          recipes and the freshest ingredients.We serve a complete range of
+          Indian main courses, ensuring you get the full taste of home even when
+          you're far away.
         </p>
         <div className="flex  gap-4 sm:flex-row">
           <Link href="/menu">

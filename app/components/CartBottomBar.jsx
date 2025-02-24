@@ -14,7 +14,7 @@ export default function CartBottomBar() {
 
   return (
     <div className="fixed bottom-0 left-0 w-full bg-rose-500 text-white p-4 flex justify-between items-center z-50">
-      <span className="font-semibold">
+      <span className="font-semibold pl-2 lg:pl-10">
         {totalItems} item{totalItems > 1 ? "s" : ""} in cart
       </span>
       <button
