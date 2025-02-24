@@ -9,8 +9,8 @@ export default {
     extend: {
       colors: {
         darkbg: "#18181b",
-        lightbg: "#fff1f2",
-        normalbg: "#e11d48",
+        lightbg: "#fef2f2",
+        normalbg: "#ff0000",
       },
     },
   },

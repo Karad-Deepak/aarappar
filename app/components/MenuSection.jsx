@@ -35,7 +35,7 @@ export default function MenuSection() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-xl lg:text-5xl font-bold text-rose-500 mb-4"
+        className="text-xl lg:text-5xl font-bold text-normalbg mb-4"
       >
         A Taste of Tradition, A Feast of Flavors!
       </motion.h2>
@@ -71,12 +71,12 @@ export default function MenuSection() {
               <h3 className="text-sm sm:text-lg font-semibold mt-3">
                 {dish.name}
               </h3>
-              <p className="text-xs sm:text-md text-rose-400 font-medium mt-1">
+              <p className="text-xs sm:text-md text-red-400 font-medium mt-1">
                 {dish.price}
               </p>
 
               {/* Order Now Button */}
-              <button className="mt-3 bg-rose-500 text-white text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+              <button className="mt-3 bg-normalbg text-white text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
                 Order Now
               </button>
             </motion.div>
@@ -105,12 +105,12 @@ export default function MenuSection() {
 
               {/* Dish Name & Price */}
               <h3 className="text-lg font-semibold mt-3">{dish.name}</h3>
-              <p className="text-md text-rose-400 font-medium mt-1">
+              <p className="text-md text-red-400 font-medium mt-1">
                 {dish.price}
               </p>
 
               {/* Order Now Button */}
-              <button className="mt-3 bg-rose-500 text-white px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+              <button className="mt-3 bg-normalbg text-white px-5 py-2 rounded-xl hover:bg-rose-600 transition">
                 Order Now
               </button>
             </motion.div>
@@ -121,7 +121,7 @@ export default function MenuSection() {
       {/* Explore Full Menu Link */}
       <Link href="/menu">
         <motion.button
-          className="py-3 px-6 rounded-2xl mt-10 text-lg text-white bg-rose-500 hover:bg-rose-600 transition"
+          className="py-3 px-6 rounded-2xl mt-10 text-lg text-white bg-normalbg hover:bg-rose-600 transition"
           whileHover={{ scale: 1.1 }}
         >
           Explore Full Menu →

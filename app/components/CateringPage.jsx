@@ -33,7 +33,7 @@ export default function CateringPage() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-center text-rose-500"
+        className="text-4xl md:text-5xl font-bold text-center text-normalbg"
       >
         Catering Services
       </motion.h1>
@@ -57,7 +57,7 @@ export default function CateringPage() {
         transition={{ duration: 0.6, delay: 0.4 }}
         className="mt-12 max-w-lg mx-auto bg-darkbg p-6 rounded-2xl shadow-lg"
       >
-        <h2 className="text-2xl font-semibold text-rose-500 mb-4 text-center">
+        <h2 className="text-2xl font-semibold text-normalbg mb-4 text-center">
           Enquiry Form
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
@@ -65,7 +65,7 @@ export default function CateringPage() {
             type="text"
             name="name"
             placeholder="Your Name"
-            className="p-3 bg-gray-800 text-white rounded-lg outline-none focus:ring-2 focus:ring-rose-500"
+            className="p-3 bg-gray-800 text-white rounded-lg outline-none focus:ring-2 focus:ring-red-600"
             required
           />
           <input
@@ -84,7 +84,7 @@ export default function CateringPage() {
           <button
             type="submit"
             disabled={isPending}
-            className="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 rounded-lg transition-all"
+            className="bg-normalbg hover:bg-rose-600 text-white font-bold py-3 rounded-lg transition-all"
           >
             {isPending ? "Sending..." : "Send Enquiry"}
           </button>

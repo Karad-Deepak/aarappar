@@ -15,11 +15,15 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-2xl md:text-5xl lg:text4xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight">
-          AARAPPAR Restaurant
+          AARAPPAR <br />
+          <span className="text-xl md:text-3xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight">
+            Indisches Restaurant
+          </span>
         </h1>
-        <h2 className="text-xl md:text-2xl lg:text-2xl font-bold text-lightbg font-[Playfair Display] leading-tight">
+
+        <p className="text-xl md:text-2xl lg:text-2xl font-bold text-lightbg font-[Playfair Display] leading-tight">
           Flavours Straight from Home
-        </h2>
+        </p>
         <p className="text-sm md:text-lg text-gray-300 leading-relaxed">
           Authentic Indian Flavors in the Heart of Germany! 🍛✨ Experience the
           rich taste of traditional flavorful dishesh ,crafted with time-honored
@@ -29,7 +33,7 @@ export default function Hero() {
         </p>
         <div className="flex  gap-4 sm:flex-row">
           <Link href="/menu">
-            <button className="bg-rose-500 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform hover:scale-105">
+            <button className="bg-normalbg text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform hover:scale-105">
               Order Now
             </button>
           </Link>

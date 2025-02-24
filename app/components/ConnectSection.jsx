@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 const ConnectSection = () => {
   return (
-    <section className="bg-rose-50 text-white py-16 px-6 md:px-12 lg:px-24">
+    <section className="bg-lightbg text-white py-16 px-6 md:px-12 lg:px-24">
       <div className="text-center mb-10">
-        <h2 className="text-xl lg:text-5xl font-bold text-rose-500">
+        <h2 className="text-xl lg:text-5xl font-bold text-normalbg">
           Connect with Us
         </h2>
       </div>
@@ -18,21 +18,19 @@ const ConnectSection = () => {
       >
         {/* Operational Hours */}
         <div className="bg-zinc-900 p-6 rounded-2xl shadow-lg">
-          <h3 className="text-sm lg:text-xl font-semibold text-rose-400">
+          <h3 className="text-sm lg:text-xl font-semibold text-red-400">
             Operational Hours
           </h3>
-          <p className="mt-3 text-gray-300">Mon - Fri: 9 AM - 10 PM</p>
-          <p className="text-sm lg:text-xl text-gray-300">
-            Sat - Sun: 10 AM - 11 PM
-          </p>
+          <p className="mt-3">Mon - Fri: 9 AM - 10 PM</p>
+          <p className="text-sm lg:text-xl ">Sat - Sun: 10 AM - 11 PM</p>
         </div>
 
         {/* Address */}
         <div className="bg-zinc-900 p-6 rounded-2xl shadow-lg">
-          <h3 className="text-sm lg:text-xl  font-semibold text-rose-400">
+          <h3 className="text-sm lg:text-xl  font-semibold text-red-400 ">
             Address
           </h3>
-          <p className="text-sm lg:text-xl  mt-3 text-gray-300">
+          <p className="text-sm lg:text-xl  mt-3 ">
             ALEXANDERSTRASSE 86,
             <br /> 60489 FRANKFURT AM MAIN, GERMANY
           </p>
@@ -40,13 +38,11 @@ const ConnectSection = () => {
 
         {/* Contact Number */}
         <div className="bg-zinc-900 p-6 rounded-2xl shadow-lg">
-          <h3 className="text-sm lg:text-xl  font-semibold text-rose-400">
+          <h3 className="text-sm lg:text-xl  font-semibold text-red-400">
             Contact
           </h3>
           <p className="mt-3 text-gray-300">Phone: +49 15510462634</p>
-          <p className="text-sm lg:text-xl text-gray-300">
-            Email: aarapparde@gmail.com
-          </p>
+          <p className="text-sm lg:text-xl ">Email: aarapparde@gmail.com</p>
         </div>
       </motion.div>
 
@@ -54,7 +50,7 @@ const ConnectSection = () => {
       <div className="text-center mt-10">
         <motion.a
           href="/gallery"
-          className="inline-block px-6 py-3 text-sm lg:text-lg font-semibold text-black bg-rose-500 rounded-xl hover:bg-rose-600 transition-all shadow-md"
+          className="inline-block px-6 py-3 text-sm lg:text-lg font-semibold  bg-normalbg rounded-xl hover:bg-rose-600 transition-all shadow-md"
           whileHover={{ scale: 1.1 }}
         >
           View Gallery

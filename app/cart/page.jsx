@@ -126,7 +126,7 @@ export default function CartPage() {
                     required
                   />
                   {errors.customerName && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-normalbg text-sm mt-1">
                       {errors.customerName}
                     </p>
                   )}
@@ -141,7 +141,7 @@ export default function CartPage() {
                     required
                   />
                   {errors.phone && (
-                    <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                    <p className="text-normalbg text-sm mt-1">{errors.phone}</p>
                   )}
                 </div>
                 <div>
@@ -154,7 +154,7 @@ export default function CartPage() {
                     required
                   ></textarea>
                   {errors.address && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-normalbg text-sm mt-1">
                       {errors.address}
                     </p>
                   )}
@@ -162,7 +162,7 @@ export default function CartPage() {
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="mt-4 px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white font-semibold rounded"
+                  className="mt-4 px-4 py-2 bg-normal hover:bg-rose-600 text-white font-semibold rounded"
                 >
                   {isPending ? "Submitting Order..." : "Submit Order"}
                 </button>

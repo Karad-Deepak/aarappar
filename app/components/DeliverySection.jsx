@@ -61,7 +61,7 @@ export default function DeliverySection() {
 
         {/* Buttons */}
         <div className="flex flex-col md:flex-row gap-4 mt-6 justify-center md:justify-start text-sm lg:text-xl">
-          <Button className="bg-gradient-to-r from-rose-500 to-red-600 text-white hover:from-red-500 hover:to-rose-500">
+          <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-500 hover:to-rose-500">
             Order Here Now
           </Button>
           <Button className="bg-white text-black hover:bg-gray-200">

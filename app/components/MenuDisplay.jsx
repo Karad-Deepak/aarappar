@@ -69,7 +69,7 @@ export default function MenuDisplay({ menudata }) {
         </motion.div>
 
         <div className="text-center my-4 md:my-0">
-          <h1 className="text-4xl font-bold text-rose-500 mb-3">Menu</h1>
+          <h1 className="text-4xl font-bold text-normalbg mb-3">Menu</h1>
           <p className="hidden lg:block text-sm sm:text-lg text-darkbg">
             Discover our delicious offerings carefully crafted to delight your
             taste buds.
@@ -124,7 +124,7 @@ export default function MenuDisplay({ menudata }) {
             >
               <div>
                 <div className="flex justify-between items-center">
-                  <h4 className="text-sm lg:text-xl font-semibold text-gray-800">
+                  <h4 className="text-sm lg:text-xl font-semibold text-gray-900">
                     {item.item_name}
                   </h4>
                   <span className="text-s lg:text-lg font-bold text-indigo-600">

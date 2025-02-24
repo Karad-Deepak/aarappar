@@ -15,8 +15,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
         {/* Logo and About */}
         <div>
-          <h2 className="text-lg lg:text-2xl font-bold text-rose-500">
-            AARAPPAR RESTAURANT
+          <h2 className="text-lg lg:text-2xl font-bold text-normal text-normalbg">
+            AARAPPAR Indisches Restaurant
           </h2>
           <p className="text-gray-400 mt-2 text-sm lg:text-lg">
             Experience the finest dining with our exquisite menu crafted with
@@ -26,7 +26,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div className="text-sm lg:text-lg">
-          <h3 className="text-sm lg:text-xl font-semibold text-rose-400 mb-3">
+          <h3 className="text-sm lg:text-xl font-semibold text-red-400 mb-3">
             Quick Links
           </h3>
           <ul className="text-gray-400 space-y-2">
@@ -55,7 +55,7 @@ const Footer = () => {
 
         {/* Contact & Socials */}
         <div className="text-sm lg:text-lg">
-          <h3 className="text-sm lg:text-xl font-semibold text-rose-400 mb-3">
+          <h3 className="text-sm lg:text-xl font-semibold text-red-400 mb-3">
             Contact Us
           </h3>
           <p className="text-gray-400">

@@ -14,7 +14,7 @@ export default function About() {
         transition={{ duration: 0.8 }}
         className="min-h-[70vh] bg-darkbg text-white flex flex-col items-center justify-center px-4 py-8 mt-6"
       >
-        <h1 className="text-4xl md:text-5xl font-bold text-rose-500 mb-6">
+        <h1 className="text-4xl md:text-5xl font-bold text-normalbg mb-6">
           About AARAPAR
         </h1>
         <div className="max-w-2xl text-center space-y-4">

@@ -81,7 +81,7 @@ export default function ReserveTable() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-bold text-center text-rose-500 mb-6"
+          className="text-3xl font-bold text-center text-normalbg mb-6"
         >
           Reserve Your Table
         </motion.h2>
@@ -192,7 +192,7 @@ export default function ReserveTable() {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full p-3 rounded-lg bg-rose-500 text-white font-semibold text-lg hover:bg-rose-600 transition"
+            className="w-full p-3 rounded-lg bg-normalbg text-white font-semibold text-lg hover:bg-rose-600 transition"
           >
             {isPending ? "Reserving..." : "Reserve Now"}
           </button>

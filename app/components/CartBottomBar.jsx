@@ -13,13 +13,13 @@ export default function CartBottomBar() {
   if (totalItems === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-rose-500 text-white p-4 flex justify-between items-center z-50">
+    <div className="fixed bottom-0 left-0 w-full bg-red-600 text-white p-4 flex justify-between items-center z-50">
       <span className="font-semibold pl-2 lg:pl-10">
         {totalItems} item{totalItems > 1 ? "s" : ""} in cart
       </span>
       <button
         onClick={() => router.push("/cart")}
-        className="bg-white text-rose-500 font-bold px-4 py-2 rounded"
+        className="bg-white text-normalbg font-bold px-4 py-2 rounded"
       >
         Proceed to Cart
       </button>
