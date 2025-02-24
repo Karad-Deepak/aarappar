@@ -31,7 +31,11 @@ function Nav() {
             <h1 className="font-bold text-lg lg:text-xl text-normalbg uppercase"></h1>
           </Link>
         </div>
-
+        <div>
+          <span className=" text-normalbg font-bold tetx-lg">
+            📞 +49 15510462634
+          </span>
+        </div>
         {/* Desktop Navbar */}
         <Navbar />
 

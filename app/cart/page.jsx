@@ -81,7 +81,7 @@ export default function CartPage() {
   return (
     <>
       <Nav />
-      <div className="min-h-screen p-4 bg-lightbg text-darkbg mt-7 lg:mt-12">
+      <div className="min-h-screen p-4 bg-lightbg text-darkbg mt-10 lg:mt-16">
         <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
         {cart.length === 0 ? (
           <p>Your cart is empty.</p>

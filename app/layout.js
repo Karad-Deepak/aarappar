@@ -12,8 +12,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "AARAPPAR",
-  description: "Flavours straight from home",
+  title: "AARAPPAR Restaurant",
+  description:
+    "Modern dining with Indian flavours, easy reservations and custom catering in a sleek, stylish setting.",
 };
 
 export default function RootLayout({ children }) {

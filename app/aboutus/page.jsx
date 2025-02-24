@@ -12,7 +12,7 @@ export default function About() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="min-h-screen bg-darkbg text-white flex flex-col items-center justify-center px-4 py-8 mt-6"
+        className="min-h-[70vh] bg-darkbg text-white flex flex-col items-center justify-center px-4 py-8 mt-6"
       >
         <h1 className="text-4xl md:text-5xl font-bold text-rose-500 mb-6">
           About AARAPAR
