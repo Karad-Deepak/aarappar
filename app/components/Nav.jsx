@@ -20,7 +20,7 @@ function Nav() {
         <div className="flex items-center gap-2 lg:pl-24">
           <Link href="/">
             <Image
-              src={logo}
+              src={logo1}
               alt="AARAPPAR Logo"
               width={40}
               height={30}
