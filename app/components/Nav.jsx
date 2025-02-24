@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import close from "@/public/close.png";
 import list from "@/public/list.png";
-import logo1 from "@/public/logo1.png"; // Import logo
+import logo from "@/public/logo.png"; // Import logo
 
 function Nav() {
   const [isMobileNav, setMobileNav] = useState(false);
@@ -20,7 +20,7 @@ function Nav() {
         <div className="flex items-center gap-2 lg:pl-24">
           <Link href="/">
             <Image
-              src={logo1}
+              src={logo}
               alt="AARAPPAR Logo"
               width={40}
               height={30}
