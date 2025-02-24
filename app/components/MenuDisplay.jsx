@@ -7,6 +7,38 @@ import QuantityControl from "./QuantityControl";
 import chicken from "@/public/chicken.webp";
 import Biryani from "@/public/Biryani.webp";
 
+// Import category images
+import cat1 from "@/public/cat1.jpg";
+import cat2 from "@/public/cat2.jpg";
+import cat3 from "@/public/cat3.jpg";
+import cat4 from "@/public/cat4.jpg";
+import cat5 from "@/public/cat5.jpg";
+import cat6 from "@/public/cat6.jpg";
+import cat7 from "@/public/cat7.jpg";
+import cat10 from "@/public/cat10.jpg";
+import cat11 from "@/public/cat11.jpg";
+import cat12 from "@/public/cat12.jpg";
+import cat9 from "@/public/hero.jpg"; // fallback
+
+// Map your actual category names (normalized to lowercase) to images
+const categoryImages = {
+  soups: cat1,
+  "appetizers – vegetarian": cat2,
+  "appetizers – non-vegetarian": cat3,
+  "vegetarian & vegan curries": cat4,
+  "non-vegetarian curries": cat5,
+  "egg appetizers": cat6,
+  "thalis (meals)": cat7,
+  "rice & biryani": Biryani,
+  "dosa specials": cat9,
+  "indian breads": cat10,
+  desserts: cat11,
+  drinks: cat12,
+};
+
+// Normalize a string to lowercase and trim spaces
+const normalize = (str) => str.toLowerCase().trim();
+
 // Helper function to group items by a key
 function groupBy(arr, key) {
   return arr.reduce((acc, item) => {
@@ -151,10 +183,23 @@ export default function MenuDisplay({ menudata }) {
           return (
             <details
               key={category}
-              className="mb-3 lg:mb-7 border border-darkbg rounded-lg overflow-hidden"
+              className="mb-8 border border-darkbg rounded-lg overflow-hidden"
             >
-              <summary className="px-4 py-2 cursor-pointer text-[16px] lg:text-2xl font-semibold text-normalbg bg-indigo-50 hover:bg-gray-200 transition-colors">
-                {category}
+              {/* Customized Category Header */}
+              <summary className="cursor-pointer">
+                <div className="relative w-full h-24 lg:h-52">
+                  <Image
+                    src={categoryImages[normalize(category)] || cat9}
+                    alt={category}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <h2 className="text-xl lg:text-3xl font-bold text-white">
+                      {category}
+                    </h2>
+                  </div>
+                </div>
               </summary>
               <AnimatePresence>
                 <motion.div
