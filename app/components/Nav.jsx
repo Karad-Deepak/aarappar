@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import close from "@/public/close.png";
 import list from "@/public/list.png";
-import logo from "@/public/logo.png"; // Import logo
+import logo1 from "@/public/logo1.png"; // Import logo
 
 function Nav() {
   const [isMobileNav, setMobileNav] = useState(false);
