@@ -12,6 +12,9 @@ export default {
         lightbg: "#fef2f2",
         normalbg: "#ff0000",
       },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
     },
   },
   plugins: [],
