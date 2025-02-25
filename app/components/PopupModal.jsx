@@ -69,7 +69,7 @@ export default function PopupModal({ content }) {
                   transition: { delay: 0.3, duration: 0.5 },
                 }}
               >
-                <p className="text-lg md:text-2xl text-normalbg font-bold">
+                <p className="whitespace-pre-line text-lg md:text-2xl text-normalbg font-bold">
                   {content}
                 </p>
               </motion.div>
