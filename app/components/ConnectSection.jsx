@@ -40,8 +40,10 @@ const ConnectSection = () => {
           <h3 className="text-sm lg:text-xl  font-semibold text-red-400">
             Contact
           </h3>
-          <p className="mt-3 text-gray-300">Phone: +49 15219220483</p>
-          <p className="text-sm lg:text-xl ">Email: aarapparde@gmail.com</p>
+          <p className="mt-3 text-sm lg:text-xl">Phone: +49 15219220483</p>
+          <p className="text-sm lg:text-xl ">
+            Email: aarapparrodelheim@aarappar.de
+          </p>
         </div>
       </motion.div>
 

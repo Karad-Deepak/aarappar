@@ -19,10 +19,17 @@ export default function PopupModal({ content }) {
     }
   }, [isOpen]);
 
-  // Border shimmer animation (glitter effect)
+  // Rainbow border animation with LED blinking effect
   const borderVariants = {
     animate: {
       backgroundPosition: ["0% 50%", "100% 50%"],
+      filter: [
+        "brightness(1)",
+        "brightness(1.3)",
+        "brightness(1.7)",
+        "brightness(1.3)",
+        "brightness(1)",
+      ],
       transition: {
         duration: 3,
         ease: "linear",
@@ -40,11 +47,16 @@ export default function PopupModal({ content }) {
           exit={{ opacity: 0, transition: { duration: 0.3 } }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm"
         >
-          {/* Shimmering gradient border wrapper */}
+          {/* Rainbow gradient border wrapper with blinking LED effect */}
           <motion.div
             variants={borderVariants}
             animate="animate"
-            className="p-1 rounded-xl bg-gradient-to-r from-teal-400 via-rose-400 to-teal-400"
+            className="p-1 rounded-xl"
+            style={{
+              background:
+                "linear-gradient(to right, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8F00FF)",
+              backgroundSize: "400% 400%",
+            }}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
