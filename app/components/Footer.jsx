@@ -19,8 +19,7 @@ const Footer = () => {
             AARAPPAR Indisches Restaurant
           </h2>
           <p className="text-gray-400 mt-2 text-sm lg:text-lg">
-            Experience the finest dining with our exquisite menu crafted with
-            passion.
+            Flavours Straight from Home
           </p>
         </div>
 
@@ -59,8 +58,7 @@ const Footer = () => {
             Contact Us
           </h3>
           <p className="text-gray-400">
-            ALEXANDERSTRASSE 86, <br />
-            60489 FRANKFURT AM MAIN, GERMANY
+            Trümpertstraße 18 60489, Frankfurt am Main - Rödelheim
           </p>
           <p className="text-gray-400">+49 15510462634</p>
           <p className="text-gray-400">aarapparde@gmail.com</p>
