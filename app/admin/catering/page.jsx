@@ -9,11 +9,7 @@ export default async function EnquiriesPage({ searchParams }) {
 
   return (
     <div className="min-h-screen bg-lightbg text-white p-8">
-      <Link href="/admin/request">
-        <button className="mb-4 px-4 py-2 rounded bg-gray-700 hover:bg-gray-600">
-          Back to Dashboard
-        </button>
-      </Link>
+     
       {message && (
         <div className="mb-4 p-4 bg-green-600 text-center">{message}</div>
       )}

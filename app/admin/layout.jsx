@@ -8,22 +8,22 @@ export default function AdminLayout({ children }) {
 
   // Function to determine link styles dynamically
   const getLinkClasses = (path) =>
-    `transition-all duration-300 px-4 py-2 rounded-2xl text-sm font-semibold 
+    `transition-all duration-300 px-4 py-2 rounded-2xl text-sm lg:text-xl font-semibold 
     ${
       pathname === path
-        ? "bg-rose-600 text-white"
-        : "text-rose-400 hover:bg-rose-800 hover:text-white"
+        ? "bg-red-600 text-white"
+        : "text-normalbg hover:bg-rose-800 hover:text-white"
     }`;
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <header className="bg-black shadow-md border-b border-rose-500">
+      <header className="bg-black shadow-md border-b border-normalbg">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-16">
             {/* Logo / Branding */}
             <div className="flex-shrink-0">
               <Link href="/admin">
-                <span className="text-2xl font-bold text-rose-500">
+                <span className="text-2xl font-bold text-normalbg">
                   Admin Dashboard
                 </span>
               </Link>
@@ -37,10 +37,16 @@ export default function AdminLayout({ children }) {
                 Orders
               </Link>
               <Link
-                href="/admin/request"
-                className={getLinkClasses("/admin/request")}
+                href="/admin/reservations"
+                className={getLinkClasses("/admin/reservations")}
               >
-                Request
+                Reservations
+              </Link>
+              <Link
+                href="/admin/catering"
+                className={getLinkClasses("/admin/catering")}
+              >
+                Catering
               </Link>
               <Link
                 href="/admin/change-menu"

@@ -69,31 +69,38 @@ export async function submitEnquiry(formData) {
 
   return data;
 }
+
 export async function submitReservation(formData) {
   const salutation = formData.get("salutation");
   const firstName = formData.get("firstName");
   const lastName = formData.get("lastName");
+  const email = formData.get("email");
   const phone = formData.get("phone");
   const timeSlot = formData.get("timeSlot");
   const guests = formData.get("guests");
   const message = formData.get("message");
 
-  const { data, error } = await supabase.from("reservations").insert([
-    {
-      salutation,
-      first_name: firstName,
-      last_name: lastName,
-      phone,
-      time_slot: timeSlot,
-      guests: parseInt(guests),
-      message,
-    },
-  ]);
+  const { data, error } = await supabase
+    .from("reservations")
+    .insert([
+      {
+        salutation,
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone,
+        time_slot: timeSlot,
+        guests: parseInt(guests),
+        message,
+      },
+    ])
+    .single();
 
   if (error) {
     console.error("Error inserting reservation:", error);
     throw new Error("Failed to reserve table. Please try again later.");
   }
+
   revalidatePath("/admin/request/reservations");
   return data;
 }

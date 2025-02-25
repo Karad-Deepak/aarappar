@@ -9,6 +9,7 @@ export default function ReserveTable() {
     salutation: "",
     firstName: "",
     lastName: "",
+    email: "",
     phone: "",
     timeSlot: "",
     guests: "",
@@ -17,6 +18,8 @@ export default function ReserveTable() {
   const [errors, setErrors] = useState({});
   const [feedback, setFeedback] = useState("");
   const [isPending, startTransition] = useTransition();
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,13 +38,20 @@ export default function ReserveTable() {
       newErrors.firstName = "First Name must be at least 2 characters.";
     if (!formData.lastName.trim())
       newErrors.lastName = "Last Name is required.";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email.trim())
+    ) {
+      newErrors.email = "Invalid email address.";
+    }
     if (!formData.phone.trim()) newErrors.phone = "Phone Number is required.";
     else if (!/^\+?\d{7,15}$/.test(formData.phone.trim()))
       newErrors.phone = "Invalid phone number.";
     if (!formData.timeSlot) newErrors.timeSlot = "Please select a time slot.";
     if (!formData.guests || Number(formData.guests) < 1)
       newErrors.guests = "At least one guest is required.";
-    // Message is optional, so no error needed.
+    // Message is optional
     return newErrors;
   };
 
@@ -59,6 +69,7 @@ export default function ReserveTable() {
     data.append("salutation", formData.salutation);
     data.append("firstName", formData.firstName);
     data.append("lastName", formData.lastName);
+    data.append("email", formData.email);
     data.append("phone", formData.phone);
     data.append("timeSlot", formData.timeSlot);
     data.append("guests", formData.guests);
@@ -68,16 +79,19 @@ export default function ReserveTable() {
       try {
         await submitReservation(data);
         setFeedback("Your reservation has been successfully submitted!");
-        // Reset form data
+        // Reset form data and calendar selection
         setFormData({
           salutation: "",
           firstName: "",
           lastName: "",
+          email: "",
           phone: "",
           timeSlot: "",
           guests: "",
           message: "",
         });
+        setSelectedDate("");
+        setSelectedTimeSlot("");
         setErrors({});
       } catch (error) {
         console.error(error);
@@ -88,7 +102,7 @@ export default function ReserveTable() {
     });
   }
 
-  // Time slot options
+  // Time slot options arranged as calendar view
   const timeSlots = [
     {
       label: "28.Feb Friday",
@@ -115,7 +129,7 @@ export default function ReserveTable() {
   ];
 
   // Salutation options
-  const salutations = ["Mr", "Ms", "Mrs", "Dr"];
+  const salutations = ["Mr", "Ms", "Mrs"];
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 py-12">
@@ -200,12 +214,29 @@ export default function ReserveTable() {
             </div>
           </div>
 
+          {/* Email */}
+          <div>
+            <label htmlFor="email" className="block text-gray-300 mb-2">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+              placeholder="Enter your email"
+            />
+            {errors.email && (
+              <p className="mt-1 text-sm text-normalbg">{errors.email}</p>
+            )}
+          </div>
+
           {/* Phone */}
           <div>
-            <label
-              htmlFor="phone"
-              className="block text-gray-300 mb-2 font-poppins"
-            >
+            <label htmlFor="phone" className="block text-gray-300 mb-2 ">
               Phone Number
             </label>
             <input
@@ -215,7 +246,7 @@ export default function ReserveTable() {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+              className="w-full p-3 rounded-lg bg-gray-800 font-sans text-white border  border-gray-700 focus:border-rose-500 focus:ring-rose-500"
               placeholder="Enter your phone number"
             />
             {errors.phone && (
@@ -223,37 +254,67 @@ export default function ReserveTable() {
             )}
           </div>
 
-          {/* Time Slot */}
+          {/* Calendar View for Time Slot */}
           <div>
-            <label htmlFor="timeSlot" className="block text-gray-300 mb-2">
-              Time Slot
-            </label>
-            <select
-              id="timeSlot"
-              name="timeSlot"
-              value={formData.timeSlot}
-              onChange={handleChange}
-              required
-              className="font-poppins w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
-            >
-              <option value="">Select a time slot</option>
+            <label className="block text-gray-300 mb-2">Select Date</label>
+            <div className="flex gap-4 justify-center">
               {timeSlots.map((group) => (
-                <optgroup key={group.label} label={group.label}>
-                  {group.options.map((slot) => {
-                    const value = `${group.label}: ${slot}`;
+                <button
+                  type="button"
+                  key={group.label}
+                  onClick={() => {
+                    setSelectedDate(group.label);
+                    setSelectedTimeSlot("");
+                    setFormData((prev) => ({ ...prev, timeSlot: "" }));
+                  }}
+                  className={`p-4 rounded-lg border transition-colors font-sans ${
+                    selectedDate === group.label
+                      ? "bg-normalbg text-white"
+                      : "bg-gray-800 text-white"
+                  }`}
+                >
+                  {group.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          {selectedDate && (
+            <div>
+              <label className="block text-gray-300 mb-2">
+                Select Time Slot
+              </label>
+              <div className="flex gap-4 justify-center mt-2">
+                {timeSlots
+                  .find((group) => group.label === selectedDate)
+                  ?.options.map((slot) => {
+                    const value = `${selectedDate}: ${slot}`;
                     return (
-                      <option key={value} value={value}>
-                        {value}
-                      </option>
+                      <button
+                        type="button"
+                        key={slot}
+                        onClick={() => {
+                          setSelectedTimeSlot(slot);
+                          setFormData((prev) => ({
+                            ...prev,
+                            timeSlot: value,
+                          }));
+                        }}
+                        className={`p-2 rounded-lg font-sans border transition-colors ${
+                          selectedTimeSlot === slot
+                            ? "bg-normalbg text-white"
+                            : "bg-gray-800 text-white"
+                        }`}
+                      >
+                        {slot}
+                      </button>
                     );
                   })}
-                </optgroup>
-              ))}
-            </select>
-            {errors.timeSlot && (
-              <p className="mt-1 text-sm text-red-500">{errors.timeSlot}</p>
-            )}
-          </div>
+              </div>
+              {errors.timeSlot && (
+                <p className="mt-1 text-sm text-red-500">{errors.timeSlot}</p>
+              )}
+            </div>
+          )}
 
           {/* Number of Guests */}
           <div>

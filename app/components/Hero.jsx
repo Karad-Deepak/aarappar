@@ -32,14 +32,14 @@ export default function Hero() {
           you're far away.
         </p>
         <div className="flex  gap-4 sm:flex-row">
-          <Link href="/menu">
+          <Link href="/reservation">
             <button className="bg-normalbg text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform hover:scale-105">
-              Order Now
+              Reserve Table
             </button>
           </Link>
-          <Link href="/reservation">
-            <button className="bg-gray-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-gray-700 transition-transform transform hover:scale-105">
-              Reserve Table
+          <Link href="/menu">
+            <button className=" bg-gray-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-gray-700 transition-transform transform hover:scale-105">
+              Order Now
             </button>
           </Link>
         </div>

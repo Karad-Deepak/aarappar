@@ -48,25 +48,20 @@ export default function DeliverySection() {
               ➤ Uber Eats
             </Link>
           </li>
-          <li>
-            <Link
-              href="https://www.foodora.de/"
-              target="_blank"
-              className=" text-white hover:text-rose-400 transition duration-300"
-            >
-              ➤ Foodora
-            </Link>
-          </li>
         </ul>
 
         {/* Buttons */}
         <div className="flex flex-col md:flex-row gap-4 mt-6 justify-center md:justify-start text-sm lg:text-xl">
-          <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-500 hover:to-rose-500">
-            Order Here Now
-          </Button>
-          <Button className="bg-white text-black hover:bg-gray-200">
-            Reserve a Table
-          </Button>
+          <Link href="/reservation">
+            <button className="bg-normalbg text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform hover:scale-105">
+              Reserve Table
+            </button>
+          </Link>
+          <Link href="/menu">
+            <button className=" bg-gray-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-gray-700 transition-transform transform hover:scale-105">
+              Order Now
+            </button>
+          </Link>
         </div>
       </div>
 
