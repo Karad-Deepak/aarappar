@@ -27,7 +27,6 @@ export default async function Page() {
         <DeliverySection />
         <CateringSection />
         <ConnectSection />
-        <CustomerFeedback />
       </main>
       <footer>
         <Footer />

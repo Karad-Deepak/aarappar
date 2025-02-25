@@ -70,21 +70,31 @@ export async function submitEnquiry(formData) {
   return data;
 }
 export async function submitReservation(formData) {
-  const name = formData.get("name");
+  const salutation = formData.get("salutation");
+  const firstName = formData.get("firstName");
+  const lastName = formData.get("lastName");
   const phone = formData.get("phone");
-  const datetime = formData.get("datetime");
+  const timeSlot = formData.get("timeSlot");
   const guests = formData.get("guests");
   const message = formData.get("message");
 
-  const { data, error } = await supabase
-    .from("reservations")
-    .insert([{ name, phone, datetime, guests: parseInt(guests), message }]);
+  const { data, error } = await supabase.from("reservations").insert([
+    {
+      salutation,
+      first_name: firstName,
+      last_name: lastName,
+      phone,
+      time_slot: timeSlot,
+      guests: parseInt(guests),
+      message,
+    },
+  ]);
 
   if (error) {
     console.error("Error inserting reservation:", error);
     throw new Error("Failed to reserve table. Please try again later.");
   }
-
+  revalidatePath("/admin/request/reservations");
   return data;
 }
 
@@ -122,7 +132,6 @@ export async function deleteReservationAction(id) {
   revalidatePath("/admin/request/reservations");
   return { success: true, message: "Reservation deleted successfully" };
 }
-
 export async function fetchPopupSettings() {
   const { data, error } = await supabase
     .from("popup_settings")

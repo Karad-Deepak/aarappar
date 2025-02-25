@@ -6,9 +6,11 @@ import { submitReservation } from "@/app/_lib/actions"; // Adjust the path as ne
 
 export default function ReserveTable() {
   const [formData, setFormData] = useState({
-    name: "",
+    salutation: "",
+    firstName: "",
+    lastName: "",
     phone: "",
-    datetime: "",
+    timeSlot: "",
     guests: "",
     message: "",
   });
@@ -19,7 +21,6 @@ export default function ReserveTable() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error for the field when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -27,12 +28,20 @@ export default function ReserveTable() {
 
   const validate = () => {
     let newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Full Name is required.";
+    if (!formData.salutation) newErrors.salutation = "Salutation is required.";
+    if (!formData.firstName.trim())
+      newErrors.firstName = "First Name is required.";
+    else if (formData.firstName.trim().length < 2)
+      newErrors.firstName = "First Name must be at least 2 characters.";
+    if (!formData.lastName.trim())
+      newErrors.lastName = "Last Name is required.";
     if (!formData.phone.trim()) newErrors.phone = "Phone Number is required.";
-    if (!formData.datetime) newErrors.datetime = "Date & Time is required.";
+    else if (!/^\+?\d{7,15}$/.test(formData.phone.trim()))
+      newErrors.phone = "Invalid phone number.";
+    if (!formData.timeSlot) newErrors.timeSlot = "Please select a time slot.";
     if (!formData.guests || Number(formData.guests) < 1)
       newErrors.guests = "At least one guest is required.";
-    if (!formData.message.trim()) newErrors.message = "Message is required.";
+    // Message is optional, so no error needed.
     return newErrors;
   };
 
@@ -43,12 +52,15 @@ export default function ReserveTable() {
       setErrors(validationErrors);
       return;
     }
+    setErrors({});
 
     // Build FormData object from state
     const data = new FormData();
-    data.append("name", formData.name);
+    data.append("salutation", formData.salutation);
+    data.append("firstName", formData.firstName);
+    data.append("lastName", formData.lastName);
     data.append("phone", formData.phone);
-    data.append("datetime", formData.datetime);
+    data.append("timeSlot", formData.timeSlot);
     data.append("guests", formData.guests);
     data.append("message", formData.message);
 
@@ -58,9 +70,11 @@ export default function ReserveTable() {
         setFeedback("Your reservation has been successfully submitted!");
         // Reset form data
         setFormData({
-          name: "",
+          salutation: "",
+          firstName: "",
+          lastName: "",
           phone: "",
-          datetime: "",
+          timeSlot: "",
           guests: "",
           message: "",
         });
@@ -73,6 +87,35 @@ export default function ReserveTable() {
       }
     });
   }
+
+  // Time slot options
+  const timeSlots = [
+    {
+      label: "28.Feb Friday",
+      options: ["17:30 to 19:30", "19:30 to 21:30"],
+    },
+    {
+      label: "01.Mar Saturday",
+      options: [
+        "12:00 to 13:30",
+        "13:30 to 14:30",
+        "17:30 to 19:30",
+        "19:30 to 21:30",
+      ],
+    },
+    {
+      label: "02.Mar Sunday",
+      options: [
+        "12:00 to 13:30",
+        "13:30 to 14:30",
+        "17:30 to 19:30",
+        "19:30 to 21:30",
+      ],
+    },
+  ];
+
+  // Salutation options
+  const salutations = ["Mr", "Ms", "Mrs", "Dr"];
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 py-12">
@@ -94,27 +137,75 @@ export default function ReserveTable() {
           Book a table in advance to ensure a wonderful dining experience.
         </motion.p>
         <form onSubmit={handleSubmit} noValidate className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-gray-300 mb-2">
-              Full Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
-              placeholder="Enter your name"
-            />
-            {errors.name && (
-              <p className="mt-1 text-sm text-red-500">{errors.name}</p>
-            )}
+          {/* Salutation, First Name, Last Name */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label htmlFor="salutation" className="block text-gray-300 mb-2">
+                Salutation
+              </label>
+              <select
+                id="salutation"
+                name="salutation"
+                value={formData.salutation}
+                onChange={handleChange}
+                required
+                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+              >
+                <option value="">Select</option>
+                {salutations.map((sal) => (
+                  <option key={sal} value={sal}>
+                    {sal}
+                  </option>
+                ))}
+              </select>
+              {errors.salutation && (
+                <p className="mt-1 text-sm text-red-500">{errors.salutation}</p>
+              )}
+            </div>
+            <div>
+              <label htmlFor="firstName" className="block text-gray-300 mb-2">
+                First Name
+              </label>
+              <input
+                id="firstName"
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+                placeholder="Enter your first name"
+              />
+              {errors.firstName && (
+                <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
+              )}
+            </div>
+            <div>
+              <label htmlFor="lastName" className="block text-gray-300 mb-2">
+                Last Name
+              </label>
+              <input
+                id="lastName"
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+                placeholder="Enter your last name"
+              />
+              {errors.lastName && (
+                <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>
+              )}
+            </div>
           </div>
 
+          {/* Phone */}
           <div>
-            <label htmlFor="phone" className="block text-gray-300 mb-2">
+            <label
+              htmlFor="phone"
+              className="block text-gray-300 mb-2 font-poppins"
+            >
               Phone Number
             </label>
             <input
@@ -132,24 +223,39 @@ export default function ReserveTable() {
             )}
           </div>
 
+          {/* Time Slot */}
           <div>
-            <label htmlFor="datetime" className="block text-gray-300 mb-2">
-              Date & Time
+            <label htmlFor="timeSlot" className="block text-gray-300 mb-2">
+              Time Slot
             </label>
-            <input
-              id="datetime"
-              type="datetime-local"
-              name="datetime"
-              value={formData.datetime}
+            <select
+              id="timeSlot"
+              name="timeSlot"
+              value={formData.timeSlot}
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
-            />
-            {errors.datetime && (
-              <p className="mt-1 text-sm text-red-500">{errors.datetime}</p>
+              className="font-poppins w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+            >
+              <option value="">Select a time slot</option>
+              {timeSlots.map((group) => (
+                <optgroup key={group.label} label={group.label}>
+                  {group.options.map((slot) => {
+                    const value = `${group.label}: ${slot}`;
+                    return (
+                      <option key={value} value={value}>
+                        {value}
+                      </option>
+                    );
+                  })}
+                </optgroup>
+              ))}
+            </select>
+            {errors.timeSlot && (
+              <p className="mt-1 text-sm text-red-500">{errors.timeSlot}</p>
             )}
           </div>
 
+          {/* Number of Guests */}
           <div>
             <label htmlFor="guests" className="block text-gray-300 mb-2">
               Number of Guests
@@ -170,23 +276,20 @@ export default function ReserveTable() {
             )}
           </div>
 
+          {/* Message (Optional) */}
           <div>
             <label htmlFor="message" className="block text-gray-300 mb-2">
-              Message
+              Message (Optional)
             </label>
             <textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              required
               placeholder="Any special requests or additional information"
               className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
               rows="4"
             ></textarea>
-            {errors.message && (
-              <p className="mt-1 text-sm text-red-500">{errors.message}</p>
-            )}
           </div>
 
           <button

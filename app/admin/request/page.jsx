@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function AdminRequestsDashboard() {
   return (
-    <div className="min-h-screen bg-lightbg text-white p-8">
+    <div className="min-h-screen bg-darkbg text-white p-8">
       <h1 className="text-3xl font-bold mb-6">Admin Requests Dashboard</h1>
       <div className="space-x-4">
         <Link href="/admin/request/enquiries">
