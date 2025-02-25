@@ -162,7 +162,7 @@ export default function CartPage() {
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="mt-4 px-4 py-2 bg-normal hover:bg-rose-600 text-white font-semibold rounded"
+                  className="mt-4 px-4 py-2 bg-normal hover:bg-rose-600 text-darkbg font-semibold rounded"
                 >
                   {isPending ? "Submitting Order..." : "Submit Order"}
                 </button>

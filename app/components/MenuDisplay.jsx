@@ -231,7 +231,7 @@ export default function MenuDisplay({ menudata }) {
                                   <h4 className="text-sm lg:text-xl font-semibold text-gray-800">
                                     {item.item_name}
                                   </h4>
-                                  <span className="text-s lg:text-lg font-bold text-indigo-600">
+                                  <span className="text-s lg:text-lg font-bold text-indigo-600 font-sans">
                                     €{parseFloat(item.price).toFixed(2)}
                                   </span>
                                 </div>
