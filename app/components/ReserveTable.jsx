@@ -129,7 +129,7 @@ export default function ReserveTable() {
   ];
 
   // Salutation options
-  const salutations = ["Mr", "Ms", "Mrs"];
+  const salutations = ["Mr", "Ms", "Mrs", "Dr"];
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 py-12">
@@ -155,7 +155,7 @@ export default function ReserveTable() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label htmlFor="salutation" className="block text-gray-300 mb-2">
-                Salutation
+                <span className="text-red-500">*</span> Salutation
               </label>
               <select
                 id="salutation"
@@ -178,7 +178,7 @@ export default function ReserveTable() {
             </div>
             <div>
               <label htmlFor="firstName" className="block text-gray-300 mb-2">
-                First Name
+                <span className="text-red-500">*</span> First Name
               </label>
               <input
                 id="firstName"
@@ -196,7 +196,7 @@ export default function ReserveTable() {
             </div>
             <div>
               <label htmlFor="lastName" className="block text-gray-300 mb-2">
-                Last Name
+                <span className="text-red-500">*</span> Last Name
               </label>
               <input
                 id="lastName"
@@ -217,7 +217,7 @@ export default function ReserveTable() {
           {/* Email */}
           <div>
             <label htmlFor="email" className="block text-gray-300 mb-2">
-              Email
+              <span className="text-red-500">*</span> Email
             </label>
             <input
               id="email"
@@ -230,14 +230,14 @@ export default function ReserveTable() {
               placeholder="Enter your email"
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-normalbg">{errors.email}</p>
+              <p className="mt-1 text-sm text-red-500">{errors.email}</p>
             )}
           </div>
 
           {/* Phone */}
           <div>
-            <label htmlFor="phone" className="block text-gray-300 mb-2 ">
-              Phone Number
+            <label htmlFor="phone" className="block text-gray-300 mb-2">
+              <span className="text-red-500">*</span> Phone Number
             </label>
             <input
               id="phone"
@@ -246,7 +246,7 @@ export default function ReserveTable() {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-lg bg-gray-800 font-sans text-white border  border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+              className="w-full p-3 rounded-lg bg-gray-800 font-sans text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
               placeholder="Enter your phone number"
             />
             {errors.phone && (
@@ -256,7 +256,9 @@ export default function ReserveTable() {
 
           {/* Calendar View for Time Slot */}
           <div>
-            <label className="block text-gray-300 mb-2">Select Date</label>
+            <label className="block text-gray-300 mb-2">
+              <span className="text-red-500">*</span> Select Date
+            </label>
             <div className="flex gap-4 justify-center">
               {timeSlots.map((group) => (
                 <button
@@ -281,7 +283,7 @@ export default function ReserveTable() {
           {selectedDate && (
             <div>
               <label className="block text-gray-300 mb-2">
-                Select Time Slot
+                <span className="text-red-500">*</span> Select Time Slot
               </label>
               <div className="flex gap-4 justify-center mt-2">
                 {timeSlots
@@ -319,7 +321,7 @@ export default function ReserveTable() {
           {/* Number of Guests */}
           <div>
             <label htmlFor="guests" className="block text-gray-300 mb-2">
-              Number of Guests
+              <span className="text-red-500">*</span> Number of Guests
             </label>
             <input
               id="guests"

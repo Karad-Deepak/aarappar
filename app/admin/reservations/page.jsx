@@ -47,7 +47,7 @@ export default async function ReservationsPage({ searchParams }) {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-700">
+          <tbody className="divide-y divide-gray-700 font-sans">
             {reservations.length > 0 ? (
               reservations.map((res) => (
                 <tr key={res.id} className="hover:bg-gray-800">
