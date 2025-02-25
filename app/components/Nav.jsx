@@ -33,7 +33,7 @@ function Nav() {
         </div>
         <div>
           <span className=" text-normalbg font-bold tetx-lg">
-            📞 +49 15510462634
+            📞 +49 15219220483
           </span>
         </div>
         {/* Desktop Navbar */}
