@@ -1,7 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { supabase } from "./supabase";
-
+import { sendReservationEmail } from "./sendReservationEmail";
 export async function fetchMenu() {
   const { data, error } = await supabase.from("menu").select("*");
 
@@ -69,6 +69,7 @@ export async function submitEnquiry(formData) {
 
   return data;
 }
+
 export async function submitReservation(formData) {
   const salutation = formData.get("salutation");
   const firstName = formData.get("firstName");
@@ -79,22 +80,28 @@ export async function submitReservation(formData) {
   const guests = formData.get("guests");
   const message = formData.get("message");
 
+  // Insert reservation and immediately select the inserted row
   const { data, error } = await supabase
     .from("reservations")
-    .insert([
-      {
-        salutation,
-        first_name: firstName,
-        last_name: lastName,
-        email,
-        phone,
-        time_slot: timeSlot,
-        guests: parseInt(guests),
-        message,
-      },
-    ])
-    .single();
+    .insert(
+      [
+        {
+          salutation,
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          phone,
+          time_slot: timeSlot,
+          guests: parseInt(guests),
+          message,
+        },
+      ],
+      { returning: "representation" }
+    )
+    .select("*")
+    .maybeSingle();
 
+  console.log("Data returned from insert:", data);
   if (error) {
     console.error("Error inserting reservation:", error);
     throw new Error("Failed to reserve table. Please try again later.");
@@ -102,10 +109,21 @@ export async function submitReservation(formData) {
 
   revalidatePath("/admin/request/reservations");
 
- 
+  if (!data) {
+    console.error("Reservation data is null; email notification not sent.");
+    return data;
+  }
+
+  try {
+    await sendReservationEmail(data);
+  } catch (err) {
+    console.error("Error sending email notification:", err);
+    // Optionally, handle the error further.
+  }
 
   return data;
 }
+
 export async function fetchEnquiries() {
   const { data, error } = await supabase
     .from("enquiries")
