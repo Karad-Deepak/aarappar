@@ -102,15 +102,7 @@ export async function submitReservation(formData) {
 
   revalidatePath("/admin/request/reservations");
 
-  // Prepare notification payload
-  const payload = {
-    title: "New Reservation Received",
-    body: `${salutation} ${firstName} ${lastName} booked for ${timeSlot}`,
-    data: { reservationId: data.id.toString() },
-  };
-
-  // Send push notifications to all registered admin devices
-  await sendPushNotificationsToAll(payload);
+ 
 
   return data;
 }
