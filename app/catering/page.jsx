@@ -1,6 +1,6 @@
 "use client";
 import Nav from "@/app/components/Nav";
-import MenuPage from "../components/MenuPage";
+
 import Footer from "../components/Footer";
 
 import ConnectSection from "../components/ConnectSection";
