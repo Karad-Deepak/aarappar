@@ -222,3 +222,79 @@ export async function createOrder(formData) {
 
   return { message: "Order submitted successfully" };
 }
+
+export async function createPickupOrder(formData) {
+  const customer_name = formData.get("customer_name");
+  const phone = formData.get("phone");
+  const items = formData.get("items"); // JSON string from cart
+  let parsedItems;
+  try {
+    parsedItems = JSON.parse(items);
+  } catch (error) {
+    throw new Error("Invalid order data");
+  }
+
+  // Calculate total (assuming each item has a price and quantity)
+  let total = parsedItems.reduce(
+    (acc, item) => acc + parseFloat(item.price) * item.quantity,
+    0
+  );
+
+  // Insert the pickup order into the pickup_orders table
+  const { error } = await supabase.from("pickup_orders").insert([
+    {
+      customer_name,
+      customer_phone: phone,
+      cart_items: parsedItems,
+      total_bill: total,
+      order_status: "pending",
+    },
+  ]);
+
+  if (error) throw new Error("Failed to create pickup order: " + error.message);
+
+  // Optionally revalidate pages (like an admin orders page)
+  revalidatePath("/admin/pickups");
+
+  return { message: "Pickup order submitted successfully" };
+}
+
+export async function fetchOrders() {
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) throw new Error("Error fetching orders: " + error.message);
+  return data;
+}
+
+export async function updateOrderStatus(orderId, newStatus) {
+  const { error } = await supabase
+    .from("orders")
+    .update({ order_status: newStatus })
+    .eq("id", orderId);
+  if (error) throw new Error("Error updating order: " + error.message);
+  return { success: true };
+}
+
+// ---------------------
+// Pickup Orders Actions
+// ---------------------
+
+export async function fetchPickups() {
+  const { data, error } = await supabase
+    .from("pickup_orders")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) throw new Error("Error fetching pickup orders: " + error.message);
+  return data;
+}
+
+export async function updatePickupStatus(orderId, newStatus) {
+  const { error } = await supabase
+    .from("pickup_orders")
+    .update({ order_status: newStatus })
+    .eq("id", orderId);
+  if (error) throw new Error("Error updating pickup order: " + error.message);
+  return { success: true };
+}

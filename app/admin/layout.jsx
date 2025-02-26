@@ -32,16 +32,22 @@ export default function AdminLayout({ children }) {
               {/* Navigation Tabs */}
               <nav className="flex space-x-6">
                 <Link
+                  href="/admin/reservations"
+                  className={getLinkClasses("/admin/reservations")}
+                >
+                  Reservations
+                </Link>
+                <Link
                   href="/admin/orders"
                   className={getLinkClasses("/admin/orders")}
                 >
                   Orders
                 </Link>
                 <Link
-                  href="/admin/reservations"
-                  className={getLinkClasses("/admin/reservations")}
+                  href="/admin/pickups"
+                  className={getLinkClasses("/admin/pickups")}
                 >
-                  Reservations
+                  Pickups
                 </Link>
                 <Link
                   href="/admin/catering"

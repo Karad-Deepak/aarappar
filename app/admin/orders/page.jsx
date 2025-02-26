@@ -1,9 +1,12 @@
-// app/admin/orders/page.js
-export default function OrdersPage() {
+import { fetchOrders } from "@/app/_lib/actions";
+import OrdersTable from "@/app/admin/_components/OrdersTable";
+
+export default async function AdminOrdersPage() {
+  const orders = await fetchOrders();
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Orders</h2>
-      <p>Manage your orders here.</p>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Admin Orders</h1>
+      <OrdersTable initialOrders={orders} />
     </div>
   );
 }
