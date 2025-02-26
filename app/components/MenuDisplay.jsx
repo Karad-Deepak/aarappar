@@ -7,37 +7,7 @@ import QuantityControl from "./QuantityControl";
 import chicken from "@/public/chicken.webp";
 import Biryani from "@/public/Biryani.webp";
 
-// Import category images
-import cat1 from "@/public/cat1.jpg";
-import cat2 from "@/public/cat2.jpg";
-import cat3 from "@/public/cat3.jpg";
-import cat4 from "@/public/cat4.jpg";
-import cat5 from "@/public/cat5.jpg";
-import cat6 from "@/public/cat6.jpg";
-import cat7 from "@/public/cat7.jpg";
-import cat10 from "@/public/cat10.jpg";
-import cat11 from "@/public/cat11.jpg";
-import cat12 from "@/public/cat12.jpg";
-import cat9 from "@/public/hero.jpg"; // fallback
-
-// Map your actual category names (normalized to lowercase) to images
-const categoryImages = {
-  soups: cat1,
-  "appetizers – vegetarian": cat2,
-  "appetizers – non-vegetarian": cat3,
-  "vegetarian & vegan curries": cat4,
-  "non-vegetarian curries": cat5,
-  "egg appetizers": cat6,
-  "thalis (meals)": cat7,
-  "rice & biryani": Biryani,
-  "dosa specials": cat9,
-  "indian breads": cat10,
-  desserts: cat11,
-  drinks: cat12,
-};
-
-// Normalize a string to lowercase and trim spaces
-const normalize = (str) => str.toLowerCase().trim();
+// Removed category image imports since they're no longer needed.
 
 // Helper function to group items by a key
 function groupBy(arr, key) {
@@ -52,15 +22,15 @@ function groupBy(arr, key) {
 export default function MenuDisplay({ menudata }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter data based on search term (case-insensitive)
+  // Filter menu items based on search term (case-insensitive)
   const filteredData = menudata.filter((item) =>
     item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // When no search, group by category; when searching, show flat list
+  // Group items by category when not searching
   const groupedByCategory = groupBy(menudata, "category");
 
-  // Framer Motion variants for container and item animations
+  // Framer Motion animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -141,7 +111,7 @@ export default function MenuDisplay({ menudata }) {
       )}
 
       {searchTerm ? (
-        // When search term exists, display matching items in a grid
+        // When a search term exists, display matching items in a grid
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
           initial="hidden"
@@ -176,30 +146,20 @@ export default function MenuDisplay({ menudata }) {
           ))}
         </motion.div>
       ) : (
-        // When no search term, display items grouped by category & subcategory
+        // When no search term exists, display items grouped by category & subcategory
         Object.entries(groupedByCategory).map(([category, items]) => {
           // Further group items by subcategory
           const groupedBySub = groupBy(items, "subcategory");
           return (
             <details
               key={category}
-              className="mb-8 border border-darkbg rounded-lg overflow-hidden"
+              className="mb-6 lg:mb-8 border border-darkbg rounded-lg overflow-hidden"
             >
-              {/* Customized Category Header */}
-              <summary className="cursor-pointer">
-                <div className="relative w-full h-24 lg:h-52">
-                  <Image
-                    src={categoryImages[normalize(category)] || cat9}
-                    alt={category}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <h2 className="text-xl lg:text-3xl font-bold text-white">
-                      {category}
-                    </h2>
-                  </div>
-                </div>
+              {/* Customized Category Header without images */}
+              <summary className="cursor-pointer bg-gray-200 p-3 lg:p-4 text-normalbg ">
+                <h2 className="text-lg lg:text-xl font-bold text-normalbg">
+                  {category}
+                </h2>
               </summary>
               <AnimatePresence>
                 <motion.div
@@ -231,7 +191,7 @@ export default function MenuDisplay({ menudata }) {
                                   <h4 className="text-sm lg:text-xl font-semibold text-gray-800">
                                     {item.item_name}
                                   </h4>
-                                  <span className="text-s lg:text-lg font-bold text-indigo-600 font-sans">
+                                  <span className="text-s lg:text-lg font-bold text-indigo-600">
                                     €{parseFloat(item.price).toFixed(2)}
                                   </span>
                                 </div>
