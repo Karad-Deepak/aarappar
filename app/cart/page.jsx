@@ -5,6 +5,7 @@ import { useCart } from "@/app/components/CartContext";
 import { useRouter } from "next/navigation";
 import { createOrder } from "@/app/_lib/actions";
 import Nav from "../components/Nav";
+import { motion } from "framer-motion";
 
 export default function CartPage() {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -26,21 +27,18 @@ export default function CartPage() {
   const validateForm = () => {
     const errors = {};
 
-    // Validate customer name: required and minimum length
     if (!customerName.trim()) {
       errors.customerName = "Name is required.";
     } else if (customerName.trim().length < 2) {
       errors.customerName = "Name must be at least 2 characters.";
     }
 
-    // Validate phone: required and match a basic pattern (allows optional '+' followed by 7-15 digits)
     if (!phone.trim()) {
       errors.phone = "Phone is required.";
     } else if (!/^\+?\d{7,15}$/.test(phone.trim())) {
       errors.phone = "Invalid phone number.";
     }
 
-    // Validate address: required and minimum length
     if (!address.trim()) {
       errors.address = "Address is required.";
     } else if (address.trim().length < 5) {
@@ -78,100 +76,140 @@ export default function CartPage() {
     });
   };
 
+  if (cart.length === 0) {
+    return (
+      <>
+        <Nav />
+        <div className="min-h-screen flex items-center justify-center bg-lightbg px-4">
+          <div className="text-center">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-darkbg">
+              Your cart is empty.
+            </h1>
+            <p className="text-base sm:text-lg text-darkbg">
+              Please add some items to your cart before placing an order.
+            </p>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <Nav />
-      <div className="min-h-screen p-4 bg-lightbg text-darkbg mt-10 lg:mt-16">
-        <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
-        {cart.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <>
-            <div className="space-y-4">
-              {cart.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex justify-between items-center p-2 border rounded"
-                >
-                  <div>
-                    <p className="font-semibold">{item.item_name}</p>
-                    <p className="text-sm">
-                      Quantity: {item.quantity} x €
-                      {parseFloat(item.price).toFixed(2)}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => removeFromCart(item.id)}
-                    className="text-rose-500 hover:underline"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            </div>
-            {/* Total Price Section */}
-            <div className="mt-4 text-xl font-bold">
-              Total Price: €{totalPrice.toFixed(2)}
-            </div>
-            <div className="mt-8">
-              <h2 className="text-2xl font-semibold mb-4">Checkout</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block mb-1">Name</label>
-                  <input
-                    type="text"
-                    value={customerName}
-                    onChange={(e) => setCustomerName(e.target.value)}
-                    className="w-full p-2 rounded bg-gray-800 text-white"
-                    required
-                  />
-                  {errors.customerName && (
-                    <p className="text-normalbg text-sm mt-1">
-                      {errors.customerName}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label className="block mb-1">Phone</label>
-                  <input
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full p-2 rounded bg-gray-800 text-white"
-                    required
-                  />
-                  {errors.phone && (
-                    <p className="text-normalbg text-sm mt-1">{errors.phone}</p>
-                  )}
-                </div>
-                <div>
-                  <label className="block mb-1">Address</label>
-                  <textarea
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    className="w-full p-2 rounded bg-gray-800 text-white"
-                    rows="3"
-                    required
-                  ></textarea>
-                  {errors.address && (
-                    <p className="text-normalbg text-sm mt-1">
-                      {errors.address}
-                    </p>
-                  )}
+      <motion.div
+        className="min-h-screen bg-lightbg py-8 px-4 flex flex-col items-center mt-5 lg:mt-7"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.div
+          className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-6 sm:p-8"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-center text-darkbg">
+            Your Cart
+          </h1>
+          <div className="space-y-4">
+            {cart.map((item) => (
+              <motion.div
+                key={item.id}
+                className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border rounded-lg bg-gray-50"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="mb-2 sm:mb-0">
+                  <p className="font-semibold text-lg sm:text-xl text-darkbg">
+                    {item.item_name}
+                  </p>
+                  <p className="text-sm sm:text-base text-gray-600 font-sans">
+                    Quantity: {item.quantity} x €
+                    {parseFloat(item.price).toFixed(2)}
+                  </p>
                 </div>
                 <button
-                  type="submit"
-                  disabled={isPending}
-                  className="mt-4 px-4 py-2 bg-normal hover:bg-rose-600 text-darkbg font-semibold rounded"
+                  onClick={() => removeFromCart(item.id)}
+                  className="text-rose-500 hover:underline text-sm sm:text-base"
                 >
-                  {isPending ? "Submitting Order..." : "Submit Order"}
+                  Remove
                 </button>
-              </form>
-              {message && <p className="mt-4 text-green-400">{message}</p>}
-            </div>
-          </>
-        )}
-      </div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="mt-6 text-xl sm:text-2xl font-bold text-darkbg font-sans">
+            Total Price: €{totalPrice.toFixed(2)}
+          </div>
+          <div className="mt-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-darkbg mb-4">
+              Checkout
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block mb-1 text-base sm:text-lg text-gray-700">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  value={customerName}
+                  onChange={(e) => setCustomerName(e.target.value)}
+                  className="w-full p-2 sm:p-3 md:p-4 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                  required
+                />
+                {errors.customerName && (
+                  <p className="text-normalbg text-sm mt-1">
+                    {errors.customerName}
+                  </p>
+                )}
+              </div>
+              <div>
+                <label className="block mb-1 text-base sm:text-lg text-gray-700">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full p-2 sm:p-3 md:p-4 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                  required
+                />
+                {errors.phone && (
+                  <p className="text-normalbg text-sm mt-1">{errors.phone}</p>
+                )}
+              </div>
+              <div>
+                <label className="block mb-1 text-base sm:text-lg text-gray-700">
+                  Address
+                </label>
+                <textarea
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  className="w-full p-2 sm:p-3 md:p-4 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                  rows="3"
+                  required
+                ></textarea>
+                {errors.address && (
+                  <p className="text-normalbg text-sm mt-1">{errors.address}</p>
+                )}
+              </div>
+              <button
+                type="submit"
+                disabled={isPending}
+                className="mt-4 w-full px-4 py-3 bg-red-900 hover:bg-rose-600 text-white font-semibold rounded transition duration-200"
+              >
+                {isPending ? "Submitting Order..." : "Submit Order"}
+              </button>
+            </form>
+            {message && (
+              <p className="mt-4 text-green-500 text-base sm:text-lg">
+                {message}
+              </p>
+            )}
+          </div>
+        </motion.div>
+      </motion.div>
     </>
   );
 }

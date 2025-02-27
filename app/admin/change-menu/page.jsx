@@ -19,11 +19,6 @@ export default async function AdminMenu() {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-8 lg:mt-10">
-      <Link href="/admin">
-        <button className="mb-4 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded">
-          Back to Admin Dashboard
-        </button>
-      </Link>
       <h1 className="text-4xl font-bold mb-8 text-center text-normalbg">
         Manage Menu Items
       </h1>

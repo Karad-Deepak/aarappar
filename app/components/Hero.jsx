@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import hero from "@/public/hero.jpg";
+import hero from "@/public/heroimg.jpg";
 
 export default function Hero() {
   return (

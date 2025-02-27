@@ -5,15 +5,9 @@ import DeleteButton from "@/app/components/DeleteButton";
 
 export default async function ReservationsPage({ searchParams }) {
   const reservations = await fetchReservations();
-  const message = searchParams?.message || "";
 
   return (
     <div className="min-h-screen bg-lightbg text-white p-4 md:p-8">
-      {message && (
-        <div className="mb-4 p-4 bg-green-600 text-center rounded shadow">
-          {message}
-        </div>
-      )}
       <h2 className="text-2xl md:text-3xl font-bold mb-6 text-normalbg">
         Reservations
       </h2>

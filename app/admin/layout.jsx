@@ -12,7 +12,7 @@ export default function AdminLayout({ children }) {
     ${
       pathname === path
         ? "bg-red-600 text-white"
-        : "text-normalbg hover:bg-rose-800 hover:text-white"
+        : "text-white hover:bg-rose-800 hover:text-white"
     }`;
 
   return (
@@ -30,7 +30,7 @@ export default function AdminLayout({ children }) {
                 </Link>
               </div>
               {/* Navigation Tabs */}
-              <nav className="flex space-x-6">
+              <nav className="flex space-x-6 ">
                 <Link
                   href="/admin/reservations"
                   className={getLinkClasses("/admin/reservations")}
@@ -73,17 +73,8 @@ export default function AdminLayout({ children }) {
         </header>
         <main className="max-w-7xl mx-auto py-10 px-6 sm:px-8 lg:px-12">
           {/* Framer Motion animated container for smooth transitions */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={pathname}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {children}
-            </motion.div>
-          </AnimatePresence>
+
+          <div>{children}</div>
         </main>
       </div>
     </>

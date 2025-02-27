@@ -78,7 +78,7 @@ export default function ReserveTable() {
     startTransition(async () => {
       try {
         await submitReservation(data);
-        setFeedback("Your reservation has been successfully submitted!");
+        setFeedback("Your reservation has been successfully made!");
         // Reset form data and calendar selection
         setFormData({
           salutation: "",
