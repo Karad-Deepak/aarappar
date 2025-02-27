@@ -5,11 +5,11 @@ import DeleteButton from "@/app//components/DeleteButton";
 
 export default async function EnquiriesPage({ searchParams }) {
   const enquiries = await fetchEnquiries();
+  const params = await Promise.resolve(searchParams);
   const message = searchParams?.message || "";
 
   return (
     <div className="min-h-screen bg-lightbg text-white p-8">
-     
       {message && (
         <div className="mb-4 p-4 bg-green-600 text-center">{message}</div>
       )}

@@ -21,7 +21,7 @@ const ConnectSection = () => {
           <h3 className="text-sm lg:text-xl font-semibold text-red-400">
             Operational Hours
           </h3>
-          <p className="mt-3">Tue - Fri: 17.30 - 22.00 </p>
+          <p className="mt-3 text-sm lg:text-xl ">Tue - Fri: 17.30 - 22.00 </p>
           <p className="text-sm lg:text-xl ">Sat - Sun: 12.00 - 22.00</p>
         </div>
 
@@ -40,9 +40,7 @@ const ConnectSection = () => {
           <h3 className="text-sm lg:text-xl  font-semibold text-red-400">
             Contact
           </h3>
-          <p className="mt-3 text-sm lg:text-xl font-sans">
-            Phone: +49 15219220483
-          </p>
+          <p className="mt-3 text-sm lg:text-xl ">Phone: +49 15219220483</p>
           <p className="text-sm lg:text-xl ">
             Email: aarapparrodelheim@aarappar.de
           </p>

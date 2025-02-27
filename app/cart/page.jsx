@@ -125,7 +125,7 @@ export default function CartPage() {
                   <p className="font-semibold text-lg sm:text-xl text-darkbg">
                     {item.item_name}
                   </p>
-                  <p className="text-sm sm:text-base text-gray-600 font-sans">
+                  <p className="text-sm sm:text-base text-gray-600 ">
                     Quantity: {item.quantity} x €
                     {parseFloat(item.price).toFixed(2)}
                   </p>
@@ -139,7 +139,7 @@ export default function CartPage() {
               </motion.div>
             ))}
           </div>
-          <div className="mt-6 text-xl sm:text-2xl font-bold text-darkbg font-sans">
+          <div className="mt-6 text-xl sm:text-2xl font-bold text-darkbg ">
             Total Price: €{totalPrice.toFixed(2)}
           </div>
           <div className="mt-8">

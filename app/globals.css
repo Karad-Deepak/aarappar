@@ -6,4 +6,6 @@
 body {
   @apply bg-zinc-900;
   font-family: "Playfair Display", serif;
+  font-feature-settings: "lnum";
+  font-variant-numeric: lining-nums;
 }

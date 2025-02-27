@@ -67,6 +67,7 @@ export async function submitEnquiry(formData) {
     throw new Error("Failed to submit enquiry. Please try again later.");
   }
 
+  revalidatePath("/admin/catering");
   return data;
 }
 
@@ -147,7 +148,7 @@ export async function deleteEnquiryAction(id) {
   const { error } = await supabase.from("enquiries").delete().eq("id", id);
   if (error) throw new Error("Failed to delete enquiry");
   // Revalidate the page to update the cache.
-  revalidatePath("/admin/request/enquiries");
+  revalidatePath("/admin/catering");
   return { success: true, message: "Enquiry deleted successfully" };
 }
 
@@ -155,7 +156,7 @@ export async function deleteReservationAction(id) {
   "use server";
   const { error } = await supabase.from("reservations").delete().eq("id", id);
   if (error) throw new Error("Failed to delete reservation");
-  revalidatePath("/admin/request/reservations");
+  revalidatePath("/admin/reservations");
   return { success: true, message: "Reservation deleted successfully" };
 }
 export async function fetchPopupSettings() {

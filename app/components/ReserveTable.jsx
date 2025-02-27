@@ -246,7 +246,7 @@ export default function ReserveTable() {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-lg bg-gray-800 font-sans text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+              className="w-full p-3 rounded-lg bg-gray-800  text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
               placeholder="Enter your phone number"
             />
             {errors.phone && (
@@ -269,7 +269,7 @@ export default function ReserveTable() {
                     setSelectedTimeSlot("");
                     setFormData((prev) => ({ ...prev, timeSlot: "" }));
                   }}
-                  className={`p-4 rounded-lg border transition-colors font-sans ${
+                  className={`p-4 rounded-lg border transition-colors  ${
                     selectedDate === group.label
                       ? "bg-normalbg text-white"
                       : "bg-gray-800 text-white"
@@ -301,7 +301,7 @@ export default function ReserveTable() {
                             timeSlot: value,
                           }));
                         }}
-                        className={`p-2 rounded-lg font-sans border transition-colors ${
+                        className={`p-2 rounded-lg  border transition-colors ${
                           selectedTimeSlot === slot
                             ? "bg-normalbg text-white"
                             : "bg-gray-800 text-white"

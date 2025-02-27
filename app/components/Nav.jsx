@@ -32,7 +32,7 @@ function Nav() {
           </Link>
         </div>
         <div>
-          <span className=" text-normalbg font-bold tetx-lg font-sans">
+          <span className=" text-normalbg font-bold tetx-lg ">
             📞 +49 15219220483
           </span>
         </div>
