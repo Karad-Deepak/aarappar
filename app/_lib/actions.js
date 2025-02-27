@@ -107,7 +107,7 @@ export async function submitReservation(formData) {
     throw new Error("Failed to reserve table. Please try again later.");
   }
 
-  revalidatePath("/admin/request/reservations");
+  revalidatePath("/admin/reservations");
 
   if (!data) {
     console.error("Reservation data is null; email notification not sent.");

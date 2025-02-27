@@ -4,6 +4,7 @@ import { fetchReservations, deleteReservationAction } from "@/app/_lib/actions";
 import DeleteButton from "@/app/components/DeleteButton";
 
 export default async function ReservationsPage({ searchParams }) {
+  export const revalidate = 2;
   const reservations = await fetchReservations();
 
   return (
