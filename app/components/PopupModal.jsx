@@ -70,7 +70,7 @@ export default function PopupModal({ content }) {
                 opacity: 0,
                 transition: { duration: 0.3, ease: "easeIn" },
               }}
-              className=" w-4xl rounded-2xl bg-white p-6 shadow-2xl pmd:p-8 font-poppins"
+              className="w-4xl rounded-2xl bg-white p-6 shadow-2xl md:p-8"
             >
               <motion.div
                 className="mb-4 text-center"
