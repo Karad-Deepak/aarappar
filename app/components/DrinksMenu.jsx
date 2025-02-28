@@ -6,6 +6,33 @@ import React from "react";
 // Hardcoded drinks data (example data)
 const drinksData = [
   {
+    name: "BECKS",
+    category: "BEERS",
+    volumes: [{ volume: "0,33 L", price: "3,50 €" }],
+  },
+  {
+    name: "BECKS",
+    category: "BEERS",
+    volumes: [{ volume: "0,5 L", price: "4,50 €" }],
+  },
+
+  {
+    name: "ALCOHOL FREE BEER	",
+    category: "BEERS",
+    volumes: [{ volume: "0,5 L", price: "4,50 €" }],
+  },
+  {
+    name: "CORONA EXTRA",
+    category: "BEERS",
+    volumes: [{ volume: "0,33 L", price: "3,90 €" }],
+  },
+
+  {
+    name: "WEISEN BIER (ERDINGER)",
+    category: "BEERS",
+    volumes: [{ volume: "0,5 L", price: "4,50 €" }],
+  },
+  {
     name: "ROTWEIN",
     category: "WEIN",
     volumes: [{ volume: "0,2 L", price: "4,50 €" }],
