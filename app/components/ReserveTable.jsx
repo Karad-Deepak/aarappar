@@ -30,7 +30,7 @@ const timeSlots = [
   },
 ];
 
-const salutations = ["Mr", "Ms", "Mrs", "Dr"];
+const salutations = ["Mr", "Ms", "Mrs"];
 
 export default function ReserveTable() {
   const [formData, setFormData] = useState({
