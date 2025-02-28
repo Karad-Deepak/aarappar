@@ -299,3 +299,18 @@ export async function updatePickupStatus(orderId, newStatus) {
   if (error) throw new Error("Error updating pickup order: " + error.message);
   return { success: true };
 }
+export async function fetchSlotAvailability() {
+  // Fetch `time_slot` and `guests` from your reservations table
+  const { data, error } = await supabase
+    .from("reservations")
+    .select("time_slot, guests");
+  if (error) throw new Error(error.message);
+
+  const availability = {};
+  data.forEach((res) => {
+    // Use res.time_slot as the key
+    const slot = res.time_slot;
+    availability[slot] = (availability[slot] || 0) + Number(res.guests);
+  });
+  return availability; // { "28.Feb Friday: 19:30 to 21:30": totalGuests, ... }
+}

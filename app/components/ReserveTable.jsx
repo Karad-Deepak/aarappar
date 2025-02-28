@@ -1,8 +1,36 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { motion } from "framer-motion";
-import { submitReservation } from "@/app/_lib/actions"; // Adjust the path as needed
+import { submitReservation, fetchSlotAvailability } from "@/app/_lib/actions";
+
+// Example time slot groups
+const timeSlots = [
+  {
+    label: "28.Feb Friday",
+    options: ["17:30 to 19:30", "19:30 to 21:30"],
+  },
+  {
+    label: "01.Mar Saturday",
+    options: [
+      "12:00 to 13:30",
+      "13:30 to 14:30",
+      "17:30 to 19:30",
+      "19:30 to 21:30",
+    ],
+  },
+  {
+    label: "02.Mar Sunday",
+    options: [
+      "12:00 to 13:30",
+      "13:30 to 14:30",
+      "17:30 to 19:30",
+      "19:30 to 21:30",
+    ],
+  },
+];
+
+const salutations = ["Mr", "Ms", "Mrs", "Dr"];
 
 export default function ReserveTable() {
   const [formData, setFormData] = useState({
@@ -11,7 +39,7 @@ export default function ReserveTable() {
     lastName: "",
     email: "",
     phone: "",
-    timeSlot: "",
+    time_slot: "", // matches DB column name
     guests: "",
     message: "",
   });
@@ -20,6 +48,26 @@ export default function ReserveTable() {
   const [isPending, startTransition] = useTransition();
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
+  const [slotAvailability, setSlotAvailability] = useState({});
+
+  // Poll for slot availability every 60 seconds
+  useEffect(() => {
+    async function getAvailability() {
+      try {
+        const availability = await fetchSlotAvailability();
+        setSlotAvailability(availability);
+      } catch (error) {
+        console.error("Error fetching slot availability:", error.message);
+      }
+    }
+    getAvailability();
+
+    const intervalId = setInterval(() => {
+      getAvailability();
+    }, 60000); // refresh every 60s
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,12 +80,14 @@ export default function ReserveTable() {
   const validate = () => {
     let newErrors = {};
     if (!formData.salutation) newErrors.salutation = "Salutation is required.";
-    if (!formData.firstName.trim())
+    if (!formData.firstName.trim()) {
       newErrors.firstName = "First Name is required.";
-    else if (formData.firstName.trim().length < 2)
+    } else if (formData.firstName.trim().length < 2) {
       newErrors.firstName = "First Name must be at least 2 characters.";
-    if (!formData.lastName.trim())
+    }
+    if (!formData.lastName.trim()) {
       newErrors.lastName = "Last Name is required.";
+    }
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (
@@ -45,13 +95,17 @@ export default function ReserveTable() {
     ) {
       newErrors.email = "Invalid email address.";
     }
-    if (!formData.phone.trim()) newErrors.phone = "Phone Number is required.";
-    else if (!/^\+?\d{7,15}$/.test(formData.phone.trim()))
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone Number is required.";
+    } else if (!/^\+?\d{7,15}$/.test(formData.phone.trim())) {
       newErrors.phone = "Invalid phone number.";
-    if (!formData.timeSlot) newErrors.timeSlot = "Please select a time slot.";
-    if (!formData.guests || Number(formData.guests) < 1)
+    }
+    if (!formData.time_slot) {
+      newErrors.time_slot = "Please select a time slot.";
+    }
+    if (!formData.guests || Number(formData.guests) < 1) {
       newErrors.guests = "At least one guest is required.";
-    // Message is optional
+    }
     return newErrors;
   };
 
@@ -64,14 +118,14 @@ export default function ReserveTable() {
     }
     setErrors({});
 
-    // Build FormData object from state
+    // Build FormData to pass to server action
     const data = new FormData();
     data.append("salutation", formData.salutation);
     data.append("firstName", formData.firstName);
     data.append("lastName", formData.lastName);
     data.append("email", formData.email);
     data.append("phone", formData.phone);
-    data.append("timeSlot", formData.timeSlot);
+    data.append("time_slot", formData.time_slot); // must match DB column
     data.append("guests", formData.guests);
     data.append("message", formData.message);
 
@@ -79,14 +133,14 @@ export default function ReserveTable() {
       try {
         await submitReservation(data);
         setFeedback("Your reservation has been successfully made!");
-        // Reset form data and calendar selection
+        // Reset form data
         setFormData({
           salutation: "",
           firstName: "",
           lastName: "",
           email: "",
           phone: "",
-          timeSlot: "",
+          time_slot: "",
           guests: "",
           message: "",
         });
@@ -101,35 +155,6 @@ export default function ReserveTable() {
       }
     });
   }
-
-  // Time slot options arranged as calendar view
-  const timeSlots = [
-    {
-      label: "28.Feb Friday",
-      options: ["17:30 to 19:30", "19:30 to 21:30"],
-    },
-    {
-      label: "01.Mar Saturday",
-      options: [
-        "12:00 to 13:30",
-        "13:30 to 14:30",
-        "17:30 to 19:30",
-        "19:30 to 21:30",
-      ],
-    },
-    {
-      label: "02.Mar Sunday",
-      options: [
-        "12:00 to 13:30",
-        "13:30 to 14:30",
-        "17:30 to 19:30",
-        "19:30 to 21:30",
-      ],
-    },
-  ];
-
-  // Salutation options
-  const salutations = ["Mr", "Ms", "Mrs", "Dr"];
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 py-12">
@@ -150,9 +175,11 @@ export default function ReserveTable() {
         >
           Book a table in advance to ensure a wonderful dining experience.
         </motion.p>
+
         <form onSubmit={handleSubmit} noValidate className="space-y-6">
           {/* Salutation, First Name, Last Name */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {/* Salutation */}
             <div>
               <label htmlFor="salutation" className="block text-gray-300 mb-2">
                 <span className="text-red-500">*</span> Salutation
@@ -176,6 +203,7 @@ export default function ReserveTable() {
                 <p className="mt-1 text-sm text-red-500">{errors.salutation}</p>
               )}
             </div>
+            {/* First Name */}
             <div>
               <label htmlFor="firstName" className="block text-gray-300 mb-2">
                 <span className="text-red-500">*</span> First Name
@@ -194,6 +222,7 @@ export default function ReserveTable() {
                 <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
               )}
             </div>
+            {/* Last Name */}
             <div>
               <label htmlFor="lastName" className="block text-gray-300 mb-2">
                 <span className="text-red-500">*</span> Last Name
@@ -246,7 +275,7 @@ export default function ReserveTable() {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-lg bg-gray-800  text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+              className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
               placeholder="Enter your phone number"
             />
             {errors.phone && (
@@ -267,9 +296,9 @@ export default function ReserveTable() {
                   onClick={() => {
                     setSelectedDate(group.label);
                     setSelectedTimeSlot("");
-                    setFormData((prev) => ({ ...prev, timeSlot: "" }));
+                    setFormData((prev) => ({ ...prev, time_slot: "" }));
                   }}
-                  className={`p-4 rounded-lg border transition-colors  ${
+                  className={`p-4 rounded-lg border transition-colors font-sans ${
                     selectedDate === group.label
                       ? "bg-normalbg text-white"
                       : "bg-gray-800 text-white"
@@ -290,6 +319,8 @@ export default function ReserveTable() {
                   .find((group) => group.label === selectedDate)
                   ?.options.map((slot) => {
                     const value = `${selectedDate}: ${slot}`;
+                    const booked = slotAvailability[value] || 0;
+                    const remaining = 45 - booked;
                     return (
                       <button
                         type="button"
@@ -298,22 +329,32 @@ export default function ReserveTable() {
                           setSelectedTimeSlot(slot);
                           setFormData((prev) => ({
                             ...prev,
-                            timeSlot: value,
+                            time_slot: value,
                           }));
                         }}
-                        className={`p-2 rounded-lg  border transition-colors ${
+                        disabled={remaining <= 0}
+                        className={`p-2 rounded-lg font-sans border transition-colors ${
                           selectedTimeSlot === slot
                             ? "bg-normalbg text-white"
                             : "bg-gray-800 text-white"
+                        } ${
+                          remaining <= 0 ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                       >
-                        {slot}
+                        <div className="flex flex-col items-center">
+                          <span>{slot}</span>
+                          <span className="text-xs p-1 font-semibold">
+                            {remaining > 0
+                              ? `${remaining} guests remaining`
+                              : "Booking is Full"}
+                          </span>
+                        </div>
                       </button>
                     );
                   })}
               </div>
-              {errors.timeSlot && (
-                <p className="mt-1 text-sm text-red-500">{errors.timeSlot}</p>
+              {errors.time_slot && (
+                <p className="mt-1 text-sm text-red-500">{errors.time_slot}</p>
               )}
             </div>
           )}
