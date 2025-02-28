@@ -67,7 +67,7 @@ function Navbar() {
           Catering
         </span>
       </Link>
-      <Link href="/aboutus">
+      <Link href="/about">
         <span className="hover:text-rose-500 transition duration-300">
           About Us
         </span>
@@ -110,7 +110,7 @@ function Mobile({ handleMobileNav }) {
           Catering
         </span>
       </Link>
-      <Link href="/aboutus" onClick={handleMobileNav}>
+      <Link href="/about" onClick={handleMobileNav}>
         <span className="hover:text-rose-500 transition duration-300">
           About Us
         </span>
