@@ -168,7 +168,7 @@ export default function DrinksMenu() {
           key={category}
           className="mb-6 lg:mb-9 border border-gray-300 rounded-lg overflow-hidden"
         >
-          <summary className="cursor-pointer px-4 py-2 lg:ml-5 bg-gray-200 hover:bg-gray-300 transition-colors text-lg lg:text-xl font-semibold text-normalbg">
+          <summary className="cursor-pointer px-4 py-2 lg:px-10 bg-gray-200 hover:bg-gray-300 transition-colors text-lg lg:text-xl font-semibold text-normalbg">
             {category}
           </summary>
           <div className="px-4 py-4">

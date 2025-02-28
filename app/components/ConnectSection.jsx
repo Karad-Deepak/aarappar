@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const ConnectSection = () => {
   return (
-    <section className="bg-lightbg text-white py-16 px-6 md:px-12 lg:px-24">
+    <section className="bg-lightbg text-white py-8 lg:py-16 px-6 md:px-12 lg:px-24">
       <div className="text-center mb-10">
         <h2 className="text-xl lg:text-5xl font-bold text-normalbg">
           Connect with Us

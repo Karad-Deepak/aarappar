@@ -153,13 +153,10 @@ export default function MenuDisplay({ menudata }) {
           return (
             <details
               key={category}
-              className="mb-6 lg:mb-8 border border-darkbg rounded-lg overflow-hidden"
+              className="mb-6 lg:mb-9 border border-gray-300 rounded-lg overflow-hidden"
             >
-              {/* Customized Category Header without images */}
-              <summary className="cursor-pointer bg-gray-200 p-3 lg:p-4 text-normalbg ">
-                <h2 className="text-lg lg:text-xl font-bold text-normalbg">
-                  {category}
-                </h2>
+              <summary className="cursor-pointer px-4 py-2 lg:px-10 bg-gray-200 hover:bg-gray-300 transition-colors text-lg lg:text-xl font-semibold text-normalbg">
+                {category}
               </summary>
               <AnimatePresence>
                 <motion.div

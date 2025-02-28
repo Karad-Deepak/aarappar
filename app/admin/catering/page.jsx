@@ -3,7 +3,7 @@ import Link from "next/link";
 import { fetchEnquiries, deleteEnquiryAction } from "@/app/_lib/actions";
 import DeleteButton from "@/app//components/DeleteButton";
 
-export default async function EnquiriesPage({ searchParams }) {
+export default async function EnquiriesPage({}) {
   const enquiries = await fetchEnquiries();
 
   return (

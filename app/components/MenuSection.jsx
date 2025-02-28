@@ -29,7 +29,7 @@ const dishes = [
 
 export default function MenuSection() {
   return (
-    <div className="text-white py-16 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-lightbg">
+    <div className="text-white py-8 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-lightbg">
       {/* Section Title */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
