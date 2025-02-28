@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import dosa from "@/public/Dosa.jpg";
 import biryani from "@/public/Biryani.webp";
-import chicken from "@/public/chicken.webp";
+import cchicken from "@/public/cchicken.jpg";
 
 const dishes = [
   {
@@ -17,7 +17,7 @@ const dishes = [
     id: 2,
     name: "Chettinad Chicken Curry",
     price: "€13.90",
-    image: chicken,
+    image: cchicken,
   },
   {
     id: 3,

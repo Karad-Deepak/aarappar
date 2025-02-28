@@ -14,33 +14,64 @@ export default function Hero() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-2xl md:text-5xl lg:text4xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight">
+        <motion.h1
+          className="text-2xl md:text-5xl lg:text4xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
           AARAPPAR <br />
-          <span className="text-xl md:text-3xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight">
+          <motion.span
+            className="text-xl md:text-3xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
             Indisches Restaurant
-          </span>
-        </h1>
+          </motion.span>
+        </motion.h1>
 
-        <p className="text-xl md:text-2xl lg:text-2xl font-bold text-lightbg font-[Playfair Display] leading-tight">
+        <motion.p
+          className="text-lg md:text-2xl lg:text-2xl font-bold text-lightbg font-[Playfair Display] leading-tight"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+        >
           Flavours Straight from Home
-        </p>
-        <p className="text-sm md:text-lg text-gray-300 leading-relaxed">
+        </motion.p>
+
+        <motion.p
+          className="text-sm md:text-lg text-gray-300 leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        >
           Authentic Indian Flavors in the Heart of Germany! 🍛✨ Experience the
-          rich taste of traditional flavorful dishesh ,crafted with time-honored
-          recipes and the freshest ingredients.We serve a complete range of
-          Indian main courses, ensuring you get the full taste of home even when
-          you're far away.
-        </p>
-        <div className="flex  gap-4 sm:flex-row">
+          rich flavors and traditions of South India at our restaurant, where
+          every dish is a celebration of culture and culinary excellence. From
+          aromatic spices to time-honored recipes, we offer a warm, welcoming
+          atmosphere and unforgettable food that brings the essence of South
+          India to your table
+        </motion.p>
+
+        <div className="flex gap-4 sm:flex-row">
           <Link href="/reservation">
-            <button className="bg-normalbg text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform hover:scale-105">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-normalbg text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform"
+            >
               Reserve Table
-            </button>
+            </motion.button>
           </Link>
           <Link href="/menu">
-            <button className=" bg-gray-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-gray-700 transition-transform transform hover:scale-105">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gray-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-gray-700 transition-transform transform"
+            >
               Order Now
-            </button>
+            </motion.button>
           </Link>
         </div>
       </motion.div>
@@ -51,6 +82,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
+        whileHover={{ scale: 1.05 }}
       >
         <Image
           src={hero}

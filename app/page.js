@@ -18,7 +18,7 @@ export default async function Page() {
     <>
       {/* Render the popup if it is active */}
       {popup && popup.active && <PopupModal content={popup.content} />}
-      <header className="w-full lg:h-[80vh] px-3 py-1 md:px-20 md:py-5">
+      <header className="w-full lg:h-[90vh] px-3 py-1 md:px-20 md:py-5">
         <Nav />
         <Hero />
       </header>

@@ -34,19 +34,20 @@ const Footer = () => {
                 Menu
               </Link>
             </li>
-            <li>
-              <Link href="/about" className="hover:text-white transition">
-                About Us
-              </Link>
-            </li>
+
             <li>
               <Link href="/reservation" className="hover:text-white transition">
                 Reservations
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-white transition">
-                Contact
+              <Link href="/catering" className="hover:text-white transition">
+                Catering
+              </Link>
+            </li>
+            <li>
+              <Link href="/aboutus" className="hover:text-white transition">
+                About Us
               </Link>
             </li>
           </ul>
