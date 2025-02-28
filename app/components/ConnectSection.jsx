@@ -46,17 +46,6 @@ const ConnectSection = () => {
           </p>
         </div>
       </motion.div>
-
-      {/* View Gallery Link */}
-      <div className="text-center mt-10">
-        <motion.a
-          href="/gallery"
-          className="inline-block px-6 py-3 text-sm lg:text-lg font-semibold  bg-normalbg rounded-xl hover:bg-rose-600 transition-all shadow-md"
-          whileHover={{ scale: 1.1 }}
-        >
-          View Gallery
-        </motion.a>
-      </div>
     </section>
   );
 };
