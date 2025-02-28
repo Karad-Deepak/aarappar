@@ -37,7 +37,7 @@ export default function CustomerFeedback() {
           {reviews.map((review, index) => (
             <motion.div
               key={index}
-              className="bg-white bg-opacity-10 backdrop-blur-lg p-6 rounded-2xl shadow-lg"
+              className="bg-white bg-opacity-10 backdrop-blur-lg  p-6 rounded-2xl shadow-lg"
               whileHover={{ scale: 1.05 }}
             >
               <p className="text-sm lg:text-lg italic">"{review.review}"</p>

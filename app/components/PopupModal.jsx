@@ -45,7 +45,7 @@ export default function PopupModal({ content }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.5 } }}
           exit={{ opacity: 0, transition: { duration: 0.3 } }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm "
         >
           {/* Rainbow gradient border wrapper with blinking LED effect */}
           <motion.div
@@ -70,7 +70,7 @@ export default function PopupModal({ content }) {
                 opacity: 0,
                 transition: { duration: 0.3, ease: "easeIn" },
               }}
-              className="w-full max-w-lg rounded-xl bg-white p-6 shadow-2xl md:p-8 font-poppins"
+              className=" w-4xl rounded-2xl bg-white p-6 shadow-2xl pmd:p-8 font-poppins"
             >
               <motion.div
                 className="mb-4 text-center"
@@ -81,7 +81,7 @@ export default function PopupModal({ content }) {
                   transition: { delay: 0.3, duration: 0.5 },
                 }}
               >
-                <p className="text-lg md:text-2xl text-normalbg font-bold whitespace-pre-line">
+                <p className="text-sm md:text-xl text-normalbg font-bold whitespace-pre-line">
                   {content}
                 </p>
               </motion.div>
