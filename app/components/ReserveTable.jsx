@@ -106,13 +106,13 @@ export default function ReserveTable() {
   const timeSlots = [
     {
       label: "28.Feb Friday",
-      options: ["17:30 to 19:30", "19:30 to 21:30"],
+      options: ["17:30 to 19:00", "19:00 to 20:30", "20:30 to 22:00"],
     },
     {
       label: "01.Mar Saturday",
       options: [
         "12:00 to 13:30",
-        "13:30 to 14:30",
+        "13:30 to 15:00",
         "17:30 to 19:30",
         "19:30 to 21:30",
       ],
@@ -121,7 +121,7 @@ export default function ReserveTable() {
       label: "02.Mar Sunday",
       options: [
         "12:00 to 13:30",
-        "13:30 to 14:30",
+        "13:30 to 15:00",
         "17:30 to 19:30",
         "19:30 to 21:30",
       ],
@@ -269,7 +269,7 @@ export default function ReserveTable() {
                     setSelectedTimeSlot("");
                     setFormData((prev) => ({ ...prev, timeSlot: "" }));
                   }}
-                  className={`p-4 rounded-lg border transition-colors  ${
+                  className={`p-4 rounded-lg border transition-colors text-sm lg:text-lg  ${
                     selectedDate === group.label
                       ? "bg-normalbg text-white"
                       : "bg-gray-800 text-white"
@@ -301,7 +301,7 @@ export default function ReserveTable() {
                             timeSlot: value,
                           }));
                         }}
-                        className={`p-2 rounded-lg  border transition-colors ${
+                        className={`p-2 rounded-lg  border transition-colors text-sm lg:text-lg ${
                           selectedTimeSlot === slot
                             ? "bg-normalbg text-white"
                             : "bg-gray-800 text-white"
