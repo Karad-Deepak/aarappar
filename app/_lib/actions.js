@@ -77,7 +77,7 @@ export async function submitReservation(formData) {
   const lastName = formData.get("lastName");
   const email = formData.get("email");
   const phone = formData.get("phone");
-  const timeSlot = formData.get("timeSlot");
+  const timeSlot = formData.get("time_slot");
   const guests = formData.get("guests");
   const message = formData.get("message");
 
