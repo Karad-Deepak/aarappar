@@ -181,7 +181,7 @@ export default function ReservationsTable({
                     <div className="flex flex-col items-center">
                       <span className="text-sm">{slot}</span>
                       <span className="text-xs font-semibold">
-                        {booked} booked
+                        {booked} Guests booked
                       </span>
                     </div>
                   </button>

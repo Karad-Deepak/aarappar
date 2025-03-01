@@ -318,7 +318,7 @@ export default function ReserveTable() {
                     } else if (remaining > 10) {
                       displayRemaining = "";
                     } else {
-                      displayRemaining = `${remaining} remaining`;
+                      displayRemaining = `${remaining} guests remaining`;
                     }
                     return (
                       <button
