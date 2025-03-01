@@ -1,7 +1,7 @@
 import { fetchReservations } from "@/app/_lib/actions";
 import ReservationsTable from "@/app/admin/_components/ReservationsTable";
 
-export const revalidate = 300;
+export const revalidate = 60;
 export default async function ReservationsPage() {
   const reservations = await fetchReservations();
   return (

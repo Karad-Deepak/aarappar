@@ -3,11 +3,13 @@
 import { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { isSameDay, format, parse } from "date-fns";
+import { isSameDay, parse } from "date-fns";
+import { toZonedTime, format as tzFormat } from "date-fns-tz";
 import DeleteButton from "@/app/components/DeleteButton";
 import {
   deleteReservationAction,
   fetchSlotAvailability,
+  updateReservationStatus,
 } from "@/app/_lib/actions";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -25,8 +27,7 @@ function parseReservationDate(timeSlot) {
   return parse(dateString, "d MMM yyyy", new Date());
 }
 
-// Predefined time slot groups (these labels must match what you expect from the DatePicker)
-// For example, group label "28.Feb Friday" is expected when the selected date formats to that string.
+// Predefined time slot groups (these labels must match the expected formatted date in Germany)
 const timeSlots = [
   {
     label: "28.Feb Friday",
@@ -56,18 +57,25 @@ export default function ReservationsTable({
   reservations,
   slotAvailability: initialAvailability,
 }) {
-  // Use state to hold selected date, time slot, and slot availability
-  const [selectedDate, setSelectedDate] = useState(null);
+  // Set selectedDate default to Germany time using utcToZonedTime
+  const [selectedDate, setSelectedDate] = useState(() =>
+    toZonedTime(new Date(), "Europe/Berlin")
+  );
   const [mounted, setMounted] = useState(false);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
   const [slotAvailability, setSlotAvailability] = useState(
     initialAvailability || {}
   );
+  const [localReservations, setLocalReservations] = useState(reservations);
 
-  // Set mounted flag so DatePicker renders only on client
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Update local reservations if the prop changes
+  useEffect(() => {
+    setLocalReservations(reservations);
+  }, [reservations]);
 
   // Poll for fresh slot availability every 60 seconds
   useEffect(() => {
@@ -84,27 +92,29 @@ export default function ReservationsTable({
     return () => clearInterval(intervalId);
   }, []);
 
-  // Compute group label from the selected date in format "dd.MMM EEEE", e.g., "28.Feb Friday"
+  // Compute group label from the selected date in Germany time.
+  // Format: "dd.MMM EEEE" (e.g., "28.Feb Friday")
   const groupLabel = useMemo(() => {
-    return selectedDate ? format(selectedDate, "dd.MMM EEEE") : "";
+    return selectedDate
+      ? tzFormat(selectedDate, "dd.MMM EEEE", { timeZone: "Europe/Berlin" })
+      : "";
   }, [selectedDate]);
 
-  // Filter reservations based on selected date, and if a time slot is chosen, also by that slot.
+  // Filter reservations based on selected date and (optionally) selected time slot
   const filteredReservations = useMemo(() => {
-    if (!selectedDate) return reservations;
-    let filtered = reservations.filter((res) => {
+    if (!selectedDate) return localReservations;
+    let filtered = localReservations.filter((res) => {
       const resDate = parseReservationDate(res.time_slot);
       return isSameDay(resDate, selectedDate);
     });
     if (selectedTimeSlot) {
-      // Construct full time slot string e.g., "28.Feb Friday: 17:30 to 19:30"
       const fullSlot = `${groupLabel}: ${selectedTimeSlot}`;
       filtered = filtered.filter((res) => res.time_slot === fullSlot);
     }
     return filtered;
-  }, [selectedDate, selectedTimeSlot, reservations, groupLabel]);
+  }, [selectedDate, selectedTimeSlot, localReservations, groupLabel]);
 
-  // Compute total guests booked for the selected day (all reservations for that day)
+  // Compute total guests booked for the selected day
   const totalGuestsForDay = useMemo(() => {
     if (!selectedDate) return 0;
     return filteredReservations.reduce(
@@ -117,6 +127,8 @@ export default function ReservationsTable({
   const selectedGroup = useMemo(() => {
     return timeSlots.find((group) => group.label === groupLabel);
   }, [groupLabel]);
+
+  // Handler for updating status is handled in the table rows
 
   return (
     <div>
@@ -154,7 +166,10 @@ export default function ReservationsTable({
       {selectedDate && (
         <div className="mb-6 p-4 bg-gray-800 rounded-lg">
           <h3 className="text-lg font-bold text-normalbg mb-2">
-            Summary for {format(selectedDate, "dd MMM yyyy")}
+            Summary for{" "}
+            {tzFormat(selectedDate, "dd MMM yyyy", {
+              timeZone: "Europe/Berlin",
+            })}
           </h3>
           <p className="mb-4">
             Total Guests Booked:{" "}
@@ -163,7 +178,7 @@ export default function ReservationsTable({
           {selectedGroup && (
             <div className="flex gap-4 flex-wrap justify-center">
               {selectedGroup.options.map((slot) => {
-                // Build the full time slot string, e.g., "28.Feb Friday: 17:30 to 19:30"
+                // Construct full time slot string, e.g., "28.Feb Friday: 17:30 to 19:30"
                 const value = `${groupLabel}: ${slot}`;
                 const booked = slotAvailability[value] || 0;
                 return (
@@ -181,7 +196,7 @@ export default function ReservationsTable({
                     <div className="flex flex-col items-center">
                       <span className="text-sm">{slot}</span>
                       <span className="text-xs font-semibold">
-                        {booked} Guests booked
+                        {booked} booked
                       </span>
                     </div>
                   </button>
@@ -224,6 +239,9 @@ export default function ReservationsTable({
                 Created At
               </th>
               <th className="px-3 py-2 border-b text-left text-xs md:text-sm">
+                Status
+              </th>
+              <th className="px-3 py-2 border-b text-left text-xs md:text-sm">
                 Action
               </th>
             </tr>
@@ -258,8 +276,39 @@ export default function ReservationsTable({
                   </td>
                   <td className="px-3 py-2 border-b text-xs md:text-sm">
                     {res.created_at
-                      ? format(new Date(res.created_at), "dd/MM/yyyy HH:mm")
+                      ? tzFormat(new Date(res.created_at), "dd/MM/yyyy HH:mm", {
+                          timeZone: "Europe/Berlin",
+                        })
                       : ""}
+                  </td>
+                  <td className="px-3 py-2 border-b text-xs md:text-sm">
+                    <select
+                      value={res.status}
+                      onChange={async (e) => {
+                        const newStatus = e.target.value;
+                        try {
+                          await updateReservationStatus({
+                            id: res.id,
+                            status: newStatus,
+                          });
+                          setLocalReservations((prev) =>
+                            prev.map((r) =>
+                              r.id === res.id ? { ...r, status: newStatus } : r
+                            )
+                          );
+                        } catch (error) {
+                          console.error(
+                            "Error updating status:",
+                            error.message
+                          );
+                        }
+                      }}
+                      className="bg-gray-800 text-white p-1 rounded focus:outline-none focus:ring-2 focus:ring-normalbg"
+                    >
+                      <option value="booked">Booked</option>
+                      <option value="seated">Seated</option>
+                      <option value="completed">Completed</option>
+                    </select>
                   </td>
                   <td className="px-3 py-2 border-b text-xs md:text-sm">
                     <DeleteButton
@@ -274,7 +323,7 @@ export default function ReservationsTable({
             ) : (
               <tr>
                 <td
-                  colSpan="8"
+                  colSpan="9"
                   className="px-3 py-2 text-center text-xs md:text-sm"
                 >
                   No reservations found.

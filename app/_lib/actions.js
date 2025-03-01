@@ -314,3 +314,14 @@ export async function fetchSlotAvailability() {
   });
   return availability; // { "28.Feb Friday: 19:30 to 21:30": totalGuests, ... }
 }
+export async function updateReservationStatus({ id, status }) {
+  const { data, error } = await supabase
+    .from("reservations")
+    .update({ status })
+    .eq("id", id);
+  if (error) {
+    throw new Error(error.message);
+  }
+  revalidatePath("/admin/reservations");
+  return data;
+}
