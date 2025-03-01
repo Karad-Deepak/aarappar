@@ -5,7 +5,10 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { isSameDay, format, parse } from "date-fns";
 import DeleteButton from "@/app/components/DeleteButton";
-import { deleteReservationAction } from "@/app/_lib/actions";
+import {
+  deleteReservationAction,
+  fetchSlotAvailability,
+} from "@/app/_lib/actions";
 import "react-datepicker/dist/react-datepicker.css";
 
 // Dynamically import DatePicker to avoid SSR issues
@@ -13,25 +16,72 @@ const DatePicker = dynamic(() => import("react-datepicker"), { ssr: false });
 
 // Helper function to parse a date from a reservation's time_slot
 // Assumes time_slot format: "28.Feb Friday: 17:30 to 19:30"
-// We only extract the first segment (e.g., "28.Feb") and then build a date.
+// We extract the first segment (e.g., "28.Feb") and then build a date.
 function parseReservationDate(timeSlot) {
   const [datePart] = timeSlot.split(":");
   // Get the first segment, e.g., "28.Feb" from "28.Feb Friday"
   const dayMonth = datePart.trim().split(" ")[0].replace(".", " ");
   const currentYear = new Date().getFullYear();
   const dateString = `${dayMonth} ${currentYear}`;
-  // Use date-fns parse function with expected format "d MMM yyyy"
-  const parsedDate = parse(dateString, "d MMM yyyy", new Date());
-  return parsedDate;
+  return parse(dateString, "d MMM yyyy", new Date());
 }
 
-export default function ReservationsTable({ reservations }) {
+// Predefined time slot groups
+const timeSlots = [
+  {
+    label: "28.Feb Friday",
+    options: ["17:30 to 19:30", "19:30 to 21:30"],
+  },
+  {
+    label: "01.Mar Saturday",
+    options: [
+      "12:00 to 13:30",
+      "13:30 to 14:30",
+      "17:30 to 19:30",
+      "19:30 to 21:30",
+    ],
+  },
+  {
+    label: "02.Mar Sunday",
+    options: [
+      "12:00 to 13:30",
+      "13:30 to 14:30",
+      "17:30 to 19:30",
+      "19:30 to 21:30",
+    ],
+  },
+];
+
+export default function ReservationsTable({
+  reservations,
+  slotAvailability: initialAvailability,
+}) {
+  // If passed from server, use that; otherwise default to empty object.
   const [selectedDate, setSelectedDate] = useState(null);
   const [mounted, setMounted] = useState(false);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
+  const [slotAvailability, setSlotAvailability] = useState(
+    initialAvailability || {}
+  );
 
   // Set mounted flag to true on client side
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // Poll for fresh slot availability every 60 seconds
+  useEffect(() => {
+    async function getAvailability() {
+      try {
+        const availability = await fetchSlotAvailability();
+        setSlotAvailability(availability);
+      } catch (error) {
+        console.error("Error fetching slot availability:", error.message);
+      }
+    }
+    getAvailability();
+    const intervalId = setInterval(getAvailability, 60000);
+    return () => clearInterval(intervalId);
   }, []);
 
   // Filter reservations based on the selected date using isSameDay from date-fns
@@ -43,6 +93,25 @@ export default function ReservationsTable({ reservations }) {
     });
   }, [selectedDate, reservations]);
 
+  // Compute total guests booked for the selected day
+  const totalGuestsForDay = useMemo(() => {
+    if (!selectedDate) return 0;
+    return filteredReservations.reduce(
+      (acc, res) => acc + Number(res.guests),
+      0
+    );
+  }, [selectedDate, filteredReservations]);
+
+  // Compute the group label from the selected date in the format "dd.MMM EEEE" (e.g., "28.Feb Friday")
+  const groupLabel = useMemo(() => {
+    return selectedDate ? format(selectedDate, "dd.MMM EEEE") : "";
+  }, [selectedDate]);
+
+  // Find the time slot group that matches the selected date's label
+  const selectedGroup = useMemo(() => {
+    return timeSlots.find((group) => group.label === groupLabel);
+  }, [groupLabel]);
+
   return (
     <div>
       {/* Date Filter using a Calendar Picker */}
@@ -50,11 +119,13 @@ export default function ReservationsTable({ reservations }) {
         <label className="block text-sm md:text-base font-medium text-darkbg mb-2">
           Filter by Date:
         </label>
-        {/* Only render DatePicker on the client after mount */}
         {mounted && (
           <DatePicker
             selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
+            onChange={(date) => {
+              setSelectedDate(date);
+              setSelectedTimeSlot("");
+            }}
             placeholderText="Select a date"
             className="w-full p-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-normalbg"
             dateFormat="dd MMM yyyy"
@@ -69,6 +140,48 @@ export default function ReservationsTable({ reservations }) {
           </button>
         )}
       </div>
+
+      {/* Summary Section for the selected day */}
+      {selectedDate && (
+        <div className="mb-6 p-4 bg-gray-800 rounded-lg">
+          <h3 className="text-lg font-bold text-normalbg mb-2">
+            Summary for {format(selectedDate, "dd MMM yyyy")}
+          </h3>
+          <p className="mb-4">
+            Total Guests Booked:{" "}
+            <span className="font-semibold">{totalGuestsForDay}</span>
+          </p>
+          {selectedGroup && (
+            <div className="flex gap-4 flex-wrap justify-center">
+              {selectedGroup.options.map((slot) => {
+                // Build the complete time slot string (e.g., "28.Feb Friday: 17:30 to 19:30")
+                const value = `${groupLabel}: ${slot}`;
+                const booked = slotAvailability[value] || 0;
+                return (
+                  <button
+                    key={slot}
+                    type="button"
+                    onClick={() => setSelectedTimeSlot(slot)}
+                    disabled={booked >= 45}
+                    className={`p-2 rounded-lg font-sans border transition-colors ${
+                      selectedTimeSlot === slot
+                        ? "bg-normalbg text-white"
+                        : "bg-gray-800 text-white"
+                    } ${booked >= 45 ? "opacity-50 cursor-not-allowed" : ""}`}
+                  >
+                    <div className="flex flex-col items-center">
+                      <span className="text-sm">{slot}</span>
+                      <span className="text-xs font-semibold">
+                        {booked} booked
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Reservations Table */}
       <div className="overflow-x-auto">

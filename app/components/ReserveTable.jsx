@@ -7,10 +7,6 @@ import { submitReservation, fetchSlotAvailability } from "@/app/_lib/actions";
 // Example time slot groups
 const timeSlots = [
   {
-    label: "28.Feb Friday",
-    options: ["17:30 to 19:30", "19:30 to 21:30"],
-  },
-  {
     label: "01.Mar Saturday",
     options: [
       "12:00 to 13:30",
@@ -30,7 +26,7 @@ const timeSlots = [
   },
 ];
 
-const salutations = ["Mr", "Ms", "Mrs", "Dr"];
+const salutations = ["Mr", "Ms", "Mrs"];
 
 export default function ReserveTable() {
   const [formData, setFormData] = useState({
@@ -61,11 +57,9 @@ export default function ReserveTable() {
       }
     }
     getAvailability();
-
     const intervalId = setInterval(() => {
       getAvailability();
     }, 60000); // refresh every 60s
-
     return () => clearInterval(intervalId);
   }, []);
 
@@ -133,7 +127,7 @@ export default function ReserveTable() {
       try {
         await submitReservation(data);
         setFeedback("Your reservation has been successfully made!");
-        // Reset form data
+        // Reset form data and selections
         setFormData({
           salutation: "",
           firstName: "",
@@ -179,7 +173,6 @@ export default function ReserveTable() {
         <form onSubmit={handleSubmit} noValidate className="space-y-6">
           {/* Salutation, First Name, Last Name */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {/* Salutation */}
             <div>
               <label htmlFor="salutation" className="block text-gray-300 mb-2">
                 <span className="text-red-500">*</span> Salutation
@@ -203,7 +196,6 @@ export default function ReserveTable() {
                 <p className="mt-1 text-sm text-red-500">{errors.salutation}</p>
               )}
             </div>
-            {/* First Name */}
             <div>
               <label htmlFor="firstName" className="block text-gray-300 mb-2">
                 <span className="text-red-500">*</span> First Name
@@ -222,7 +214,6 @@ export default function ReserveTable() {
                 <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
               )}
             </div>
-            {/* Last Name */}
             <div>
               <label htmlFor="lastName" className="block text-gray-300 mb-2">
                 <span className="text-red-500">*</span> Last Name
@@ -321,6 +312,14 @@ export default function ReserveTable() {
                     const value = `${selectedDate}: ${slot}`;
                     const booked = slotAvailability[value] || 0;
                     const remaining = 45 - booked;
+                    let displayRemaining = "";
+                    if (remaining <= 0) {
+                      displayRemaining = "Booking is Full";
+                    } else if (remaining > 10) {
+                      displayRemaining = "";
+                    } else {
+                      displayRemaining = `${remaining} remaining`;
+                    }
                     return (
                       <button
                         type="button"
@@ -344,9 +343,7 @@ export default function ReserveTable() {
                         <div className="flex flex-col items-center">
                           <span>{slot}</span>
                           <span className="text-xs p-1 font-semibold">
-                            {remaining > 0
-                              ? `${remaining} guests remaining`
-                              : "Booking is Full"}
+                            {displayRemaining}
                           </span>
                         </div>
                       </button>
