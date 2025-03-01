@@ -16,17 +16,17 @@ const DatePicker = dynamic(() => import("react-datepicker"), { ssr: false });
 
 // Helper function to parse a date from a reservation's time_slot
 // Assumes time_slot format: "28.Feb Friday: 17:30 to 19:30"
-// We extract the first segment (e.g., "28.Feb") and then build a date.
+// Extracts the day-month portion (e.g., "28.Feb") and builds a Date.
 function parseReservationDate(timeSlot) {
   const [datePart] = timeSlot.split(":");
-  // Get the first segment, e.g., "28.Feb" from "28.Feb Friday"
   const dayMonth = datePart.trim().split(" ")[0].replace(".", " ");
   const currentYear = new Date().getFullYear();
   const dateString = `${dayMonth} ${currentYear}`;
   return parse(dateString, "d MMM yyyy", new Date());
 }
 
-// Predefined time slot groups
+// Predefined time slot groups (these labels must match what you expect from the DatePicker)
+// For example, group label "28.Feb Friday" is expected when the selected date formats to that string.
 const timeSlots = [
   {
     label: "28.Feb Friday",
@@ -56,7 +56,7 @@ export default function ReservationsTable({
   reservations,
   slotAvailability: initialAvailability,
 }) {
-  // If passed from server, use that; otherwise default to empty object.
+  // Use state to hold selected date, time slot, and slot availability
   const [selectedDate, setSelectedDate] = useState(null);
   const [mounted, setMounted] = useState(false);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
@@ -64,7 +64,7 @@ export default function ReservationsTable({
     initialAvailability || {}
   );
 
-  // Set mounted flag to true on client side
+  // Set mounted flag so DatePicker renders only on client
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -84,16 +84,27 @@ export default function ReservationsTable({
     return () => clearInterval(intervalId);
   }, []);
 
-  // Filter reservations based on the selected date using isSameDay from date-fns
+  // Compute group label from the selected date in format "dd.MMM EEEE", e.g., "28.Feb Friday"
+  const groupLabel = useMemo(() => {
+    return selectedDate ? format(selectedDate, "dd.MMM EEEE") : "";
+  }, [selectedDate]);
+
+  // Filter reservations based on selected date, and if a time slot is chosen, also by that slot.
   const filteredReservations = useMemo(() => {
     if (!selectedDate) return reservations;
-    return reservations.filter((res) => {
+    let filtered = reservations.filter((res) => {
       const resDate = parseReservationDate(res.time_slot);
       return isSameDay(resDate, selectedDate);
     });
-  }, [selectedDate, reservations]);
+    if (selectedTimeSlot) {
+      // Construct full time slot string e.g., "28.Feb Friday: 17:30 to 19:30"
+      const fullSlot = `${groupLabel}: ${selectedTimeSlot}`;
+      filtered = filtered.filter((res) => res.time_slot === fullSlot);
+    }
+    return filtered;
+  }, [selectedDate, selectedTimeSlot, reservations, groupLabel]);
 
-  // Compute total guests booked for the selected day
+  // Compute total guests booked for the selected day (all reservations for that day)
   const totalGuestsForDay = useMemo(() => {
     if (!selectedDate) return 0;
     return filteredReservations.reduce(
@@ -101,11 +112,6 @@ export default function ReservationsTable({
       0
     );
   }, [selectedDate, filteredReservations]);
-
-  // Compute the group label from the selected date in the format "dd.MMM EEEE" (e.g., "28.Feb Friday")
-  const groupLabel = useMemo(() => {
-    return selectedDate ? format(selectedDate, "dd.MMM EEEE") : "";
-  }, [selectedDate]);
 
   // Find the time slot group that matches the selected date's label
   const selectedGroup = useMemo(() => {
@@ -133,7 +139,10 @@ export default function ReservationsTable({
         )}
         {selectedDate && (
           <button
-            onClick={() => setSelectedDate(null)}
+            onClick={() => {
+              setSelectedDate(null);
+              setSelectedTimeSlot("");
+            }}
             className="mt-2 text-xs md:text-sm text-red-500 underline ml-5"
           >
             Clear Filter
@@ -154,7 +163,7 @@ export default function ReservationsTable({
           {selectedGroup && (
             <div className="flex gap-4 flex-wrap justify-center">
               {selectedGroup.options.map((slot) => {
-                // Build the complete time slot string (e.g., "28.Feb Friday: 17:30 to 19:30")
+                // Build the full time slot string, e.g., "28.Feb Friday: 17:30 to 19:30"
                 const value = `${groupLabel}: ${slot}`;
                 const booked = slotAvailability[value] || 0;
                 return (
