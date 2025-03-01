@@ -387,7 +387,7 @@ export default function ReserveTable() {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Any special requests or mention child seats requirements"
+              placeholder="Please mention if bringing kids of age upto 2 yrs to reserve baby seat or Any special requests"
               className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
               rows="4"
             ></textarea>
