@@ -393,6 +393,8 @@ export default function ReserveTable() {
             ></textarea>
           </div>
 
+          <p className="font-semibold text-lg text-red-700 p-3">Note: We are accepting only cash.</p>
+
           <button
             type="submit"
             disabled={isPending}
