@@ -6,15 +6,7 @@ import { submitReservation, fetchSlotAvailability } from "@/app/_lib/actions";
 
 // Example time slot groups
 const timeSlots = [
-  {
-    label: "01.Mar Saturday",
-    options: [
-      "12:00 to 13:30",
-      "13:30 to 14:30",
-      "17:30 to 19:30",
-      "19:30 to 21:30",
-    ],
-  },
+
   {
     label: "02.Mar Sunday",
     options: [
