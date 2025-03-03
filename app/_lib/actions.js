@@ -2,6 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { supabase } from "./supabase";
 import { sendReservationEmail } from "./sendReservationEmail";
+import { sendPickupOrderEmail } from "./sendPickupOrderEmail";
 export async function fetchMenu() {
   const { data, error } = await supabase.from("menu").select("*");
 
@@ -224,42 +225,6 @@ export async function createOrder(formData) {
   return { message: "Order submitted successfully" };
 }
 
-export async function createPickupOrder(formData) {
-  const customer_name = formData.get("customer_name");
-  const phone = formData.get("phone");
-  const items = formData.get("items"); // JSON string from cart
-  let parsedItems;
-  try {
-    parsedItems = JSON.parse(items);
-  } catch (error) {
-    throw new Error("Invalid order data");
-  }
-
-  // Calculate total (assuming each item has a price and quantity)
-  let total = parsedItems.reduce(
-    (acc, item) => acc + parseFloat(item.price) * item.quantity,
-    0
-  );
-
-  // Insert the pickup order into the pickup_orders table
-  const { error } = await supabase.from("pickup_orders").insert([
-    {
-      customer_name,
-      customer_phone: phone,
-      cart_items: parsedItems,
-      total_bill: total,
-      order_status: "pending",
-    },
-  ]);
-
-  if (error) throw new Error("Failed to create pickup order: " + error.message);
-
-  // Optionally revalidate pages (like an admin orders page)
-  revalidatePath("/admin/pickups");
-
-  return { message: "Pickup order submitted successfully" };
-}
-
 export async function fetchOrders() {
   const { data, error } = await supabase
     .from("orders")
@@ -323,5 +288,66 @@ export async function updateReservationStatus({ id, status }) {
     throw new Error(error.message);
   }
   revalidatePath("/admin/reservations");
+  return data;
+}
+export async function createPickupOrder(formData) {
+  const customer_name = formData.get("customer_name");
+  const customer_phone = formData.get("phone");
+  const items = formData.get("items"); // JSON string from cart
+
+  // Parse the cart items JSON string
+  let parsedItems;
+  try {
+    parsedItems = JSON.parse(items);
+  } catch (error) {
+    throw new Error("Invalid order data");
+  }
+
+  // Calculate the total bill (assuming each item has a price and quantity)
+  const total_bill = parsedItems.reduce(
+    (acc, item) => acc + parseFloat(item.price) * item.quantity,
+    0
+  );
+
+  // Insert the pickup order into the pickup_orders table and select the inserted row
+  const { data, error } = await supabase
+    .from("pickup_orders")
+    .insert(
+      [
+        {
+          customer_name,
+          customer_phone,
+          cart_items: parsedItems,
+          total_bill,
+          order_status: "pending",
+        },
+      ],
+      { returning: "representation" }
+    )
+    .select("*")
+    .maybeSingle();
+
+  console.log("Data returned from insert:", data);
+  if (error) {
+    console.error("Error inserting pickup order:", error);
+    throw new Error("Failed to create pickup order. Please try again later.");
+  }
+
+  // Revalidate admin pickups page
+  revalidatePath("/admin/pickups");
+
+  if (!data) {
+    console.error("Pickup order data is null; email notification not sent.");
+    return data;
+  }
+
+  // Send the email notification for the new pickup order
+  try {
+    await sendPickupOrderEmail(data);
+  } catch (err) {
+    console.error("Error sending pickup order email notification:", err);
+    // Optionally handle the error further if needed.
+  }
+
   return data;
 }

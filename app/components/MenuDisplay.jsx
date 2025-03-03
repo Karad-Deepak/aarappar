@@ -77,7 +77,7 @@ export default function MenuDisplay({ menudata }) {
             taste buds.
           </p>
           <p className="text-normalbg p-2 font-bold text-xs lg:text-lg">
-            Pure, Natural Taste – No Artificial Colors Added to our dishes!
+            100% Pure, Natural Taste – No Artificial Colors Added to our dishes!
           </p>
         </div>
 

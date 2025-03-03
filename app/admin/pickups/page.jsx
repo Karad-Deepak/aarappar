@@ -1,6 +1,7 @@
 import { fetchPickups } from "@/app/_lib/actions";
 import PickupsTable from "@/app/admin/_components/PickupsTable";
 
+export const revalidate = 300;
 export default async function AdminPickupsPage() {
   const pickups = await fetchPickups();
   return (

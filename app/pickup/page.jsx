@@ -13,6 +13,7 @@ export default function PickupPage() {
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
 
   // Calculate the total bill based on cart items
   const totalBill = cart.reduce(
@@ -44,12 +45,38 @@ export default function PickupPage() {
     },
   };
 
+  // Validate form inputs and return any errors
+  const validateForm = () => {
+    const newErrors = {};
+    if (!customerName.trim()) {
+      newErrors.customerName = "Name is required.";
+    }
+    if (!customerPhone.trim()) {
+      newErrors.customerPhone = "Phone number is required.";
+    } else {
+      // Check if the phone number contains any alphabetic characters
+      if (/[a-zA-Z]/.test(customerPhone)) {
+        newErrors.customerPhone = "Phone number should contain only numbers.";
+      }
+      // Validate against a pattern: optional '+' and then 10 to 15 digits.
+      else if (!/^\+?[0-9]{10,15}$/.test(customerPhone)) {
+        newErrors.customerPhone =
+          "Please enter a valid phone number with 10 to 15 digits.";
+      }
+    }
+    return newErrors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!customerName || !customerPhone) {
-      alert("Please provide your name and phone number.");
+    setErrors({}); // clear previous errors
+
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
       return;
     }
+
     setIsSubmitting(true);
 
     // Create a FormData object to send to the server action
@@ -126,7 +153,13 @@ export default function PickupPage() {
                   onChange={(e) => setCustomerName(e.target.value)}
                   placeholder="Enter your name"
                   className="text-white bg-gray-800 w-full p-2 sm:p-3 md:p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                  required
                 />
+                {errors.customerName && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.customerName}
+                  </p>
+                )}
               </div>
               <div>
                 <label
@@ -141,8 +174,16 @@ export default function PickupPage() {
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
                   placeholder="Enter your phone number"
+                  // Adding a pattern attribute for browser-side validation
+                  pattern="^\+?[0-9]{10,15}$"
                   className="text-white w-full p-2 sm:p-3 md:p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-gray-800"
+                  required
                 />
+                {errors.customerPhone && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.customerPhone}
+                  </p>
+                )}
               </div>
             </motion.div>
 

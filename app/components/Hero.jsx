@@ -6,23 +6,23 @@ import hero from "@/public/heroimg.jpg";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col mt-8 gap-6 lg:flex-row items-center px-6 md:px-12 lg:px-4 py-10 lg:py-12 bg-darkbg text-white">
+    <section className="flex flex-col mt-8 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 bg-darkbg text-white">
       {/* Left Side - Text */}
       <motion.div
-        className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-6 lg:gap-8"
+        className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-4 lg:gap-6"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
         <motion.h1
-          className="text-2xl md:text-5xl lg:text4xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight"
+          className="text-2xl md:text-5xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           AARAPPAR <br />
           <motion.span
-            className="text-xl md:text-3xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight"
+            className="text-xl md:text-3xl font-bold uppercase text-normalbg  leading-tight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -32,16 +32,19 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          className="text-lg md:text-2xl lg:text-2xl font-bold text-lightbg font-[Playfair Display] leading-tight"
+          className="text-lg md:text-2xl lg:text-2xl font-bold text-lightbg leading-tight"
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
           Flavours Straight from Home
         </motion.p>
+        <p className=" font-bold text-s lg:text-2xl drop-shadow-lg ">
+          100% Pure, Natural Taste – No Artificial Colors Added to our dishes!
+        </p>
 
         <motion.p
-          className="text-sm md:text-lg text-gray-300 leading-relaxed"
+          className="text-sm md:text-[16px] text-gray-300 leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}

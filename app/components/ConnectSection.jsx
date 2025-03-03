@@ -22,7 +22,9 @@ const ConnectSection = () => {
             Operational Hours
           </h3>
           <p className="mt-3 text-sm lg:text-xl ">Tue - Fri: 17.30 - 21.30 </p>
-          <p className="text-sm lg:text-xl ">Sat - Sun: 12.00 - 21.30</p>
+          <p className="text-sm lg:text-xl ">
+            Sat - Sun: 12.00 - 14.30 , 17.30 - 21.30
+          </p>
         </div>
 
         {/* Address */}
