@@ -82,7 +82,7 @@ function Menu({ handleMobileNav, isMobileNav }) {
       <span onClick={handleMobileNav} className="cursor-pointer">
         <Image
           src={!isMobileNav ? list : close}
-          alt="Menu Icon"
+          alt="Menu "
           width={32}
           height={32}
           className="w-8 h-8"
