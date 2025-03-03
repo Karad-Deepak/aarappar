@@ -49,12 +49,6 @@ export default function CartBottomBar() {
             </h2>
             <div className="flex justify-center gap-4">
               <button
-                onClick={() => handleOptionClick("delivery")}
-                className="bg-rose-600 text-white font-semibold px-4 py-2 rounded hover:bg-rose-700 transition"
-              >
-                Delivery
-              </button>
-              <button
                 onClick={() => handleOptionClick("pickup")}
                 className="bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-700 transition"
               >

@@ -186,6 +186,9 @@ export default function PickupPage() {
                 €{totalBill.toFixed(2)}
               </span>
             </motion.div>
+            <p className="text-normalbg font-semibold text-lg p-3">
+              NOTE: Currently we are accepting cash only
+            </p>
 
             {/* Submit Order Button */}
             <motion.button

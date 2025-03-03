@@ -76,6 +76,9 @@ export default function MenuDisplay({ menudata }) {
             Discover our delicious offerings carefully crafted to delight your
             taste buds.
           </p>
+          <p className="text-normalbg p-2 font-bold text-xs lg:text-lg">
+            Pure, Natural Taste – No Artificial Colors Added to our dishes!
+          </p>
         </div>
 
         <motion.div

@@ -39,11 +39,14 @@ export default function MenuSection() {
       >
         A Taste of Tradition, A Feast of Flavors!
       </motion.h2>
-      <p className="text-[12px] lg:text-lg text-darkbg pb-6 lg:pb-10 max-w-2xl mx-auto">
+      <p className="text-[12px] lg:text-lg text-darkbg max-w-2xl mx-auto">
         Step into a world of rich aromas and authentic flavors with our
         specially curated South Indian menu. Every dish is a masterpiece,
         prepared with traditional recipes and the finest ingredients to bring
         you a taste of home.
+      </p>
+      <p className="text-normalbg p-2 font-bold text-s lg:text-xl pb-6 lg:pb-10 ">
+        Pure, Natural Taste – No Artificial Colors Added to our dishes!
       </p>
 
       {/* SCROLLABLE ON SMALL SCREENS, GRID ON LARGE SCREENS */}

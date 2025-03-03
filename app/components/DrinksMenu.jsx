@@ -11,7 +11,7 @@ const drinksData = [
     volumes: [{ volume: "0,33 L", price: "3,50 €" }],
   },
   {
-    name: "BECKS",
+    name: "BECKS 0,5",
     category: "BEERS",
     volumes: [{ volume: "0,5 L", price: "4,50 €" }],
   },
