@@ -2,29 +2,9 @@
 
 import { useState, useTransition, useEffect } from "react";
 import { motion } from "framer-motion";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { submitReservation, fetchSlotAvailability } from "@/app/_lib/actions";
-
-// Example time slot groups
-const timeSlots = [
-  {
-    label: "01.Mar Saturday",
-    options: [
-      "12:00 to 13:30",
-      "13:30 to 14:30",
-      "17:30 to 19:30",
-      "19:30 to 21:30",
-    ],
-  },
-  {
-    label: "02.Mar Sunday",
-    options: [
-      "12:00 to 13:30",
-      "13:30 to 14:30",
-      "17:30 to 19:30",
-      "19:30 to 21:30",
-    ],
-  },
-];
 
 const salutations = ["Mr", "Ms", "Mrs"];
 
@@ -42,7 +22,7 @@ export default function ReserveTable() {
   const [errors, setErrors] = useState({});
   const [feedback, setFeedback] = useState("");
   const [isPending, startTransition] = useTransition();
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null); // Date object
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
   const [slotAvailability, setSlotAvailability] = useState({});
 
@@ -57,9 +37,7 @@ export default function ReserveTable() {
       }
     }
     getAvailability();
-    const intervalId = setInterval(() => {
-      getAvailability();
-    }, 60000); // refresh every 60s
+    const intervalId = setInterval(getAvailability, 60000); // refresh every 60s
     return () => clearInterval(intervalId);
   }, []);
 
@@ -138,7 +116,7 @@ export default function ReserveTable() {
           guests: "",
           message: "",
         });
-        setSelectedDate("");
+        setSelectedDate(null);
         setSelectedTimeSlot("");
         setErrors({});
       } catch (error) {
@@ -150,6 +128,24 @@ export default function ReserveTable() {
     });
   }
 
+  // Determine available time slots based on the selected date
+  const getTimeSlots = (date) => {
+    if (!date) return [];
+    const day = date.getDay(); // 0: Sunday, 1: Monday, 2-5: Tue-Fri, 6: Saturday
+    if (day === 1) return []; // Closed on Mondays
+    if (day >= 2 && day <= 5) return ["17:30 to 19:30", "19:30 to 21:30"];
+    if (day === 0 || day === 6)
+      return [
+        "12:00 to 13:30",
+        "13:30 to 14:30",
+        "17:30 to 19:30",
+        "19:30 to 21:30",
+      ];
+    return [];
+  };
+
+  const timeSlots = getTimeSlots(selectedDate);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 py-12">
       <div className="max-w-3xl w-full p-8 bg-gray-900 rounded-2xl shadow-lg">
@@ -157,7 +153,7 @@ export default function ReserveTable() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-bold text-center text-normalbg mb-6"
+          className="text-3xl font-bold text-center mb-6"
         >
           Reserve Your Table
         </motion.h2>
@@ -274,50 +270,51 @@ export default function ReserveTable() {
             )}
           </div>
 
-          {/* Calendar View for Time Slot */}
+          {/* Calendar for Date Selection */}
           <div>
             <label className="block text-gray-300 mb-2">
               <span className="text-red-500">*</span> Select Date
             </label>
-            <div className="flex gap-4 justify-center">
-              {timeSlots.map((group) => (
-                <button
-                  type="button"
-                  key={group.label}
-                  onClick={() => {
-                    setSelectedDate(group.label);
-                    setSelectedTimeSlot("");
-                    setFormData((prev) => ({ ...prev, time_slot: "" }));
-                  }}
-                  className={`p-4 rounded-lg border transition-colors font-sans ${
-                    selectedDate === group.label
-                      ? "bg-normalbg text-white"
-                      : "bg-gray-800 text-white"
-                  }`}
-                >
-                  {group.label}
-                </button>
-              ))}
+            <div className="bg-gray-800 p-3 rounded-lg">
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date) => {
+                  setSelectedDate(date);
+                  setSelectedTimeSlot("");
+                  // Reset the selected time slot in formData when date changes
+                  setFormData((prev) => ({ ...prev, time_slot: "" }));
+                }}
+                minDate={new Date()}
+                dateFormat="dd MMM yyyy"
+                className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
+                placeholderText="Choose a date"
+              />
             </div>
+            {selectedDate && selectedDate.getDay() === 1 && (
+              <p className="mt-2 text-red-500 text-center">
+                Sorry, we are closed on Mondays.
+              </p>
+            )}
           </div>
-          {selectedDate && (
+
+          {/* Time Slot Selection */}
+          {selectedDate && selectedDate.getDay() !== 1 && (
             <div>
               <label className="block text-gray-300 mb-2">
                 <span className="text-red-500">*</span> Select Time Slot
               </label>
-              <div className="flex gap-4 justify-center mt-2">
-                {timeSlots
-                  .find((group) => group.label === selectedDate)
-                  ?.options.map((slot) => {
-                    const value = `${selectedDate}: ${slot}`;
+              {timeSlots.length > 0 ? (
+                <div className="flex flex-wrap gap-4 justify-center mt-2">
+                  {timeSlots.map((slot) => {
+                    const value = `${selectedDate.toLocaleDateString(
+                      "en-GB"
+                    )}: ${slot}`;
                     const booked = slotAvailability[value] || 0;
                     const remaining = 45 - booked;
                     let displayRemaining = "";
                     if (remaining <= 0) {
                       displayRemaining = "Booking is Full";
-                    } else if (remaining > 10) {
-                      displayRemaining = "";
-                    } else {
+                    } else if (remaining <= 10) {
                       displayRemaining = `${remaining} guests remaining`;
                     }
                     return (
@@ -332,7 +329,7 @@ export default function ReserveTable() {
                           }));
                         }}
                         disabled={remaining <= 0}
-                        className={`p-2 rounded-lg font-sans border transition-colors ${
+                        className={`p-2 rounded-lg border transition-colors ${
                           selectedTimeSlot === slot
                             ? "bg-normalbg text-white"
                             : "bg-gray-800 text-white"
@@ -342,14 +339,21 @@ export default function ReserveTable() {
                       >
                         <div className="flex flex-col items-center">
                           <span>{slot}</span>
-                          <span className="text-xs p-1 font-semibold">
-                            {displayRemaining}
-                          </span>
+                          {displayRemaining && (
+                            <span className="text-xs p-1 font-semibold">
+                              {displayRemaining}
+                            </span>
+                          )}
                         </div>
                       </button>
                     );
                   })}
-              </div>
+                </div>
+              ) : (
+                <p className="mt-2 text-center text-gray-400">
+                  No available time slots for this date.
+                </p>
+              )}
               {errors.time_slot && (
                 <p className="mt-1 text-sm text-red-500">{errors.time_slot}</p>
               )}
@@ -387,7 +391,7 @@ export default function ReserveTable() {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Please mention kids seats requirements or Any other special requests"
+              placeholder="Please mention kids seats requirements or any special requests"
               className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
               rows="4"
             ></textarea>

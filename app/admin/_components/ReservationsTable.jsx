@@ -191,7 +191,7 @@ export default function ReservationsTable({
                       selectedTimeSlot === slot
                         ? "bg-normalbg text-white"
                         : "bg-gray-800 text-white"
-                    } ${booked >= 45 ? "opacity-50 cursor-not-allowed" : ""}`}
+                    } ${booked >= 45 ? "opacity-50 " : ""}`}
                   >
                     <div className="flex flex-col items-center">
                       <span className="text-sm">{slot}</span>
