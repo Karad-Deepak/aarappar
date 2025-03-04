@@ -3,6 +3,7 @@ import Link from "next/link";
 import { fetchPopupSettings, updatePopupSettings } from "@/app/_lib/actions";
 import PopupSettingsForm from "@/app/components/PopupSettingsForm";
 
+export const revalidate = 300;
 export default async function AdminPopupSettings({ searchParams }) {
   // Fetch the current popup settings from Supabase.
   const popup = await fetchPopupSettings();

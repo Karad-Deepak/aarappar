@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 
 const reviews = [
   {
-    name: "Amit Sharma",
+    name: "Dominico D",
     review:
-      "The experience was fantastic! The food quality and service were exceptional. Will visit again!",
+      "We (a couple with a small child) had dinner at Aarappar this evening. The opening offer was a buffet. We really liked it there. The restaurant is cozy, the food was delicious and the service was great. Everyone was very warm and understanding, especially towards our child. We felt comfortable and will definitely come back.",
   },
   {
-    name: "Priya Mehta",
+    name: "Praveen Kumar",
     review:
-      "Beautiful ambiance with a warm and welcoming staff. The flavors were rich and authentic!",
+      "Recently visited the newest Indian restaurant in town with authentic Indian cuisine. The price was reasonable, especially considering the variety and quality of the food. It’s a great option for trying a little bit of everything Indian cuisine has to offer both veg & non-veg. Overall, this restaurant is perfect for those looking to explore a range of Indian flavors in one visit. Definitely recommended",
   },
   {
-    name: "Rajesh Iyer",
+    name: "vkr S",
     review:
-      "One of the best dining experiences I've had. Great taste, excellent presentation, and superb service!",
+      "One of the authentic Indian restaurants that balances the taste of Indian flavors (South and North) and appeals to both Indian and German customers.",
   },
 ];
 
