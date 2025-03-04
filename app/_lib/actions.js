@@ -23,6 +23,51 @@ export async function fetchMenuItems() {
 
   return data;
 }
+export async function deleteMenuItem(id) {
+  const { data, error } = await supabase
+    .from("menu_items")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Error deleting menu item:", error);
+    throw new Error("Failed to delete menu item");
+  }
+
+  return data;
+}
+export async function addMenuItem(formData) {
+  const item_name = formData.get("item_name");
+  const price = parseFloat(formData.get("price"));
+  const description = formData.get("description");
+  const category = formData.get("category");
+  const subcategory = formData.get("subcategory") || null;
+
+  // Basic validation
+  if (!item_name || !price || isNaN(price) || !category) {
+    throw new Error("Validation failed. Please fill in all required fields.");
+  }
+
+  const { data, error } = await supabase.from("menu_items").insert([
+    {
+      item_name,
+      price,
+      description,
+      category,
+      subcategory,
+    },
+  ]);
+
+  if (error) {
+    console.error("Error adding menu item:", error);
+    throw new Error("Failed to add menu item");
+  }
+  // Revalidate the admin menu page cache.
+  revalidatePath("/menu");
+  revalidatePath("/admin/menu");
+  return { message: "Menu item added successfully", data };
+}
+
 export async function updateMenuItem(formData) {
   "use server";
   const id = formData.get("id");

@@ -29,7 +29,7 @@ export default function PopupSettingsForm({ popup }) {
         <textarea
           name="content"
           defaultValue={popup ? popup.content : ""}
-          className="w-full p-2 bg-gray-800 text-white rounded"
+          className="w-full p-2 bg-gray-800 text-white rounded h-[45vh]"
           rows="4"
         ></textarea>
       </div>
