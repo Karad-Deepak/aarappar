@@ -5,6 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Import react icons
+import { FaRegCalendarAlt, FaTruck } from "react-icons/fa";
+import { GiChefToque } from "react-icons/gi";
+import { FiEdit, FiSettings } from "react-icons/fi";
+
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,6 +41,7 @@ export default function AdminLayout({ children }) {
               href="/admin/reservations"
               className={getLinkClasses("/admin/reservations")}
             >
+              <FaRegCalendarAlt className="inline mr-2" />
               Reservations
             </Link>
 
@@ -43,24 +49,28 @@ export default function AdminLayout({ children }) {
               href="/admin/pickups"
               className={getLinkClasses("/admin/pickups")}
             >
+              <FaTruck className="inline mr-2" />
               Pickups
             </Link>
             <Link
               href="/admin/catering"
               className={getLinkClasses("/admin/catering")}
             >
+              <GiChefToque className="inline mr-2" />
               Catering
             </Link>
             <Link
               href="/admin/change-menu"
               className={getLinkClasses("/admin/change-menu")}
             >
+              <FiEdit className="inline mr-2" />
               Change Menu
             </Link>
             <Link
               href="/admin/popup-settings"
               className={getLinkClasses("/admin/popup-settings")}
             >
+              <FiSettings className="inline mr-2" />
               Popup Settings
             </Link>
           </nav>
@@ -105,6 +115,7 @@ export default function AdminLayout({ children }) {
                 className={getLinkClasses("/admin/reservations")}
                 onClick={() => setIsMenuOpen(false)}
               >
+                <FaRegCalendarAlt className="inline mr-2" />
                 Reservations
               </Link>
 
@@ -113,6 +124,7 @@ export default function AdminLayout({ children }) {
                 className={getLinkClasses("/admin/pickups")}
                 onClick={() => setIsMenuOpen(false)}
               >
+                <FaTruck className="inline mr-2" />
                 Pickups
               </Link>
               <Link
@@ -120,6 +132,7 @@ export default function AdminLayout({ children }) {
                 className={getLinkClasses("/admin/catering")}
                 onClick={() => setIsMenuOpen(false)}
               >
+                <GiChefToque className="inline mr-2" />
                 Catering
               </Link>
               <Link
@@ -127,6 +140,7 @@ export default function AdminLayout({ children }) {
                 className={getLinkClasses("/admin/change-menu")}
                 onClick={() => setIsMenuOpen(false)}
               >
+                <FiEdit className="inline mr-2" />
                 Change Menu
               </Link>
               <Link
@@ -134,6 +148,7 @@ export default function AdminLayout({ children }) {
                 className={getLinkClasses("/admin/popup-settings")}
                 onClick={() => setIsMenuOpen(false)}
               >
+                <FiSettings className="inline mr-2" />
                 Popup Settings
               </Link>
             </div>

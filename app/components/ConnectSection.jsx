@@ -1,5 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
+import { FaRegClock } from "react-icons/fa";
+import { FiMapPin, FiPhoneCall } from "react-icons/fi";
 
 const ConnectSection = () => {
   return (
@@ -19,31 +21,34 @@ const ConnectSection = () => {
         {/* Operational Hours */}
         <div className="bg-zinc-900 p-6 rounded-2xl shadow-lg">
           <h3 className="text-sm lg:text-xl font-semibold text-red-400">
+            <FaRegClock className="inline mr-2" />
             Operational Hours
           </h3>
-          <p className="mt-3 text-sm lg:text-xl ">Tue - Fri: 17.30 - 21.30 </p>
-          <p className="text-sm lg:text-xl ">
-            Sat - Sun: 12.00 - 14.30 , 17.30 - 21.30
+          <p className="mt-3 text-sm lg:text-xl">Tue - Fri: 17.30 - 21.30</p>
+          <p className="text-sm lg:text-xl">
+            Sat - Sun: 12.00 - 14.30, 17.30 - 21.30
           </p>
         </div>
 
         {/* Address */}
         <div className="bg-zinc-900 p-6 rounded-2xl shadow-lg">
-          <h3 className="text-sm lg:text-xl  font-semibold text-red-400 ">
+          <h3 className="text-sm lg:text-xl font-semibold text-red-400">
+            <FiMapPin className="inline mr-2" />
             Address
           </h3>
-          <p className="text-sm lg:text-xl  mt-3 ">
-            Trümpertstraße 18 60489, Frankfurt am Main - Rödelheim
+          <p className="mt-3 text-sm lg:text-xl">
+            Trümpertstraße 18, 60489, Frankfurt am Main - Rödelheim
           </p>
         </div>
 
         {/* Contact Number */}
         <div className="bg-zinc-900 p-6 rounded-2xl shadow-lg">
-          <h3 className="text-sm lg:text-xl  font-semibold text-red-400">
+          <h3 className="text-sm lg:text-xl font-semibold text-red-400">
+            <FiPhoneCall className="inline mr-2" />
             Contact
           </h3>
-          <p className="mt-3 text-sm lg:text-xl ">Phone: +49 15219220483</p>
-          <p className="text-sm lg:text-xl ">
+          <p className="mt-3 text-sm lg:text-xl">Phone: +49 15219220483</p>
+          <p className="text-sm lg:text-xl">
             Email: aarapparrodelheim@aarappar.de
           </p>
         </div>
