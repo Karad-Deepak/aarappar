@@ -34,40 +34,31 @@ export async function deleteMenuItem(id) {
     throw new Error("Failed to delete menu item");
   }
 
-  return data;
+  return { message: "Menu item deleted successfully" };
 }
-export async function addMenuItem(formData) {
+export async function addItems(formData) {
   const item_name = formData.get("item_name");
-  const price = parseFloat(formData.get("price"));
+  const price = formData.get("price");
   const description = formData.get("description");
   const category = formData.get("category");
-  const subcategory = formData.get("subcategory") || null;
+  const subcategory = formData.get("subcategory");
 
-  // Basic validation
-  if (!item_name || !price || isNaN(price) || !category) {
-    throw new Error("Validation failed. Please fill in all required fields.");
-  }
+  const { error } = await supabase.from("menu_items").insert({
+    item_name,
+    price: parseFloat(price),
+    description,
+    category,
+    subcategory,
+  });
 
-  const { data, error } = await supabase.from("menu_items").insert([
-    {
-      item_name,
-      price,
-      description,
-      category,
-      subcategory,
-    },
-  ]);
+  if (error) throw new Error("Failed to add menu item");
 
-  if (error) {
-    console.error("Error adding menu item:", error);
-    throw new Error("Failed to add menu item");
-  }
-  // Revalidate the admin menu page cache.
+  // Revalidate the cache for pages that display the menu.
   revalidatePath("/menu");
   revalidatePath("/admin/menu");
-  return { message: "Menu item added successfully", data };
-}
 
+  return { message: "Menu item added successfully" };
+}
 export async function updateMenuItem(formData) {
   "use server";
   const id = formData.get("id");

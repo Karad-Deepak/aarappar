@@ -107,13 +107,7 @@ export default function AdminLayout({ children }) {
               >
                 Reservations
               </Link>
-              <Link
-                href="/admin/orders"
-                className={getLinkClasses("/admin/orders")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Orders
-              </Link>
+
               <Link
                 href="/admin/pickups"
                 className={getLinkClasses("/admin/pickups")}

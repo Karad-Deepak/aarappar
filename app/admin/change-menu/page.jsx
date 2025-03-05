@@ -1,5 +1,6 @@
 import { fetchMenuItems } from "@/app/_lib/actions";
 import EditableMenuItem from "@/app/components/EditableMenuItems";
+import AddMenuItemWrapper from "@/app/components/MenuWrapper";
 
 // Helper function to group items by a key
 function groupBy(arr, key) {
@@ -16,10 +17,12 @@ export default async function AdminMenu() {
   const groupedByCategory = groupBy(menudata, "category");
 
   return (
-    <div className="container mx-auto px-1 py-8 mt-8 lg:mt-10">
-      <h1 className="text-4xl font-bold mb-8 text-center text-normalbg">
+    <div className="container mx-auto px-1 py-1 mt-2 lg:mt-6">
+      <AddMenuItemWrapper menuItems={menudata} />
+      <h1 className="text-lg lg:text-3xl font-bold my-8 text-center text-normalbg ">
         Manage Menu Items
       </h1>
+
       {Object.entries(groupedByCategory).map(([category, items]) => (
         <details key={category} className="mb-6">
           <summary className="text-lg md:text-xl font-semibold border-b pb-2 cursor-pointer">
