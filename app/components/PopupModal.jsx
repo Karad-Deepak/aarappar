@@ -1,23 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import confetti from "canvas-confetti";
 
 export default function PopupModal({ content }) {
   const [isOpen, setIsOpen] = useState(true);
-
-  // Trigger confetti once when the modal is first shown
-  useEffect(() => {
-    if (isOpen) {
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ["#FFC700", "#FF0000", "#2E3192", "#41BBC7"],
-      });
-    }
-  }, [isOpen]);
 
   // Rainbow border animation with LED blinking effect
   const borderVariants = {
@@ -45,7 +32,7 @@ export default function PopupModal({ content }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.5 } }}
           exit={{ opacity: 0, transition: { duration: 0.3 } }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm "
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm"
         >
           {/* Rainbow gradient border wrapper with blinking LED effect */}
           <motion.div
@@ -77,7 +64,6 @@ export default function PopupModal({ content }) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{
                   opacity: 1,
-
                   y: 0,
                   transition: { delay: 0.3, duration: 0.5 },
                 }}
