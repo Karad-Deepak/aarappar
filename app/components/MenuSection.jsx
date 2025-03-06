@@ -75,10 +75,11 @@ export default function MenuSection() {
                 {dish.price}
               </p>
 
-              {/* Order Now Button */}
+              {/* Order Now Button 
               <button className="mt-3 bg-normalbg text-white text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
                 Order Now
               </button>
+              */}
             </motion.div>
           ))}
         </div>
@@ -109,16 +110,17 @@ export default function MenuSection() {
                 {dish.price}
               </p>
 
-              {/* Order Now Button */}
+              {/* Order Now Button 
               <button className="mt-3 bg-normalbg text-white px-5 py-2 rounded-xl hover:bg-rose-600 transition">
                 Order Now
               </button>
+              */}
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Explore Full Menu Link */}
+      {/* Explore Full Menu Link 
       <Link href="/menu">
         <motion.button
           className="py-3 px-6 rounded-2xl mt-10 text-lg text-white bg-normalbg hover:bg-rose-600 transition"
@@ -127,6 +129,7 @@ export default function MenuSection() {
           Explore Full Menu →
         </motion.button>
       </Link>
+      */}
     </div>
   );
 }

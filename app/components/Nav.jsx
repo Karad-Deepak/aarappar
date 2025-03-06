@@ -52,7 +52,7 @@ function Nav() {
 function Navbar() {
   return (
     <nav className="hidden lg:flex flex-row gap-8 text-lg font-semibold text-white">
-      <Link href="/menu">
+      {/* <Link href="/menu">
         <span className="hover:text-rose-500 transition duration-300">
           Menu
         </span>
@@ -66,7 +66,7 @@ function Navbar() {
         <span className="hover:text-rose-500 transition duration-300">
           Catering
         </span>
-      </Link>
+      </Link>*/}
       <Link href="/about">
         <span className="hover:text-rose-500 transition duration-300">
           About Us
@@ -95,7 +95,7 @@ function Menu({ handleMobileNav, isMobileNav }) {
 function Mobile({ handleMobileNav }) {
   return (
     <nav className="z-40 fixed top-14 left-0 w-full h-screen bg-zinc-900/90 backdrop-blur-lg text-white flex flex-col items-center justify-center gap-6 text-xl">
-      <Link href="/menu" onClick={handleMobileNav}>
+      {/* <Link href="/menu" onClick={handleMobileNav}>
         <span className="hover:text-rose-500 transition duration-300">
           Menu
         </span>
@@ -109,7 +109,7 @@ function Mobile({ handleMobileNav }) {
         <span className="hover:text-rose-500 transition duration-300">
           Catering
         </span>
-      </Link>
+      </Link> */}
       <Link href="/about" onClick={handleMobileNav}>
         <span className="hover:text-rose-500 transition duration-300">
           About Us

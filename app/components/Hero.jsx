@@ -30,7 +30,6 @@ export default function Hero() {
             Indisches Restaurant
           </motion.span>
         </motion.h1>
-
         <motion.p
           className="text-lg md:text-2xl lg:text-2xl font-bold text-lightbg leading-tight"
           initial={{ opacity: 0, x: -30 }}
@@ -42,7 +41,6 @@ export default function Hero() {
         <p className=" font-bold text-s lg:text-2xl drop-shadow-lg ">
           100% Pure, Natural Taste – No Artificial Colors Added to our dishes!
         </p>
-
         <motion.p
           className="text-sm md:text-[16px] text-gray-300 leading-relaxed"
           initial={{ opacity: 0 }}
@@ -56,7 +54,7 @@ export default function Hero() {
           atmosphere and unforgettable food that brings the essence of South
           India to your table
         </motion.p>
-
+        {/*
         <div className="flex gap-4 sm:flex-row">
           <Link href="/reservation">
             <motion.button
@@ -77,6 +75,7 @@ export default function Hero() {
             </motion.button>
           </Link>
         </div>
+        */}
       </motion.div>
 
       {/* Right Side - Hero Image */}

@@ -37,9 +37,11 @@ export default function CateringSection() {
           seamless service. Our catering team ensures every detail is crafted to
           perfection, making your event truly unforgettable.
         </p>
+        {/*
         <button className="bg-normalbg text-white text-lg px-6 py-3 rounded-xl hover:bg-rose-600 transition-all duration-300">
           Enquire Now
         </button>
+        */}
       </motion.div>
     </section>
   );
