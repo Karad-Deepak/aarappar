@@ -15,6 +15,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="cUEPQMEpnzfuv0q43Pi_nrUrtUH532hZ2xsO9hKboSE"
+        />
+      </head>
       <body className={`${raleway.variable} antialiased`}>
         <CartProvider>{children}</CartProvider>
       </body>
