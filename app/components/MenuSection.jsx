@@ -98,8 +98,8 @@ export default function MenuSection() {
                 <Image
                   src={dish.image}
                   alt={dish.name}
-                  layout="fill"
-                  className="rounded-xl object-cover"
+                  fill
+                  className="rounded-xl object-cover "
                 />
               </div>
 
