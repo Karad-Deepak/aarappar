@@ -33,7 +33,8 @@ export async function deleteMenuItem(id) {
     console.error("Error deleting menu item:", error);
     throw new Error("Failed to delete menu item");
   }
-
+  revalidatePath("/menu");
+  revalidatePath("/admin/change-menu");
   return { message: "Menu item deleted successfully" };
 }
 export async function addItems(formData) {
