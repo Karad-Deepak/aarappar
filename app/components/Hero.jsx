@@ -54,7 +54,7 @@ export default function Hero() {
           atmosphere and unforgettable food that brings the essence of South
           India to your table
         </motion.p>
-        {/*
+
         <div className="flex gap-4 sm:flex-row">
           <Link href="/reservation">
             <motion.button
@@ -75,7 +75,6 @@ export default function Hero() {
             </motion.button>
           </Link>
         </div>
-        */}
       </motion.div>
 
       {/* Right Side - Hero Image */}

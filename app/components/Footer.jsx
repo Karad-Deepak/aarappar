@@ -23,7 +23,6 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Quick Links
         <div className="text-sm lg:text-lg">
           <h3 className="text-sm lg:text-xl font-semibold text-red-400 mb-3">
             Quick Links
@@ -52,7 +51,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
- */}
+
         {/* Contact & Socials */}
         <div className="text-sm lg:text-lg">
           <h3 className="text-sm lg:text-xl font-semibold text-red-400 mb-3">
