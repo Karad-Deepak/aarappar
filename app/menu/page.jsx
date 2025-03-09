@@ -14,7 +14,7 @@ async function page() {
       <header className="">
         <Nav />
       </header>
-      <main className="bg-lightbg">
+      <main className="bg-white">
         <MenuDisplay menudata={menudata} />
         <DrinksMenu />
         <CartBottomBar />\

@@ -124,11 +124,11 @@ export default function MenuDisplay({ menudata }) {
           {filteredData.map((item) => (
             <motion.div
               key={item.id}
-              className="p-4 border rounded-lg shadow bg-white hover:scale-105 hover:shadow-2xl transition transform duration-300 flex flex-col justify-between"
+              className="p-4 border rounded-lg shadow  hover:scale-105 hover:shadow-2xl transition transform duration-300 flex flex-col justify-between"
               variants={itemVariants}
             >
               <div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center bg-black">
                   <h4 className="text-sm lg:text-xl font-semibold text-gray-900">
                     {item.item_name}
                   </h4>
@@ -188,7 +188,7 @@ export default function MenuDisplay({ menudata }) {
                             >
                               <div>
                                 <div className="flex justify-between items-center">
-                                  <h4 className="text-sm lg:text-xl font-semibold text-gray-800">
+                                  <h4 className="text-sm lg:text-xl font-semibold text-gray-950">
                                     {item.item_name}
                                   </h4>
                                   <span className="text-s lg:text-lg font-bold text-indigo-600">
@@ -201,9 +201,11 @@ export default function MenuDisplay({ menudata }) {
                                   </p>
                                 )}
                               </div>
+                              {/* 
                               <div className="mt-4">
                                 <QuantityControl item={item} />
                               </div>
+                               */}
                             </motion.div>
                           ))}
                         </div>
