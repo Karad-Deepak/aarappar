@@ -201,11 +201,10 @@ export default function MenuDisplay({ menudata }) {
                                   </p>
                                 )}
                               </div>
-                              {/* 
+
                               <div className="mt-4">
                                 <QuantityControl item={item} />
                               </div>
-                               */}
                             </motion.div>
                           ))}
                         </div>
