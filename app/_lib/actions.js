@@ -290,6 +290,7 @@ export async function fetchPickups() {
     .select("*")
     .order("created_at", { ascending: false });
   if (error) throw new Error("Error fetching pickup orders: " + error.message);
+
   return data;
 }
 
@@ -299,6 +300,7 @@ export async function updatePickupStatus(orderId, newStatus) {
     .update({ order_status: newStatus })
     .eq("id", orderId);
   if (error) throw new Error("Error updating pickup order: " + error.message);
+  revalidatePath("/admin/pickups");
   return { success: true };
 }
 export async function fetchSlotAvailability() {
