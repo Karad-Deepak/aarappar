@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useEffect, useTransition } from "react";
 import {
   updateMenuItem,
   updateSoldoutStatus,
@@ -11,7 +11,13 @@ export default function EditableMenuItem({ item }) {
   const [message, setMessage] = useState("");
   const [isPending, startTransition] = useTransition();
   const [isEditing, setIsEditing] = useState(false);
+  // initialize local soldout state from the item prop
   const [soldout, setSoldout] = useState(item.soldout);
+
+  // Update local state whenever the item prop changes (e.g., on refresh)
+  useEffect(() => {
+    setSoldout(item.soldout);
+  }, [item.soldout]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -149,7 +155,7 @@ export default function EditableMenuItem({ item }) {
               onClick={handleToggleSoldout}
               className="px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition duration-200 ease-in-out"
             >
-              {soldout ? "Enable" : "Disable"}
+              {soldout ? "Mark as Available" : "Mark as Sold Out"}
             </button>
           </div>
           {message && (
@@ -161,7 +167,7 @@ export default function EditableMenuItem({ item }) {
   }
 
   // Minimal view: only the item name is shown.
-  // Optionally, if the item is sold out, we display a "Sold Out" label.
+  // If the item is sold out, a "Sold Out" label is added.
   return (
     <div className="w-full px-2 mb-4">
       <div
