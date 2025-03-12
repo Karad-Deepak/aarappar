@@ -99,6 +99,8 @@ export async function updateSoldoutStatus(id, soldout) {
     throw new Error(error.message);
   }
   revalidatePath("/menu");
+  revalidatePath("/admin/menu");
+
   return { message: "Sold-out status updated successfully", data };
 }
 

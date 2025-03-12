@@ -2,6 +2,7 @@ import { fetchMenuItems } from "@/app/_lib/actions";
 import EditableMenuItem from "@/app/components/EditableMenuItems";
 import AddMenuItemWrapper from "@/app/components/MenuWrapper";
 
+export const revalidate = 10;
 // Helper function to group items by a key
 function groupBy(arr, key) {
   return arr.reduce((acc, item) => {
