@@ -7,8 +7,6 @@ import QuantityControl from "./QuantityControl";
 import chicken from "@/public/chicken.webp";
 import Biryani from "@/public/Biryani.webp";
 
-// Removed category image imports since they're no longer needed.
-
 // Helper function to group items by a key
 function groupBy(arr, key) {
   return arr.reduce((acc, item) => {
@@ -22,13 +20,16 @@ function groupBy(arr, key) {
 export default function MenuDisplay({ menudata }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter menu items based on search term (case-insensitive)
-  const filteredData = menudata.filter((item) =>
-    item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
+  // Filter out sold-out items from the entire dataset
+  const availableData = menudata.filter((item) => !item.soldout);
+
+  // Filter available menu items based on search term (case-insensitive)
+  const filteredData = availableData.filter((item) =>
+    (item.item_name || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Group items by category when not searching
-  const groupedByCategory = groupBy(menudata, "category");
+  // Group available items by category when no search term is provided
+  const groupedByCategory = groupBy(availableData, "category");
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -114,7 +115,7 @@ export default function MenuDisplay({ menudata }) {
       )}
 
       {searchTerm ? (
-        // When a search term exists, display matching items in a grid
+        // When a search term exists, display matching available items in a grid
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
           initial="hidden"
@@ -124,7 +125,7 @@ export default function MenuDisplay({ menudata }) {
           {filteredData.map((item) => (
             <motion.div
               key={item.id}
-              className="p-4 border rounded-lg shadow  hover:scale-105 hover:shadow-2xl transition transform duration-300 flex flex-col justify-between"
+              className="p-4 border rounded-lg shadow hover:scale-105 hover:shadow-2xl transition transform duration-300 flex flex-col justify-between"
               variants={itemVariants}
             >
               <div>
@@ -143,13 +144,13 @@ export default function MenuDisplay({ menudata }) {
                 )}
               </div>
               <div className="mt-4">
-                <QuantityControl item={item} />
+                <QuantityControl item={item} disabled={false} />
               </div>
             </motion.div>
           ))}
         </motion.div>
       ) : (
-        // When no search term exists, display items grouped by category & subcategory
+        // When no search term exists, display available items grouped by category & subcategory
         Object.entries(groupedByCategory).map(([category, items]) => {
           // Further group items by subcategory
           const groupedBySub = groupBy(items, "subcategory");
@@ -201,9 +202,8 @@ export default function MenuDisplay({ menudata }) {
                                   </p>
                                 )}
                               </div>
-
                               <div className="mt-4">
-                                <QuantityControl item={item} />
+                                <QuantityControl item={item} disabled={false} />
                               </div>
                             </motion.div>
                           ))}

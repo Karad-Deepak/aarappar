@@ -89,6 +89,18 @@ export async function updateMenuItem(formData) {
   // Return a success message that our client component can display.
   return { message: "Menu item updated successfully" };
 }
+export async function updateSoldoutStatus(id, soldout) {
+  const { data, error } = await supabase
+    .from("menu_items")
+    .update({ soldout })
+    .eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+  revalidatePath("/menu");
+  return { message: "Sold-out status updated successfully", data };
+}
 
 export async function submitEnquiry(formData) {
   const name = formData.get("name");

@@ -1,12 +1,17 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { updateMenuItem, deleteMenuItem } from "@/app/_lib/actions";
+import {
+  updateMenuItem,
+  updateSoldoutStatus,
+  deleteMenuItem,
+} from "@/app/_lib/actions";
 
 export default function EditableMenuItem({ item }) {
   const [message, setMessage] = useState("");
   const [isPending, startTransition] = useTransition();
   const [isEditing, setIsEditing] = useState(false);
+  const [soldout, setSoldout] = useState(item.soldout);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,16 +33,28 @@ export default function EditableMenuItem({ item }) {
       try {
         const result = await deleteMenuItem(item.id);
         setMessage(result.message);
-        // Optionally, you could remove the item from the UI or trigger a refresh.
       } catch (err) {
         setMessage("Delete failed: " + err.message);
       }
     });
   };
 
+  const handleToggleSoldout = async () => {
+    startTransition(async () => {
+      try {
+        const newSoldout = !soldout;
+        const result = await updateSoldoutStatus(item.id, newSoldout);
+        setMessage(result.message);
+        setSoldout(newSoldout);
+      } catch (err) {
+        setMessage("Toggle soldout failed: " + err.message);
+      }
+    });
+  };
+
   if (isEditing) {
     return (
-      <div className="w-full  px-2 mb-4">
+      <div className="w-full px-2 mb-4">
         <form
           onSubmit={handleSubmit}
           className="p-3 lg:p-6 bg-gray-900 border border-gray-700 rounded-lg shadow-lg"
@@ -127,6 +144,13 @@ export default function EditableMenuItem({ item }) {
             >
               Delete
             </button>
+            <button
+              type="button"
+              onClick={handleToggleSoldout}
+              className="px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition duration-200 ease-in-out"
+            >
+              {soldout ? "Enable" : "Disable"}
+            </button>
           </div>
           {message && (
             <div className="mt-4 text-green-500 text-center">{message}</div>
@@ -136,26 +160,21 @@ export default function EditableMenuItem({ item }) {
     );
   }
 
+  // Minimal view: only the item name is shown.
+  // Optionally, if the item is sold out, we display a "Sold Out" label.
   return (
-    <div className="w-full  px-2 mb-4">
+    <div className="w-full px-2 mb-4">
       <div
         onClick={() => setIsEditing(true)}
-        className="relative cursor-pointer p-4 bg-gray-900 border border-gray-700 rounded-lg shadow hover:bg-gray-800"
+        className={`cursor-pointer p-4 bg-gray-900 border border-gray-700 rounded-lg shadow hover:bg-gray-800 ${
+          soldout ? "opacity-60" : ""
+        }`}
       >
         <h3 className="text-xl text-gray-200">{item.item_name}</h3>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleDelete();
-          }}
-          className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded"
-        >
-          Delete
-        </button>
+        {soldout && (
+          <span className="text-sm text-red-500 font-bold">Sold Out</span>
+        )}
       </div>
-      {message && (
-        <div className="mt-2 text-green-500 text-center">{message}</div>
-      )}
     </div>
   );
 }
