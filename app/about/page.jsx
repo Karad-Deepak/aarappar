@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Nav from "../components/Nav";
 import ConnectSection from "../components/ConnectSection";
 import Footer from "../components/Footer";
+import GalleryCarousel from "../components/Gallery";
 
 export default function About() {
   return (
@@ -38,7 +39,9 @@ export default function About() {
           </p>
         </div>
       </motion.div>
+      <GalleryCarousel />
       <ConnectSection />
+
       <Footer />
     </>
   );
