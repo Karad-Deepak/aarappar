@@ -7,16 +7,21 @@ import {
   deleteMenuItem,
 } from "@/app/_lib/actions";
 
+// A helper to reliably convert the soldout value to a boolean.
+const parseSoldout = (value) => {
+  return value === true || value === "true";
+};
+
 export default function EditableMenuItem({ item }) {
   const [message, setMessage] = useState("");
   const [isPending, startTransition] = useTransition();
   const [isEditing, setIsEditing] = useState(false);
-  // initialize local soldout state from the item prop
-  const [soldout, setSoldout] = useState(item.soldout);
+  // Convert the item.soldout value into a boolean
+  const [soldout, setSoldout] = useState(parseSoldout(item.soldout));
 
-  // Update local state whenever the item prop changes (e.g., on refresh)
+  // Update local state whenever item.soldout changes
   useEffect(() => {
-    setSoldout(item.soldout);
+    setSoldout(parseSoldout(item.soldout));
   }, [item.soldout]);
 
   const handleSubmit = async (e) => {
@@ -167,7 +172,6 @@ export default function EditableMenuItem({ item }) {
   }
 
   // Minimal view: only the item name is shown.
-  // If the item is sold out, a "Sold Out" label is added.
   return (
     <div className="w-full px-2 mb-4">
       <div
