@@ -54,13 +54,13 @@ const GalleryCarousel = () => {
         {/* Navigation Buttons */}
         <button
           onClick={prevSlide}
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition focus:outline-none"
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-normalbg bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition focus:outline-none"
         >
           &larr;
         </button>
         <button
           onClick={nextSlide}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition focus:outline-none"
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-normalbg bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition focus:outline-none"
         >
           &rarr;
         </button>
