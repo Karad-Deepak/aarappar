@@ -93,7 +93,7 @@ const Footer = () => {
 
       {/* Copyright Section */}
       <div className="border-t border-gray-800 mt-10 pt-5 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} AARAPAR. All Rights Reserved.
+        &copy; {new Date().getFullYear()} AARAPPAR. All Rights Reserved.
       </div>
     </motion.footer>
   );
