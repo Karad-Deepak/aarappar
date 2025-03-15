@@ -24,11 +24,11 @@ export default function AdminLayout({ children }) {
     }`;
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white ">
       <header className="bg-black shadow-md">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between h-16">
+        <div className="max-w-7xl  mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between h-16 ">
           {/* Logo / Branding */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 ">
             <Link href="/admin">
               <span className="text-2xl font-bold text-normalbg">
                 Admin Dashboard

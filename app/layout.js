@@ -1,7 +1,7 @@
 import { Raleway } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/app/components/CartContext";
-import RunnerBanner from "./components/RunnerBanner";
+
 const raleway = Raleway({
   variable: "--font-raleway",
   subsets: ["latin"],
@@ -33,10 +33,7 @@ export default function RootLayout({ children }) {
         <meta name="robots" content="index, follow"></meta>
       </head>
       <body className={`${raleway.variable} antialiased`}>
-        <CartProvider>
-          <RunnerBanner />
-          {children}
-        </CartProvider>
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   );

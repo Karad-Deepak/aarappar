@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { createPickupOrder } from "@/app/_lib/actions";
 import { motion } from "framer-motion";
 import Nav from "../components/Nav";
+import RunnerBanner from "../components/RunnerBanner";
 
 export default function PickupPage() {
   const { cart, clearCart } = useCart();
@@ -112,6 +113,7 @@ export default function PickupPage() {
 
   return (
     <>
+      <RunnerBanner />
       <Nav />
       <motion.div
         className="container mt-8 lg:mt-12 mx-auto px-4 py-8 bg-lightbg min-h-screen flex flex-col items-center"
