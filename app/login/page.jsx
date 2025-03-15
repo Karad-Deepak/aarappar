@@ -29,8 +29,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-200 px-4">
-      <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
+    <div
+      className="min-h-screen relative flex items-center justify-center bg-cover bg-center px-4"
+      style={{ backgroundImage: "url('/interior2.webp')" }}
+    >
+      {/* Overlay for better contrast */}
+      <div className="absolute inset-0 bg-black opacity-40"></div>
+
+      <div className="relative z-10 bg-white/90 backdrop-blur-md rounded-xl shadow-lg p-8 max-w-md w-full">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
           Login
         </h2>

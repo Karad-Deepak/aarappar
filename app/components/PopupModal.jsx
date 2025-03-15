@@ -57,7 +57,7 @@ export default function PopupModal({ content }) {
                 opacity: 0,
                 transition: { duration: 0.3, ease: "easeIn" },
               }}
-              className="w-4xl rounded-2xl bg-white p-6 shadow-2xl md:p-8"
+              className="w-4xl rounded-2xl bg-zinc-950 p-6 shadow-2xl md:p-8"
             >
               <motion.div
                 className="mb-4 text-center"
@@ -68,7 +68,7 @@ export default function PopupModal({ content }) {
                   transition: { delay: 0.3, duration: 0.5 },
                 }}
               >
-                <p className="text-sm md:text-xl text-normalbg font-bold whitespace-pre-line">
+                <p className="text-sm md:text-xl text-white font-bold whitespace-pre-line">
                   {content}
                 </p>
               </motion.div>
@@ -77,7 +77,7 @@ export default function PopupModal({ content }) {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsOpen(false)}
-                  className="rounded-md bg-rose-500 px-6 py-2 text-white hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  className="rounded-md bg-normalbg px-6 py-2 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-rose-400"
                 >
                   Close
                 </motion.button>

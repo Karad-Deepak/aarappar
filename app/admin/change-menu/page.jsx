@@ -20,7 +20,7 @@ export default async function AdminMenu() {
   return (
     <div className="container mx-auto px-1 py-1 mt-2 lg:mt-6">
       <AddMenuItemWrapper menuItems={menudata} />
-      <h1 className="text-lg lg:text-3xl font-bold my-8 text-center text-normalbg ">
+      <h1 className="text-lg lg:text-3xl font-bold my-8 text-left text-normalbg ">
         Manage Menu Items
       </h1>
 

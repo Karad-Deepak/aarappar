@@ -235,6 +235,7 @@ export async function updatePopupSettings(formData) {
 
   // Revalidate the home page (or admin page if needed)
   revalidatePath("/");
+  revalidatePath("/admin/popup-settings");
 
   // Return a message for inline feedback (this will be returned to a client component)
   return { message: "Popup settings updated successfully" };
