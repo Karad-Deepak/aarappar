@@ -1,12 +1,13 @@
-import { Raleway } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/app/components/CartContext";
 
-const raleway = Raleway({
-  variable: "--font-raleway",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700", "800"],
+  weight: ["400", "600", "700"],
 });
+
 export const metadata = {
   title: "AARAPPAR INDISCHES RESTAURANT",
   description:
@@ -18,7 +19,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="canonical" href="https://aarappar.de/" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="google-site-verification"
@@ -31,10 +36,10 @@ export default function RootLayout({ children }) {
         <meta
           name="keywords"
           content="AARAPPAR, Indisches Restaurant, Indian Restaurant, Frankfurt, Rödelheim, Indian Cuisine, Curry, Biryani, Authentic Indian Food"
-        ></meta>
-        <meta name="robots" content="index, follow"></meta>
+        />
+        <meta name="robots" content="index, follow" />
       </head>
-      <body className={`${raleway.variable} antialiased`}>
+      <body className={` ${playfair.variable} antialiased`}>
         <CartProvider>{children}</CartProvider>
       </body>
     </html>

@@ -64,14 +64,14 @@ export default function RestaurantGallery() {
         <button
           onClick={prevSlide}
           aria-label="Previous Slide"
-          className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition"
+          className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-normalbg p-2 lg:p-3 rounded-full hover:bg-opacity-70 transition"
         >
           &larr;
         </button>
         <button
           onClick={nextSlide}
           aria-label="Next Slide"
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition"
+          className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50  text-normalbg p-2 lg:p-3 rounded-full hover:bg-opacity-70 transition"
         >
           &rarr;
         </button>

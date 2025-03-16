@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import hero from "@/public/heroimg.webp";
+import heroImg from "@/public/heroimg.webp";
+import heroMob from "@/public/heromob.webp";
 
 export default function Hero() {
   return (
@@ -22,7 +23,7 @@ export default function Hero() {
         >
           AARAPPAR <br />
           <motion.span
-            className="text-xl md:text-3xl font-bold uppercase text-normalbg  leading-tight"
+            className="text-xl md:text-3xl font-bold uppercase text-normalbg leading-tight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -38,7 +39,7 @@ export default function Hero() {
         >
           Flavours Straight from Home
         </motion.p>
-        <p className=" font-bold text-s lg:text-2xl drop-shadow-lg ">
+        <p className="font-bold text-sm lg:text-2xl drop-shadow-[0_1px_2px_#e00700]">
           100% Pure, Natural Taste – No Artificial Colors Added to our dishes!
         </p>
         <motion.p
@@ -52,7 +53,7 @@ export default function Hero() {
           every dish is a celebration of culture and culinary excellence. From
           aromatic spices to time-honored recipes, we offer a warm, welcoming
           atmosphere and unforgettable food that brings the essence of South
-          India to your table
+          India to your table.
         </motion.p>
 
         <div className="flex gap-4 sm:flex-row">
@@ -88,15 +89,22 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         whileHover={{ scale: 1.05 }}
       >
-        <Image
-          src={hero}
-          alt="South Indian Cuisine"
-          width={500}
-          height={500}
-          priority={true}
-          quality={75}
-          className="rounded-2xl shadow-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl"
-        />
+        <picture>
+          {/* For medium and larger screens, use heroImg */}
+          <source media="(min-width: 768px)" srcSet={heroImg.src} />
+          {/* For smaller screens, use heroMob */}
+          <source media="(max-width: 767px)" srcSet={heroMob.src} />
+          {/* Fallback image */}
+          <Image
+            src={heroImg}
+            alt="South Indian Cuisine"
+            width={500}
+            height={500}
+            priority={true}
+            quality={75}
+            className="rounded-2xl shadow-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl"
+          />
+        </picture>
       </motion.div>
     </section>
   );

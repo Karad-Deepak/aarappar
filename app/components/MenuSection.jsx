@@ -2,10 +2,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import dosa from "@/public/Dosa.jpg";
+import dosa from "@/public/Dosa.webp";
 import biryani from "@/public/Biryani.webp";
-import cchicken from "@/public/cchicken.jpg";
-import interior3 from "@/public/interior3.webp";
+import cchicken from "@/public/cchicken.webp";
 
 const dishes = [
   {
@@ -30,10 +29,7 @@ const dishes = [
 
 export default function MenuSection() {
   return (
-    <div
-      className="relative text-white py-8 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-cover bg-center "
-      style={{ backgroundImage: `url(${interior3.src})` }}
-    >
+    <div className="relative text-white py-8 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-cover bg-center ">
       {/* Dark overlay for contrast */}
       <div className="absolute inset-0 bg-black opacity-75"></div>
 

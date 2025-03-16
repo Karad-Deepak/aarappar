@@ -93,9 +93,9 @@ export default function CustomerFeedback() {
               <div className="mt-3">
                 <span className="text-5xl text-red-700">❞</span>
               </div>
-              <h4 className="font-semibold mt-2 lg:mt-5 text-xl">
+              <p className="font-semibold mt-2 lg:mt-5 text-xl">
                 {review.name}
-              </h4>
+              </p>
             </motion.div>
           ))}
         </div>
@@ -104,6 +104,7 @@ export default function CustomerFeedback() {
         <div className="mt-6 flex justify-center space-x-4">
           <button
             onClick={handlePrev}
+            aria-label="Previous Slide"
             className="p-2 rounded-full bg-normalbg bg-opacity-20 hover:bg-opacity-30 transition-all"
           >
             <svg
@@ -123,6 +124,7 @@ export default function CustomerFeedback() {
           </button>
           <button
             onClick={handleNext}
+            aria-label="Next Slide"
             className="p-2 rounded-full bg-normalbg bg-opacity-20 hover:bg-opacity-30 transition-all"
           >
             <svg

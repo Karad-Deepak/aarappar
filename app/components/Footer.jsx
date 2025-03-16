@@ -18,7 +18,7 @@ const Footer = () => {
           <h2 className="text-lg lg:text-2xl font-bold text-normal text-normalbg">
             AARAPPAR Indisches Restaurant
           </h2>
-          <p className="text-gray-400 mt-2 text-sm lg:text-lg">
+          <p className=" mt-2 text-sm lg:text-lg">
             Flavours Straight from Home
           </p>
         </div>
@@ -27,7 +27,7 @@ const Footer = () => {
           <h3 className="text-sm lg:text-xl font-semibold text-red-400 mb-3">
             Quick Links
           </h3>
-          <ul className="text-gray-400 space-y-2">
+          <ul className=" space-y-2">
             <li>
               <Link href="/menu" className="hover:text-white transition">
                 Menu
@@ -57,11 +57,12 @@ const Footer = () => {
           <h3 className="text-sm lg:text-xl font-semibold text-red-400 mb-3">
             Contact Us
           </h3>
-          <p className="text-gray-400">
+          <p className="">
             Trümpertstraße 18 60489, Frankfurt am Main - Rödelheim
           </p>
-          <p className="text-gray-400 ">+49 15219220483</p>
-          <p className="text-gray-400">aarapparrodelheim@aarappar.de</p>
+          <p className=" ">+49 15219220483</p>
+          <p className="">aarapparrodelheim@aarappar.de</p>
+          {/* 
           <div className="flex space-x-4 mt-4 ">
             <a
               href="#"
@@ -88,6 +89,7 @@ const Footer = () => {
               <FaYoutube />
             </a>
           </div>
+          */}
         </div>
       </div>
       <div className=" pt-3 lg:pt-6 px-5 text-center text-sm">
