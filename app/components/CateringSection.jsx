@@ -8,7 +8,7 @@ export default function CateringSection() {
     <section className="flex flex-col-reverse md:flex-row items-center justify-between bg-darkbg text-white py-6 md:py-16 px-7 md:px-20 gap-6 lg:gap-8 ">
       {/* Left - Image */}
       <motion.div
-        className="md:w-1/2 w-full"
+        className="md:w-1/2 w-full flex items-center justify-center"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
@@ -18,7 +18,7 @@ export default function CateringSection() {
           alt="Catering Services"
           width={300}
           height={500}
-          className="rounded-2xl shadow-lg"
+          className="rounded-2xl shadow-lg hidden lg:block"
         />
       </motion.div>
 

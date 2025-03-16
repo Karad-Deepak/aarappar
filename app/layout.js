@@ -17,6 +17,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="canonical" href="https://aarappar.de/" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="google-site-verification"

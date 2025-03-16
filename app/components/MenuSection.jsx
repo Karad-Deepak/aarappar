@@ -103,6 +103,7 @@ export default function MenuSection() {
                 {/* Dish Image */}
                 <div className="relative w-full h-40 rounded-xl overflow-hidden">
                   <Image
+                    quality={60}
                     src={dish.image}
                     alt={dish.name}
                     fill
@@ -126,6 +127,7 @@ export default function MenuSection() {
 
         <Link href="/menu">
           <motion.button
+            aria-label="Explore the full Aarappar restaurant menu"
             className="py-3 px-6 rounded-2xl mt-10 text-lg text-white bg-normalbg hover:bg-rose-600 transition"
             whileHover={{ scale: 1.1 }}
           >

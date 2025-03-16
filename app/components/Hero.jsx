@@ -60,6 +60,7 @@ export default function Hero() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              aria-label="Reserve a table at Aarappar Restaurant"
               className="bg-normalbg text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform"
             >
               Reserve Table
@@ -70,6 +71,7 @@ export default function Hero() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              aria-label="View the menu and order now from Aarappar Restaurant"
               className="bg-gray-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-gray-700 transition-transform transform"
             >
               Order Now
@@ -91,6 +93,8 @@ export default function Hero() {
           alt="South Indian Cuisine"
           width={500}
           height={500}
+          priority={true}
+          quality={75}
           className="rounded-2xl shadow-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl"
         />
       </motion.div>
