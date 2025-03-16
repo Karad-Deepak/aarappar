@@ -90,9 +90,15 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
+      <div className=" pt-3 lg:pt-6 px-5 text-center text-sm">
+        <strong>We only use essential cookies</strong> — please see our{" "}
+        <Link href="/privacy-policy" className="hover:text-red-700">
+          Privacy Policy
+        </Link>
+        .
+      </div>
       {/* Copyright Section */}
-      <div className="border-t border-gray-800 mt-10 pt-5 text-center text-gray-500 text-sm">
+      <div className="border-t border-gray-800 mt-5 lg:mt-10 pt-5 text-center text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} AARAPPAR. All Rights Reserved.
       </div>
     </motion.footer>
