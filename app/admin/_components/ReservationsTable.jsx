@@ -136,7 +136,7 @@ export default function ReservationsTable({
   }
 
   return (
-    <div className="p-4 bg-black text-white min-h-screen">
+    <div className="p-4  text-white min-h-screen">
       {/* Filter by Date */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-red-500 mb-2">
@@ -215,7 +215,7 @@ export default function ReservationsTable({
       {/* Reservations Table */}
       <div className="overflow-x-auto">
         <motion.table
-          className="min-w-full border-collapse bg-gray-900 shadow-lg"
+          className="min-w-full border-collapse bg-gray-950 shadow-lg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}

@@ -57,9 +57,9 @@ export default function PickupsTable({ initialPickups }) {
         </p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-gray-900 border border-gray-200 text-white text-sm md:text-base">
+          <table className="min-w-full bg-gray-950 border border-gray-200 text-white text-sm md:text-base">
             <thead>
-              <tr className="bg-gray-700">
+              <tr className="bg-gray-800">
                 <th className="py-1 md:py-2 px-2 md:px-4 border-b">ID</th>
                 <th className="py-1 md:py-2 px-2 md:px-4 border-b">
                   Customer Name
@@ -75,7 +75,7 @@ export default function PickupsTable({ initialPickups }) {
             </thead>
             <tbody>
               {filteredPickups.map((order) => (
-                <tr key={order.id} className="hover:bg-gray-950">
+                <tr key={order.id} className="hover:bg-gray-900">
                   <td className="py-1 md:py-2 px-2 md:px-4 border-b">
                     {order.id}
                   </td>
@@ -88,7 +88,7 @@ export default function PickupsTable({ initialPickups }) {
                   <td className="py-1 md:py-2 px-2 md:px-4 border-b">
                     {Array.isArray(order.cart_items)
                       ? order.cart_items
-                          .map((item) => item.item_name)
+                          .map((item) => `${item.item_name} (${item.quantity})`)
                           .join(", ")
                       : "N/A"}
                   </td>
@@ -101,7 +101,7 @@ export default function PickupsTable({ initialPickups }) {
                       onChange={(e) =>
                         handleStatusChange(order.id, e.target.value)
                       }
-                      className="p-1 border rounded text-sm md:text-base text-darkbg"
+                      className="p-1 border rounded bg-gray-700 text-sm md:text-base text-white"
                     >
                       <option value="pending">Pending</option>
                       <option value="completed">Completed</option>

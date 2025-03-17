@@ -7,10 +7,10 @@ export default async function EnquiriesPage({}) {
   const enquiries = await fetchEnquiries();
 
   return (
-    <div className="min-h-screen bg-lightbg text-white p-8">
-      \<h2 className="text-2xl font-bold mb-4 text-normalbg">Enquiries</h2>
-      <table className="min-w-full bg-darkbg">
-        <thead>
+    <div className="min-h-screen text-white p-8">
+      <h2 className="text-2xl font-bold mb-4 text-normalbg">Enquiries</h2>
+      <table className="min-w-full bg-gray-950">
+        <thead className="bg-gray-800">
           <tr>
             <th className="px-4 py-2 border-b">ID</th>
             <th className="px-4 py-2 border-b">Name</th>

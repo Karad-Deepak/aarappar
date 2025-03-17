@@ -88,7 +88,7 @@ Created At: ${new Date(created_at).toLocaleString()}`,
 
   try {
     const result = await transporter.sendMail(mailOptions);
-    console.log("Pickup order email sent:", result);
+
     return result;
   } catch (error) {
     console.error("Error sending pickup order email:", error);

@@ -1,7 +1,7 @@
 "use client";
 export default function AdminHomePage() {
   return (
-    <div className="p-8">
+    <div className="p-2">
       <h2 className="text-2xl lg:text-4xl font-bold mb-4">
         Welcome to the Admin Dashboard
       </h2>

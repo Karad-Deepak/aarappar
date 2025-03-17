@@ -24,7 +24,7 @@ export default function AdminLayout({ children }) {
     }`;
 
   return (
-    <div className="min-h-screen bg-black text-white ">
+    <div className="min-h-screen bg-darkbg text-white ">
       <header className="bg-black shadow-md">
         <div className="max-w-7xl  mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between h-16 ">
           {/* Logo / Branding */}
@@ -156,7 +156,7 @@ export default function AdminLayout({ children }) {
         )}
       </AnimatePresence>
 
-      <main className="max-w-7xl mx-auto py-10 px-6 sm:px-8 lg:px-12">
+      <main className="max-w-7xl mx-auto py-3 lg:py-5 px-4 sm:px-5 lg:px-8">
         {children}
       </main>
     </div>

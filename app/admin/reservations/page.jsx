@@ -8,7 +8,7 @@ export default async function ReservationsPage() {
   return (
     <div
       className="min-h-screen 
-     text-white p-4 md:p-8"
+     text-white px-2 py-1 md:px-4 md:py-1"
     >
       <Script id="auto-refresh">
         {`
@@ -17,7 +17,7 @@ export default async function ReservationsPage() {
           }, 600000);
         `}
       </Script>
-      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-normalbg">
+      <h2 className="text-xl md:text-3xl font-bold mb-1 lg:mb-2 text-normalbg">
         Reservations
       </h2>
       <ReservationsTable reservations={reservations} />
