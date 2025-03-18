@@ -24,9 +24,9 @@ const ConnectSection = () => {
             <FaRegClock className="inline mr-2" />
             Operational Hours
           </h3>
-          <p className="mt-3 text-sm lg:text-xl">Tue - Fri: 17.30 - 21.30</p>
+          <p className="mt-3 text-sm lg:text-xl">Tue - Fri: 18.00 - 22.00</p>
           <p className="text-sm lg:text-xl">
-            Sat - Sun: 12.00 - 14.30, 17.30 - 21.30
+            Sat - Sun: 12.00 - 14.30, 18.00 - 22.00
           </p>
         </div>
 
@@ -47,7 +47,9 @@ const ConnectSection = () => {
             <FiPhoneCall className="inline mr-2" />
             Contact
           </h3>
-          <p className="mt-3 text-sm lg:text-xl">Phone: +49 15219220483</p>
+
+          <p className=" mt-3 text-sm lg:text-xl">Primary : +49 69 21939837</p>
+          <p className=" text-sm lg:text-xl ">Secondary : +49 15219220483</p>
           <p className="text-sm lg:text-xl">
             Email: aarapparrodelheim@aarappar.de
           </p>

@@ -231,7 +231,7 @@ export default function PickupPage() {
             </motion.div>
             <p className="text-normalbg font-semibold text-lg p-3">
               NOTE: Currently we are accepting cash only and timing starts from
-              17.30 onwords only
+              18.00 onwords only
             </p>
 
             {/* Submit Order Button */}

@@ -44,13 +44,13 @@ function getSlotsForDay(date) {
   const day = getDay(date);
   if (day === 1) return []; // Monday => closed
   if (day >= 2 && day <= 5) {
-    return ["17:30 to 19:30", "19:30 to 21:30"];
+    return ["18:00 to 20:00", "20:00 to 22:00"];
   }
   return [
     "12:00 to 13:30",
     "13:30 to 14:30",
-    "17:30 to 19:30",
-    "19:30 to 21:30",
+    "18:00 to 20:00",
+    "20:00 to 22:00",
   ];
 }
 

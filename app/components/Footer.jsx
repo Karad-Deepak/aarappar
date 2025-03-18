@@ -60,7 +60,8 @@ const Footer = () => {
           <p className="">
             Trümpertstraße 18 60489, Frankfurt am Main - Rödelheim
           </p>
-          <p className=" ">+49 15219220483</p>
+          <p className=" ">Primary : +49 69 21939837</p>
+          <p className=" ">Secondary : +49 15219220483</p>
           <p className="">aarapparrodelheim@aarappar.de</p>
           {/* 
           <div className="flex space-x-4 mt-4 ">
