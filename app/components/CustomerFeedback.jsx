@@ -55,7 +55,7 @@ export default function CustomerFeedback() {
   }, [currentIndex, controls]);
 
   return (
-    <section className="relative px-4 py-10 lg:py-20 lg:px-6 bg-darkbg">
+    <section className="relative px-4 py-8 lg:py-16 lg:px-6 bg-lightbg">
       <div className="absolute inset-0 bg-opacity-60"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto text-center text-white">
@@ -64,11 +64,11 @@ export default function CustomerFeedback() {
         </h2>
 
         {/* Carousel Container */}
-        <div className="relative overflow-hidden w-full h-[400px] lg:h-[300px]">
+        <div className="relative overflow-hidden w-full h-[400px] lg:h-[300px] bg-darkbg rounded-3xl ">
           {reviews.map((review, index) => (
             <motion.div
               key={index}
-              className="absolute w-full h-full p-6 flex flex-col justify-center items-center bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl shadow-lg"
+              className="absolute w-full h-full p-6 flex flex-col justify-center items-center bg-opacity-10 backdrop-blur-lg rounded-2xl shadow-lg"
               initial={{ opacity: 0, x: index > currentIndex ? 100 : -100 }}
               animate={{
                 opacity: index === currentIndex ? 1 : 0,
@@ -105,7 +105,7 @@ export default function CustomerFeedback() {
           <button
             onClick={handlePrev}
             aria-label="Previous Slide"
-            className="p-2 rounded-full bg-normalbg bg-opacity-20 hover:bg-opacity-30 transition-all"
+            className="p-2 rounded-full bg-darkbg bg-opacity-80 hover:bg-opacity-30 transition-all"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ export default function CustomerFeedback() {
           <button
             onClick={handleNext}
             aria-label="Next Slide"
-            className="p-2 rounded-full bg-normalbg bg-opacity-20 hover:bg-opacity-30 transition-all"
+            className="p-2 rounded-full bg-darkbg bg-opacity-80 hover:bg-opacity-30 transition-all"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

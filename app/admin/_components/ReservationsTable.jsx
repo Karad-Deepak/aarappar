@@ -213,9 +213,9 @@ export default function ReservationsTable({
       )}
 
       {/* Reservations Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto ">
         <motion.table
-          className="min-w-full border-collapse bg-gray-950 shadow-lg"
+          className="min-w-full border-collapse bg-gray-950 shadow-lg rounded-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}

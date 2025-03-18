@@ -125,15 +125,15 @@ export default function MenuDisplay({ menudata }) {
           {filteredData.map((item) => (
             <motion.div
               key={item.id}
-              className="p-4 border rounded-lg shadow hover:scale-105 hover:shadow-2xl transition transform duration-300 flex flex-col justify-between"
+              className="p-4 border rounded-lg shadow hover:scale-105 hover:shadow-2xl transition transform duration-300 flex flex-col justify-between bg-white"
               variants={itemVariants}
             >
               <div>
-                <div className="flex justify-between items-center bg-black">
-                  <h4 className="text-sm lg:text-xl font-semibold text-gray-900">
+                <div className="flex justify-between items-center bg-gray-200">
+                  <h4 className="text-sm lg:text-xl font-semibold text-gray-900 p-1 lg:p-2">
                     {item.item_name}
                   </h4>
-                  <span className="text-s lg:text-lg font-bold text-indigo-600">
+                  <span className="text-s lg:text-lg font-bold text-indigo-600 p-1 lg:p-2">
                     €{parseFloat(item.price).toFixed(2)}
                   </span>
                 </div>
@@ -159,7 +159,7 @@ export default function MenuDisplay({ menudata }) {
               key={category}
               className="mb-6 lg:mb-9 border border-gray-300 rounded-lg overflow-hidden"
             >
-              <summary className="cursor-pointer px-4 py-2 lg:px-10 bg-gray-200 hover:bg-gray-300 transition-colors text-lg lg:text-xl font-semibold text-normalbg">
+              <summary className="cursor-pointer px-4 py-2 lg:px-10 bg-zinc-200 hover:bg-gray-300 transition-colors text-lg lg:text-xl font-semibold text-normalbg">
                 {category}
               </summary>
               <AnimatePresence>

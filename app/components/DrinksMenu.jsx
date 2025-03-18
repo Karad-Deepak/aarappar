@@ -186,7 +186,7 @@ export default function DrinksMenu() {
   const grouped = groupByCategory(drinksData);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-2 py-2 lg:px-4 lg:py-3">
       <h1 className="text-2xl lg:text-4xl font-bold text-center mb-8">
         Drinks Menu
       </h1>

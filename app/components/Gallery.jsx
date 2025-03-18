@@ -26,11 +26,11 @@ export default function RestaurantGallery() {
   return (
     <section
       aria-labelledby="gallery-heading"
-      className="relative py-8 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-darkbg"
+      className="relative py-6 lg:py-12 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-darkbg"
     >
       <h2
         id="gallery-title"
-        className="text-3xl lg:text-5xl font-extrabold text-normalbg mb-4"
+        className="text-2xl lg:text-4xl font-extrabold text-normalbg mb-4"
       >
         Restaurant Gallery
       </h2>
