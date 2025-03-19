@@ -9,20 +9,20 @@ import cchicken from "@/public/cchicken.webp";
 const dishes = [
   {
     id: 1,
-    name: "Crispy Masala Dosa",
-    price: "€8.99",
+    name: "Masala Dosa",
+    price: "€9.90",
     image: dosa,
   },
   {
     id: 2,
     name: "Chettinad Chicken Curry",
-    price: "€13.90",
+    price: "€14.90",
     image: cchicken,
   },
   {
     id: 3,
     name: "Chicken Biryani",
-    price: "€12",
+    price: "€13.90",
     image: biryani,
   },
 ];
