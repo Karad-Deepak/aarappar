@@ -35,8 +35,7 @@ export async function sendPickupOrderEmail(data) {
     created_at,
   } = data;
 
-  // Format cart items for the email.
-  // If cart_items is an array, format each item; otherwise, output directly.
+  // Format cart items for text version
   let formattedItems;
   if (Array.isArray(cart_items)) {
     formattedItems = cart_items
@@ -63,32 +62,60 @@ Total Bill: ${total_bill}
 Order Status: ${order_status}
 Order ID: ${id}
 Created At: ${new Date(created_at).toLocaleString()}`,
-    html: `<h2>New Pickup Order Received</h2>
-           <p><strong>Customer Name:</strong> ${customer_name}</p>
-           <p><strong>Customer Phone:</strong> ${customer_phone}</p>
-           <p><strong>Cart Items:</strong><br/>
-           ${
-             Array.isArray(cart_items)
-               ? cart_items
-                   .map((item, index) => {
-                     const itemName = item.item_name || `Item ${index + 1}`;
-                     return `<div>${itemName} (Quantity: ${item.quantity}, Price: ${item.price})</div>`;
-                   })
-                   .join("")
-               : cart_items
-           }
-           </p>
-           <p><strong>Total Bill:</strong> ${total_bill}</p>
-           <p><strong>Order Status:</strong> ${order_status}</p>
-           <p><strong>Order ID:</strong> ${id}</p>
-           <p><strong>Created At:</strong> ${new Date(
-             created_at
-           ).toLocaleString()}</p>`,
+    html: `
+      <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+        <h2 style="color: #2c3e50;">New Pickup Order Received</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Customer Name:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">${customer_name}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Customer Phone:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">${customer_phone}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Cart Items:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">
+              ${
+                Array.isArray(cart_items)
+                  ? `<ul style="padding-left: 20px; margin: 0;">` +
+                    cart_items
+                      .map((item, index) => {
+                        const itemName = item.item_name || `Item ${index + 1}`;
+                        return `<li>${itemName} (Quantity: ${item.quantity}, Price: ${item.price})</li>`;
+                      })
+                      .join("") +
+                    `</ul>`
+                  : cart_items
+              }
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Total Bill:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">${total_bill}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Order Status:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">${order_status}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Order ID:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">${id}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Created At:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">${new Date(
+              created_at
+            ).toLocaleString()}</td>
+          </tr>
+        </table>
+      </div>
+    `,
   };
 
   try {
     const result = await transporter.sendMail(mailOptions);
-
     return result;
   } catch (error) {
     console.error("Error sending pickup order email:", error);

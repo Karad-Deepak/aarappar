@@ -40,9 +40,10 @@ export async function sendReservationEmail(data) {
   const mailOptions = {
     from: process.env.SENDER_EMAIL,
     to: process.env.ADMIN_EMAIL,
+    replyTo: email, // Reply-to directs responses to the user's email
     subject: `New Reservation: ${first_name} ${last_name}`,
     text: `A new reservation has been made.
-    
+  
 Salutation: ${salutation}
 Name: ${first_name} ${last_name}
 Email: ${email}
@@ -53,19 +54,51 @@ Message: ${message}
 
 Reservation ID: ${id}
 Created At: ${new Date(created_at).toLocaleString()}`,
-    // You can also add an HTML version if desired:
-    html: `<h2>New Reservation Received</h2>
-           <p><strong>Salutation:</strong> ${salutation}</p>
-           <p><strong>Name:</strong> ${first_name} ${last_name}</p>
-           <p><strong>Email:</strong> ${email}</p>
-           <p><strong>Phone:</strong> ${phone}</p>
-           <p><strong>Time Slot:</strong> ${time_slot}</p>
-           <p><strong>Guests:</strong> ${guests}</p>
-           <p><strong>Message:</strong> ${message}</p>
-           <p><strong>Reservation ID:</strong> ${id}</p>
-           <p><strong>Created At:</strong> ${new Date(
-             created_at
-           ).toLocaleString()}</p>`,
+    html: `
+    <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; padding: 20px;">
+      <h2 style="color: #2c3e50;">New Reservation Received</h2>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Salutation:</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${salutation}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Name:</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${first_name} ${last_name}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Email:</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${email}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Phone:</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${phone}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Time Slot:</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${time_slot}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Guests:</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${guests}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Message:</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${message}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Reservation ID:</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${id}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Created At:</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${new Date(
+            created_at
+          ).toLocaleString()}</td>
+        </tr>
+      </table>
+    </div>
+  `,
   };
 
   try {
