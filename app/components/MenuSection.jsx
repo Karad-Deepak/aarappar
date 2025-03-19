@@ -78,10 +78,11 @@ export default function MenuSection() {
                 <p className="text-xs sm:text-md text-red-400 font-medium mt-1">
                   {dish.price}
                 </p>
-
-                <button className="mt-3 bg-normalbg text-white text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
-                  Order Now
-                </button>
+                <Link href="/menu">
+                  <button className="mt-3 bg-normalbg text-white text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+                    Order Now
+                  </button>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -112,10 +113,11 @@ export default function MenuSection() {
                 <p className="text-md text-red-400 font-medium mt-1">
                   {dish.price}
                 </p>
-
-                <button className="mt-3 bg-normalbg text-white px-5 py-2 rounded-xl hover:bg-rose-600 transition">
-                  Order Now
-                </button>
+                <Link href="/menu">
+                  <button className="mt-3 bg-normalbg text-white px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+                    Order Now
+                  </button>
+                </Link>
               </motion.div>
             ))}
           </div>

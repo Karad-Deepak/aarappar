@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { supabase } from "./supabase";
 import { sendReservationEmail } from "./sendReservationEmail";
 import { sendPickupOrderEmail } from "./sendPickupOrderEmail";
+
 export async function fetchMenu() {
   const { data, error } = await supabase.from("menu").select("*");
 
@@ -347,6 +348,7 @@ export async function updateReservationStatus({ id, status }) {
 export async function createPickupOrder(formData) {
   const customer_name = formData.get("customer_name");
   const customer_phone = formData.get("phone");
+  const customer_email = formData.get("email");
   const items = formData.get("items"); // JSON string from cart
 
   // Parse the cart items JSON string
@@ -371,6 +373,7 @@ export async function createPickupOrder(formData) {
         {
           customer_name,
           customer_phone,
+          customer_email, // include the email in the insert
           cart_items: parsedItems,
           total_bill,
           order_status: "pending",

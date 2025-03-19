@@ -13,6 +13,7 @@ export default function PickupPage() {
   const router = useRouter();
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -39,11 +40,7 @@ export default function PickupPage() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4 },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   };
 
   // Validate form inputs and return any errors
@@ -55,15 +52,17 @@ export default function PickupPage() {
     if (!customerPhone.trim()) {
       newErrors.customerPhone = "Phone number is required.";
     } else {
-      // Check if the phone number contains any alphabetic characters
       if (/[a-zA-Z]/.test(customerPhone)) {
         newErrors.customerPhone = "Phone number should contain only numbers.";
-      }
-      // Validate against a pattern: optional '+' and then 10 to 15 digits.
-      else if (!/^\+?[0-9]{10,15}$/.test(customerPhone)) {
+      } else if (!/^\+?[0-9]{10,15}$/.test(customerPhone)) {
         newErrors.customerPhone =
           "Please enter a valid phone number with 10 to 15 digits.";
       }
+    }
+    if (!customerEmail.trim()) {
+      newErrors.customerEmail = "Email is required.";
+    } else if (!/^\S+@\S+\.\S+$/.test(customerEmail)) {
+      newErrors.customerEmail = "Please enter a valid email address.";
     }
     return newErrors;
   };
@@ -84,6 +83,7 @@ export default function PickupPage() {
     const formData = new FormData();
     formData.append("customer_name", customerName);
     formData.append("phone", customerPhone);
+    formData.append("email", customerEmail); // new field added here
     formData.append("items", JSON.stringify(cart));
 
     try {
@@ -176,7 +176,6 @@ export default function PickupPage() {
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
                   placeholder="Enter your phone number"
-                  // Adding a pattern attribute for browser-side validation
                   pattern="^\+?[0-9]{10,15}$"
                   className="text-white w-full p-2 sm:p-3 md:p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-gray-800"
                   required
@@ -187,6 +186,30 @@ export default function PickupPage() {
                   </p>
                 )}
               </div>
+            </motion.div>
+
+            {/* Email Field */}
+            <motion.div variants={itemVariants}>
+              <label
+                htmlFor="customerEmail"
+                className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-1"
+              >
+                Your Email:
+              </label>
+              <input
+                type="email"
+                id="customerEmail"
+                value={customerEmail}
+                onChange={(e) => setCustomerEmail(e.target.value)}
+                placeholder="Enter your email address"
+                className="text-white bg-gray-800 w-full p-2 sm:p-3 md:p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                required
+              />
+              {errors.customerEmail && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.customerEmail}
+                </p>
+              )}
             </motion.div>
 
             {/* Cart Items */}

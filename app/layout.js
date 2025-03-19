@@ -11,7 +11,7 @@ const playfair = Playfair_Display({
 export const metadata = {
   title: "AARAPPAR INDISCHES RESTAURANT",
   description:
-    "Modern dining with Indian flavours, easy reservations and custom catering in a sleek, stylish setting.",
+    "Discover modern Indian dining in Frankfurt—where authentic Indian flavours meet contemporary style. Our restaurant offers easy reservations, custom catering, and a sleek setting, making it the top choice for those searching for the best Indian restaurant in Frankfurt. Enjoy a unique culinary experience that combines traditional tastes with modern presentation. Book your table today!",
 };
 
 export default function RootLayout({ children }) {
