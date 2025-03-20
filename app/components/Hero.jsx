@@ -62,7 +62,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Reserve a table at Aarappar Restaurant"
-              className="bg-green-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform"
+              className="bg-teal-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform"
             >
               Reserve Table
             </motion.button>
