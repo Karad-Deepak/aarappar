@@ -43,7 +43,7 @@ export default function MenuSection() {
         >
           A Taste of Tradition, A Feast of Flavors!
         </motion.h2>
-        <p className="text-[12px] lg:text-lg text-gray-900 max-w-2xl mx-auto pb-6 lg:pb-10">
+        <p className="text-[12px] lg:text-lg text-indigo-950 max-w-2xl mx-auto pb-6 lg:pb-10">
           Step into a world of rich aromas and authentic flavors with our
           specially curated South Indian menu. Every dish is a masterpiece,
           prepared with traditional recipes and the finest ingredients to bring
@@ -53,11 +53,11 @@ export default function MenuSection() {
         {/* SCROLLABLE ON SMALL SCREENS, GRID ON LARGE SCREENS */}
         <div className="relative">
           {/* Small Screens: Horizontal Scrollable Cards with No Scrollbar */}
-          <div className="flex gap-6 overflow-x-auto lg:hidden no-scrollbar px-1 py-4">
+          <div className="flex gap-6 overflow-x-auto lg:hidden no-scrollbar px-1 py-4 ">
             {dishes.map((dish) => (
               <motion.div
                 key={dish.id}
-                className="bg-darkbg rounded-2xl shadow-lg p-4 sm:p-6 text-center w-56 sm:w-64 flex-shrink-0 hover:scale-105 transition-transform"
+                className=" rounded-2xl shadow-lg p-4 sm:p-6 text-center w-56 sm:w-64 flex-shrink-0 hover:scale-105 transition-transform bg-indigo-950"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: dish.id * 0.2 }}
@@ -92,7 +92,7 @@ export default function MenuSection() {
             {dishes.map((dish) => (
               <motion.div
                 key={dish.id}
-                className="bg-darkbg rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition-transform"
+                className="bg-sky-950 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition-transform"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: dish.id * 0.2 }}
