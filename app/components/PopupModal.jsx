@@ -36,23 +36,48 @@ export default function PopupModal({ content }) {
           exit={{ opacity: 0, transition: { duration: 0.3 } }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm p-4"
         >
-          {/* Rainbow gradient border wrapper with blinking LED effect */}
-
+          {/* Enlarged Modal Container with added scale & rotation animations */}
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.8, opacity: 0, rotate: 2 }}
             animate={{
               scale: 1,
               opacity: 1,
-              transition: { duration: 0.5, ease: "easeOut" },
+              rotate: 0,
+              transition: { duration: 0.6, ease: "easeOut" },
             }}
             exit={{
-              scale: 0.9,
+              scale: 0.8,
               opacity: 0,
-              transition: { duration: 0.3, ease: "easeIn" },
+              rotate: 2,
+              transition: { duration: 0.4, ease: "easeIn" },
             }}
-            // Added overflow-y-auto to enable scrolling for high volume content
-            className="w-full max-w-lg md:max-w-5xl rounded-2xl max-h-[95vh] overflow-y-auto bg-[#232946] p-3 md:p-5 shadow-2xl mt-6 lg:mt-12"
+            className="w-full max-w-3xl md:max-w-6xl rounded-2xl max-h-[95vh] overflow-y-auto bg-[#232946] p-5 md:p-7 shadow-2xl mt-10 lg:mt-14 relative"
           >
+            {/* Close Icon in the top right corner */}
+            <div className="absolute top-3 right-3">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setIsOpen(false)}
+                className="cursor-pointer"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 lg:h-10 lg:w-10 text-normalbg hover:text-red-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </motion.div>
+            </div>
+
             {/* Header */}
             <div className="flex md:flex-row flex-col gap-3 md:gap-5 items-center justify-center mb-2 md:mb-3">
               <Image src={logo} alt="Logo" width={50} height={50} />
@@ -79,7 +104,7 @@ export default function PopupModal({ content }) {
             {/* Footer */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-7 border-gray-600">
               <Link href="/reservation">
-                <button className="text-base sm:text-lg font-bold text-normalbg  hover:underline">
+                <button className="text-base sm:text-lg font-bold text-normalbg hover:underline">
                   Reserve your table
                 </button>
               </Link>
@@ -87,7 +112,6 @@ export default function PopupModal({ content }) {
                 Call: +49 69 21939837
               </p>
             </div>
-
             {/* Close Button */}
             <div className="flex justify-center mt-6">
               <motion.button
