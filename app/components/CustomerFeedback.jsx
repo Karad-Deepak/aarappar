@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 
 const reviews = [
   {
+    name: "Virginia Toy",
+    review:
+      "This was my first test of the new 'local', and I can only say… it was exceptional. What a pleasure to find such a diverse and authentic South Indian menu. My meal was deliciously flavoured and nicely spicy, which is sooo hard to find in Germany, and also great value for money. I can't wait to return!",
+  },
+  {
     name: "Dominico D",
     review:
       "We (a couple with a small child) had dinner at Aarappar this evening. The opening offer was a buffet. We really liked it there. The restaurant is cozy, the food was delicious and the service was great. Everyone was very warm and understanding, especially towards our child. We felt comfortable and will definitely come back.",
