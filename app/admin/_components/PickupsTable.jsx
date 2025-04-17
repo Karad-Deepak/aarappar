@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { updatePickupStatus } from "@/app/_lib/actions";
-import { format } from "date-fns";
+import { format, isToday, parseISO } from "date-fns";
 
 export default function PickupsTable({ initialPickups }) {
   const [pickups, setPickups] = useState(initialPickups);
   const [statusFilter, setStatusFilter] = useState("pending");
+  const [filterClicked, setFilterClicked] = useState(false);
 
   const handleStatusChange = async (orderId, newStatus) => {
     try {
@@ -21,9 +22,25 @@ export default function PickupsTable({ initialPickups }) {
     }
   };
 
-  // Filter orders based on the current status filter.
+  const handleFilterSelect = (e) => {
+    setFilterClicked(true);
+    setStatusFilter(e.target.value);
+  };
+
+  // Filter orders based on the current status filter
   const filteredPickups = pickups.filter((order) => {
     if (statusFilter === "all") return true;
+
+    if (statusFilter === "pending") {
+      if (!filterClicked) {
+        // Default view: only today's pending orders
+        const orderDate = parseISO(order.created_at);
+        return order.order_status === "pending" && isToday(orderDate);
+      }
+      // After clicking "Pending": show all pending orders
+      return order.order_status === "pending";
+    }
+
     return order.order_status === statusFilter;
   });
 
@@ -41,7 +58,7 @@ export default function PickupsTable({ initialPickups }) {
         <select
           id="statusFilter"
           value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
+          onChange={handleFilterSelect}
           className="p-1 border rounded text-darkbg text-sm md:text-base"
         >
           <option value="pending">Pending</option>
@@ -110,7 +127,7 @@ export default function PickupsTable({ initialPickups }) {
                   </td>
                   <td className="py-1 md:py-2 px-2 md:px-4 border-b">
                     {order.created_at
-                      ? format(new Date(order.created_at), "dd/MM/yyyy HH:mm")
+                      ? format(parseISO(order.created_at), "dd/MM/yyyy HH:mm")
                       : ""}
                   </td>
                 </tr>
