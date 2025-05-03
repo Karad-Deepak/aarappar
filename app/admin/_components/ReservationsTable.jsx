@@ -311,6 +311,7 @@ export default function ReservationsTable({
                       <option value="booked">Booked</option>
                       <option value="seated">Seated</option>
                       <option value="completed">Completed</option>
+                      <option value="cancelled">Cancelled</option>
                     </select>
                   </td>
                   <td className="px-3 py-2 border-b text-xs">
