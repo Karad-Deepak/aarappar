@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { supabase } from "./supabase";
 import { sendReservationEmail } from "./sendReservationEmail";
 import { sendPickupOrderEmail } from "./sendPickupOrderEmail";
+import { sendEnquiryEmail } from "./sendEnquiryEmail";
 
 export async function fetchMenu() {
   const { data, error } = await supabase.from("menu").select("*");
@@ -110,10 +111,14 @@ export async function submitEnquiry(formData) {
   const phone = formData.get("phone");
   const message = formData.get("message");
 
-  // Insert data into the 'enquiries' table
+  // Insert and return the inserted row
   const { data, error } = await supabase
     .from("enquiries")
-    .insert([{ name, phone, message }]);
+    .insert([{ name, phone, message }], { returning: "representation" })
+    .select("*")
+    .maybeSingle();
+
+  console.log("Enquiry inserted:", data);
 
   if (error) {
     console.error("Error inserting enquiry:", error);
@@ -121,6 +126,18 @@ export async function submitEnquiry(formData) {
   }
 
   revalidatePath("/admin/catering");
+
+  if (!data) {
+    console.error("Enquiry data is null; email not sent.");
+    return data;
+  }
+
+  try {
+    await sendEnquiryEmail(data);
+  } catch (err) {
+    console.error("Error sending enquiry email:", err);
+  }
+
   return data;
 }
 

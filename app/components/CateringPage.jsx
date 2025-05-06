@@ -58,7 +58,7 @@ export default function CateringPage() {
         className="mt-12 max-w-lg mx-auto bg-darkbg p-6 rounded-2xl shadow-lg"
       >
         <h2 className="text-2xl font-semibold text-normalbg mb-4 text-center">
-          Enquiry Form
+          Catering Enquiry Form
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
