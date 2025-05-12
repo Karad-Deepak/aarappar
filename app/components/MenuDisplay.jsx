@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -7,12 +6,12 @@ import QuantityControl from "./QuantityControl";
 import chicken from "@/public/chicken.webp";
 import Biryani from "@/public/Biryani.webp";
 
-// Helper function to group items by a key
+// Helper: group items by key
 function groupBy(arr, key) {
   return arr.reduce((acc, item) => {
-    const groupKey = item[key] || "Others";
-    if (!acc[groupKey]) acc[groupKey] = [];
-    acc[groupKey].push(item);
+    const k = item[key] || "Others";
+    if (!acc[k]) acc[k] = [];
+    acc[k].push(item);
     return acc;
   }, {});
 }
@@ -20,197 +19,184 @@ function groupBy(arr, key) {
 export default function MenuDisplay({ menudata }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter out sold-out items from the entire dataset
-  const availableData = menudata.filter((item) => !item.soldout);
-
-  // Filter available menu items based on search term (case-insensitive)
-  const filteredData = availableData.filter((item) =>
-    (item.item_name || "").toLowerCase().includes(searchTerm.toLowerCase())
+  // only available
+  const available = menudata.filter((item) => !item.soldout);
+  const filtered = available.filter((item) =>
+    item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Group available items by category when no search term is provided
-  const groupedByCategory = groupBy(availableData, "category");
+  // group by category
+  const byCat = groupBy(available, "category");
 
-  // Framer Motion animation variants
-  const containerVariants = {
+  // refined user-friendly order
+  const categoryOrder = [
+    "SOUPS",
+    "APPETIZERS – VEGETARIAN",
+    "APPETIZERS – NON-VEGETARIAN",
+    "EGG APPETIZERS",
+    "VEGETARIAN & VEGAN CURRIES",
+    "NON-VEGETARIAN CURRIES",
+    "RICE & BIRYANI",
+    "DOSA SPECIALS",
+    "INDIAN BREADS",
+    "PAROTTA",
+    "KIDS MENU",
+    "DESSERTS",
+    "DRINKS",
+  ];
+
+  // only those present
+  const ordered = categoryOrder.filter((c) => byCat[c]);
+
+  // fallbacks for any extra categories
+  const rest = Object.keys(byCat).filter((c) => !categoryOrder.includes(c));
+  const finalCats = [...ordered, ...rest];
+
+  // animations
+  const container = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, when: "beforeChildren" },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
-
-  const itemVariants = {
+  const itemVar = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
-
-  const detailsVariants = {
+  const detailsVar = {
     collapsed: { opacity: 0, height: 0 },
-    open: {
-      opacity: 1,
-      height: "auto",
-      transition: { duration: 0.4 },
-    },
+    open: { opacity: 1, height: "auto", transition: { duration: 0.4 } },
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-8 lg:mt-12">
-      {/* Decorative Images and Title */}
-      <div className="flex justify-between items-center mb-8">
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex justify-between mb-8 items-center">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mx-auto md:mx-0"
+          transition={{ duration: 0.5 }}
         >
           <Image
             src={chicken}
-            alt="Decorative Left"
-            className="rounded-full object-cover w-12 h-12 md:w-40 md:h-40"
+            alt=""
+            className="w-16 h-16 md:w-32 md:h-32 rounded-full"
           />
         </motion.div>
-
-        <div className="text-center my-4 md:my-0">
-          <h1 className="text-4xl font-bold text-normalbg mb-3">Menu</h1>
-          <p className="hidden lg:block text-sm sm:text-lg text-darkbg">
-            Discover our delicious offerings carefully crafted to delight your
-            taste buds.
-          </p>
-          <p className="text-normalbg p-2 font-bold text-xs lg:text-lg">
-            100% Pure, Natural Taste – No Artificial Colors Added to our dishes!
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-red-500">Menu</h1>
+          <p className="text-gray-200 hidden lg:block">
+            Delicious South Indian flavors, pure & natural.
           </p>
         </div>
-
         <motion.div
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mx-auto md:mx-0"
+          transition={{ duration: 0.5 }}
         >
           <Image
             src={Biryani}
-            alt="Decorative Right"
-            className="rounded-full object-cover w-12 h-12 md:w-40 md:h-40"
+            alt=""
+            className="w-16 h-16 md:w-32 md:h-32 rounded-full"
           />
         </motion.div>
       </div>
 
-      {/* Search Bar */}
-      <div className="mb-8 flex justify-center">
+      {/* Search */}
+      <div className="flex justify-center mb-8">
         <input
           type="text"
+          className="w-full max-w-md p-2 rounded-full border focus:ring-2 focus:ring-red-500"
+          placeholder="Search for items..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search for items..."
-          className="w-full max-w-md p-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all"
         />
       </div>
-
-      {/* No results message for search */}
-      {searchTerm && filteredData.length === 0 && (
-        <p className="text-center text-gray-600 mb-4">
-          No menu items match your search.
-        </p>
+      {searchTerm && filtered.length === 0 && (
+        <p className="text-center text-gray-500">No items found.</p>
       )}
 
       {searchTerm ? (
-        // When a search term exists, display matching available items in a grid
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
           initial="hidden"
           animate="visible"
-          variants={containerVariants}
+          variants={container}
         >
-          {filteredData.map((item) => (
+          {filtered.map((item) => (
             <motion.div
               key={item.id}
-              className="p-4 border rounded-lg shadow hover:scale-105 hover:shadow-2xl transition transform duration-300 flex flex-col justify-between bg-white"
-              variants={itemVariants}
+              className="bg-black text-red-500 p-4 rounded shadow flex flex-col justify-between hover:scale-105 transition"
+              variants={itemVar}
             >
               <div>
-                <div className="flex justify-between items-center bg-gray-200">
-                  <h4 className="text-sm lg:text-xl font-semibold text-gray-900 p-1 lg:p-2">
+                <div className="flex justify-between">
+                  <span className="font-semibold text-lg">
                     {item.item_name}
-                  </h4>
-                  <span className="text-s lg:text-lg font-bold text-indigo-600 p-1 lg:p-2">
+                  </span>
+                  <span className="font-bold">
                     €{parseFloat(item.price).toFixed(2)}
                   </span>
                 </div>
                 {item.description && (
-                  <p className="mt-2 text-gray-600 text-xs lg:text-lg">
+                  <p className="text-gray-400 mt-1 text-sm">
                     {item.description}
                   </p>
                 )}
               </div>
-              <div className="mt-4">
-                <QuantityControl item={item} disabled={false} />
-              </div>
+              <QuantityControl item={item} disabled={false} />
             </motion.div>
           ))}
         </motion.div>
       ) : (
-        // When no search term exists, display available items grouped by category & subcategory
-        Object.entries(groupedByCategory).map(([category, items]) => {
-          // Further group items by subcategory
-          const groupedBySub = groupBy(items, "subcategory");
+        finalCats.map((category) => {
+          const items = byCat[category];
+          const bySub = groupBy(items, "subcategory");
           return (
-            <details
-              key={category}
-              className="mb-6 lg:mb-9 border border-gray-300 rounded-lg overflow-hidden"
-            >
-              <summary className="cursor-pointer px-4 py-2 lg:px-10 bg-zinc-200 hover:bg-gray-300 transition-colors text-lg lg:text-xl font-semibold text-normalbg">
+            <details key={category} className="mb-6">
+              <summary className="cursor-pointer bg-gray-200 px-4 py-2 font-semibold text-xl text-red-500 rounded">
                 {category}
               </summary>
               <AnimatePresence>
                 <motion.div
-                  className="px-4 py-4"
-                  variants={detailsVariants}
                   initial="collapsed"
                   animate="open"
                   exit="collapsed"
+                  variants={detailsVar}
+                  className="px-4 pt-4 bg-red-50"
                 >
-                  {Object.entries(groupedBySub).map(
-                    ([subcategory, subItems]) => (
-                      <div key={subcategory} className="mb-6">
-                        {subcategory &&
-                          subcategory.trim() !== "" &&
-                          subcategory.toLowerCase() !== "others" && (
-                            <h3 className="text-lg lg:text-2xl font-medium text-indigo-700 mb-4">
-                              {subcategory}
-                            </h3>
-                          )}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {subItems.map((item) => (
-                            <motion.div
-                              key={item.id}
-                              className="p-4 border rounded-lg shadow bg-white hover:scale-105 hover:shadow-2xl transition transform duration-300 flex flex-col justify-between"
-                              variants={itemVariants}
-                            >
-                              <div>
-                                <div className="flex justify-between items-center">
-                                  <h4 className="text-sm lg:text-xl font-semibold text-gray-950">
-                                    {item.item_name}
-                                  </h4>
-                                  <span className="text-s lg:text-lg font-bold text-indigo-600">
-                                    €{parseFloat(item.price).toFixed(2)}
-                                  </span>
-                                </div>
-                                {item.description && (
-                                  <p className="mt-2 text-gray-600 text-xs lg:text-lg">
-                                    {item.description}
-                                  </p>
-                                )}
+                  {Object.entries(bySub).map(([sub, arr]) => (
+                    <div key={sub} className="mb-4">
+                      {sub && sub !== "Others" && (
+                        <h3 className="text-2xl font-medium text-indigo-400 mb-2">
+                          {sub}
+                        </h3>
+                      )}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {arr.map((item) => (
+                          <motion.div
+                            key={item.id}
+                            className="bg-white text-red-500 p-4 rounded shadow flex flex-col justify-between hover:scale-105 transition"
+                            variants={itemVar}
+                          >
+                            <div>
+                              <div className="flex justify-between">
+                                <span className="font-semibold text-lg text-gray-900">
+                                  {item.item_name}
+                                </span>
+                                <span className="font-bold text-indigo-400">
+                                  €{parseFloat(item.price).toFixed(2)}
+                                </span>
                               </div>
-                              <div className="mt-4">
-                                <QuantityControl item={item} disabled={false} />
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
+                              {item.description && (
+                                <p className="text-gray-500 mt-1 text-sm">
+                                  {item.description}
+                                </p>
+                              )}
+                            </div>
+                            <QuantityControl item={item} disabled={false} />
+                          </motion.div>
+                        ))}
                       </div>
-                    )
-                  )}
+                    </div>
+                  ))}
                 </motion.div>
               </AnimatePresence>
             </details>
