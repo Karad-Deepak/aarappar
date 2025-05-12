@@ -67,7 +67,7 @@ export default function MenuDisplay({ menudata }) {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 pt-8 lg:pt-14 pb-8">
       <div className="flex justify-between mb-8 items-center">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
@@ -82,7 +82,7 @@ export default function MenuDisplay({ menudata }) {
         </motion.div>
         <div className="text-center">
           <h1 className="text-4xl font-bold text-red-500">Menu</h1>
-          <p className="text-gray-200 hidden lg:block">
+          <p className="text-gray-900 hidden lg:block">
             Delicious South Indian flavors, pure & natural.
           </p>
         </div>
@@ -123,15 +123,15 @@ export default function MenuDisplay({ menudata }) {
           {filtered.map((item) => (
             <motion.div
               key={item.id}
-              className="bg-black text-red-500 p-4 rounded shadow flex flex-col justify-between hover:scale-105 transition"
+              className="bg-white text-red-500 p-4 rounded shadow flex flex-col justify-between hover:scale-105 transition"
               variants={itemVar}
             >
               <div>
                 <div className="flex justify-between">
-                  <span className="font-semibold text-lg">
+                  <span className="font-semibold text-lg text-gray-950">
                     {item.item_name}
                   </span>
-                  <span className="font-bold">
+                  <span className="font-bold text-indigo-400">
                     €{parseFloat(item.price).toFixed(2)}
                   </span>
                 </div>
@@ -151,7 +151,7 @@ export default function MenuDisplay({ menudata }) {
           const bySub = groupBy(items, "subcategory");
           return (
             <details key={category} className="mb-6">
-              <summary className="cursor-pointer bg-gray-200 px-4 py-2 font-semibold text-xl text-red-500 rounded">
+              <summary className="cursor-pointer bg-gray-200 px-4 py-2 font-semibold text-sm lg:text-xl text-red-500 rounded">
                 {category}
               </summary>
               <AnimatePresence>
@@ -165,7 +165,7 @@ export default function MenuDisplay({ menudata }) {
                   {Object.entries(bySub).map(([sub, arr]) => (
                     <div key={sub} className="mb-4">
                       {sub && sub !== "Others" && (
-                        <h3 className="text-2xl font-medium text-indigo-400 mb-2">
+                        <h3 className="text-lg lg:text-2xl font-medium text-indigo-400 mb-2">
                           {sub}
                         </h3>
                       )}
@@ -178,7 +178,7 @@ export default function MenuDisplay({ menudata }) {
                           >
                             <div>
                               <div className="flex justify-between">
-                                <span className="font-semibold text-lg text-gray-900">
+                                <span className="font-semibold text-sm lg:text-lg text-gray-900">
                                   {item.item_name}
                                 </span>
                                 <span className="font-bold text-indigo-400">
@@ -186,7 +186,7 @@ export default function MenuDisplay({ menudata }) {
                                 </span>
                               </div>
                               {item.description && (
-                                <p className="text-gray-500 mt-1 text-sm">
+                                <p className="text-gray-500 mt-1 text-xs lg:text-sm">
                                   {item.description}
                                 </p>
                               )}
