@@ -133,13 +133,16 @@ export default function ReserveTable() {
     if (!date) return [];
     const day = date.getDay(); // 0: Sunday, 1: Monday, 2-5: Tue-Fri, 6: Saturday
     if (day === 1) return []; // Closed on Mondays
-    if (day >= 2 && day <= 5) return ["18:00 to 20:00", "20:00 to 22:00"];
+    if (day >= 2 && day <= 4) return ["18:00 to 20:00", "20:00 to 22:00"];
+    if (day === 5)
+      return ["17:30 to 19:00", "19:00 to 20:30", "20:30 to 22:00"];
     if (day === 0 || day === 6)
       return [
         "12:00 to 13:30",
         "13:30 to 14:30",
-        "18:00 to 20:00",
-        "20:00 to 22:00",
+        "17:30 to 19:00",
+        "19:00 to 20:30",
+        "20:30 to 22:00",
       ];
     return [];
   };

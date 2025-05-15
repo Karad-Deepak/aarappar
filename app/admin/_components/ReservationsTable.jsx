@@ -55,16 +55,18 @@ function parseReservationStartDateTime(time_slot) {
 function getSlotsForDay(date) {
   if (!date) return [];
   const day = getDay(date);
-  if (day === 1) return []; // Monday => closed
-  if (day >= 2 && day <= 5) {
-    return ["18:00 to 20:00", "20:00 to 22:00"];
-  }
-  return [
-    "12:00 to 13:30",
-    "13:30 to 14:30",
-    "18:00 to 20:00",
-    "20:00 to 22:00",
-  ];
+  if (day === 1) return []; // Closed on Mondays
+  if (day >= 2 && day <= 4) return ["18:00 to 20:00", "20:00 to 22:00"];
+  if (day === 5) return ["17:30 to 19:00", "19:00 to 20:30", "20:30 to 22:00"];
+  if (day === 0 || day === 6)
+    return [
+      "12:00 to 13:30",
+      "13:30 to 14:30",
+      "17:30 to 19:00",
+      "19:00 to 20:30",
+      "20:30 to 22:00",
+    ];
+  return [];
 }
 
 export default function ReservationsTable({
