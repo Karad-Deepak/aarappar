@@ -24,9 +24,10 @@ const ConnectSection = () => {
             <FaRegClock className="inline mr-2" />
             Operational Hours
           </h3>
-          <p className="mt-3 text-sm lg:text-xl">Tue - Fri: 18.00 - 22.00</p>
+          <p className="mt-3 text-sm lg:text-xl">Tue - Thus: 18.00 - 22.00</p>
+          <p className="mt-3 text-sm lg:text-xl">Fri: 17.30 - 22.00</p>
           <p className="text-sm lg:text-xl">
-            Sat - Sun: 12.00 - 14.30, 18.00 - 22.00
+            Sat - Sun: 12.00 - 14.30, 17.30 - 22.00
           </p>
         </div>
 

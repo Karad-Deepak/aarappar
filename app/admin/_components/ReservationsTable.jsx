@@ -66,7 +66,6 @@ function getSlotsForDay(date) {
       "19:00 to 20:30",
       "20:30 to 22:00",
     ];
-  return [];
 }
 
 export default function ReservationsTable({
