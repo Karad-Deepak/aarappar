@@ -208,7 +208,7 @@ export default function ReservationsTable({
             <div className="flex gap-4 flex-wrap justify-center">
               {daySlots.map((slot) => {
                 const bookedCount = getBookedCount(slot);
-                const maxCapacity = 45; // example capacity
+                const maxCapacity = 25; // example capacity
                 const isFull = bookedCount >= maxCapacity;
                 return (
                   <button

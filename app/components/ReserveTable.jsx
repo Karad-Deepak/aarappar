@@ -69,7 +69,10 @@ export default function ReserveTable() {
     }
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone Number is required.";
-    } else if (!/^\+?\d{7,15}$/.test(formData.phone.trim())) {
+    } else if (
+      !/^\+?[0-9 ]{7,20}$/.test(formData.phone.trim()) ||
+      formData.phone.replace(/[^0-9]/g, "").length < 7
+    ) {
       newErrors.phone = "Invalid phone number.";
     }
     if (!formData.time_slot) {
@@ -313,7 +316,7 @@ export default function ReserveTable() {
                       "en-GB"
                     )}: ${slot}`;
                     const booked = slotAvailability[value] || 0;
-                    const remaining = 45 - booked;
+                    const remaining = 25 - booked;
                     let displayRemaining = "";
                     if (remaining <= 0) {
                       displayRemaining = "Booking is Full";
