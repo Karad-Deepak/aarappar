@@ -12,60 +12,42 @@ import {
 } from "@/app/_lib/actions";
 import "react-datepicker/dist/react-datepicker.css";
 
-// Dynamically import react-datepicker to avoid SSR issues
 const DatePicker = dynamic(() => import("react-datepicker"), { ssr: false });
 
-/**
- * parseReservationDate:
- * Extract "DD/MM/YYYY" from time_slot e.g. "06/03/2025: 19:30 to 21:30"
- */
 function parseReservationDate(time_slot) {
   const match = time_slot.match(/^(\d{2}\/\d{2}\/\d{4})/);
-  if (!match) return null;
-  return parse(match[1], "dd/MM/yyyy", new Date());
+  return match ? parse(match[1], "dd/MM/yyyy", new Date()) : null;
 }
 
-/**
- * parseReservationSlot:
- * Extract "HH:MM to HH:MM" from time_slot e.g. "06/03/2025: 19:30 to 21:30"
- */
 function parseReservationSlot(time_slot) {
   const match = time_slot.match(/(\d{2}:\d{2}\s*to\s*\d{2}:\d{2})$/);
   return match ? match[1] : "";
 }
 
-/**
- * parseReservationStartDateTime:
- * Returns a Date object for the reservation's start datetime.
- * e.g. "06/03/2025: 19:30 to 21:30" => Date object for "06/03/2025 19:30"
- */
 function parseReservationStartDateTime(time_slot) {
   const dateMatch = time_slot.match(/^(\d{2}\/\d{2}\/\d{4})/);
-  if (!dateMatch) return null;
   const timeMatch = time_slot.match(/(\d{2}:\d{2})/);
-  if (!timeMatch) return null;
-  const dateTimeString = `${dateMatch[1]} ${timeMatch[1]}`;
-  return parse(dateTimeString, "dd/MM/yyyy HH:mm", new Date());
+  if (!dateMatch || !timeMatch) return null;
+  return parse(
+    `${dateMatch[1]} ${timeMatch[1]}`,
+    "dd/MM/yyyy HH:mm",
+    new Date()
+  );
 }
 
-/**
- * getSlotsForDay:
- * Returns available time slots for a given date.
- */
 function getSlotsForDay(date) {
   if (!date) return [];
   const day = getDay(date);
-  if (day === 1) return []; // Closed on Mondays
+  if (day === 1) return [];
   if (day >= 2 && day <= 4) return ["18:00 to 20:00", "20:00 to 22:00"];
   if (day === 5) return ["17:30 to 19:00", "19:00 to 20:30", "20:30 to 22:00"];
-  if (day === 0 || day === 6)
-    return [
-      "12:00 to 13:30",
-      "13:30 to 14:30",
-      "17:30 to 19:00",
-      "19:00 to 20:30",
-      "20:30 to 22:00",
-    ];
+  return [
+    "12:00 to 13:30",
+    "13:30 to 14:30",
+    "17:30 to 19:00",
+    "19:00 to 20:30",
+    "20:30 to 22:00",
+  ];
 }
 
 export default function ReservationsTable({
@@ -80,17 +62,9 @@ export default function ReservationsTable({
     initialAvailability || {}
   );
 
-  // For hydration safety
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
+  useEffect(() => setLocalReservations(reservations), [reservations]);
 
-  // Update local reservations if prop changes
-  useEffect(() => {
-    setLocalReservations(reservations);
-  }, [reservations]);
-
-  // Poll for slot availability
   useEffect(() => {
     async function getAvailability() {
       try {
@@ -101,66 +75,64 @@ export default function ReservationsTable({
       }
     }
     getAvailability();
-    const intervalId = setInterval(getAvailability, 60000);
-    return () => clearInterval(intervalId);
+    const id = setInterval(getAvailability, 60000);
+    return () => clearInterval(id);
   }, []);
 
-  // Filter reservations based solely on date:
-  // If no date is selected, show only reservations from today onward.
   const filteredReservations = useMemo(() => {
     const today = startOfDay(new Date());
     if (!selectedDate) {
       return localReservations.filter((res) => {
-        const dateObj = parseReservationDate(res.time_slot);
-        return dateObj && startOfDay(dateObj) >= today;
+        const d = parseReservationDate(res.time_slot);
+        return d && startOfDay(d) >= today;
       });
     }
-    const dayToMatch = startOfDay(selectedDate);
-    let filtered = localReservations.filter((res) => {
-      const dateObj = parseReservationDate(res.time_slot);
-      return dateObj && isSameDay(startOfDay(dateObj), dayToMatch);
-    });
-    if (selectedTimeSlot) {
-      filtered = filtered.filter(
-        (res) => parseReservationSlot(res.time_slot) === selectedTimeSlot
+    const target = startOfDay(selectedDate);
+    return localReservations.filter((res) => {
+      const d = parseReservationDate(res.time_slot);
+      return (
+        d &&
+        isSameDay(startOfDay(d), target) &&
+        (!selectedTimeSlot ||
+          parseReservationSlot(res.time_slot) === selectedTimeSlot)
       );
-    }
-    return filtered;
+    });
   }, [selectedDate, selectedTimeSlot, localReservations]);
 
-  // Sort the filtered reservations by start datetime (date and time)
-  const sortedReservations = useMemo(() => {
-    return filteredReservations.slice().sort((a, b) => {
-      const dateA = parseReservationStartDateTime(a.time_slot);
-      const dateB = parseReservationStartDateTime(b.time_slot);
-      return dateA - dateB;
-    });
-  }, [filteredReservations]);
+  const sortedReservations = useMemo(
+    () =>
+      filteredReservations.slice().sort((a, b) => {
+        const aDate = parseReservationStartDateTime(a.time_slot);
+        const bDate = parseReservationStartDateTime(b.time_slot);
+        return aDate - bDate;
+      }),
+    [filteredReservations]
+  );
 
-  const totalGuestsForDay = useMemo(() => {
-    return filteredReservations.reduce((acc, r) => acc + Number(r.guests), 0);
-  }, [filteredReservations]);
+  const totalGuestsForDay = useMemo(
+    () => filteredReservations.reduce((sum, r) => sum + Number(r.guests), 0),
+    [filteredReservations]
+  );
 
   const daySlots = useMemo(() => getSlotsForDay(selectedDate), [selectedDate]);
 
   function getBookedCount(slot) {
     if (!selectedDate) return 0;
-    const dayToMatch = startOfDay(selectedDate);
+    const target = startOfDay(selectedDate);
     return localReservations
       .filter((r) => {
         const d = parseReservationDate(r.time_slot);
         return (
           d &&
-          isSameDay(startOfDay(d), dayToMatch) &&
+          isSameDay(startOfDay(d), target) &&
           parseReservationSlot(r.time_slot) === slot
         );
       })
-      .reduce((acc, r) => acc + Number(r.guests), 0);
+      .reduce((sum, r) => sum + Number(r.guests), 0);
   }
 
   return (
     <div className="p-4 text-white min-h-screen">
-      {/* Filter by Date */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-red-500 mb-2">
           Filter by Date:
@@ -190,7 +162,6 @@ export default function ReservationsTable({
         )}
       </div>
 
-      {/* Summary Section */}
       {selectedDate && (
         <div className="mb-6 p-4 bg-gray-800 rounded-lg">
           <h3 className="text-lg font-bold text-red-500 mb-2">
@@ -208,23 +179,20 @@ export default function ReservationsTable({
             <div className="flex gap-4 flex-wrap justify-center">
               {daySlots.map((slot) => {
                 const bookedCount = getBookedCount(slot);
-                const maxCapacity = 25; // example capacity
-                const isFull = bookedCount >= maxCapacity;
                 return (
                   <button
                     key={slot}
                     onClick={() => setSelectedTimeSlot(slot)}
-                    disabled={isFull}
                     className={`p-2 rounded-lg border transition-colors ${
                       selectedTimeSlot === slot
                         ? "bg-red-600 text-white"
                         : "bg-gray-700 text-white"
-                    } ${isFull ? "opacity-50 cursor-not-allowed" : ""}`}
+                    }`}
                   >
                     <div className="flex flex-col items-center">
                       <span className="text-sm">{slot}</span>
                       <span className="text-xs font-semibold">
-                        {bookedCount} booked
+                        {bookedCount} reservations
                       </span>
                     </div>
                   </button>
@@ -235,7 +203,6 @@ export default function ReservationsTable({
         </div>
       )}
 
-      {/* Reservations Table */}
       <div className="overflow-x-auto">
         <motion.table
           className="min-w-full border-collapse bg-gray-950 shadow-lg rounded-sm"
@@ -275,7 +242,7 @@ export default function ReservationsTable({
                     {`${res.salutation} ${res.first_name} ${res.last_name}`}
                   </td>
                   <td className="px-3 py-2 border-b text-sm">{res.phone}</td>
-                  <td className="px-3 py-2 border-b text-sm font-bold text-indigo-500 ">
+                  <td className="px-3 py-2 border-b text-sm font-bold text-indigo-500">
                     {res.time_slot}
                   </td>
                   <td className="px-3 py-2 border-b text-sm">{res.guests}</td>
