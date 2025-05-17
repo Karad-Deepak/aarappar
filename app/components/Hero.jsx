@@ -67,7 +67,7 @@ export default function Hero() {
               Reserve Table
             </motion.button>
           </Link>
-
+          {/*
           <Link href="/menu">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -78,7 +78,7 @@ export default function Hero() {
               Order Now
             </motion.button>
           </Link>
-          <div className=""></div>
+           */}
         </div>
       </motion.div>
 
