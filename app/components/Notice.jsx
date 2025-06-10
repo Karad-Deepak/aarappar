@@ -3,7 +3,7 @@
 export default function Notice() {
   return (
     <div className="h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="relative max-w-md w-full bg-white p-8 rounded-2xl shadow-lg text-center overflow-hidden">
+      <div className="relative max-w-md w-full bg-white p-8 rounded-2xl shadow-lg text-left overflow-hidden">
         {/* Floating gears */}
         <div className="absolute inset-0 pointer-events-none">
           <span
@@ -22,7 +22,9 @@ export default function Notice() {
 
         {/* Bouncing wrench */}
         <div className="relative z-10 mb-6">
-          <span className="text-7xl inline-block animate-bounce">🔧</span>
+          <span className="text-7xl inline-block pl-10 lg:pl-20 animate-bounce">
+            🔧
+          </span>
         </div>
 
         {/* German version */}
