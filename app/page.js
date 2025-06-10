@@ -12,6 +12,7 @@ import RunnerBanner from "./components/RunnerBanner";
 
 import { fetchPopupSettings } from "@/app/_lib/actions"; // Adjust path as needed
 import GalleryCarousel from "./components/Gallery";
+import Notice from "./components/Notice";
 
 export default async function Page() {
   // Fetch popup settings on the server side
@@ -20,7 +21,7 @@ export default async function Page() {
   return (
     <>
       {/* Render the popup if it is active */}
-      {popup && popup.active && <PopupModal content={popup.content} />}
+      {/* {popup && popup.active && <PopupModal content={popup.content} />}
       <header className="w-full lg:h-[90vh]  px-2 py-1 md:px-16 md:py-5">
         <RunnerBanner />
         <Nav />
@@ -39,6 +40,8 @@ export default async function Page() {
       <footer>
         <Footer />
       </footer>
+ */}
+      <Notice />
     </>
   );
 }
