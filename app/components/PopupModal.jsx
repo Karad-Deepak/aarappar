@@ -103,14 +103,17 @@ export default function PopupModal({ content }) {
 
             {/* Footer */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-7 border-gray-600">
-              <Link href="/reservation">
+              {/* <Link href="/reservation">
                 <button className="text-base sm:text-lg font-bold text-normalbg hover:underline">
                   Reserve your table
                 </button>
+                
               </Link>
+              
               <p className="text-sm sm:text-base font-bold text-normalbg">
                 Call: +49 69 21939837
               </p>
+              */}
             </div>
             {/* Close Button */}
             <div className="flex justify-center mt-6">

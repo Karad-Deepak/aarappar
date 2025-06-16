@@ -15,7 +15,8 @@ const RunnerBanner = () => {
         }}
       >
         <span className="px-4  text-red-700 font-extrabold">
-          Sorry, Unfortunately, we can accept CASH only at the moment!
+          unser Restaurant bleibt aufgrund von Wartungsarbeiten vorübergehend
+          geschlossen.
         </span>
       </motion.div>
     </div>
