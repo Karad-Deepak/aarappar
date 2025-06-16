@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { updatePopupSettings } from "@/app/_lib/actions";
+import { updatePopupSettings } from "@/app/lib/actions";
 
 export default function PopupSettingsForm({ popup }) {
   const [message, setMessage] = useState("");

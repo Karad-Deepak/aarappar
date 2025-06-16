@@ -1,4 +1,4 @@
-import { fetchPickups } from "@/app/_lib/actions";
+import { fetchPickups } from "@/app/lib/actions";
 import PickupsTable from "@/app/admin/_components/PickupsTable";
 import Script from "next/script";
 

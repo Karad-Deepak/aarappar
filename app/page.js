@@ -10,7 +10,7 @@ import CustomerFeedback from "./components/CustomerFeedback";
 import PopupModal from "./components/PopupModal";
 import RunnerBanner from "./components/RunnerBanner";
 
-import { fetchPopupSettings } from "@/app/_lib/actions"; // Adjust path as needed
+import { fetchPopupSettings } from "@/app/lib/actions"; // Adjust path as needed
 import GalleryCarousel from "./components/Gallery";
 
 export default async function Page() {

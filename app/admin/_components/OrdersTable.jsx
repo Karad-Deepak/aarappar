@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { updateOrderStatus } from "@/app/_lib/actions";
+import { updateOrderStatus } from "@/app/lib/actions";
 import { format } from "date-fns";
 
 export default function OrdersTable({ initialOrders }) {

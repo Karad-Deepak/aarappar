@@ -5,7 +5,7 @@ import {
   updateMenuItem,
   updateSoldoutStatus,
   deleteMenuItem,
-} from "@/app/_lib/actions";
+} from "@/app/lib/actions";
 
 // A helper to reliably convert the soldout value to a boolean.
 const parseSoldout = (value) => {

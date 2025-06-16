@@ -4,7 +4,7 @@ import { useState, useTransition, useEffect } from "react";
 import { motion } from "framer-motion";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { submitReservation, fetchSlotAvailability } from "@/app/_lib/actions";
+import { submitReservation, fetchSlotAvailability } from "@/app/lib/actions";
 
 const salutations = ["Mr", "Ms", "Mrs"];
 
@@ -405,7 +405,7 @@ export default function ReserveTable() {
           <p className="text-normalbg font-semibold text-lg p-3">
             NOTE: Currently we are accepting cash only
           </p>
-
+          {/* 
           <button
             type="submit"
             disabled={isPending}
@@ -413,6 +413,7 @@ export default function ReserveTable() {
           >
             {isPending ? "Reserving..." : "Reserve Now"}
           </button>
+          */}
         </form>
         {feedback && (
           <div className="mt-4 text-center text-green-500 font-medium">

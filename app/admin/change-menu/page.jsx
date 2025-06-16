@@ -1,4 +1,4 @@
-import { fetchMenuItems } from "@/app/_lib/actions";
+import { fetchMenuItems } from "@/app/lib/actions";
 import EditableMenuItem from "@/app/components/EditableMenuItems";
 import AddMenuItemWrapper from "@/app/components/MenuWrapper";
 

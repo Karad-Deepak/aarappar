@@ -1,4 +1,4 @@
-import { fetchOrders } from "@/app/_lib/actions";
+import { fetchOrders } from "@/app/lib/actions";
 import OrdersTable from "@/app/admin/_components/OrdersTable";
 
 export default async function AdminOrdersPage() {

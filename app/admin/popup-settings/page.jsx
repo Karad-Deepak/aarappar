@@ -1,6 +1,6 @@
 // app/admin/popup-settings/page.jsx
 import Link from "next/link";
-import { fetchPopupSettings, updatePopupSettings } from "@/app/_lib/actions";
+import { fetchPopupSettings, updatePopupSettings } from "@/app/lib/actions";
 import PopupSettingsForm from "@/app/components/PopupSettingsForm";
 
 export const revalidate = 300;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { updatePickupStatus } from "@/app/_lib/actions";
+import { updatePickupStatus } from "@/app/lib/actions";
 import { format, isToday, parseISO } from "date-fns";
 
 export default function PickupsTable({ initialPickups }) {

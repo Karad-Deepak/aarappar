@@ -1,7 +1,7 @@
 import Nav from "@/app/components/Nav";
 
 import Footer from "../components/Footer";
-import { fetchMenu, fetchMenuItems } from "../_lib/actions";
+import { fetchMenu, fetchMenuItems } from "../lib/actions";
 import MenuDisplay from "../components/MenuDisplay";
 import CartBottomBar from "../components/CartBottomBar";
 

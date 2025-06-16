@@ -9,7 +9,7 @@ import {
   deleteReservationAction,
   fetchSlotAvailability,
   updateReservationStatus,
-} from "@/app/_lib/actions";
+} from "@/app/lib/actions";
 import "react-datepicker/dist/react-datepicker.css";
 
 const DatePicker = dynamic(() => import("react-datepicker"), { ssr: false });

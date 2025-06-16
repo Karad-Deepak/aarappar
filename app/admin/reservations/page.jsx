@@ -1,4 +1,4 @@
-import { fetchReservations } from "@/app/_lib/actions";
+import { fetchReservations } from "@/app/lib/actions";
 import ReservationsTable from "@/app/admin/_components/ReservationsTable";
 import Script from "next/script";
 

@@ -1,6 +1,6 @@
 // app/admin/request/enquiries/page.jsx
 import Link from "next/link";
-import { fetchEnquiries, deleteEnquiryAction } from "@/app/_lib/actions";
+import { fetchEnquiries, deleteEnquiryAction } from "@/app/lib/actions";
 import DeleteButton from "@/app//components/DeleteButton";
 
 export default async function EnquiriesPage({}) {

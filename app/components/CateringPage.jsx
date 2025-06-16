@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { submitEnquiry } from "@/app/_lib/actions"; // Adjust the path as needed
+import { submitEnquiry } from "@/app/lib/actions"; // Adjust the path as needed
 import { useState, useTransition } from "react";
 
 export default function CateringPage() {
