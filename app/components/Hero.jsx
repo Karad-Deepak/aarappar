@@ -4,6 +4,24 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import heroImg from "@/public/heroimg.webp";
 import heroMob from "@/public/heromob.webp";
+import halal from "@/public/halal.png";
+
+// Simple SVG Star component for rating
+const Star = ({ filled }) => (
+  <svg
+    className={`w-5 h-5 ${filled ? "text-red-600" : "text-gray-400"}`}
+    fill={filled ? "currentColor" : "none"}
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1}
+      d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+    />
+  </svg>
+);
 
 export default function Hero() {
   return (
@@ -39,9 +57,7 @@ export default function Hero() {
         >
           Flavours Straight from Home
         </motion.p>
-        <p className="font-bold text-sm lg:text-2xl drop-shadow-[0_1px_2px_#e00700]">
-          100% Pure, Natural Taste – No Artificial Colors Added to our dishes!
-        </p>
+
         <motion.p
           className="text-sm md:text-[16px] text-gray-300 leading-relaxed"
           initial={{ opacity: 0 }}
@@ -55,31 +71,38 @@ export default function Hero() {
           atmosphere and unforgettable food that brings the essence of South
           India to your table.
         </motion.p>
-        {/* 
-        <div className="flex gap-4 sm:flex-row">
-          <Link href="/reservation">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Reserve a table at Aarappar Restaurant"
-              className="bg-red-700 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-rose-600 transition-transform transform"
-            >
-              Reserve Table
-            </motion.button>
-          </Link>
 
-          <Link href="/menu">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="View the menu and order now from Aarappar Restaurant"
-              className="bg-gray-800 text-white text-sm md:text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-gray-700 transition-transform transform"
-            >
-              Order Now
-            </motion.button>
-          </Link>
-        </div>
-        */}
+        {/* Ratings Block */}
+        <motion.div
+          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 mt-2 sm:mt-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+        >
+          {/* Stars */}
+          <div className="flex items-center gap-1">
+            {Array.from({ length: 5 }).map((_, idx) => (
+              <Star filled={true} key={idx} />
+            ))}
+            <span className="ml-2 text-sm lg:text-lg  font-semibold text-red-500">
+              4.8
+              <span className="text-gray-400 ml-1  font-normal text-sm lg:text-lg">
+                (100+ reviews)
+              </span>
+            </span>
+          </div>
+          {/* Logo Placeholder */}
+          <div className="flex items-center gap-1">
+            <span className="  bg-gray-700 rounded-full flex items-center justify-center">
+              {/* Placeholder Logo: replace src below */}
+              <Image
+                src={halal}
+                alt="Logo halal"
+                className=" w-12 h-12 md:w-20 md:h-20  "
+              />
+            </span>
+          </div>
+        </motion.div>
       </motion.div>
 
       {/* Right Side - Hero Image */}
@@ -91,11 +114,8 @@ export default function Hero() {
         whileHover={{ scale: 1.05 }}
       >
         <picture>
-          {/* For medium and larger screens, use heroImg */}
           <source media="(min-width: 768px)" srcSet={heroImg.src} />
-          {/* For smaller screens, use heroMob */}
           <source media="(max-width: 767px)" srcSet={heroMob.src} />
-          {/* Fallback image */}
           <Image
             src={heroImg}
             alt="South Indian Cuisine"
