@@ -5,7 +5,7 @@ import { FiMapPin, FiPhoneCall } from "react-icons/fi";
 
 const ConnectSection = () => {
   return (
-    <section className="bg-lightbg text-white py-8 lg:py-16 px-6 md:px-12 lg:px-24">
+    <section className=" text-white py-8 lg:py-16 px-6 md:px-12 lg:px-24">
       <div className="text-center mb-10">
         <h2 className="text-xl lg:text-5xl font-bold text-normalbg">
           Connect with Us
@@ -19,7 +19,7 @@ const ConnectSection = () => {
         transition={{ duration: 0.8 }}
       >
         {/* Operational Hours */}
-        <div className="bg-zinc-900 p-6 rounded-2xl shadow-lg">
+        <div className="bg-slate-900 p-6 rounded-2xl shadow-lg">
           <h3 className="text-sm lg:text-xl font-semibold text-red-400">
             <FaRegClock className="inline mr-2" />
             Operational Hours
@@ -32,7 +32,7 @@ const ConnectSection = () => {
         </div>
 
         {/* Address */}
-        <div className="bg-zinc-900 p-6 rounded-2xl shadow-lg">
+        <div className="bg-slate-900 p-6 rounded-2xl shadow-lg">
           <h3 className="text-sm lg:text-xl font-semibold text-red-400">
             <FiMapPin className="inline mr-2" />
             Address
@@ -43,7 +43,7 @@ const ConnectSection = () => {
         </div>
 
         {/* Contact Number */}
-        <div className="bg-zinc-900 p-6 rounded-2xl shadow-lg">
+        <div className="bg-slate-900 p-6 rounded-2xl shadow-lg">
           <h3 className="text-sm lg:text-xl font-semibold text-red-400">
             <FiPhoneCall className="inline mr-2" />
             Contact

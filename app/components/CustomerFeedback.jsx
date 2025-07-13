@@ -69,7 +69,7 @@ export default function CustomerFeedback() {
         </h2>
 
         {/* Carousel Container */}
-        <div className="relative overflow-hidden w-full h-[400px] lg:h-[300px] bg-darkbg rounded-3xl ">
+        <div className="relative overflow-hidden w-full h-[400px] lg:h-[300px] bg-slate-950 rounded-3xl ">
           {reviews.map((review, index) => (
             <motion.div
               key={index}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import heroImg from "@/public/heroimg.webp";
 import heroMob from "@/public/heromob.webp";
 import halal from "@/public/halal.png";
+import SimpleCarousel from "./SimpleCarousel";
 
 // Simple SVG Star component for rating
 const Star = ({ filled }) => (
@@ -25,7 +26,7 @@ const Star = ({ filled }) => (
 
 export default function Hero() {
   return (
-    <section className="flex flex-col mt-8 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 bg-darkbg text-white">
+    <section className="w-full flex flex-col mt-8 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 bg-gradient-to-br from-slate-950 via-violet-950/50 to-zinc-950 text-white">
       {/* Left Side - Text */}
       <motion.div
         className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-4 lg:gap-6"
@@ -41,7 +42,7 @@ export default function Hero() {
         >
           AARAPPAR <br />
           <motion.span
-            className="text-xl md:text-3xl font-bold uppercase text-normalbg leading-tight"
+            className="text-xl md:text-3xl font-bold uppercase text-white leading-tight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -49,6 +50,7 @@ export default function Hero() {
             Indisches Restaurant
           </motion.span>
         </motion.h1>
+        {/* 
         <motion.p
           className="text-lg md:text-2xl lg:text-2xl font-bold text-lightbg leading-tight"
           initial={{ opacity: 0, x: -30 }}
@@ -57,7 +59,7 @@ export default function Hero() {
         >
           Flavours Straight from Home
         </motion.p>
-
+*/}
         <motion.p
           className="text-sm md:text-[16px] text-gray-300 leading-relaxed"
           initial={{ opacity: 0 }}
@@ -65,11 +67,7 @@ export default function Hero() {
           transition={{ delay: 0.8, duration: 0.6 }}
         >
           Authentic Indian Flavors in the Heart of Germany! 🍛✨ Experience the
-          rich flavors and traditions of South India at our restaurant, where
-          every dish is a celebration of culture and culinary excellence. From
-          aromatic spices to time-honored recipes, we offer a warm, welcoming
-          atmosphere and unforgettable food that brings the essence of South
-          India to your table.
+          rich flavors and traditions of South India at our restaurant.
         </motion.p>
 
         {/* Ratings Block */}
@@ -113,7 +111,7 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         whileHover={{ scale: 1.05 }}
       >
-        <picture>
+        {/*  <picture>
           <source media="(min-width: 768px)" srcSet={heroImg.src} />
           <source media="(max-width: 767px)" srcSet={heroMob.src} />
           <Image
@@ -126,6 +124,8 @@ export default function Hero() {
             className="rounded-2xl shadow-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl"
           />
         </picture>
+        */}
+        <SimpleCarousel />
       </motion.div>
     </section>
   );

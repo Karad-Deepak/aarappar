@@ -15,7 +15,7 @@ function Nav() {
 
   return (
     <>
-      <div className="z-20 text-slate-50 bg-darkbg w-full fixed left-0 top-3 flex flex-row justify-between items-center px-4 py-3 md:px-10 md:py-3">
+      <div className="z-20 text-slate-50 bg-slate-900 w-full fixed left-0 top-3 flex flex-row justify-between items-center px-4 py-3 md:px-10 md:py-3">
         {/* Logo & Title */}
         <div className="flex items-center gap-2 lg:pl-24">
           <Link href="/">

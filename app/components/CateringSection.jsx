@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function CateringSection() {
   return (
-    <section className="flex flex-col-reverse md:flex-row items-center justify-between bg-darkbg text-white py-6 md:py-16 px-7 md:px-20 gap-6 lg:gap-8 ">
+    <section className="flex flex-col-reverse md:flex-row items-center justify-between bg-purple-950/30 text-white py-6 md:py-16 px-7 md:px-20 gap-6 lg:gap-8 ">
       {/* Left - Image */}
       <motion.div
         className="md:w-1/2 w-full flex items-center justify-center"
