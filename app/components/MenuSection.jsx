@@ -31,7 +31,7 @@ export default function MenuSection() {
   return (
     <div className="relative text-white py-8 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-24 text-center bg-cover bg-center ">
       {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 bg-slate-950 "></div>
+      <div className="absolute inset-0 bg-slate-900 "></div>
 
       <div className="relative z-10">
         {/* Section Title */}
@@ -39,7 +39,7 @@ export default function MenuSection() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-xl lg:text-4xl font-bold text-normalbg mb-4"
+          className="text-xl lg:text-4xl font-bold text-amber-400 mb-4"
         >
           A Taste of Tradition, A Feast of Flavors!
         </motion.h2>
@@ -57,7 +57,7 @@ export default function MenuSection() {
             {dishes.map((dish) => (
               <motion.div
                 key={dish.id}
-                className="bg-slate-900 rounded-2xl shadow-lg p-4 sm:p-6 text-center w-56 sm:w-64 flex-shrink-0 hover:scale-105 transition-transform"
+                className="bg-slate-950 rounded-2xl shadow-lg p-4 sm:p-6 text-center w-56 sm:w-64 flex-shrink-0 hover:scale-105 transition-transform"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: dish.id * 0.2 }}
@@ -79,7 +79,7 @@ export default function MenuSection() {
                   {dish.price}
                 </p>
                 <Link href="/menu">
-                  <button className="mt-3 bg-normalbg text-white text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+                  <button className="mt-3 bg-amber-400 text-indigo-950 fomt-bold text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
                     Order Now
                   </button>
                 </Link>
@@ -92,7 +92,7 @@ export default function MenuSection() {
             {dishes.map((dish) => (
               <motion.div
                 key={dish.id}
-                className="bg-slate-900 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition-transform"
+                className="bg-slate-950 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition-transform"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: dish.id * 0.2 }}
@@ -114,7 +114,7 @@ export default function MenuSection() {
                   {dish.price}
                 </p>
                 <Link href="/menu">
-                  <button className="mt-3 bg-normalbg text-white px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+                  <button className="mt-3 bg-amber-400 font-bold text-black px-5 py-2 rounded-xl hover:bg-rose-600 transition">
                     Order Now
                   </button>
                 </Link>

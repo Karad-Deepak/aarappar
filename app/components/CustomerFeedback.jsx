@@ -60,11 +60,11 @@ export default function CustomerFeedback() {
   }, [currentIndex, controls]);
 
   return (
-    <section className="relative px-4 py-8 lg:py-16 lg:px-6 bg-lightbg">
+    <section className="relative px-4 py-8 lg:py-16 lg:px-6 bg-slate-900">
       <div className="absolute inset-0 bg-opacity-60"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto text-center text-white">
-        <h2 className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-8 text-normalbg">
+        <h2 className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-8 text-amber-500">
           What Our Customers Say
         </h2>
 

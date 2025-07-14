@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function CateringSection() {
   return (
-    <section className="flex flex-col-reverse md:flex-row items-center justify-between bg-purple-950/20 text-white py-6 md:py-16 px-7 md:px-20 gap-6 lg:gap-8 ">
+    <section className="flex flex-col-reverse md:flex-row items-center justify-between bg-slate-950 text-white py-6 md:py-16 px-7 md:px-20 gap-6 lg:gap-8 ">
       {/* Left - Image */}
       <motion.div
         className="md:w-1/2 w-full flex items-center justify-center"
@@ -29,7 +29,7 @@ export default function CateringSection() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-xl lg:text-5xl font-bold text-normalbg mb-4">
+        <h2 className="text-xl lg:text-5xl font-bold text-amber-500 mb-4">
           Elevate Your Events with Exquisite Catering
         </h2>
         <p className="text-sm lg:text-white mb-6">

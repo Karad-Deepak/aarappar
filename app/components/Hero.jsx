@@ -26,7 +26,7 @@ const Star = ({ filled }) => (
 
 export default function Hero() {
   return (
-    <section className="w-full flex flex-col mt-8 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 bg-gradient-to-br from-slate-950 via-violet-950/50 to-zinc-950 text-white">
+    <section className="w-full flex flex-col mt-8 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12  text-white">
       {/* Left Side - Text */}
       <motion.div
         className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-4 lg:gap-6"
@@ -35,7 +35,7 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
       >
         <motion.h1
-          className="text-2xl md:text-5xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight"
+          className="text-2xl md:text-6xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
