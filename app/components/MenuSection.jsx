@@ -79,7 +79,7 @@ export default function MenuSection() {
                   {dish.price}
                 </p>
                 <Link href="/menu">
-                  <button className="mt-3 bg-amber-400 text-indigo-950 fomt-bold text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+                  <button className="mt-3 bg-orange-700 text-indigo-950 fomt-bold text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-xl hover:bg-rose-600 transition">
                     Order Now
                   </button>
                 </Link>
@@ -114,7 +114,7 @@ export default function MenuSection() {
                   {dish.price}
                 </p>
                 <Link href="/menu">
-                  <button className="mt-3 bg-amber-400 font-bold text-black px-5 py-2 rounded-xl hover:bg-rose-600 transition">
+                  <button className="mt-3  bg-orange-700 font-bold text-white px-5 py-2 rounded-xl hover:bg-rose-600 transition">
                     Order Now
                   </button>
                 </Link>
@@ -126,7 +126,7 @@ export default function MenuSection() {
         <Link href="/menu">
           <motion.button
             aria-label="Explore the full Aarappar restaurant menu"
-            className="py-3 px-6 rounded-2xl mt-10 text-lg text-white bg-normalbg hover:bg-rose-600 transition"
+            className="py-3 px-6 rounded-2xl mt-10 text-lg text-white bg-orange-700 hover:bg-rose-600 transition"
             whileHover={{ scale: 1.1 }}
           >
             Explore Full Menu →

@@ -45,7 +45,7 @@ export default function SimpleCarousel({ interval = 6000 }) {
           className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-red-600 transition z-10"
           aria-label="Previous"
         >
-          <ChevronLeft className="text-red-500 w-6 h-6" />
+          <ChevronLeft className="text-orange-500 w-6 h-6" />
         </button>
         {/* Right Arrow */}
         <button
@@ -53,7 +53,7 @@ export default function SimpleCarousel({ interval = 6000 }) {
           className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-red-600 transition z-10"
           aria-label="Next"
         >
-          <ChevronRight className="text-red-500 w-6 h-6" />
+          <ChevronRight className="text-orange-500 w-6 h-6" />
         </button>
       </div>
 
@@ -65,8 +65,8 @@ export default function SimpleCarousel({ interval = 6000 }) {
             onClick={() => goTo(i)}
             className={`w-3 h-3 rounded-full border-2 ${
               i === index
-                ? "bg-red-600 border-red-600"
-                : "bg-black border-red-600"
+                ? "bg-orange-600 border-orange-600"
+                : "bg-black border-orange-600"
             } transition`}
             aria-label={`Go to slide ${i + 1}`}
           />

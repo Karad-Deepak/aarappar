@@ -30,7 +30,7 @@ export default function RestaurantGallery() {
     >
       <h2
         id="gallery-title"
-        className="text-2xl lg:text-4xl font-extrabold text-normalbg mb-4"
+        className="text-2xl lg:text-4xl font-extrabold text-amber-400 mb-4"
       >
         Restaurant Gallery
       </h2>

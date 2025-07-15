@@ -29,7 +29,7 @@ export default function CateringSection() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-xl lg:text-5xl font-bold text-amber-500 mb-4">
+        <h2 className="text-xl lg:text-5xl font-bold text-amber-400 mb-4">
           Elevate Your Events with Exquisite Catering
         </h2>
         <p className="text-sm lg:text-white mb-6">
@@ -38,7 +38,7 @@ export default function CateringSection() {
           perfection, making your event truly unforgettable.
         </p>
 
-        <button className="bg-normalbg text-white text-lg px-6 py-3 rounded-xl hover:bg-rose-600 transition-all duration-300">
+        <button className="bg-orange-700 text-white text-lg px-6 py-3 rounded-xl hover:bg-rose-600 transition-all duration-300">
           Enquire Now
         </button>
       </motion.div>

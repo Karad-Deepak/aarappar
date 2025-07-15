@@ -10,7 +10,7 @@ import SimpleCarousel from "./SimpleCarousel";
 // Simple SVG Star component for rating
 const Star = ({ filled }) => (
   <svg
-    className={`w-5 h-5 ${filled ? "text-red-600" : "text-gray-400"}`}
+    className={`w-5 h-5 ${filled ? "text-amber-500" : "text-gray-400"}`}
     fill={filled ? "currentColor" : "none"}
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -42,7 +42,7 @@ export default function Hero() {
         >
           AARAPPAR <br />
           <motion.span
-            className="text-xl md:text-3xl font-bold uppercase text-white leading-tight"
+            className="text-xl md:text-3xl font-bold uppercase text-normalbg leading-tight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -82,7 +82,7 @@ export default function Hero() {
             {Array.from({ length: 5 }).map((_, idx) => (
               <Star filled={true} key={idx} />
             ))}
-            <span className="ml-2 text-sm lg:text-lg  font-semibold text-red-500">
+            <span className="ml-2 text-sm lg:text-lg  font-semibold text-amber-400">
               4.8
               <span className="text-gray-400 ml-1  font-normal text-sm lg:text-lg">
                 (100+ reviews)
