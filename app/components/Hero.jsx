@@ -10,7 +10,9 @@ import SimpleCarousel from "./SimpleCarousel";
 // Simple SVG Star component for rating
 const Star = ({ filled }) => (
   <svg
-    className={`w-5 h-5 ${filled ? "text-amber-500" : "text-gray-400"}`}
+    className={`w-4 h-4 sm:w-5 sm:h-5 ${
+      filled ? "text-amber-400" : "text-gray-500"
+    }`}
     fill={filled ? "currentColor" : "none"}
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -23,7 +25,6 @@ const Star = ({ filled }) => (
     />
   </svg>
 );
-
 export default function Hero() {
   return (
     <section className="w-full flex flex-col mt-8 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12  text-white">
@@ -77,17 +78,23 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.6 }}
         >
-          {/* Stars */}
-          <div className="flex items-center gap-1">
-            {Array.from({ length: 5 }).map((_, idx) => (
-              <Star filled={true} key={idx} />
-            ))}
-            <span className="ml-2 text-sm lg:text-lg  font-semibold text-amber-400">
-              4.8
-              <span className="text-gray-400 ml-1  font-normal text-sm lg:text-lg">
-                (100+ reviews)
-              </span>
-            </span>
+          {/* Stars Card */}
+          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl px-4 py-3 sm:px-5 sm:py-4 shadow-lg">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                {Array.from({ length: 5 }).map((_, idx) => (
+                  <Star filled={true} key={idx} />
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-amber-400">
+                  4.8
+                </span>
+                <span className="text-gray-400 text-xs sm:text-sm lg:text-base font-medium">
+                  (100+ reviews)
+                </span>
+              </div>
+            </div>
           </div>
           {/* Logo Placeholder */}
           <div className="flex items-center gap-1">
@@ -101,14 +108,28 @@ export default function Hero() {
             </span>
           </div>
         </motion.div>
-        <div className="flex flex-col md:flex-row gap-4 lg:gap-6 items-center text-white font-bold">
-          <button className="px-5 py-1 md:py-3 bg-teal-600 rounded-3xl">
+
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 lg:gap-6 items-center w-full sm:w-auto mt-6 sm:mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.4, duration: 0.6 }}
+        >
+          <motion.button
+            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-500 hover:to-teal-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-teal-500/30"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             Order Now
-          </button>
-          <button className="px-5 py-1 md:py-3 bg-orange-600 rounded-3xl">
+          </motion.button>
+          <motion.button
+            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-500 hover:to-orange-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-orange-500/30"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             Make Reservation
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </motion.div>
 
       {/* Right Side - Hero Image */}

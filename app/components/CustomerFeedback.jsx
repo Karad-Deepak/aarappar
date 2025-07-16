@@ -1,30 +1,37 @@
 "use client";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
+import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const reviews = [
   {
     name: "Virginia Toy",
+    rating: 5,
     review:
       "This was my first test of the new 'local', and I can only say… it was exceptional. What a pleasure to find such a diverse and authentic South Indian menu. My meal was deliciously flavoured and nicely spicy, which is sooo hard to find in Germany, and also great value for money. I can't wait to return!",
   },
   {
     name: "Dominico D",
+    rating: 5,
     review:
       "We (a couple with a small child) had dinner at Aarappar this evening. The opening offer was a buffet. We really liked it there. The restaurant is cozy, the food was delicious and the service was great. Everyone was very warm and understanding, especially towards our child. We felt comfortable and will definitely come back.",
   },
   {
     name: "Praveen Kumar",
+    rating: 5,
     review:
-      "Recently visited the newest Indian restaurant in town with authentic Indian cuisine. The price was reasonable, especially considering the variety and quality of the food. It’s a great option for trying a little bit of everything Indian cuisine has to offer both veg & non-veg. Overall, this restaurant is perfect for those looking to explore a range of Indian flavors in one visit. Definitely recommended",
+      "Recently visited the newest Indian restaurant in town with authentic Indian cuisine. The price was reasonable, especially considering the variety and quality of the food. It's a great option for trying a little bit of everything Indian cuisine has to offer both veg & non-veg. Overall, this restaurant is perfect for those looking to explore a range of Indian flavors in one visit. Definitely recommended",
   },
   {
     name: "sher singh",
+    rating: 5,
     review:
       "Visited Aarappar Restaurant today with family. very warm and welcoming, especially they took care of my 2 year kid so well. I tasted the authentic south indian food after long time and it was delicious. i would recommend this restaurant for people who want to try South indian food!",
   },
   {
     name: "vkr S",
+    rating: 5,
     review:
       "One of the authentic Indian restaurants that balances the taste of Indian flavors (South and North) and appeals to both Indian and German customers.",
   },
@@ -37,7 +44,7 @@ export default function CustomerFeedback() {
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 5000); // Auto-rotate every 5 seconds
+    }, 6000); // Auto-rotate every 6 seconds
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -55,99 +62,174 @@ export default function CustomerFeedback() {
     controls.start({
       opacity: 1,
       x: 0,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.6 },
     });
   }, [currentIndex, controls]);
 
   return (
-    <section className="relative px-4 py-8 lg:py-16 lg:px-6 bg-slate-900">
-      <div className="absolute inset-0 bg-opacity-60"></div>
+    <section className="relative px-3 sm:px-4 md:px-8 lg:px-12 xl:px-24 py-6 sm:py-8 lg:py-10 xl:py-12 bg-slate-900">
+      {/* Gradient overlay for visual depth */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
 
-      <div className="relative z-10 max-w-6xl mx-auto text-center text-white">
-        <h2 className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-8 text-amber-500">
-          What Our Customers Say
-        </h2>
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-orange-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-amber-400 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-teal-600 rounded-full blur-3xl opacity-20"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto text-center text-white">
+        {/* Section Title */}
+        <motion.div
+          className="mb-12 sm:mb-16 lg:mb-20"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h2
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-amber-400 mb-4 sm:mb-6 leading-tight"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            What Our <span className="text-amber-300">Customers Say</span>
+          </motion.h2>
+
+          <motion.p
+            className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            Discover why our guests keep coming back for authentic South Indian
+            flavors and exceptional service.
+          </motion.p>
+        </motion.div>
 
         {/* Carousel Container */}
-        <div className="relative overflow-hidden w-full h-[400px] lg:h-[300px] bg-slate-950 rounded-3xl ">
-          {reviews.map((review, index) => (
-            <motion.div
-              key={index}
-              className="absolute w-full h-full p-6 flex flex-col justify-center items-center bg-opacity-10 backdrop-blur-lg rounded-2xl shadow-lg"
-              initial={{ opacity: 0, x: index > currentIndex ? 100 : -100 }}
-              animate={{
-                opacity: index === currentIndex ? 1 : 0,
-                x:
-                  index === currentIndex
-                    ? 0
-                    : index > currentIndex
-                    ? 100
-                    : -100,
-              }}
-              transition={{ duration: 0.5 }}
+        <div className="relative">
+          <div className="relative overflow-hidden w-full min-h-[500px] sm:min-h-[450px] lg:min-h-[400px] bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-3xl shadow-2xl">
+            {reviews.map((review, index) => (
+              <motion.div
+                key={index}
+                className="absolute w-full h-full p-6 sm:p-8 lg:p-12 flex flex-col justify-center items-center"
+                initial={{ opacity: 0, x: index > currentIndex ? 100 : -100 }}
+                animate={{
+                  opacity: index === currentIndex ? 1 : 0,
+                  x:
+                    index === currentIndex
+                      ? 0
+                      : index > currentIndex
+                      ? 100
+                      : -100,
+                }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+                {/* Quote Icon */}
+                <motion.div
+                  className="mb-6 sm:mb-8"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: index === currentIndex ? 1 : 0 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                >
+                  <div className="bg-orange-500/20 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center">
+                    <FaQuoteLeft className="text-2xl sm:text-3xl text-orange-400" />
+                  </div>
+                </motion.div>
+
+                {/* Review Text */}
+                <motion.div
+                  className="max-w-4xl mx-auto mb-6 sm:mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{
+                    opacity: index === currentIndex ? 1 : 0,
+                    y: index === currentIndex ? 0 : 20,
+                  }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                >
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed italic font-medium px-4">
+                    "{review.review}"
+                  </p>
+                </motion.div>
+
+                {/* Customer Info */}
+                <motion.div
+                  className="flex flex-col items-center space-y-3 sm:space-y-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{
+                    opacity: index === currentIndex ? 1 : 0,
+                    y: index === currentIndex ? 0 : 20,
+                  }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                >
+                  {/* Stars Rating */}
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: review.rating }).map(
+                      (_, starIndex) => (
+                        <FaStar
+                          key={starIndex}
+                          className="text-amber-400 text-lg sm:text-xl"
+                        />
+                      )
+                    )}
+                  </div>
+
+                  {/* Customer Name */}
+                  <div className="bg-slate-700/50 backdrop-blur-sm rounded-2xl px-6 py-3 border border-slate-600/30">
+                    <p className="font-bold text-lg sm:text-xl lg:text-2xl text-white">
+                      {review.name}
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="absolute top-1/2 transform -translate-y-1/2 left-4 sm:left-6 lg:left-8">
+            <motion.button
+              onClick={handlePrev}
+              aria-label="Previous Review"
+              className="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/80 p-3 sm:p-4 rounded-2xl shadow-lg transition-all duration-300 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {/* Opening Quote */}
-              <div className="mb-3">
-                <span className="text-5xl text-red-700">❝</span>
-              </div>
-              {/* Review Text */}
-              <p className="text-sm lg:text-lg text-white tracking-wide px-4">
-                {review.review}
-              </p>
-              {/* Closing Quote */}
-              <div className="mt-3">
-                <span className="text-5xl text-red-700">❞</span>
-              </div>
-              <p className="font-semibold mt-2 lg:mt-5 text-xl">
-                {review.name}
-              </p>
-            </motion.div>
+              <FiChevronLeft className="text-xl sm:text-2xl text-white group-hover:text-amber-400 transition-colors duration-300" />
+            </motion.button>
+          </div>
+
+          <div className="absolute top-1/2 transform -translate-y-1/2 right-4 sm:right-6 lg:right-8">
+            <motion.button
+              onClick={handleNext}
+              aria-label="Next Review"
+              className="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/80 p-3 sm:p-4 rounded-2xl shadow-lg transition-all duration-300 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FiChevronRight className="text-xl sm:text-2xl text-white group-hover:text-amber-400 transition-colors duration-300" />
+            </motion.button>
+          </div>
+        </div>
+
+        {/* Dots Indicator */}
+        <div className="flex justify-center space-x-2 sm:space-x-3 mt-8 sm:mt-12">
+          {reviews.map((_, index) => (
+            <motion.button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? "bg-amber-400 shadow-lg shadow-amber-400/50"
+                  : "bg-slate-600 hover:bg-slate-500"
+              }`}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label={`Go to review ${index + 1}`}
+            />
           ))}
         </div>
 
-        {/* Navigation Buttons */}
-        <div className="mt-6 flex justify-center space-x-4">
-          <button
-            onClick={handlePrev}
-            aria-label="Previous Slide"
-            className="p-2 rounded-full bg-darkbg bg-opacity-80 hover:bg-opacity-30 transition-all"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={handleNext}
-            aria-label="Next Slide"
-            className="p-2 rounded-full bg-darkbg bg-opacity-80 hover:bg-opacity-30 transition-all"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
+        {/* Call to Action */}
       </div>
     </section>
   );
