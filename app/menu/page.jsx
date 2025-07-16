@@ -16,7 +16,7 @@ async function page() {
         <RunnerBanner />
         <Nav />
       </header>
-      <main className="bg-lightbg">
+      <main className="bg-slate-950">
         <MenuDisplay menudata={menudata} />
         <DrinksMenu />
         <CartBottomBar />\

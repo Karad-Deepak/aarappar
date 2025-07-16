@@ -82,7 +82,7 @@ export default function MenuDisplay({ menudata }) {
         </motion.div>
         <div className="text-center">
           <h1 className="text-4xl font-bold text-red-500">Menu</h1>
-          <p className="text-gray-900 hidden lg:block">
+          <p className="text-gray-50 hidden lg:block">
             Delicious South Indian flavors, pure & natural.
           </p>
         </div>
@@ -151,7 +151,7 @@ export default function MenuDisplay({ menudata }) {
           const bySub = groupBy(items, "subcategory");
           return (
             <details key={category} className="mb-6">
-              <summary className="cursor-pointer bg-gray-200 px-4 py-2 font-semibold text-sm lg:text-xl text-red-500 rounded">
+              <summary className="cursor-pointer bg-slate-800 px-4 py-2 font-semibold text-sm lg:text-xl text-red-500 rounded">
                 {category}
               </summary>
               <AnimatePresence>

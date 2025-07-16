@@ -101,6 +101,14 @@ export default function Hero() {
             </span>
           </div>
         </motion.div>
+        <div className="flex flex-col md:flex-row gap-4 lg:gap-6 items-center text-white font-bold">
+          <button className="px-5 py-1 md:py-3 bg-teal-600 rounded-3xl">
+            Order Now
+          </button>
+          <button className="px-5 py-1 md:py-3 bg-orange-600 rounded-3xl">
+            Make Reservation
+          </button>
+        </div>
       </motion.div>
 
       {/* Right Side - Hero Image */}
