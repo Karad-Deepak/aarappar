@@ -15,7 +15,7 @@ function Nav() {
 
   return (
     <>
-      <div className="z-20 text-slate-50 bg-slate-950 opacity-90 w-full fixed left-0 top-3 flex flex-row justify-between items-center px-4 py-3 md:px-10 md:py-3">
+      <div className="z-20 text-slate-950 bg-slate-50 opacity-90 w-full fixed left-0 top-3 flex flex-row justify-between items-center px-4 py-3 md:px-10 md:py-3">
         {/* Logo & Title */}
         <div className="flex items-center gap-2 lg:pl-24">
           <Link href="/">
@@ -32,7 +32,7 @@ function Nav() {
           </Link>
         </div>
         <div>
-          <span className=" text-amber-400 font-bold tetx-lg ">
+          <span className=" text-rose-600 font-bold tetx-lg ">
             📞 +49 175 4286101
           </span>
         </div>
@@ -51,7 +51,7 @@ function Nav() {
 
 function Navbar() {
   return (
-    <nav className="hidden lg:flex flex-row gap-8 text-lg font-semibold text-white">
+    <nav className="hidden lg:flex flex-row gap-8 text-lg font-semibold text-slate-950">
       <Link href="/menu">
         <span className="hover:text-rose-500 transition duration-300">
           Menu
@@ -86,7 +86,7 @@ function Menu({ handleMobileNav, isMobileNav }) {
           alt="Menu Icon"
           width={32}
           height={32}
-          className="w-8 h-8"
+          className="w-8 h-8 shadow-2xl"
         />
       </span>
     </div>

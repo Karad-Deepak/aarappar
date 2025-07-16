@@ -1,17 +1,14 @@
 "use client";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import heroImg from "@/public/heroimg.webp";
-import heroMob from "@/public/heromob.webp";
-import halal from "@/public/halal.png";
-import SimpleCarousel from "./SimpleCarousel";
+import halal from "@/public/halal.png"; // Assuming this path is correct and the image is provided
+import SimpleCarousel from "./SimpleCarousel"; // Assuming this component exists
 
 // Simple SVG Star component for rating
 const Star = ({ filled }) => (
   <svg
     className={`w-4 h-4 sm:w-5 sm:h-5 ${
-      filled ? "text-amber-400" : "text-gray-500"
+      filled ? "text-amber-500" : "text-gray-300"
     }`}
     fill={filled ? "currentColor" : "none"}
     stroke="currentColor"
@@ -25,9 +22,10 @@ const Star = ({ filled }) => (
     />
   </svg>
 );
+
 export default function Hero() {
   return (
-    <section className="w-full flex flex-col mt-10 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12  text-white">
+    <section className=" shadow-lg w-full flex flex-col mt-10 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 bg-white">
       {/* Left Side - Text */}
       <motion.div
         className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-4 lg:gap-6"
@@ -51,18 +49,8 @@ export default function Hero() {
             Indisches Restaurant
           </motion.span>
         </motion.h1>
-        {/* 
         <motion.p
-          className="text-lg md:text-2xl lg:text-2xl font-bold text-lightbg leading-tight"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          Flavours Straight from Home
-        </motion.p>
-*/}
-        <motion.p
-          className="text-sm md:text-[16px] text-gray-300 leading-relaxed"
+          className="text-sm md:text-[16px] text-slate-950 leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
@@ -70,7 +58,6 @@ export default function Hero() {
           Authentic Indian Flavors in the Heart of Germany! 🍛✨ Experience the
           rich flavors and traditions of South India at our restaurant.
         </motion.p>
-
         {/* Ratings Block */}
         <motion.div
           className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 mt-2 sm:mt-3"
@@ -79,7 +66,7 @@ export default function Hero() {
           transition={{ delay: 1.2, duration: 0.6 }}
         >
           {/* Stars Card */}
-          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl px-4 py-3 sm:px-5 sm:py-4 shadow-lg">
+          <div className="bg-gray-50/50 backdrop-blur-sm border border-gray-200/50 rounded-2xl px-4 py-3 sm:px-5 sm:py-4 shadow-sm">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }).map((_, idx) => (
@@ -87,10 +74,10 @@ export default function Hero() {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
-                <span className="text-base sm:text-lg lg:text-xl font-bold text-amber-400">
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-amber-500">
                   4.8
                 </span>
-                <span className="text-gray-400 text-xs sm:text-sm lg:text-base font-medium">
+                <span className="text-gray-600 text-xs sm:text-sm lg:text-base font-medium">
                   (100+ reviews)
                 </span>
               </div>
@@ -98,17 +85,15 @@ export default function Hero() {
           </div>
           {/* Logo Placeholder */}
           <div className="flex items-center gap-1">
-            <span className="  bg-gray-700 rounded-full flex items-center justify-center">
-              {/* Placeholder Logo: replace src below */}
+            <span className="bg-gray-100 rounded-full flex items-center justify-center">
               <Image
-                src={halal}
+                src={halal || "/placeholder.svg"}
                 alt="Logo halal"
-                className=" w-12 h-12 md:w-20 md:h-20  "
+                className="w-12 h-12 md:w-20 md:h-20"
               />
             </span>
           </div>
         </motion.div>
-
         <motion.div
           className="flex flex-col sm:flex-row gap-4 lg:gap-6 items-center w-full sm:w-auto mt-6 sm:mt-8"
           initial={{ opacity: 0, y: 20 }}
@@ -116,14 +101,14 @@ export default function Hero() {
           transition={{ delay: 1.4, duration: 0.6 }}
         >
           <motion.button
-            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-500 hover:to-teal-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-teal-500/30"
+            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-500 hover:to-teal-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-teal-600/30 text-white"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Order Now
           </motion.button>
           <motion.button
-            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-500 hover:to-orange-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-orange-500/30"
+            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-500 hover:to-orange-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-orange-600/30 text-white"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -131,7 +116,6 @@ export default function Hero() {
           </motion.button>
         </motion.div>
       </motion.div>
-
       {/* Right Side - Hero Image */}
       <motion.div
         className="flex justify-center lg:w-1/2"
@@ -140,20 +124,6 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         whileHover={{ scale: 1.05 }}
       >
-        {/*  <picture>
-          <source media="(min-width: 768px)" srcSet={heroImg.src} />
-          <source media="(max-width: 767px)" srcSet={heroMob.src} />
-          <Image
-            src={heroImg}
-            alt="South Indian Cuisine"
-            width={500}
-            height={500}
-            priority={true}
-            quality={75}
-            className="rounded-2xl shadow-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl"
-          />
-        </picture>
-        */}
         <SimpleCarousel />
       </motion.div>
     </section>

@@ -34,7 +34,7 @@ export default function RestaurantGallery() {
       >
         Restaurant Gallery
       </h2>
-      <p className="text-sm lg:text-lg text-gray-100 mb-6">
+      <p className="text-sm lg:text-lg text-gray-900 mb-6">
         Experience our elegant interiors
       </p>
 

@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import catering from "@/public/catering.png";
+import catering from "@/public/catering1.webp";
 import Image from "next/image";
 
 export default function CateringSection() {
@@ -18,7 +18,7 @@ export default function CateringSection() {
           alt="Catering Services"
           width={300}
           height={500}
-          className="rounded-2xl shadow-lg hidden lg:block"
+          className="rounded-2xl shadow-lg  lg:block"
         />
       </motion.div>
 
