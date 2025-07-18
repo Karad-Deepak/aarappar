@@ -31,9 +31,9 @@ const dishes = [
 
 export default function MenuSection() {
   return (
-    <div className="relative text-gray-800 py-6 sm:py-8 lg:py-12 xl:py-14 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 text-center bg-white overflow-hidden">
+    <div className="relative text-gray-800 py-6 sm:py-8 lg:py-12 xl:py-14 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 text-center  overflow-hidden">
       {/* Subtle radial gradient background for visual depth */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
+      <div className="absolute inset-0 "></div>
 
       {/* Decorative background elements - lighter and more subtle */}
       <div className="absolute inset-0 opacity-30 pointer-events-none">

@@ -25,7 +25,7 @@ const Star = ({ filled }) => (
 
 export default function Hero() {
   return (
-    <section className=" shadow-lg w-full flex flex-col mt-10 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 bg-white">
+    <section className="  w-full flex flex-col mt-10 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 ">
       {/* Left Side - Text */}
       <motion.div
         className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-4 lg:gap-6"
@@ -66,7 +66,7 @@ export default function Hero() {
           transition={{ delay: 1.2, duration: 0.6 }}
         >
           {/* Stars Card */}
-          <div className="bg-gray-50/50 backdrop-blur-sm border border-gray-200/50 rounded-2xl px-4 py-3 sm:px-5 sm:py-4 shadow-sm">
+          <div className=" backdrop-blur-sm border  rounded-2xl px-4 py-3 sm:px-5 sm:py-4 shadow-sm">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }).map((_, idx) => (

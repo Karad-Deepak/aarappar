@@ -5,9 +5,9 @@ import { FiMapPin, FiPhoneCall } from "react-icons/fi";
 
 const ConnectSection = () => {
   return (
-    <section className="relative text-white py-6 sm:py-8 lg:py-10 xl:py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 bg-slate-900">
+    <section className="relative text-white py-6 sm:py-8 lg:py-10 xl:py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 ">
       {/* Gradient overlay for visual depth */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+      <div className="absolute inset-0 "></div>
 
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-10">
@@ -25,16 +25,16 @@ const ConnectSection = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-amber-400 mb-4 sm:mb-6 leading-tight"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-teal-400 mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Connect with <span className="text-amber-300">Us</span>
+            Connect with <span className="text-teal-300">Us</span>
           </motion.h2>
 
           <motion.p
-            className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-gray-950 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -53,7 +53,7 @@ const ConnectSection = () => {
         >
           {/* Operational Hours Card */}
           <motion.div
-            className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 p-6 lg:p-8 rounded-3xl shadow-2xl text-center hover:bg-slate-800/80 transition-all duration-300 group"
+            className="bg-slate-800 backdrop-blur-sm border border-slate-700/50 p-6 lg:p-8 rounded-3xl shadow-2xl text-center hover:bg-slate-800/80 transition-all duration-300 group"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -92,7 +92,7 @@ const ConnectSection = () => {
 
           {/* Address Card */}
           <motion.div
-            className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 p-6 lg:p-8 rounded-3xl shadow-2xl text-center hover:bg-slate-800/80 transition-all duration-300 group"
+            className="bg-slate-800 backdrop-blur-sm border border-slate-700/50 p-6 lg:p-8 rounded-3xl shadow-2xl text-center hover:bg-slate-800/80 transition-all duration-300 group"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
@@ -119,7 +119,7 @@ const ConnectSection = () => {
 
           {/* Contact Card */}
           <motion.div
-            className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 p-6 lg:p-8 rounded-3xl shadow-2xl text-center hover:bg-slate-800/80 transition-all duration-300 group md:col-span-2 lg:col-span-1"
+            className="bg-slate-800 backdrop-blur-sm border border-slate-700/50 p-6 lg:p-8 rounded-3xl shadow-2xl text-center hover:bg-slate-800/80 transition-all duration-300 group md:col-span-2 lg:col-span-1"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}

@@ -67,9 +67,9 @@ export default function CustomerFeedback() {
   }, [currentIndex, controls]);
 
   return (
-    <section className="relative px-3 sm:px-4 md:px-8 lg:px-12 xl:px-24 py-6 sm:py-8 lg:py-10 xl:py-12 bg-slate-900">
+    <section className="relative px-3 sm:px-4 md:px-8 lg:px-12 xl:px-24 py-6 sm:py-8 lg:py-10 xl:py-12 ">
       {/* Gradient overlay for visual depth */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+      <div className="absolute inset-0 "></div>
 
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-10">
@@ -87,16 +87,16 @@ export default function CustomerFeedback() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-amber-400 mb-4 sm:mb-6 leading-tight"
+            className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-bold text-teal-400 mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            What Our <span className="text-amber-300">Customers Say</span>
+            What Our <span className="text-teal-300">Customers Say</span>
           </motion.h2>
 
           <motion.p
-            className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-gray-950 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -108,7 +108,7 @@ export default function CustomerFeedback() {
 
         {/* Carousel Container */}
         <div className="relative">
-          <div className="relative overflow-hidden w-full min-h-[500px] sm:min-h-[450px] lg:min-h-[400px] bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-3xl shadow-2xl">
+          <div className="relative overflow-hidden w-full min-h-[500px] sm:min-h-[450px] lg:min-h-[400px] bg-slate-800 backdrop-blur-sm border border-slate-700/50 rounded-3xl shadow-2xl">
             {reviews.map((review, index) => (
               <motion.div
                 key={index}

@@ -23,7 +23,7 @@ export default function SimpleCarousel({ interval = 6000 }) {
   const next = () => setIndex((prev) => (prev + 1) % images.length);
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto flex flex-col items-center py-8">
+    <div className="relative w-full max-w-4xl mx-auto flex flex-col items-center py-2 lg:py-3">
       {/* Carousel Images */}
       <div className="relative w-full h-72 sm:h-96 flex items-center justify-center overflow-hidden rounded-2xl shadow-2xl bg-black">
         <AnimatePresence mode="wait">
