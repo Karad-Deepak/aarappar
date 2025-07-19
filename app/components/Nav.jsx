@@ -2,9 +2,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-import close from "@/public/close.png";
-import list from "@/public/list.png";
-import logo2 from "@/public/logo2.png"; // Import logo
+import { Menu as MenuIcon, X as CloseIcon } from "lucide-react"; // Lucide icons
+import logo2 from "@/public/logo2.png"; // Your logo image
 
 function Nav() {
   const [isMobileNav, setMobileNav] = useState(false);
@@ -67,7 +66,6 @@ function Navbar() {
           Catering
         </span>
       </Link>
-
       <Link href="/about">
         <span className="hover:text-rose-500 transition duration-300">
           About Us
@@ -80,15 +78,17 @@ function Navbar() {
 function Menu({ handleMobileNav, isMobileNav }) {
   return (
     <div className="flex items-center lg:hidden">
-      <span onClick={handleMobileNav} className="cursor-pointer">
-        <Image
-          src={!isMobileNav ? list : close}
-          alt="Menu Icon"
-          width={32}
-          height={32}
-          className="w-8 h-8 shadow-2xl"
-        />
-      </span>
+      <button
+        onClick={handleMobileNav}
+        className="cursor-pointer p-2 rounded-xl hover:bg-rose-100 transition"
+        aria-label={isMobileNav ? "Close Menu" : "Open Menu"}
+      >
+        {isMobileNav ? (
+          <CloseIcon size={32} className="text-rose-600 drop-shadow-lg" />
+        ) : (
+          <MenuIcon size={32} className="text-rose-600 drop-shadow-lg" />
+        )}
+      </button>
     </div>
   );
 }

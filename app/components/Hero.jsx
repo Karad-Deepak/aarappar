@@ -34,14 +34,14 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
       >
         <motion.h1
-          className="text-3xl md:text-6xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight"
+          className="text-4xl md:text-6xl font-bold uppercase text-normalbg font-[Playfair Display] leading-tight"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           AARAPPAR <br />
           <motion.span
-            className="text-2xl md:text-3xl font-bold uppercase text-normalbg leading-tight"
+            className="text-3xl md:text-3xl font-bold uppercase text-normalbg leading-tight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -77,7 +77,7 @@ export default function Hero() {
                 <span className="text-base sm:text-lg lg:text-xl font-bold text-amber-500">
                   4.8
                 </span>
-                <span className="text-gray-600 text-xs sm:text-sm lg:text-base font-medium">
+                <span className="text-gray-900 text-xs sm:text-sm lg:text-base font-medium">
                   (100+ reviews)
                 </span>
               </div>
