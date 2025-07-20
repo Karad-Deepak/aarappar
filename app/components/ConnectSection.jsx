@@ -25,12 +25,12 @@ const ConnectSection = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-teal-400 mb-4 sm:mb-6 leading-tight"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#320A6B] mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Connect with <span className="text-teal-300">Us</span>
+            Connect with <span className="text-[#320A6B]">Us</span>
           </motion.h2>
 
           <motion.p

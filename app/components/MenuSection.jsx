@@ -51,13 +51,12 @@ export default function MenuSection() {
           className="mb-8 sm:mb-12 lg:mb-16"
         >
           <motion.h2
-            className="text-2xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-5xl font-bold text-orange-700 mb-4 sm:mb-6 leading-tight"
+            className="text-2xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-5xl font-bold text-[#320A6B] mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            A Taste of Tradition,{" "}
-            <span className="block text-orange-600">A Feast of Flavors!</span>
+            A Taste of Tradition, A Feast of Flavors!
           </motion.h2>
           <motion.p
             className="text-sm sm:text-base md:text-sm lg:text-lg text-gray-900 max-w-3xl mx-auto leading-relaxed"

@@ -87,12 +87,12 @@ export default function CustomerFeedback() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-bold text-teal-400 mb-4 sm:mb-6 leading-tight"
+            className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-bold text-[#F7374F] mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            What Our <span className="text-teal-300">Customers Say</span>
+            What Our Customers Say
           </motion.h2>
 
           <motion.p
