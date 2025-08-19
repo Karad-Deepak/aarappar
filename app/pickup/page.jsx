@@ -14,6 +14,8 @@ export default function PickupPage() {
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("pay_at_store");
+  const [transactionId, setTransactionId] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -64,6 +66,10 @@ export default function PickupPage() {
     } else if (!/^\S+@\S+\.\S+$/.test(customerEmail)) {
       newErrors.customerEmail = "Please enter a valid email address.";
     }
+    if (paymentMethod === "paypal" && !transactionId.trim()) {
+      newErrors.transactionId =
+        "Transaction ID is required for PayPal payments.";
+    }
     return newErrors;
   };
 
@@ -85,6 +91,8 @@ export default function PickupPage() {
     formData.append("phone", customerPhone);
     formData.append("email", customerEmail); // new field added here
     formData.append("items", JSON.stringify(cart));
+    formData.append("payment_method", paymentMethod);
+    formData.append("transaction_id", transactionId.trim());
 
     try {
       // Call the server action to create a pickup order in Supabase
@@ -116,24 +124,24 @@ export default function PickupPage() {
       <RunnerBanner />
       <Nav />
       <motion.div
-        className="container mt-8 lg:mt-12 mx-auto px-4 py-8 bg-lightbg min-h-screen flex flex-col items-center"
+        className="container mt-6  lg:mt-12 mx-auto px-4 py-6 min-h-screen flex flex-col items-center"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
         <motion.div
-          className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-4 sm:p-6 md:p-8"
+          className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-4 sm:p-5 md:p-6"
           variants={itemVariants}
         >
           <motion.h1
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center"
+            className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-center"
             variants={itemVariants}
           >
             Pickup Order
           </motion.h1>
           <motion.form
             onSubmit={handleSubmit}
-            className="space-y-4 sm:space-y-6 md:space-y-8"
+            className="space-y-4 sm:space-y-5 md:space-y-6"
             variants={staggerVariants}
           >
             {/* Customer Details */}
@@ -144,7 +152,7 @@ export default function PickupPage() {
               <div>
                 <label
                   htmlFor="customerName"
-                  className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-1"
+                  className="block text-sm sm:text-base md:text-lg font-medium text-gray-700 mb-1"
                 >
                   Your Name:
                 </label>
@@ -154,7 +162,7 @@ export default function PickupPage() {
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
                   placeholder="Enter your name"
-                  className="text-white bg-gray-800 w-full p-2 sm:p-3 md:p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                  className="text-white bg-gray-800 w-full p-2 sm:p-3 md:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                   required
                 />
                 {errors.customerName && (
@@ -166,7 +174,7 @@ export default function PickupPage() {
               <div>
                 <label
                   htmlFor="customerPhone"
-                  className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-1"
+                  className="block text-sm sm:text-base md:text-lg font-medium text-gray-700 mb-1"
                 >
                   Your Phone Number:
                 </label>
@@ -177,7 +185,7 @@ export default function PickupPage() {
                   onChange={(e) => setCustomerPhone(e.target.value)}
                   placeholder="Enter your phone number"
                   pattern="^\+?[0-9]{10,15}$"
-                  className="text-white w-full p-2 sm:p-3 md:p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-gray-800"
+                  className="text-white w-full p-2 sm:p-3 md:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-gray-800"
                   required
                 />
                 {errors.customerPhone && (
@@ -192,7 +200,7 @@ export default function PickupPage() {
             <motion.div variants={itemVariants}>
               <label
                 htmlFor="customerEmail"
-                className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-1"
+                className="block text-sm sm:text-base md:text-lg font-medium text-gray-700 mb-1"
               >
                 Your Email:
               </label>
@@ -202,7 +210,7 @@ export default function PickupPage() {
                 value={customerEmail}
                 onChange={(e) => setCustomerEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="text-white bg-gray-800 w-full p-2 sm:p-3 md:p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                className="text-white bg-gray-800 w-full p-2 sm:p-3 md:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                 required
               />
               {errors.customerEmail && (
@@ -214,7 +222,7 @@ export default function PickupPage() {
 
             {/* Cart Items */}
             <motion.div variants={itemVariants}>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">
                 Your Cart Items
               </h2>
               <div className="space-y-2 sm:space-y-3 md:space-y-4">
@@ -225,14 +233,14 @@ export default function PickupPage() {
                     variants={itemVariants}
                   >
                     <div>
-                      <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800">
+                      <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800">
                         {item.item_name}
                       </h3>
-                      <p className="text-sm sm:text-base text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500">
                         Quantity: {item.quantity}
                       </p>
                     </div>
-                    <div className="text-base sm:text-lg md:text-xl font-bold text-gray-800">
+                    <div className="text-sm sm:text-base md:text-lg font-bold text-gray-800">
                       €{(parseFloat(item.price) * item.quantity).toFixed(2)}
                     </div>
                   </motion.div>
@@ -245,23 +253,117 @@ export default function PickupPage() {
               className="flex justify-between items-center border-t pt-2 sm:pt-4"
               variants={itemVariants}
             >
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
                 Total:
               </h2>
-              <span className="text-xl sm:text-2xl md:text-3xl font-bold">
+              <span className="text-lg sm:text-xl md:text-2xl font-bold">
                 €{totalBill.toFixed(2)}
               </span>
             </motion.div>
-            <p className="text-normalbg font-semibold text-lg p-3">
-              NOTE: Currently we are accepting cash only and timing starts from
-              18.00 onwords only
-            </p>
+
+            {/* Payment Options */}
+            <motion.div variants={itemVariants} className="mt-2">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">
+                Payment Method
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label
+                  className={`cursor-pointer border rounded-lg p-3 flex items-center gap-3 hover:shadow transition ${
+                    paymentMethod === "pay_at_store"
+                      ? "ring-2 ring-blue-500"
+                      : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="pay_at_store"
+                    checked={paymentMethod === "pay_at_store"}
+                    onChange={() => setPaymentMethod("pay_at_store")}
+                    className="h-4 w-4"
+                  />
+                  <div>
+                    <div className="text-sm sm:text-base font-medium">
+                      Pay at Store
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      Pay when you collect your order.
+                    </div>
+                  </div>
+                </label>
+
+                <label
+                  className={`cursor-pointer border rounded-lg p-3 flex items-center gap-3 hover:shadow transition ${
+                    paymentMethod === "paypal" ? "ring-2 ring-blue-500" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="paypal"
+                    checked={paymentMethod === "paypal"}
+                    onChange={() => setPaymentMethod("paypal")}
+                    className="h-4 w-4"
+                  />
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="/paypal.jpeg"
+                      alt="PayPal"
+                      className="h-6 w-auto rounded"
+                    />
+                    <div>
+                      <div className="text-sm sm:text-base font-medium">
+                        PayPal
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        Scan QR to pay, then enter your Transaction ID below.
+                      </div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              {paymentMethod === "paypal" && (
+                <div className="mt-3">
+                  <div className="w-full flex flex-col items-center justify-center border rounded-lg p-3 bg-gray-50">
+                    <img
+                      src="/paypal.jpeg"
+                      alt="PayPal QR Code"
+                      className="h-40 w-40 object-contain"
+                    />
+                    <p className="mt-2 text-xs text-gray-600">
+                      Scan this QR code with your PayPal app to pay.
+                    </p>
+                  </div>
+                  <label
+                    htmlFor="transactionId"
+                    className="block text-sm sm:text-base font-medium text-gray-700 mb-1"
+                  >
+                    PayPal Transaction ID
+                  </label>
+                  <input
+                    type="text"
+                    id="transactionId"
+                    value={transactionId}
+                    onChange={(e) => setTransactionId(e.target.value)}
+                    placeholder="e.g. 9AB12345CD6789012"
+                    className="w-full p-2 sm:p-3 md:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {errors.transactionId && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.transactionId}
+                    </p>
+                  )}
+                </div>
+              )}
+            </motion.div>
 
             {/* Submit Order Button */}
             <motion.button
+              disabled
               type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-red-900 text-white font-bold py-2 sm:py-3 md:py-4 rounded hover:bg-red-950 transition duration-200"
+              // disabled={isSubmitting}
+              className="w-full bg-red-900 text-white font-semibold py-2 sm:py-3 md:py-3 rounded hover:bg-red-950 transition duration-200"
               variants={itemVariants}
             >
               {isSubmitting ? "Submitting..." : "Submit Order"}

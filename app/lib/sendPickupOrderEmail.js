@@ -32,6 +32,8 @@ export async function sendPickupOrderEmail(data) {
     order_status,
     id,
     created_at,
+    payment_method,
+    transaction_id,
   } = data;
 
   const formattedCartItems = Array.isArray(cart_items)
@@ -49,7 +51,11 @@ export async function sendPickupOrderEmail(data) {
     to: process.env.ADMIN_EMAIL,
     subject: `New Pickup Order from ${customer_name}`,
     replyTo: customer_email,
-    text: `New Pickup Order:\n\nCustomer: ${customer_name}\nPhone: ${customer_phone}\nEmail: ${customer_email}\nTotal: ${total_bill}\nStatus: ${order_status}\nCreated At: ${created_at}\nItems:\n${formattedCartItems}`,
+    text: `New Pickup Order:\n\nCustomer: ${customer_name}\nPhone: ${customer_phone}\nEmail: ${customer_email}\nTotal: ${total_bill}\nStatus: ${order_status}\nPayment Method: ${
+      payment_method || "N/A"
+    }\nTransaction ID: ${
+      transaction_id || "N/A"
+    }\nCreated At: ${created_at}\nItems:\n${formattedCartItems}`,
     html: `
       <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; padding: 20px; color: #333;">
         <div style="max-width: 700px; margin: auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.08);">
@@ -74,6 +80,18 @@ export async function sendPickupOrderEmail(data) {
               <tr>
                 <td style="padding: 12px; font-weight: bold; border-bottom: 1px solid #eee;">Total Bill</td>
                 <td style="padding: 12px; border-bottom: 1px solid #eee;">€${total_bill}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; font-weight: bold; border-bottom: 1px solid #eee;">Payment Method</td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee;">${
+                  payment_method || "N/A"
+                }</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; font-weight: bold; border-bottom: 1px solid #eee;">Transaction ID</td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee;">${
+                  transaction_id || "N/A"
+                }</td>
               </tr>
               <tr>
                 <td style="padding: 12px; font-weight: bold; border-bottom: 1px solid #eee;">Order Status</td>

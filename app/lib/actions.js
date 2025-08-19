@@ -367,6 +367,8 @@ export async function createPickupOrder(formData) {
   const customer_phone = formData.get("phone");
   const customer_email = formData.get("email");
   const items = formData.get("items"); // JSON string from cart
+  const payment_method = formData.get("payment_method");
+  const transaction_id = formData.get("transaction_id");
 
   // Parse the cart items JSON string
   let parsedItems;
@@ -417,7 +419,13 @@ export async function createPickupOrder(formData) {
 
   // Send the email notification for the new pickup order
   try {
-    await sendPickupOrderEmail(data);
+    // Include payment details (not stored in DB) in the email payload
+    const emailPayload = {
+      ...data,
+      payment_method,
+      transaction_id,
+    };
+    await sendPickupOrderEmail(emailPayload);
   } catch (err) {
     console.error("Error sending pickup order email notification:", err);
     // Optionally handle the error further if needed.

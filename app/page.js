@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import CateringSection from "./components/CateringSection";
 import CustomerFeedback from "./components/CustomerFeedback";
 import PopupModal from "./components/PopupModal";
+import CookieNotice from "./components/CookieNotice";
 
 import { fetchPopupSettings } from "@/app/lib/actions"; // Adjust path as needed
 import GalleryCarousel from "./components/Gallery";
@@ -20,6 +21,7 @@ export default async function Page() {
     <>
       {/* Render the popup if it is active 
       {popup && popup.active && <PopupModal content={popup.content} />} */}
+      <CookieNotice />
       <header className="w-full lg:h-[90vh]  px-2 py-1 md:px-16 md:py-5">
         <Nav />
         <Hero />

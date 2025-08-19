@@ -19,7 +19,6 @@ export default function QuantityControl({ item }) {
     <div>
       {quantity === 0 ? (
         <button
-          disabled
           onClick={handleAdd}
           className="bg-red-500 hover:bg-rose-600 text-white font-bold py-1 px-3 rounded transition duration-200"
         >

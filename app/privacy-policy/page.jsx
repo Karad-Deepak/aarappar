@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Nav />
-      <div className="max-w-3xl mx-auto px-6 py-12 mt-5 lg:mt-10 text-white">
+      <div className="max-w-3xl mx-auto px-6 py-12 mt-5 lg:mt-10 text-black">
         <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
         <p className="text-gray-500 mb-8">Last updated: March 16, 2025</p>
 
