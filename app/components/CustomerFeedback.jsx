@@ -87,7 +87,7 @@ export default function CustomerFeedback() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-bold text-[#F7374F] mb-4 sm:mb-6 leading-tight"
+            className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-bold text-primary mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -219,7 +219,7 @@ export default function CustomerFeedback() {
               onClick={() => setCurrentIndex(index)}
               className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? "bg-amber-400 shadow-lg shadow-amber-400/50"
+                  ? "bg-orange-400 shadow-lg shadow-amber-400/50"
                   : "bg-slate-600 hover:bg-slate-500"
               }`}
               whileHover={{ scale: 1.2 }}

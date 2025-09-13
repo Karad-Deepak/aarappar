@@ -14,7 +14,7 @@ function Nav() {
 
   return (
     <>
-      <div className="z-20 text-slate-950 bg-slate-50 opacity-90 w-full fixed left-0 top-3 flex flex-row justify-between items-center px-4 py-3 md:px-10 md:py-3">
+      <div className="z-20 text-slate-950 bg-slate-50 opacity-90 w-full fixed left-0 top-0 flex flex-row justify-between items-center px-4 py-3 md:px-10 md:py-3">
         {/* Logo & Title */}
         <div className="flex items-center gap-2 lg:pl-24">
           <Link href="/">
@@ -31,7 +31,7 @@ function Nav() {
           </Link>
         </div>
         <div>
-          <span className=" text-rose-600 font-bold tetx-lg ">
+          <span className=" text-normalbg font-bold text-sm lg:text-lg ">
             📞 +49 175 4286101
           </span>
         </div>
@@ -52,22 +52,22 @@ function Navbar() {
   return (
     <nav className="hidden lg:flex flex-row gap-8 text-lg font-semibold text-slate-950">
       <Link href="/menu">
-        <span className="hover:text-rose-500 transition duration-300">
+        <span className="hover:text-normalbg transition duration-300">
           Menu
         </span>
       </Link>
       <Link href="/reservation">
-        <span className="hover:text-rose-500 transition duration-300">
+        <span className="hover:text-normalbg transition duration-300">
           Reserve Table
         </span>
       </Link>
       <Link href="/catering">
-        <span className="hover:text-rose-500 transition duration-300">
+        <span className="hover:text-normalbg transition duration-300">
           Catering
         </span>
       </Link>
       <Link href="/about">
-        <span className="hover:text-rose-500 transition duration-300">
+        <span className="hover:text-normalbg transition duration-300">
           About Us
         </span>
       </Link>
@@ -95,24 +95,24 @@ function Menu({ handleMobileNav, isMobileNav }) {
 
 function Mobile({ handleMobileNav }) {
   return (
-    <nav className="z-40 fixed top-14 left-0 w-full h-screen bg-zinc-900/90 backdrop-blur-lg text-white flex flex-col items-center justify-center gap-6 text-xl">
+    <nav className="z-40 fixed top-16 left-0 w-full h-screen bg-zinc-900/90 backdrop-blur-lg text-white flex flex-col items-center justify-center gap-6 text-xl">
       <Link href="/menu" onClick={handleMobileNav}>
-        <span className="hover:text-rose-500 transition duration-300">
+        <span className="hover:text-normalbg transition duration-300">
           Menu
         </span>
       </Link>
       <Link href="/reservation" onClick={handleMobileNav}>
-        <span className="hover:text-rose-500 transition duration-300">
+        <span className="hover:text-normalbg transition duration-300">
           Reserve Table
         </span>
       </Link>
       <Link href="/catering" onClick={handleMobileNav}>
-        <span className="hover:text-rose-500 transition duration-300">
+        <span className="hover:text-normalbg transition duration-300">
           Catering
         </span>
       </Link>
       <Link href="/about" onClick={handleMobileNav}>
-        <span className="hover:text-rose-500 transition duration-300">
+        <span className="hover:text-normalbg transition duration-300">
           About Us
         </span>
       </Link>

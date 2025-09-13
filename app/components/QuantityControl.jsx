@@ -2,18 +2,36 @@
 
 import { useCart } from "./CartContext";
 
-export default function QuantityControl({ item }) {
+export default function QuantityControl({ item, disabled = false }) {
   const { cart, addToCart, decreaseQuantity } = useCart();
   const currentItem = cart.find((i) => i.id === item.id);
   const quantity = currentItem ? currentItem.quantity : 0;
 
   const handleAdd = () => {
-    addToCart(item);
+    if (!disabled) {
+      addToCart(item);
+    }
   };
 
   const handleDecrease = () => {
-    decreaseQuantity(item.id);
+    if (!disabled) {
+      decreaseQuantity(item.id);
+    }
   };
+
+  // If item is sold out, show sold out button
+  if (disabled || item.soldout) {
+    return (
+      <div>
+        <button
+          disabled
+          className="bg-gray-400 text-white font-bold py-1 px-3 rounded cursor-not-allowed opacity-60"
+        >
+          Sold Out
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>

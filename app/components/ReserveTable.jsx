@@ -153,13 +153,13 @@ export default function ReserveTable() {
   const timeSlots = getTimeSlots(selectedDate);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-white text-white px-6 py-12">
       <div className="max-w-3xl w-full p-8 bg-gray-900 rounded-2xl shadow-lg">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-bold text-center mb-6"
+          className="text-3xl text-normalbg font-bold text-center mb-6"
         >
           Reserve Your Table
         </motion.h2>

@@ -187,15 +187,15 @@ export default function DrinksMenu() {
 
   return (
     <div className="container mx-auto px-2 py-2 lg:px-4 lg:py-3">
-      <h1 className="text-2xl lg:text-4xl font-bold text-center mb-8">
+      <h1 className="text-2xl lg:text-4xl font-bold text-center mb-8 text-primary">
         Drinks Menu
       </h1>
       {Object.entries(grouped).map(([category, items]) => (
         <details
           key={category}
-          className="mb-6 lg:mb-9 border border-gray-300 rounded-lg overflow-hidden"
+          className="mb-6 lg:mb-9  rounded-lg overflow-hidden"
         >
-          <summary className="cursor-pointer px-4 py-2 lg:px-10 bg-gray-200 hover:bg-gray-300 transition-colors text-lg lg:text-xl font-semibold text-normalbg">
+          <summary className="cursor-pointer px-4 py-2 lg:px-10 bg-slate-100 hover:bg-gray-300 transition-colors text-lg lg:text-xl font-semibold text-normalbg">
             {category}
           </summary>
           <div className="px-4 py-4">

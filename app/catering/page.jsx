@@ -12,7 +12,7 @@ function page() {
       <header className="">
         <Nav />
       </header>
-      <main className="bg-lightbg mt-8 lg:mt-14">
+      <main className=" mt-8 lg:mt-14">
         <CateringPage />
         <ConnectSection />
       </main>

@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { createPickupOrder } from "@/app/lib/actions";
 import { motion } from "framer-motion";
 import Nav from "../components/Nav";
-import RunnerBanner from "../components/RunnerBanner";
 
 export default function PickupPage() {
   const { cart, clearCart } = useCart();
@@ -66,9 +65,13 @@ export default function PickupPage() {
     } else if (!/^\S+@\S+\.\S+$/.test(customerEmail)) {
       newErrors.customerEmail = "Please enter a valid email address.";
     }
-    if (paymentMethod === "paypal" && !transactionId.trim()) {
-      newErrors.transactionId =
-        "Transaction ID is required for PayPal payments.";
+    if (
+      (paymentMethod === "paypal" || paymentMethod === "sparkasse") &&
+      !transactionId.trim()
+    ) {
+      newErrors.transactionId = `Transaction ID is required for ${
+        paymentMethod === "paypal" ? "PayPal" : "Sparkasse"
+      } payments.`;
     }
     return newErrors;
   };
@@ -121,7 +124,6 @@ export default function PickupPage() {
 
   return (
     <>
-      <RunnerBanner />
       <Nav />
       <motion.div
         className="container mt-6  lg:mt-12 mx-auto px-4 py-6 min-h-screen flex flex-col items-center"
@@ -266,7 +268,7 @@ export default function PickupPage() {
               <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">
                 Payment Method
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 <label
                   className={`cursor-pointer border rounded-lg p-3 flex items-center gap-3 hover:shadow transition ${
                     paymentMethod === "pay_at_store"
@@ -321,6 +323,29 @@ export default function PickupPage() {
                     </div>
                   </div>
                 </label>
+
+                <label
+                  className={`cursor-pointer border rounded-lg p-3 flex items-center gap-3 hover:shadow transition ${
+                    paymentMethod === "sparkasse" ? "ring-2 ring-blue-500" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="sparkasse"
+                    checked={paymentMethod === "sparkasse"}
+                    onChange={() => setPaymentMethod("sparkasse")}
+                    className="h-4 w-4"
+                  />
+                  <div>
+                    <div className="text-sm sm:text-base font-medium">
+                      Sparkasse Instant Transfer
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      Bank transfer with instant confirmation.
+                    </div>
+                  </div>
+                </label>
               </div>
 
               {paymentMethod === "paypal" && (
@@ -347,6 +372,63 @@ export default function PickupPage() {
                     value={transactionId}
                     onChange={(e) => setTransactionId(e.target.value)}
                     placeholder="e.g. 9AB12345CD6789012"
+                    className="w-full p-2 sm:p-3 md:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {errors.transactionId && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.transactionId}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {paymentMethod === "sparkasse" && (
+                <div className="mt-3">
+                  <div className="w-full border rounded-lg p-4 bg-gray-50">
+                    <h4 className="text-sm font-semibold text-gray-800 mb-3">
+                      Bank Transfer Details
+                    </h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Account Holder:</span>
+                        <span className="font-medium">
+                          Aarappar Indisches Restaurant
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">IBAN:</span>
+                        <span className="font-medium font-mono">
+                          DE97 5005 0201 0200 8354 40
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">BIC:</span>
+                        <span className="font-medium font-mono">
+                          HELADEF1822
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Bank:</span>
+                        <span className="font-medium">Sparkasse</span>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-xs text-gray-600">
+                      Please transfer the exact amount and enter your
+                      transaction ID below.
+                    </p>
+                  </div>
+                  <label
+                    htmlFor="sparkasseTransactionId"
+                    className="block text-sm sm:text-base font-medium text-gray-700 mb-1 mt-3"
+                  >
+                    Sparkasse Transaction ID
+                  </label>
+                  <input
+                    type="text"
+                    id="sparkasseTransactionId"
+                    value={transactionId}
+                    onChange={(e) => setTransactionId(e.target.value)}
+                    placeholder="e.g. 1234567890"
                     className="w-full p-2 sm:p-3 md:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   {errors.transactionId && (

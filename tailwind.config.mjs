@@ -11,6 +11,7 @@ export default {
         darkbg: "#18181b",
         lightbg: "#fef2f2",
         normalbg: "#ff0000",
+        primary: "#320A6B",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

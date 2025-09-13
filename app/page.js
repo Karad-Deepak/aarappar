@@ -19,8 +19,8 @@ export default async function Page() {
 
   return (
     <>
-      {/* Render the popup if it is active 
-      {popup && popup.active && <PopupModal content={popup.content} />} */}
+      {/* Render the popup if it is active */}
+      {popup && popup.active && <PopupModal content={popup.content} />}
       <CookieNotice />
       <header className="w-full lg:h-[90vh]  px-2 py-1 md:px-16 md:py-5">
         <Nav />

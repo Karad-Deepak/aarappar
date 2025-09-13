@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import halal from "@/public/halal.png"; // Assuming this path is correct and the image is provided
-import SimpleCarousel from "./SimpleCarousel"; // Assuming this component exists
+import heroImage from "@/public/heroimg.webp";
 
 // Simple SVG Star component for rating
 const Star = ({ filled }) => (
@@ -101,14 +101,14 @@ export default function Hero() {
           transition={{ delay: 1.4, duration: 0.6 }}
         >
           <motion.button
-            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-500 hover:to-teal-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-teal-600/30 text-white"
+            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-violet-600 to-violet-700 hover:from-violet-500 hover:to-violet-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-violet-600/30 text-white"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Order Now
           </motion.button>
           <motion.button
-            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-zinc-800 to-gray-900  rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border  text-white"
+            className="w-full  sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-orange-600 to-orange-700  rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border  text-white"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -124,7 +124,12 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         whileHover={{ scale: 1.05 }}
       >
-        <SimpleCarousel />
+        <Image
+          src={heroImage || "/heroimg.webp"}
+          alt="Restaurant Hero"
+          className="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto rounded-2xl shadow-lg"
+          priority
+        />
       </motion.div>
     </section>
   );

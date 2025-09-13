@@ -95,7 +95,7 @@ const Footer = () => {
       </div>
       <div className=" pt-3 lg:pt-6 px-5 text-center text-sm">
         <strong>We only use essential cookies</strong> — please see our{" "}
-        <Link href="/privacy-policy" className="text-amber-400">
+        <Link href="/privacy-policy" className="text-normalbg">
           Privacy Policy
         </Link>
         .

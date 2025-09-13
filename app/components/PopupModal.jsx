@@ -51,7 +51,7 @@ export default function PopupModal({ content }) {
               rotate: 2,
               transition: { duration: 0.4, ease: "easeIn" },
             }}
-            className="w-full max-w-3xl md:max-w-6xl rounded-2xl max-h-[95vh] overflow-y-auto bg-[#232946] p-5 md:p-7 shadow-2xl mt-10 lg:mt-14 relative"
+            className="w-full max-w-3xl md:max-w-6xl rounded-2xl max-h-[95vh] overflow-y-auto bg-white p-5 md:p-7 shadow-2xl mt-10 lg:mt-14 relative"
           >
             {/* Close Icon in the top right corner */}
             <div className="absolute top-3 right-3">
@@ -96,7 +96,7 @@ export default function PopupModal({ content }) {
                 transition: { delay: 0.3, duration: 0.5 },
               }}
             >
-              <p className="text-xs md:text-sm text-[#fffffe] font-bold whitespace-pre-line">
+              <p className="text-xs md:text-sm text-indigo-950 font-bold whitespace-pre-line">
                 {content}
               </p>
             </motion.div>

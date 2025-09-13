@@ -27,13 +27,13 @@ export default function CateringPage() {
   }
 
   return (
-    <div className="min-h-screen bg-lightbg text-white px-6 py-12 md:px-20">
+    <div className="min-h-screen bg-white  px-6 py-12 md:px-20">
       {/* Heading Section */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-center text-normalbg"
+        className="text-2xl md:text-4xl font-bold text-center text-primary"
       >
         Catering Services
       </motion.h1>
@@ -43,7 +43,7 @@ export default function CateringPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="mt-6 text-lg md:text-xl text-center text-darkbg"
+        className="mt-6 text-sm md:text-lg text-center text-darkbg"
       >
         Elevate your events with our exquisite catering services. We offer a
         variety of menus customized to your preferences, ensuring an

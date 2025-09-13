@@ -4,11 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const images = [
-  "/interior1.webp",
   "/interior2.webp",
+  "/interior5.webp",
   "/interior3.webp",
   "/interior4.webp",
-  "/interior5.webp",
+  "/interior1.webp",
   "/interior3.webp",
 ];
 
@@ -30,7 +30,7 @@ export default function RestaurantGallery() {
     >
       <h2
         id="gallery-title"
-        className="text-2xl lg:text-4xl font-extrabold text-amber-400 mb-4"
+        className="text-2xl lg:text-5xl font-extrabold text-primary mb-4"
       >
         Restaurant Gallery
       </h2>
@@ -38,7 +38,7 @@ export default function RestaurantGallery() {
         Experience our elegant interiors
       </p>
 
-      <div className="relative max-w-4xl mx-auto overflow-hidden rounded-lg shadow-lg aspect-[16/9]">
+      <div className="relative max-w-4xl mx-auto overflow-hidden rounded-lg  aspect-[16/9]">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
