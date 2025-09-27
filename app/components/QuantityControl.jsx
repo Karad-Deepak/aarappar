@@ -38,7 +38,7 @@ export default function QuantityControl({ item, disabled = false }) {
       {quantity === 0 ? (
         <button
           onClick={handleAdd}
-          className="bg-red-500 hover:bg-rose-600 text-white font-bold py-1 px-3 rounded transition duration-200"
+          className="bg-green-600 hover:bg-rose-600 text-white font-bold py-1 px-3 rounded transition duration-200"
         >
           Add
         </button>

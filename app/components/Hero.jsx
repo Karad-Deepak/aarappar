@@ -101,14 +101,14 @@ export default function Hero() {
           transition={{ delay: 1.4, duration: 0.6 }}
         >
           <motion.button
-            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-teal-500/30 text-white"
+            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-green-600 via-green-600 to-green-600 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-teal-500/30 text-white"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Order Now
           </motion.button>
           <motion.button
-            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-neutral-900 via-gray-900 to-black hover:from-neutral-800 hover:via-gray-800 hover:to-black rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-black/20 text-white"
+            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-500 hover:from-teal-600 hover:via-teal-800 hover:to-teal-950 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300  text-black"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -134,4 +134,3 @@ export default function Hero() {
     </section>
   );
 }
-

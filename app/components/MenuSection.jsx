@@ -150,7 +150,7 @@ export default function MenuSection() {
                   </p>
                   <Link href="/menu">
                     <motion.button
-                      className="mt-6 w-full bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 text-white font-bold text-base lg:text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-teal-500/30"
+                      className="mt-6 w-full bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-400 hover:via-green-500 hover:to-green-600 text-white font-bold text-base lg:text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-green-500/30"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
