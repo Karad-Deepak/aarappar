@@ -104,7 +104,7 @@ export default function MenuSection() {
                   </p>
                   <Link href="/menu">
                     <motion.button
-                      className="mt-4 w-full bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 text-white font-bold text-sm sm:text-base px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-teal-500/30"
+                      className="mt-4 w-full bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-400 hover:via-green-500 hover:to-green-600 text-white font-bold text-sm sm:text-base px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-500/30"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -172,7 +172,7 @@ export default function MenuSection() {
           <Link href="/menu">
             <motion.button
               aria-label="Explore the full Aarappar restaurant menu"
-              className="bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 text-white font-bold text-lg lg:text-xl px-8 lg:px-12 py-4 lg:py-5 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-teal-500/30 group"
+              className="bg-gradient-to-r from-green-500 via-green-600 to-green-600 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 text-white font-bold text-lg lg:text-xl px-8 lg:px-12 py-4 lg:py-5 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-teal-500/30 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

@@ -38,7 +38,7 @@ export default function CateringSection() {
           perfection, making your event truly unforgettable.
         </p>
 
-        <button className="  text-base   bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 text-white font-bold  sm:text-lg px-8 py-3 lg:px-16 lg:py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-teal-500/30 ">
+        <button className="  text-base   bg-gradient-to-r from-green-500 via-green-600 to-green-600 hover:from-green-400 hover:via-green-500 hover:to-green-600 text-white font-bold  sm:text-lg px-8 py-3 lg:px-16 lg:py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-500/30 ">
           Enquire Now
         </button>
       </motion.div>
