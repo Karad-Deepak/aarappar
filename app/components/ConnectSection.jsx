@@ -60,10 +60,10 @@ const ConnectSection = () => {
             whileHover={{ scale: 1.02, y: -5 }}
           >
             <div className="bg-teal-500/10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-teal-500/20 transition-colors duration-300">
-              <FaRegClock className="text-2xl sm:text-3xl lg:text-4xl text-teal-600 group-hover:text-teal-700 transition-colors duration-300" />
+              <FaRegClock className="text-2xl sm:text-3xl lg:text-4xl text-green-600 group-hover:text-teal-700 transition-colors duration-300" />
             </div>
 
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-700 mb-4 sm:mb-6 group-hover:text-teal-800 transition-colors duration-300">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-green-700 mb-4 sm:mb-6 group-hover:text-teal-800 transition-colors duration-300">
               Operational Hours
             </h3>
 
@@ -71,12 +71,17 @@ const ConnectSection = () => {
               <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
                 <p className="font-medium">
                   Tue - Thu:{" "}
-                  <span className="text-gray-900 font-semibold">18:00 - 22:00</span>
+                  <span className="text-gray-900 font-semibold">
+                    18:00 - 22:00
+                  </span>
                 </p>
               </div>
               <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
                 <p className="font-medium">
-                  Fri: <span className="text-gray-900 font-semibold">17:30 - 22:00</span>
+                  Fri:{" "}
+                  <span className="text-gray-900 font-semibold">
+                    17:30 - 22:00
+                  </span>
                 </p>
               </div>
               <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
@@ -99,10 +104,10 @@ const ConnectSection = () => {
             whileHover={{ scale: 1.02, y: -5 }}
           >
             <div className="bg-teal-500/10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-teal-500/20 transition-colors duration-300">
-              <FiMapPin className="text-2xl sm:text-3xl lg:text-4xl text-teal-600 group-hover:text-teal-700 transition-colors duration-300" />
+              <FiMapPin className="text-2xl sm:text-3xl lg:text-4xl text-green-600 group-hover:text-teal-700 transition-colors duration-300" />
             </div>
 
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-700 mb-4 sm:mb-6 group-hover:text-teal-800 transition-colors duration-300">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-green-700 mb-4 sm:mb-6 group-hover:text-teal-800 transition-colors duration-300">
               Address
             </h3>
 
@@ -111,7 +116,9 @@ const ConnectSection = () => {
                 <span className="block text-gray-900 font-semibold mb-2">
                   Trümpertstraße 18
                 </span>
-                <span className="text-gray-900 font-semibold">60489, Frankfurt am Main</span>
+                <span className="text-gray-900 font-semibold">
+                  60489, Frankfurt am Main
+                </span>
                 <span className="block text-gray-900 mt-1">Rödelheim</span>
               </p>
               <div className="w-full h-48 sm:h-56 lg:h-64 overflow-hidden rounded-2xl border border-slate-300/60">
@@ -138,10 +145,10 @@ const ConnectSection = () => {
             whileHover={{ scale: 1.02, y: -5 }}
           >
             <div className="bg-teal-500/10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-teal-500/20 transition-colors duration-300">
-              <FiPhoneCall className="text-2xl sm:text-3xl lg:text-4xl text-teal-600 group-hover:text-teal-700 transition-colors duration-300" />
+              <FiPhoneCall className="text-2xl sm:text-3xl lg:text-4xl text-green-600 group-hover:text-teal-700 transition-colors duration-300" />
             </div>
 
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-700 mb-4 sm:mb-6 group-hover:text-teal-800 transition-colors duration-300">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-green-700 mb-4 sm:mb-6 group-hover:text-teal-800 transition-colors duration-300">
               Contact
             </h3>
 
@@ -185,7 +192,3 @@ const ConnectSection = () => {
 };
 
 export default ConnectSection;
-
-
-
-
