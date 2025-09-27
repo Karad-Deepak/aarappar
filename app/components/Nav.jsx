@@ -2,11 +2,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu as MenuIcon, X as CloseIcon } from "lucide-react"; // Lucide icons
 import logo2 from "@/public/logo2.png"; // Your logo image
 
 function Nav() {
   const [isMobileNav, setMobileNav] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   function handleMobileNav() {
     setMobileNav(!isMobileNav);
@@ -42,7 +45,9 @@ function Nav() {
         <Menu handleMobileNav={handleMobileNav} isMobileNav={isMobileNav} />
 
         {/* Mobile Navigation */}
-        {isMobileNav && <Mobile handleMobileNav={handleMobileNav} />}
+        {isMobileNav && (
+          <Mobile handleMobileNav={handleMobileNav} isHomePage={isHomePage} />
+        )}
       </div>
     </>
   );
@@ -93,9 +98,16 @@ function Menu({ handleMobileNav, isMobileNav }) {
   );
 }
 
-function Mobile({ handleMobileNav }) {
+function Mobile({ handleMobileNav, isHomePage }) {
   return (
-    <nav className="z-40 fixed top-16 left-0 w-full h-screen bg-zinc-900/90 backdrop-blur-lg text-white flex flex-col items-center justify-center gap-6 text-xl">
+    <nav className="z-40 fixed top-16 left-0 w-full h-screen bg-zinc-950/90 backdrop-blur-lg text-white flex flex-col items-center justify-center gap-6 text-xl">
+      {!isHomePage && (
+        <Link href="/" onClick={handleMobileNav}>
+          <span className="hover:text-normalbg transition duration-300">
+            Home
+          </span>
+        </Link>
+      )}
       <Link href="/menu" onClick={handleMobileNav}>
         <span className="hover:text-normalbg transition duration-300">
           Menu

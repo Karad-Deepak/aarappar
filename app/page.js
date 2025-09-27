@@ -1,6 +1,5 @@
 // app/page.jsx
-import Nav from "@/app/components/Nav";
-import Hero from "@/app/components/Hero";
+import HeaderSection from "./components/HeaderSection";
 import MenuSection from "./components/MenuSection";
 import DeliverySection from "./components/DeliverySection";
 import ConnectSection from "./components/ConnectSection";
@@ -22,10 +21,7 @@ export default async function Page() {
       {/* Render the popup if it is active */}
       {popup && popup.active && <PopupModal content={popup.content} />}
       <CookieNotice />
-      <header className="w-full lg:h-[90vh]  px-2 py-1 md:px-16 md:py-5">
-        <Nav />
-        <Hero />
-      </header>
+      <HeaderSection />
       <main>
         <MenuSection />
 

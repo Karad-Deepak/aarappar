@@ -171,7 +171,7 @@ export default function MenuDisplay({ menudata }) {
           const bySub = groupBy(items, "subcategory");
           return (
             <details key={category} className="mb-6">
-              <summary className="cursor-pointer bg-slate-100 px-4 py-2 font-semibold text-sm lg:text-xl text-red-600 rounded">
+              <summary className="cursor-pointer bg-slate-100 px-4 py-2 font-semibold text-lg lg:text-xl text-normalbg rounded">
                 {category}
               </summary>
               <AnimatePresence>
