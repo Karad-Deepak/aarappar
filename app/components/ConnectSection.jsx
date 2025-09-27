@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import { FaRegClock } from "react-icons/fa";
 import { FiMapPin, FiPhoneCall } from "react-icons/fi";
 
 const ConnectSection = () => {
   return (
-    <section className="relative text-white py-6 sm:py-8 lg:py-10 xl:py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 ">
+    <section className="relative text-gray-900 py-6 sm:py-8 lg:py-10 xl:py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 ">
       {/* Gradient overlay for visual depth */}
       <div className="absolute inset-0 "></div>
 
@@ -53,36 +53,36 @@ const ConnectSection = () => {
         >
           {/* Operational Hours Card */}
           <motion.div
-            className="bg-slate-800 backdrop-blur-sm border border-slate-700/50 p-6 lg:p-8 rounded-3xl shadow-2xl text-center hover:bg-slate-800/80 transition-all duration-300 group"
+            className="bg-gradient-to-b from-zinc-200 to-slate-200 backdrop-blur-sm border border-slate-300/60 p-6 lg:p-8 rounded-3xl shadow-xl text-center hover:shadow-2xl transition-all duration-300 group"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             whileHover={{ scale: 1.02, y: -5 }}
           >
-            <div className="bg-red-500/20 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-red-500/30 transition-colors duration-300">
-              <FaRegClock className="text-2xl sm:text-3xl lg:text-4xl text-red-400 group-hover:text-red-300 transition-colors duration-300" />
+            <div className="bg-teal-500/10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-teal-500/20 transition-colors duration-300">
+              <FaRegClock className="text-2xl sm:text-3xl lg:text-4xl text-teal-600 group-hover:text-teal-700 transition-colors duration-300" />
             </div>
 
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-red-400 mb-4 sm:mb-6 group-hover:text-red-300 transition-colors duration-300">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-700 mb-4 sm:mb-6 group-hover:text-teal-800 transition-colors duration-300">
               Operational Hours
             </h3>
 
-            <div className="space-y-2 sm:space-y-3 text-sm sm:text-base lg:text-lg text-gray-200 leading-relaxed">
-              <div className="bg-slate-700/30 rounded-xl p-3 hover:bg-slate-700/50 transition-colors duration-300">
+            <div className="space-y-2 sm:space-y-3 text-sm sm:text-base lg:text-lg text-gray-900 leading-relaxed">
+              <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
                 <p className="font-medium">
                   Tue - Thu:{" "}
-                  <span className="text-amber-300">18:00 - 22:00</span>
+                  <span className="text-gray-900 font-semibold">18:00 - 22:00</span>
                 </p>
               </div>
-              <div className="bg-slate-700/30 rounded-xl p-3 hover:bg-slate-700/50 transition-colors duration-300">
+              <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
                 <p className="font-medium">
-                  Fri: <span className="text-amber-300">17:30 - 22:00</span>
+                  Fri: <span className="text-gray-900 font-semibold">17:30 - 22:00</span>
                 </p>
               </div>
-              <div className="bg-slate-700/30 rounded-xl p-3 hover:bg-slate-700/50 transition-colors duration-300">
+              <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
                 <p className="font-medium">
                   Sat - Sun:{" "}
-                  <span className="text-amber-300">
+                  <span className="text-gray-900 font-semibold">
                     12:00 - 14:30, 17:30 - 22:00
                   </span>
                 </p>
@@ -92,67 +92,79 @@ const ConnectSection = () => {
 
           {/* Address Card */}
           <motion.div
-            className="bg-slate-800 backdrop-blur-sm border border-slate-700/50 p-6 lg:p-8 rounded-3xl shadow-2xl text-center hover:bg-slate-800/80 transition-all duration-300 group"
+            className="bg-gradient-to-b from-zinc-200 to-slate-200 backdrop-blur-sm border border-slate-300/60 p-6 lg:p-8 rounded-3xl shadow-xl text-center hover:shadow-2xl transition-all duration-300 group"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
             whileHover={{ scale: 1.02, y: -5 }}
           >
-            <div className="bg-amber-500/20 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-amber-500/30 transition-colors duration-300">
-              <FiMapPin className="text-2xl sm:text-3xl lg:text-4xl text-amber-400 group-hover:text-amber-300 transition-colors duration-300" />
+            <div className="bg-teal-500/10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-teal-500/20 transition-colors duration-300">
+              <FiMapPin className="text-2xl sm:text-3xl lg:text-4xl text-teal-600 group-hover:text-teal-700 transition-colors duration-300" />
             </div>
 
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-amber-400 mb-4 sm:mb-6 group-hover:text-amber-300 transition-colors duration-300">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-700 mb-4 sm:mb-6 group-hover:text-teal-800 transition-colors duration-300">
               Address
             </h3>
 
-            <div className="bg-slate-700/30 rounded-xl p-4 sm:p-6 hover:bg-slate-700/50 transition-colors duration-300">
-              <p className="text-sm sm:text-base lg:text-lg text-gray-200 leading-relaxed font-medium">
-                <span className="block text-white font-semibold mb-2">
+            <div className="bg-white/70 border border-slate-300/60 rounded-xl p-4 sm:p-6 hover:bg-white/90 transition-colors duration-300 text-gray-900 space-y-4">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-900 leading-relaxed font-medium">
+                <span className="block text-gray-900 font-semibold mb-2">
                   Trümpertstraße 18
                 </span>
-                <span className="text-amber-300">60489, Frankfurt am Main</span>
-                <span className="block text-gray-300 mt-1">Rödelheim</span>
+                <span className="text-gray-900 font-semibold">60489, Frankfurt am Main</span>
+                <span className="block text-gray-900 mt-1">Rödelheim</span>
               </p>
+              <div className="w-full h-48 sm:h-56 lg:h-64 overflow-hidden rounded-2xl border border-slate-300/60">
+                <iframe
+                  title="AARAPPAR Indisches Restaurant Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40178.60245771533!2d8.537106513977035!3d50.12766987455033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0934d333c46d%3A0x15c1044ed6dd33a3!2sAarappar%20Indisches%20Restaurant!5e1!3m2!1sen!2sin!4v1758961088990!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
             </div>
           </motion.div>
 
           {/* Contact Card */}
           <motion.div
-            className="bg-slate-800 backdrop-blur-sm border border-slate-700/50 p-6 lg:p-8 rounded-3xl shadow-2xl text-center hover:bg-slate-800/80 transition-all duration-300 group md:col-span-2 lg:col-span-1"
+            className="bg-gradient-to-b from-zinc-200 to-slate-200 backdrop-blur-sm border border-slate-300/60 p-6 lg:p-8 rounded-3xl shadow-xl text-center hover:shadow-2xl transition-all duration-300 group md:col-span-2 lg:col-span-1"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
             whileHover={{ scale: 1.02, y: -5 }}
           >
-            <div className="bg-orange-500/20 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-orange-500/30 transition-colors duration-300">
-              <FiPhoneCall className="text-2xl sm:text-3xl lg:text-4xl text-orange-400 group-hover:text-orange-300 transition-colors duration-300" />
+            <div className="bg-teal-500/10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-teal-500/20 transition-colors duration-300">
+              <FiPhoneCall className="text-2xl sm:text-3xl lg:text-4xl text-teal-600 group-hover:text-teal-700 transition-colors duration-300" />
             </div>
 
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-orange-400 mb-4 sm:mb-6 group-hover:text-orange-300 transition-colors duration-300">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-700 mb-4 sm:mb-6 group-hover:text-teal-800 transition-colors duration-300">
               Contact
             </h3>
 
-            <div className="space-y-3 sm:space-y-4">
-              <div className="bg-slate-700/30 rounded-xl p-3 sm:p-4 hover:bg-slate-700/50 transition-colors duration-300">
-                <p className="text-xs sm:text-sm text-gray-400 mb-1">Primary</p>
-                <p className="text-sm sm:text-base lg:text-lg font-bold text-white">
+            <div className="space-y-3 sm:space-y-4 text-gray-900">
+              <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 sm:p-4 hover:bg-white/90 transition-colors duration-300">
+                <p className="text-xs sm:text-sm text-gray-900 mb-1">Primary</p>
+                <p className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">
                   +49 69 21939837
                 </p>
               </div>
 
-              <div className="bg-slate-700/30 rounded-xl p-3 sm:p-4 hover:bg-slate-700/50 transition-colors duration-300">
-                <p className="text-xs sm:text-sm text-gray-400 mb-1">
+              <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 sm:p-4 hover:bg-white/90 transition-colors duration-300">
+                <p className="text-xs sm:text-sm text-gray-900 mb-1">
                   Secondary
                 </p>
-                <p className="text-sm sm:text-base lg:text-lg font-bold text-white">
+                <p className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">
                   +49 15219220483
                 </p>
               </div>
 
-              <div className="bg-slate-700/30 rounded-xl p-3 sm:p-4 hover:bg-slate-700/50 transition-colors duration-300">
-                <p className="text-xs sm:text-sm text-gray-400 mb-1">Email</p>
-                <p className="text-xs sm:text-sm lg:text-base font-medium text-amber-300 break-all">
+              <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 sm:p-4 hover:bg-white/90 transition-colors duration-300">
+                <p className="text-xs sm:text-sm text-gray-900 mb-1">Email</p>
+                <p className="text-xs sm:text-sm lg:text-base font-medium text-gray-900 break-all">
                   aarapparrodelheim@aarappar.de
                 </p>
               </div>
@@ -173,3 +185,7 @@ const ConnectSection = () => {
 };
 
 export default ConnectSection;
+
+
+
+

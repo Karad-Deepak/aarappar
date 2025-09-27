@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import catering from "@/public/catering1.webp";
 import Image from "next/image";
@@ -38,7 +38,7 @@ export default function CateringSection() {
           perfection, making your event truly unforgettable.
         </p>
 
-        <button className=" text-white text-lg px-6 py-3 rounded-xl bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-500 hover:to-orange-600 text-white font-bold text-sm sm:text-base px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-500/30 transition-all duration-300">
+        <button className="  text-base   bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 text-white font-bold  sm:text-lg px-8 py-3 lg:px-16 lg:py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-teal-500/30 ">
           Enquire Now
         </button>
       </motion.div>

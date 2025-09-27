@@ -78,7 +78,7 @@ export default function CustomerFeedback() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-teal-600 rounded-full blur-3xl opacity-20"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto text-center text-white">
+      <div className="relative z-10 max-w-7xl mx-auto text-center text-gray-900">
         {/* Section Title */}
         <motion.div
           className="mb-12 sm:mb-16 lg:mb-20"
@@ -108,7 +108,7 @@ export default function CustomerFeedback() {
 
         {/* Carousel Container */}
         <div className="relative">
-          <div className="relative overflow-hidden w-full min-h-[500px] sm:min-h-[450px] lg:min-h-[400px] bg-slate-800 backdrop-blur-sm border border-slate-700/50 rounded-3xl shadow-2xl">
+          <div className="relative overflow-hidden w-full min-h-[500px] sm:min-h-[450px] lg:min-h-[400px] bg-gradient-to-b from-zinc-200 to-slate-200 backdrop-blur-sm border border-slate-300/60 rounded-3xl shadow-2xl">
             {reviews.map((review, index) => (
               <motion.div
                 key={index}
@@ -132,8 +132,8 @@ export default function CustomerFeedback() {
                   animate={{ scale: index === currentIndex ? 1 : 0 }}
                   transition={{ delay: 0.3, duration: 0.4 }}
                 >
-                  <div className="bg-orange-500/20 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center">
-                    <FaQuoteLeft className="text-2xl sm:text-3xl text-orange-400" />
+                  <div className="bg-red-500/10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center">
+                    <FaQuoteLeft className="text-2xl sm:text-3xl text-red-600" />
                   </div>
                 </motion.div>
 
@@ -147,7 +147,7 @@ export default function CustomerFeedback() {
                   }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed italic font-medium px-4">
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-900 leading-relaxed italic font-medium px-4">
                     "{review.review}"
                   </p>
                 </motion.div>
@@ -168,15 +168,15 @@ export default function CustomerFeedback() {
                       (_, starIndex) => (
                         <FaStar
                           key={starIndex}
-                          className="text-amber-400 text-lg sm:text-xl"
+                          className="text-yellow-400 text-lg sm:text-xl"
                         />
                       )
                     )}
                   </div>
 
                   {/* Customer Name */}
-                  <div className="bg-slate-700/50 backdrop-blur-sm rounded-2xl px-6 py-3 border border-slate-600/30">
-                    <p className="font-bold text-lg sm:text-xl lg:text-2xl text-white">
+                  <div className="bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-3 border border-slate-300/60">
+                    <p className="font-bold text-lg sm:text-xl lg:text-2xl text-gray-900">
                       {review.name}
                     </p>
                   </div>
@@ -190,11 +190,11 @@ export default function CustomerFeedback() {
             <motion.button
               onClick={handlePrev}
               aria-label="Previous Review"
-              className="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/80 p-3 sm:p-4 rounded-2xl shadow-lg transition-all duration-300 group"
+              className="bg-white/80 backdrop-blur-sm border border-slate-300/60 hover:bg-white p-3 sm:p-4 rounded-2xl shadow-lg transition-all duration-300 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FiChevronLeft className="text-xl sm:text-2xl text-white group-hover:text-amber-400 transition-colors duration-300" />
+              <FiChevronLeft className="text-xl sm:text-2xl text-gray-900 group-hover:text-teal-600 transition-colors duration-300" />
             </motion.button>
           </div>
 
@@ -202,11 +202,11 @@ export default function CustomerFeedback() {
             <motion.button
               onClick={handleNext}
               aria-label="Next Review"
-              className="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/80 p-3 sm:p-4 rounded-2xl shadow-lg transition-all duration-300 group"
+              className="bg-white/80 backdrop-blur-sm border border-slate-300/60 hover:bg-white p-3 sm:p-4 rounded-2xl shadow-lg transition-all duration-300 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FiChevronRight className="text-xl sm:text-2xl text-white group-hover:text-amber-400 transition-colors duration-300" />
+              <FiChevronRight className="text-xl sm:text-2xl text-gray-900 group-hover:text-teal-600 transition-colors duration-300" />
             </motion.button>
           </div>
         </div>
@@ -220,7 +220,7 @@ export default function CustomerFeedback() {
               className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? "bg-orange-400 shadow-lg shadow-amber-400/50"
-                  : "bg-slate-600 hover:bg-slate-500"
+                  : "bg-slate-400 hover:bg-slate-300"
               }`}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}

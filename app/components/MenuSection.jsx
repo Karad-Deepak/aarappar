@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -99,12 +99,12 @@ export default function MenuSection() {
                   <h3 className="text-sm sm:text-lg font-bold text-gray-900 leading-tight">
                     {dish.name}
                   </h3>
-                  <p className="text-sm sm:text-lg font-bold text-orange-600">
+                  <p className="text-sm sm:text-lg font-bold text-red-600">
                     {dish.price}
                   </p>
                   <Link href="/menu">
                     <motion.button
-                      className="mt-4 w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-500 hover:to-orange-600 text-white font-bold text-sm sm:text-base px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-500/30"
+                      className="mt-4 w-full bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 text-white font-bold text-sm sm:text-base px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-teal-500/30"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -130,7 +130,7 @@ export default function MenuSection() {
                 {/* Dish Image with enhanced overlay */}
                 <div className="relative w-full h-48 lg:h-56 xl:h-64 rounded-2xl overflow-hidden mb-6 group-hover:shadow-2xl transition-shadow duration-300">
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-100/30 to-orange-200/30 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-100/30 to-red-200/30 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <Image
                     src={dish.image || "/placeholder.svg"}
                     alt={dish.name}
@@ -145,12 +145,12 @@ export default function MenuSection() {
                   <h3 className="text-sm lg:text-lg xl:text-xl font-bold text-gray-900 leading-tight group-hover:text-orange-700 transition-colors duration-300">
                     {dish.name}
                   </h3>
-                  <p className="text-sm lg:text-lg xl:text-xl font-bold text-orange-600 group-hover:text-orange-500 transition-colors duration-300">
+                  <p className="text-sm lg:text-lg xl:text-xl font-bold text-red-600 group-hover:text-orange-500 transition-colors duration-300">
                     {dish.price}
                   </p>
                   <Link href="/menu">
                     <motion.button
-                      className="mt-6 w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-500 hover:to-orange-600 text-white font-bold text-base lg:text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-orange-500/30"
+                      className="mt-6 w-full bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 text-white font-bold text-base lg:text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-teal-500/30"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -172,7 +172,7 @@ export default function MenuSection() {
           <Link href="/menu">
             <motion.button
               aria-label="Explore the full Aarappar restaurant menu"
-              className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-500 hover:to-orange-600 text-white font-bold text-lg lg:text-xl px-8 lg:px-12 py-4 lg:py-5 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-orange-500/30 group"
+              className="bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 text-white font-bold text-lg lg:text-xl px-8 lg:px-12 py-4 lg:py-5 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-teal-500/30 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
