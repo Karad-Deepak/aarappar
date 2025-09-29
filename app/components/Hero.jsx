@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import halal from "@/public/halal.png"; // Assuming this path is correct and the image is provided
 import interior3 from "@/public/interior3.webp";
 
@@ -60,7 +61,7 @@ export default function Hero() {
         </motion.p>
         {/* Ratings Block */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 mt-2 sm:mt-3"
+          className="flex flex-row items-center gap-3 sm:gap-6 mt-2 sm:mt-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.6 }}
@@ -100,20 +101,22 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 0.6 }}
         >
-          <motion.button
-            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-green-600 via-green-600 to-green-600 hover:from-teal-400 hover:via-teal-500 hover:to-teal-600 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-teal-500/30 text-white"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Order Now
-          </motion.button>
-          <motion.button
-            className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-500 hover:from-teal-600 hover:via-teal-800 hover:to-teal-950 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300  text-black"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Make Reservation
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/menu"
+              className="w-full sm:w-auto inline-block px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-green-600 via-green-600 to-green-600 hover:from-green-700 hover:via-green-800 hover:to-green-900 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-green-600/30 text-white"
+            >
+              Order Now
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/reservation"
+              className="w-full sm:w-auto inline-block px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-500 hover:from-yellow-600 hover:via-yellow-700 hover:to-yellow-800 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 text-black"
+            >
+              Make Reservation
+            </Link>
+          </motion.div>
         </motion.div>
       </motion.div>
       {/* Right Side - Hero Image */}

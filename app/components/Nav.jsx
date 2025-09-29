@@ -3,7 +3,11 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu as MenuIcon, X as CloseIcon } from "lucide-react"; // Lucide icons
+import {
+  Menu as MenuIcon,
+  X as CloseIcon,
+  Phone as PhoneIcon,
+} from "lucide-react"; // Lucide icons
 import logo2 from "@/public/logo2.png"; // Your logo image
 
 function Nav() {
@@ -34,9 +38,15 @@ function Nav() {
           </Link>
         </div>
         <div>
-          <span className=" text-normalbg font-bold text-sm lg:text-lg ">
-            📞 +49 175 4286101
-          </span>
+          <a
+            href="tel:+49 6921939837"
+            className="flex items-center gap-2 text-normalbg font-bold text-sm lg:text-lg hover:text-rose-600 transition"
+            aria-label="Call +49 6921939837"
+          >
+            <PhoneIcon size={18} className="hidden lg:inline-block" />
+            <PhoneIcon size={16} className="lg:hidden" />
+            <span>+49 6921939837</span>
+          </a>
         </div>
         {/* Desktop Navbar */}
         <Navbar />

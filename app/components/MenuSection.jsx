@@ -12,7 +12,7 @@ const dishes = [
   {
     id: 1,
     name: "Masala Dosa",
-    price: "€9.90",
+    price: "€12.90",
     image: dosa,
   },
   {

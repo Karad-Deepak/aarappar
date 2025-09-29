@@ -359,6 +359,15 @@ export default function PickupPage() {
                     <p className="mt-2 text-xs text-gray-600">
                       Scan this QR code with your PayPal app to pay.
                     </p>
+                    <p className="mt-1 text-xs text-gray-700">
+                      PayPal Email:{" "}
+                      <a
+                        href="mailto:aarapparrodelheim@aarappar.de"
+                        className="underline"
+                      >
+                        aarapparrodelheim@aarappar.de
+                      </a>
+                    </p>
                   </div>
                   <label
                     htmlFor="transactionId"
