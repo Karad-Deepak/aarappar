@@ -57,8 +57,8 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          Authentic Indian Flavors in the Heart of Germany! ??? Experience the
-          rich flavors and traditions of South India at our restaurant.
+          Authentic Indian Flavors in the Heart of Germany! Experience the rich
+          flavors and traditions of South India at our restaurant.
         </motion.p>
         {/* Ratings Block */}
         <motion.div
@@ -122,33 +122,20 @@ export default function Hero() {
         {/* Rolling Payment Banner - Mobile (below buttons) */}
         <div className="lg:hidden w-full mt-4 flex justify-center">
           <div className="relative w-full max-w-[360px] sm:max-w-[480px] overflow-hidden bg-slate-100/80 border border-normalbg/20 rounded-full py-2">
-            <div className="scroller flex items-center gap-8 whitespace-nowrap px-4">
-              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+            <marquee behavior="scroll" direction="left" scrollamount="12">
+              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
                 <Wallet size={16} /> Cash accepted
-              </div>
-              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+              </span>
+              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
                 <CreditCard size={16} /> Card accepted
-              </div>
-              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+              </span>
+              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
                 <BadgeDollarSign size={16} /> PayPal accepted
-              </div>
-              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+              </span>
+              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
                 <Banknote size={16} /> IBAN accepted
-              </div>
-              {/* duplicate for seamless scroll */}
-              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
-                <Wallet size={16} /> Cash accepted
-              </div>
-              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
-                <CreditCard size={16} /> Card accepted
-              </div>
-              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
-                <BadgeDollarSign size={16} /> PayPal accepted
-              </div>
-              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
-                <Banknote size={16} /> IBAN accepted
-              </div>
-            </div>
+              </span>
+            </marquee>
           </div>
         </div>
       </motion.div>
@@ -170,49 +157,22 @@ export default function Hero() {
       {/* Rolling Payment Banner - Desktop (bottom of hero) */}
       <div className="hidden lg:block w-full lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:mb-4 px-4 md:px-5 z-10">
         <div className="w-full overflow-hidden bg-slate-100/80 border border-normalbg/20 rounded-full py-3">
-          <div className="scroller flex items-center gap-12 whitespace-nowrap px-8">
-            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+          <marquee behavior="scroll" direction="left" scrollamount="9">
+            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
               <Wallet size={18} /> Cash accepted
-            </div>
-            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+            </span>
+            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
               <CreditCard size={18} /> Card accepted
-            </div>
-            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+            </span>
+            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
               <BadgeDollarSign size={18} /> PayPal accepted
-            </div>
-            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+            </span>
+            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
               <Banknote size={18} /> IBAN accepted
-            </div>
-            {/* duplicate for seamless scroll */}
-            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
-              <Wallet size={18} /> Cash accepted
-            </div>
-            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
-              <CreditCard size={18} /> Card accepted
-            </div>
-            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
-              <BadgeDollarSign size={18} /> PayPal accepted
-            </div>
-            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
-              <Banknote size={18} /> IBAN accepted
-            </div>
-          </div>
+            </span>
+          </marquee>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .scroller {
-          animation: scroll 10s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }
