@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { Wallet, CreditCard, Banknote, BadgeDollarSign } from "lucide-react";
 import halal from "@/public/halal.png"; // Assuming this path is correct and the image is provided
 import interior3 from "@/public/interior3.webp";
 
@@ -26,7 +27,7 @@ const Star = ({ filled }) => (
 
 export default function Hero() {
   return (
-    <section className="  w-full flex flex-col mt-10 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 ">
+    <section className="relative w-full flex flex-col mt-10 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 lg:pb-20">
       {/* Left Side - Text */}
       <motion.div
         className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-4 lg:gap-6"
@@ -118,6 +119,38 @@ export default function Hero() {
             </Link>
           </motion.div>
         </motion.div>
+        {/* Rolling Payment Banner - Mobile (below buttons) */}
+        <div className="lg:hidden w-full mt-4 flex justify-center">
+          <div className="relative w-full max-w-[360px] sm:max-w-[480px] overflow-hidden bg-slate-100/80 border border-normalbg/20 rounded-full py-2">
+            <div className="scroller flex items-center gap-8 whitespace-nowrap px-4">
+              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+                <Wallet size={16} /> Cash accepted
+              </div>
+              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+                <CreditCard size={16} /> Card accepted
+              </div>
+              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+                <BadgeDollarSign size={16} /> PayPal accepted
+              </div>
+              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+                <Banknote size={16} /> IBAN accepted
+              </div>
+              {/* duplicate for seamless scroll */}
+              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+                <Wallet size={16} /> Cash accepted
+              </div>
+              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+                <CreditCard size={16} /> Card accepted
+              </div>
+              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+                <BadgeDollarSign size={16} /> PayPal accepted
+              </div>
+              <div className="flex items-center gap-2 text-normalbg font-semibold text-xs">
+                <Banknote size={16} /> IBAN accepted
+              </div>
+            </div>
+          </div>
+        </div>
       </motion.div>
       {/* Right Side - Hero Image */}
       <motion.div
@@ -134,6 +167,52 @@ export default function Hero() {
           priority
         />
       </motion.div>
+      {/* Rolling Payment Banner - Desktop (bottom of hero) */}
+      <div className="hidden lg:block w-full lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:mb-4 px-4 md:px-5 z-10">
+        <div className="w-full overflow-hidden bg-slate-100/80 border border-normalbg/20 rounded-full py-3">
+          <div className="scroller flex items-center gap-12 whitespace-nowrap px-8">
+            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+              <Wallet size={18} /> Cash accepted
+            </div>
+            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+              <CreditCard size={18} /> Card accepted
+            </div>
+            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+              <BadgeDollarSign size={18} /> PayPal accepted
+            </div>
+            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+              <Banknote size={18} /> IBAN accepted
+            </div>
+            {/* duplicate for seamless scroll */}
+            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+              <Wallet size={18} /> Cash accepted
+            </div>
+            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+              <CreditCard size={18} /> Card accepted
+            </div>
+            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+              <BadgeDollarSign size={18} /> PayPal accepted
+            </div>
+            <div className="flex items-center gap-3 text-normalbg font-semibold text-sm">
+              <Banknote size={18} /> IBAN accepted
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .scroller {
+          animation: scroll 10s linear infinite;
+        }
+      `}</style>
     </section>
   );
 }

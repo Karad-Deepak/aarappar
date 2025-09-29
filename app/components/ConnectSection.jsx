@@ -70,20 +70,13 @@ const ConnectSection = () => {
             <div className="space-y-2 sm:space-y-3 text-sm sm:text-base lg:text-lg text-gray-900 leading-relaxed">
               <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
                 <p className="font-medium">
-                  Tue - Thu:{" "}
-                  <span className="text-gray-900 font-semibold">
-                    18:00 - 22:00
-                  </span>
-                </p>
-              </div>
-              <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
-                <p className="font-medium">
-                  Fri:{" "}
+                  Tue - Fri:{" "}
                   <span className="text-gray-900 font-semibold">
                     17:30 - 22:00
                   </span>
                 </p>
               </div>
+
               <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
                 <p className="font-medium">
                   Sat - Sun:{" "}
