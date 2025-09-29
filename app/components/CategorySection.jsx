@@ -1,8 +1,10 @@
+import { toTitleCase } from "@/app/utils/string";
+
 export default function CategorySection({ id, category, dishes }) {
   return (
     <div id={id} className="w-full scroll-mt-24">
       <h2 className="text-2xl sm:text-3xl font-bold text-normalbg mb-4 border-b-2 border-red-500 pb-2">
-        {category}
+        {toTitleCase(category)}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {dishes.map((dish) => (

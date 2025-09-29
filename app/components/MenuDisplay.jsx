@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import QuantityControl from "./QuantityControl";
+import { toTitleCase } from "@/app/utils/string";
 import chicken from "@/public/chicken.webp";
 import Biryani from "@/public/Biryani.webp";
 
@@ -172,7 +173,7 @@ export default function MenuDisplay({ menudata }) {
           return (
             <details key={category} className="mb-6">
               <summary className="cursor-pointer bg-slate-100 px-4 py-2 font-semibold text-lg lg:text-xl text-normalbg rounded">
-                {category}
+                {toTitleCase(category)}
               </summary>
               <AnimatePresence>
                 <motion.div

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { toTitleCase } from "@/app/utils/string";
 import React from "react";
 
 // Hardcoded drinks data (example data)
@@ -196,7 +197,7 @@ export default function DrinksMenu() {
           className="mb-6 lg:mb-9  rounded-lg overflow-hidden"
         >
           <summary className="cursor-pointer px-4 py-2 lg:px-10 bg-slate-100 hover:bg-gray-300 transition-colors text-lg lg:text-xl font-semibold text-normalbg">
-            {category}
+            {toTitleCase(category)}
           </summary>
           <div className="px-4 py-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

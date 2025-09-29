@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import halal from "@/public/halal.png"; // Assuming this path is correct and the image is provided
-import heroImage from "@/public/heroimg.webp";
+import interior3 from "@/public/interior3.webp";
 
 // Simple SVG Star component for rating
 const Star = ({ filled }) => (
@@ -125,7 +125,7 @@ export default function Hero() {
         whileHover={{ scale: 1.05 }}
       >
         <Image
-          src={heroImage || "/heroimg.webp"}
+          src={interior3}
           alt="Restaurant Hero"
           className="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto rounded-2xl shadow-lg"
           priority
