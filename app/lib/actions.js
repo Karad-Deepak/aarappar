@@ -106,6 +106,8 @@ export async function updateSoldoutStatus(id, soldout) {
   return { message: "Sold-out status updated successfully", data };
 }
 
+// removed category-level toggle server action
+
 export async function submitEnquiry(formData) {
   const name = formData.get("name");
   const phone = formData.get("phone");
@@ -383,6 +385,21 @@ export async function createPickupOrder(formData) {
     (acc, item) => acc + parseFloat(item.price) * item.quantity,
     0
   );
+
+  // Basic validation for payment method & transaction id rules
+  if (!payment_method) {
+    throw new Error("Payment method is required");
+  }
+  const needsTransactionId =
+    payment_method === "paypal" || payment_method === "sparkasse";
+  if (
+    needsTransactionId &&
+    (!transaction_id || String(transaction_id).trim().length === 0)
+  ) {
+    throw new Error(
+      "Transaction ID is required for the selected payment method"
+    );
+  }
 
   // Insert the pickup order into the pickup_orders table and select the inserted row
   const { data, error } = await supabase

@@ -17,6 +17,21 @@ function groupBy(arr, key) {
   }, {});
 }
 
+// Normalize soldout value to boolean
+function isSoldout(value) {
+  return value === true || value === "true";
+}
+
+// Normalize category strings to improve matching between DB and desired order
+function normalizeCategoryLabel(label) {
+  if (!label) return "";
+  let s = String(label).toLowerCase();
+  s = s.replace(/[–—]/g, "-"); // unify dashes
+  s = s.replace(/\s*\|\s*/g, " | "); // normalize pipe spacing
+  s = s.replace(/\s+/g, " ").trim(); // collapse spaces
+  return s;
+}
+
 export default function MenuDisplay({ menudata }) {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -30,27 +45,72 @@ export default function MenuDisplay({ menudata }) {
 
   // refined user-friendly order
   const categoryOrder = [
-    "SOUPS",
-    "APPETIZERS – VEGETARIAN",
-    "APPETIZERS – NON-VEGETARIAN",
-    "EGG APPETIZERS",
-    "VEGETARIAN & VEGAN CURRIES",
-    "NON-VEGETARIAN CURRIES",
-    "RICE & BIRYANI",
-    "DOSA SPECIALS",
-    "INDIAN BREADS",
-    "PAROTTA",
-    "KIDS MENU",
-    "DESSERTS",
-    "DRINKS",
+    "Soups",
+    "Vorspeisen | Appetizers – Vegetarisch",
+    "Eier Vorspeisen | Egg Appetizers",
+    "Vorspeisen | Appetizers – Non Vegetarisch",
+    "Our Dosa Specials (knusprige, Gefüllte Reis-Crepes aus Südindien) (nur am Abends | Only in the Evenings)",
+    "Our Steam Specials / Unsere Dampf-Spezialitäten (nur am Abends | Only in the Evenings)",
+    "Vegetarische & Vegan Curries",
+    "Non-Vegetarische Curries",
+    "Rice & Biryani",
+    "Parotta (unsere Parotta-Spezialitäten) (nur am Abends | Only in the Evenings)",
+    "Indian Breads (nur am Abends | Only in the Evenings)",
+    "Kids Menu",
+    "Soft Drinks",
+    "Dessert",
   ];
 
-  // only those present
-  const ordered = categoryOrder.filter((c) => byCat[c]);
+  const categoryOrderNormalized = categoryOrder.map(normalizeCategoryLabel);
+  const categorySynonyms = [
+    ["soup", "soups"],
+    ["egg", "eier", "egg appetizers"],
+    ["vegetarisch", "veg appetizers", "vegetarian appetizers"],
+    ["non vegetarisch", "non-vegetarisch", "non vegetarian appetizers"],
+    ["dosa", "dosa specials"],
+    ["steam", "steamed", "dampf", "dampf-spezialitäten", "steam specials"],
+    ["vegetarische", "vegan", "veg curries", "vegetarian curries"],
+    [
+      "non-vegetarische",
+      "non vegetarische",
+      "non veg curries",
+      "non vegetarian curries",
+    ],
+    ["biryani", "rice"],
+    ["parotta"],
+    ["indian breads", "breads", "bread", "naan", "roti"],
+    ["kids"],
+    ["drinks", "soft drinks"],
+    ["dessert", "desserts"],
+  ].map((arr) => arr.map(normalizeCategoryLabel));
 
-  // fallbacks for any extra categories
-  const rest = Object.keys(byCat).filter((c) => !categoryOrder.includes(c));
-  const finalCats = [...ordered, ...rest];
+  function getPriorityIndexFor(category) {
+    const n = normalizeCategoryLabel(category);
+    let idx = categoryOrderNormalized.indexOf(n);
+    if (idx !== -1) return idx;
+    for (let i = 0; i < categoryOrderNormalized.length; i++) {
+      const target = categoryOrderNormalized[i];
+      if (n.includes(target) || target.includes(n)) return i;
+    }
+    for (let i = 0; i < categorySynonyms.length; i++) {
+      const synonyms = categorySynonyms[i];
+      for (let k = 0; k < synonyms.length; k++) {
+        if (n.includes(synonyms[k])) return i;
+      }
+    }
+    return Number.MAX_SAFE_INTEGER;
+  }
+
+  const presentCategories = Object.keys(byCat);
+  const sortedCats = presentCategories
+    .map((c, i) => ({ name: c, i, p: getPriorityIndexFor(c) }))
+    .sort((a, b) => (a.p === b.p ? a.i - b.i : a.p - b.p))
+    .map((x) => x.name);
+
+  // Hide categories where every item is sold out
+  const visibleCats = sortedCats.filter((c) =>
+    (byCat[c] || []).some((item) => !isSoldout(item.soldout))
+  );
 
   // animations
   const container = {
@@ -167,7 +227,7 @@ export default function MenuDisplay({ menudata }) {
           ))}
         </motion.div>
       ) : (
-        finalCats.map((category) => {
+        visibleCats.map((category) => {
           const items = byCat[category];
           const bySub = groupBy(items, "subcategory");
           return (

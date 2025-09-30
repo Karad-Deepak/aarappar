@@ -283,6 +283,7 @@ export default function PickupPage() {
                     checked={paymentMethod === "pay_at_store"}
                     onChange={() => setPaymentMethod("pay_at_store")}
                     className="h-4 w-4"
+                    required
                   />
                   <div>
                     <div className="text-sm sm:text-base font-medium">
@@ -382,6 +383,7 @@ export default function PickupPage() {
                     onChange={(e) => setTransactionId(e.target.value)}
                     placeholder="e.g. 9AB12345CD6789012"
                     className="w-full p-2 sm:p-3 md:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
                   />
                   {errors.transactionId && (
                     <p className="text-red-500 text-sm mt-1">
@@ -439,6 +441,7 @@ export default function PickupPage() {
                     onChange={(e) => setTransactionId(e.target.value)}
                     placeholder="e.g. 1234567890"
                     className="w-full p-2 sm:p-3 md:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
                   />
                   {errors.transactionId && (
                     <p className="text-red-500 text-sm mt-1">
