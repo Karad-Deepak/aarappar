@@ -402,10 +402,7 @@ export default function ReserveTable() {
               rows="4"
             ></textarea>
           </div>
-          <p className="text-normalbg font-semibold text-lg p-3">
-            NOTE: Currently we are accepting cash only
-          </p>
-          {/* 
+
           <button
             type="submit"
             disabled={isPending}
@@ -413,7 +410,6 @@ export default function ReserveTable() {
           >
             {isPending ? "Reserving..." : "Reserve Now"}
           </button>
-          */}
         </form>
         {feedback && (
           <div className="mt-4 text-center text-green-500 font-medium">

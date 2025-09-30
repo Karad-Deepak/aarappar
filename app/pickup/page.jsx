@@ -451,7 +451,6 @@ export default function PickupPage() {
 
             {/* Submit Order Button */}
             <motion.button
-              disabled
               type="submit"
               // disabled={isSubmitting}
               className="w-full bg-red-900 text-white font-semibold py-2 sm:py-3 md:py-3 rounded hover:bg-red-950 transition duration-200"

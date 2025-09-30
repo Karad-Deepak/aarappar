@@ -145,6 +145,7 @@ export default function EditableMenuItem({ item }) {
             >
               Cancel
             </button>
+            {/* 
             <button
               type="button"
               onClick={(e) => {
@@ -155,6 +156,7 @@ export default function EditableMenuItem({ item }) {
             >
               Delete
             </button>
+            */}
             <button
               type="button"
               onClick={handleToggleSoldout}
