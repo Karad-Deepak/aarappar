@@ -72,17 +72,24 @@ const ConnectSection = () => {
                 <p className="font-medium">
                   Tue - Fri:{" "}
                   <span className="text-gray-900 font-semibold">
-                    17:30 - 22:00
+                    17:30 - 21:30
                   </span>
                 </p>
               </div>
 
               <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
                 <p className="font-medium">
-                  Sat - Sun:{" "}
+                  Sat & Sun:{" "}
                   <span className="text-gray-900 font-semibold">
-                    12:00 - 14:30, 17:30 - 22:00
+                    11:30 - 14:30, 17:30 - 21:30
                   </span>
+                </p>
+              </div>
+
+              <div className="bg-white/70 border border-slate-300/60 rounded-xl p-3 hover:bg-white/90 transition-colors duration-300 text-gray-900">
+                <p className="font-medium">
+                  Mon:{" "}
+                  <span className="text-gray-900 font-semibold">Closed</span>
                 </p>
               </div>
             </div>
@@ -158,7 +165,7 @@ const ConnectSection = () => {
                   Secondary
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">
-                  +49 15219220483
+                  +49 175 4286101
                 </p>
               </div>
 

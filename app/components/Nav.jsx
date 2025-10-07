@@ -7,6 +7,7 @@ import {
   Menu as MenuIcon,
   X as CloseIcon,
   Phone as PhoneIcon,
+  PartyPopper,
 } from "lucide-react"; // Lucide icons
 import logo2 from "@/public/logo2.png"; // Your logo image
 
@@ -66,6 +67,9 @@ function Nav() {
 function Navbar() {
   return (
     <nav className="hidden lg:flex flex-row gap-8 text-lg font-semibold text-slate-950">
+      <span className="inline-flex items-center gap-2 text-normalbg font-semibold">
+        <PartyPopper size={18} /> 10 % Rabatt zum Mitnehmen!
+      </span>
       <Link href="/menu">
         <span className="hover:text-normalbg transition duration-300">
           Menu

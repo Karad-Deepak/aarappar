@@ -2,7 +2,13 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Wallet, CreditCard, Banknote, BadgeDollarSign } from "lucide-react";
+import {
+  Wallet,
+  CreditCard,
+  Banknote,
+  BadgeDollarSign,
+  PartyPopper,
+} from "lucide-react";
 import halal from "@/public/halal.png"; // Assuming this path is correct and the image is provided
 import interior3 from "@/public/interior3.webp";
 
@@ -124,6 +130,9 @@ export default function Hero() {
           <div className="relative w-full max-w-[360px] sm:max-w-[480px] overflow-hidden bg-slate-100/80 border border-normalbg/20 rounded-full py-2">
             <marquee behavior="scroll" direction="left" scrollamount="12">
               <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
+                <PartyPopper size={16} /> 10 % Rabatt zum Mitnehmen!
+              </span>
+              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
                 <Wallet size={16} /> Cash accepted
               </span>
               <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
@@ -158,6 +167,9 @@ export default function Hero() {
       <div className="hidden lg:block w-full lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:mb-4 px-4 md:px-5 z-10">
         <div className="w-full overflow-hidden bg-slate-100/80 border border-normalbg/20 rounded-full py-3">
           <marquee behavior="scroll" direction="left" scrollamount="9">
+            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
+              <PartyPopper size={18} /> 10 % Rabatt zum Mitnehmen!
+            </span>
             <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
               <Wallet size={18} /> Cash accepted
             </span>
