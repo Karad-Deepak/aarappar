@@ -1,0 +1,147 @@
+{
+  "Nav": {
+    "takeawayOffer": "10 % Rabatt zum Mitnehmen!",
+    "links": {
+      "home": { "label": "Startseite", "href": "/" },
+      "menu": { "label": "Speisekarte", "href": "/menu" },
+      "reservation": { "label": "Tisch reservieren", "href": "/reservation" },
+      "catering": { "label": "Catering", "href": "/catering" },
+      "about": { "label": "Über uns", "href": "/about" }
+    }
+  },
+  "Hero": {
+    "heading": "AARAPPAR",
+    "subheading": "Indisches Restaurant",
+    "description": "Authentische indische Aromen im Herzen Deutschlands! Erleben Sie die Traditionen Südindiens in unserem Restaurant.",
+    "ratings": {
+      "reviews": "(100+ Bewertungen)"
+    },
+    "cta": {
+      "order": "Jetzt bestellen",
+      "reserve": "Tisch reservieren"
+    },
+    "marquee": {
+      "offer": "10 % Rabatt zum Mitnehmen!",
+      "cash": "Barzahlung möglich",
+      "card": "Kartenzahlung möglich",
+      "paypal": "PayPal möglich",
+      "iban": "IBAN-Zahlung möglich"
+    }
+  },
+  "MenuSection": {
+    "title": "Tradition genießen, Vielfalt entdecken!",
+    "subtitle": "Tauchen Sie ein in verführerische Aromen und authentische Spezialitäten aus Südindien – sorgfältig für Sie zusammengestellt.",
+    "cta": {
+      "order": "Jetzt bestellen",
+      "explore": "Zur kompletten Speisekarte",
+      "exploreAria": "Zur vollständigen Speisekarte von Aarappar"
+    }
+  },
+  "CateringSection": {
+    "title": "Verleihen Sie Ihren Events besonderen Glanz",
+    "description": "Genießen Sie köstliche Aromen, stilvolle Präsentation und einen reibungslosen Service. Unser Catering-Team gestaltet jedes Detail mit Sorgfalt, damit Ihr Event unvergesslich wird.",
+    "cta": "Jetzt anfragen"
+  },
+  "ConnectSection": {
+    "title": "Kontaktieren Sie <highlight>uns</highlight>",
+    "subtitle": "Besuchen Sie uns, rufen Sie an oder finden Sie uns online. Wir servieren Ihnen authentische südindische Küche in Frankfurt.",
+    "hours": {
+      "title": "Öffnungszeiten",
+      "entries": [
+        { "label": "Di - Fr", "value": "17:30 - 21:30" },
+        { "label": "Sa & So", "value": "11:30 - 14:30, 17:30 - 21:30" },
+        { "label": "Mo", "value": "Geschlossen" }
+      ]
+    },
+    "address": {
+      "title": "Adresse",
+      "lines": [
+        "Trümpertstraße 18",
+        "60489 Frankfurt am Main",
+        "Rödelheim"
+      ],
+      "mapTitle": "Standort AARAPPAR Indisches Restaurant",
+      "mapSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40178.60245771533!2d8.537106513977035!3d50.12766987455033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0934d333c46d%3A0x15c1044ed6dd33a3!2sAarappar%20Indisches%20Restaurant!5e1!3m2!1sen!2sin!4v1758961088990!5m2!1sen!2sin"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "items": [
+        { "label": "Telefon", "value": "+49 69 21939837" },
+        { "label": "Mobil", "value": "+49 175 4286101" },
+        { "label": "E-Mail", "value": "aarapparrodelheim@aarappar.de" }
+      ]
+    }
+  },
+  "CustomerFeedback": {
+    "title": "Was unsere Gäste sagen",
+    "subtitle": "Erfahren Sie, warum unsere Gäste immer wieder wegen authentischer südindischer Küche und herzlichem Service zurückkehren.",
+    "controls": {
+      "prev": "Vorherige Bewertung",
+      "next": "Nächste Bewertung",
+      "goto": "Zur Bewertung {index} wechseln"
+    }
+  },
+  "Footer": {
+    "brand": "AARAPPAR Indisches Restaurant",
+    "tagline": "Geschmack wie zu Hause",
+    "quickLinksTitle": "Schnellzugriff",
+    "links": [
+      { "label": "Speisekarte", "href": "/menu" },
+      { "label": "Reservierungen", "href": "/reservation" },
+      { "label": "Catering", "href": "/catering" },
+      { "label": "Über uns", "href": "/about" }
+    ],
+    "contact": {
+      "title": "Kontakt",
+      "addressLines": [
+        "Trümpertstraße 18",
+        "60489 Frankfurt am Main – Rödelheim"
+      ],
+      "details": [
+        { "label": "Telefon", "value": "+49 69 21939837" },
+        { "label": "Mobil", "value": "+49 175 4286101" },
+        { "label": "E-Mail", "value": "aarapparrodelheim@aarappar.de" }
+      ]
+    },
+    "cookies": {
+      "message": "Wir verwenden nur unbedingt erforderliche Cookies",
+      "separator": "- weitere Informationen in unserer",
+      "policy": "Datenschutzerklärung",
+      "terminator": "."
+    },
+    "copyright": "Alle Rechte vorbehalten."
+  },
+  "CookieNotice": {
+    "title": "Ihre Privatsphäre",
+    "description": "Wir setzen ausschließlich technisch notwendige Cookies ein, um den Betrieb dieser Website zu gewährleisten (z. B. für Navigation oder Bestellung). Es werden keine Analyse- oder Marketing-Cookies verwendet. Weitere Informationen finden Sie in unserer <link>Datenschutzerklärung</link>.",
+    "checkboxLabel": "Erforderliche Cookies (aktiv)",
+    "button": "OK",
+    "aria": {
+      "dialog": "Hinweis zu Cookies",
+      "checkbox": "Erforderliche Cookies (aktiv)",
+      "button": "Cookie-Hinweis bestätigen"
+    }
+  },
+  "Metadata": {
+    "title": "AARAPPAR Indisches Restaurant",
+    "description": "Erleben Sie moderne indische Küche in Frankfurt – authentische Aromen, stilvolles Ambiente, unkomplizierte Reservierungen und maßgeschneiderter Catering-Service."
+  },
+  "AboutPage": {
+    "title": "Über AARAPPAR",
+    "paragraphs": [
+      "Willkommen bei AARAPPAR – hier verbinden wir kulinarische Handwerkskunst mit modernem Design. Unser Restaurant ist aus dem Wunsch entstanden, die Herzlichkeit Südindiens nach Frankfurt zu bringen.",
+      "Jedes Gericht entsteht aus sorgfältig ausgewählten Zutaten, aromatischen Gewürzen und viel Liebe zum Detail. Unser Ambiente verbindet klare Linien mit warmen Farbakzenten – passend zum Zusammenspiel aus Tradition und Innovation auf dem Teller.",
+      "Ob entspanntes Abendessen, besondere Feier oder schneller Lunch: Wir möchten jeden Besuch mit aufmerksamem Service und unvergesslichen Geschmackserlebnissen zu etwas Besonderem machen."
+    ]
+  },
+  "OrderConfirmation": {
+    "title": "Vielen Dank für Ihre Bestellung!",
+    "message": "Ihre Bestellung wurde erfolgreich übermittelt. Wir melden uns in Kürze bei Ihnen."
+  },
+  "MenuPage": {
+    "searchPlaceholder": "Nach Gerichten suchen...",
+    "noResults": "Keine Gerichte gefunden.",
+    "soldOut": "Ausverkauft",
+    "unavailable": "Nicht verfügbar"
+  }
+}

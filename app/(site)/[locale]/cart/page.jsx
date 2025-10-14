@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useState, useTransition } from "react";
 import { useCart } from "@/app/components/CartContext";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 import { createOrder } from "@/app/lib/actions";
-import Nav from "../components/Nav";
+import Nav from "@/app/components/Nav";
 import { motion } from "framer-motion";
 
 export default function CartPage() {
@@ -126,8 +126,7 @@ export default function CartPage() {
                     {item.item_name}
                   </p>
                   <p className="text-sm sm:text-base text-gray-600 ">
-                    Quantity: {item.quantity} x €
-                    {parseFloat(item.price).toFixed(2)}
+                    Quantity: {item.quantity} × €{parseFloat(item.price).toFixed(2)}
                   </p>
                 </div>
                 <button
@@ -213,3 +212,7 @@ export default function CartPage() {
     </>
   );
 }
+
+
+
+

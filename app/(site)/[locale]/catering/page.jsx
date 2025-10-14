@@ -1,10 +1,8 @@
 "use client";
 import Nav from "@/app/components/Nav";
-
-import Footer from "../components/Footer";
-
-import ConnectSection from "../components/ConnectSection";
-import CateringPage from "../components/CateringPage";
+import Footer from "@/app/components/Footer";
+import ConnectSection from "@/app/components/ConnectSection";
+import CateringPage from "@/app/components/CateringPage";
 
 function page() {
   return (

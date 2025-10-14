@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/app/components/LocalizedLink";
+import { useTranslations } from "next-intl";
 import {
   Wallet,
   CreditCard,
@@ -9,7 +10,7 @@ import {
   BadgeDollarSign,
   PartyPopper,
 } from "lucide-react";
-import halal from "@/public/halal.png"; // Assuming this path is correct and the image is provided
+import halal from "@/public/halal.png";
 import interior3 from "@/public/interior3.webp";
 
 // Simple SVG Star component for rating
@@ -32,6 +33,16 @@ const Star = ({ filled }) => (
 );
 
 export default function Hero() {
+  const t = useTranslations("Hero");
+
+  const marqueeItems = [
+    { icon: PartyPopper, label: t("marquee.offer") },
+    { icon: Wallet, label: t("marquee.cash") },
+    { icon: CreditCard, label: t("marquee.card") },
+    { icon: BadgeDollarSign, label: t("marquee.paypal") },
+    { icon: Banknote, label: t("marquee.iban") },
+  ];
+
   return (
     <section className="relative w-full flex flex-col mt-10 gap-6 lg:gap-8 lg:flex-row items-center px-4 md:px-5 py-10 lg:py-12 lg:pb-20">
       {/* Left Side - Text */}
@@ -47,14 +58,14 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          AARAPPAR <br />
+          {t("heading")} <br />
           <motion.span
             className="text-3xl md:text-3xl font-bold uppercase text-normalbg leading-tight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            Indisches Restaurant
+            {t("subheading")}
           </motion.span>
         </motion.h1>
         <motion.p
@@ -63,8 +74,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          Authentic Indian Flavors in the Heart of Germany! Experience the rich
-          flavors and traditions of South India at our restaurant.
+          {t("description")}
         </motion.p>
         {/* Ratings Block */}
         <motion.div
@@ -86,7 +96,7 @@ export default function Hero() {
                   4.8
                 </span>
                 <span className="text-gray-900 text-xs sm:text-sm lg:text-base font-medium">
-                  (100+ reviews)
+                  {t("ratings.reviews")}
                 </span>
               </div>
             </div>
@@ -113,7 +123,7 @@ export default function Hero() {
               href="/menu"
               className="w-full sm:w-auto inline-block px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-green-600 via-green-600 to-green-600 hover:from-green-700 hover:via-green-800 hover:to-green-900 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-green-600/30 text-white"
             >
-              Order Now
+              {t("cta.order")}
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -121,7 +131,7 @@ export default function Hero() {
               href="/reservation"
               className="w-full sm:w-auto inline-block px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-500 hover:from-yellow-600 hover:via-yellow-700 hover:to-yellow-800 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 text-black"
             >
-              Make Reservation
+              {t("cta.reserve")}
             </Link>
           </motion.div>
         </motion.div>
@@ -129,21 +139,14 @@ export default function Hero() {
         <div className="lg:hidden w-full mt-4 flex justify-center">
           <div className="relative w-full max-w-[360px] sm:max-w-[480px] overflow-hidden bg-slate-100/80 border border-normalbg/20 rounded-full py-2">
             <marquee behavior="scroll" direction="left" scrollamount="12">
-              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
-                <PartyPopper size={16} /> 10 % Rabatt zum Mitnehmen!
-              </span>
-              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
-                <Wallet size={16} /> Cash accepted
-              </span>
-              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
-                <CreditCard size={16} /> Card accepted
-              </span>
-              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
-                <BadgeDollarSign size={16} /> PayPal accepted
-              </span>
-              <span className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6">
-                <Banknote size={16} /> IBAN accepted
-              </span>
+              {marqueeItems.map(({ icon: Icon, label }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-2 text-normalbg font-semibold text-xs mr-6"
+                >
+                  <Icon size={16} /> {label}
+                </span>
+              ))}
             </marquee>
           </div>
         </div>
@@ -167,24 +170,18 @@ export default function Hero() {
       <div className="hidden lg:block w-full lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:mb-4 px-4 md:px-5 z-10">
         <div className="w-full overflow-hidden bg-slate-100/80 border border-normalbg/20 rounded-full py-3">
           <marquee behavior="scroll" direction="left" scrollamount="9">
-            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
-              <PartyPopper size={18} /> 10 % Rabatt zum Mitnehmen!
-            </span>
-            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
-              <Wallet size={18} /> Cash accepted
-            </span>
-            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
-              <CreditCard size={18} /> Card accepted
-            </span>
-            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
-              <BadgeDollarSign size={18} /> PayPal accepted
-            </span>
-            <span className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14">
-              <Banknote size={18} /> IBAN accepted
-            </span>
+            {marqueeItems.map(({ icon: Icon, label }) => (
+              <span
+                key={`desktop-${label}`}
+                className="inline-flex items-center gap-3 text-normalbg font-semibold text-sm mr-14"
+              >
+                <Icon size={18} /> {label}
+              </span>
+            ))}
           </marquee>
         </div>
       </div>
     </section>
   );
 }
+

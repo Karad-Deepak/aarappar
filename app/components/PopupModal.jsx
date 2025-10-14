@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/app/components/LocalizedLink";
 import logo from "@/public/logo2.png";
 
 export default function PopupModal({ content }) {
@@ -51,7 +51,7 @@ export default function PopupModal({ content }) {
               rotate: 2,
               transition: { duration: 0.4, ease: "easeIn" },
             }}
-            className="w-full max-w-3xl md:max-w-6xl rounded-2xl max-h-[95vh] overflow-y-auto bg-slate-100 p-5 md:p-7 shadow-2xl mt-10 lg:mt-14 relative"
+            className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl rounded-2xl max-h-[95vh] overflow-y-auto bg-slate-100 p-5 md:p-7 shadow-2xl mt-10 lg:mt-14 relative"
           >
             {/* Close Icon in the top right corner */}
             <div className="absolute top-3 right-3">
@@ -132,3 +132,4 @@ export default function PopupModal({ content }) {
     </AnimatePresence>
   );
 }
+

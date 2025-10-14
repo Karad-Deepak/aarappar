@@ -1,6 +1,7 @@
 "use client";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
@@ -38,6 +39,7 @@ const reviews = [
 ];
 
 export default function CustomerFeedback() {
+  const t = useTranslations("CustomerFeedback");
   const [currentIndex, setCurrentIndex] = useState(0);
   const controls = useAnimation();
 
@@ -92,7 +94,7 @@ export default function CustomerFeedback() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            What Our Customers Say
+            {t("title")}
           </motion.h2>
 
           <motion.p
@@ -101,8 +103,7 @@ export default function CustomerFeedback() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            Discover why our guests keep coming back for authentic South Indian
-            flavors and exceptional service.
+            {t("subtitle")}
           </motion.p>
         </motion.div>
 
@@ -189,7 +190,7 @@ export default function CustomerFeedback() {
           <div className="absolute top-1/2 transform -translate-y-1/2 left-4 sm:left-6 lg:left-8">
             <motion.button
               onClick={handlePrev}
-              aria-label="Previous Review"
+              aria-label={t("controls.prev")}
               className="bg-white/80 backdrop-blur-sm border border-slate-300/60 hover:bg-white p-3 sm:p-4 rounded-2xl shadow-lg transition-all duration-300 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -201,7 +202,7 @@ export default function CustomerFeedback() {
           <div className="absolute top-1/2 transform -translate-y-1/2 right-4 sm:right-6 lg:right-8">
             <motion.button
               onClick={handleNext}
-              aria-label="Next Review"
+              aria-label={t("controls.next")}
               className="bg-white/80 backdrop-blur-sm border border-slate-300/60 hover:bg-white p-3 sm:p-4 rounded-2xl shadow-lg transition-all duration-300 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -224,7 +225,7 @@ export default function CustomerFeedback() {
               }`}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
-              aria-label={`Go to review ${index + 1}`}
+              aria-label={t("controls.goto", { index: index + 1 })}
             />
           ))}
         </div>

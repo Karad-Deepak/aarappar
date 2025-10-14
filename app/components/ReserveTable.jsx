@@ -292,6 +292,22 @@ export default function ReserveTable() {
                 }}
                 minDate={new Date()}
                 dateFormat="dd MMM yyyy"
+                // Disable Mondays (restaurant closed)
+                filterDate={(date) => date.getDay() !== 1}
+                // Visually strike Mondays in the calendar
+                dayClassName={(date) =>
+                  date.getDay() === 1
+                    ? "line-through opacity-50 pointer-events-none"
+                    : undefined
+                }
+                // Add strike-through to the day number as well
+                renderDayContents={(day, date) => (
+                  <span
+                    className={date.getDay() === 1 ? "line-through" : undefined}
+                  >
+                    {day}
+                  </span>
+                )}
                 className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
                 placeholderText="Choose a date"
               />

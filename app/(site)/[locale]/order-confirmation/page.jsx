@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import Nav from "../components/Nav";
+import Nav from "@/app/components/Nav";
 import confetti from "canvas-confetti";
+import { useTranslations } from "next-intl";
 
 export default function OrderConfirmation() {
+  const t = useTranslations("OrderConfirmation");
+
   useEffect(() => {
     // Trigger confetti on page load
     confetti({
@@ -20,11 +23,10 @@ export default function OrderConfirmation() {
       <Nav />
       <div className="p-8 bg-darkbg rounded-lg shadow-2xl text-center max-w-md mx-auto">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-normalbg">
-          Thank you for your order!
+          {t("title")}
         </h1>
         <p className="text-lg sm:text-xl text-white">
-          Your order has been submitted successfully. We will connect with you
-          shortly.
+          {t("message")}
         </p>
       </div>
     </div>

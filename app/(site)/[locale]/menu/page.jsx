@@ -1,11 +1,9 @@
 import Nav from "@/app/components/Nav";
-
-import Footer from "../components/Footer";
-import { fetchMenu, fetchMenuItems } from "../lib/actions";
-import MenuDisplay from "../components/MenuDisplay";
-import CartBottomBar from "../components/CartBottomBar";
-
-import DrinksMenu from "../components/DrinksMenu";
+import Footer from "@/app/components/Footer";
+import { fetchMenuItems } from "@/app/lib/actions";
+import MenuDisplay from "@/app/components/MenuDisplay";
+import CartBottomBar from "@/app/components/CartBottomBar";
+import DrinksMenu from "@/app/components/DrinksMenu";
 
 async function page() {
   const menudata = await fetchMenuItems();
@@ -17,7 +15,7 @@ async function page() {
       <main className="bg-white pt-12 lg:pt-2 ">
         <MenuDisplay menudata={menudata} />
         <DrinksMenu />
-        <CartBottomBar />\
+        <CartBottomBar />
       </main>
       <footer>
         <Footer />

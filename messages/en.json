@@ -1,0 +1,147 @@
+{
+  "Nav": {
+    "takeawayOffer": "10% off for takeaway!",
+    "links": {
+      "home": { "label": "Home", "href": "/" },
+      "menu": { "label": "Menu", "href": "/menu" },
+      "reservation": { "label": "Reserve Table", "href": "/reservation" },
+      "catering": { "label": "Catering", "href": "/catering" },
+      "about": { "label": "About Us", "href": "/about" }
+    }
+  },
+  "Hero": {
+    "heading": "AARAPPAR",
+    "subheading": "Indian Restaurant",
+    "description": "Authentic Indian flavours in the heart of Germany! Experience the rich traditions of South India at our restaurant.",
+    "ratings": {
+      "reviews": "(100+ reviews)"
+    },
+    "cta": {
+      "order": "Order Now",
+      "reserve": "Make Reservation"
+    },
+    "marquee": {
+      "offer": "10% off for takeaway!",
+      "cash": "Cash accepted",
+      "card": "Card accepted",
+      "paypal": "PayPal accepted",
+      "iban": "IBAN accepted"
+    }
+  },
+  "MenuSection": {
+    "title": "A Taste of Tradition, A Feast of Flavours!",
+    "subtitle": "Step into a world of rich aromas and authentic flavours with our specially curated South Indian menu.",
+    "cta": {
+      "order": "Order Now",
+      "explore": "Explore Full Menu",
+      "exploreAria": "Explore the full Aarappar restaurant menu"
+    }
+  },
+  "CateringSection": {
+    "title": "Elevate Your Events with Exquisite Catering",
+    "description": "Experience a blend of delicious flavours, artful presentation and seamless service. Our catering team crafts every detail to perfection so your event becomes unforgettable.",
+    "cta": "Enquire Now"
+  },
+  "ConnectSection": {
+    "title": "Connect with <highlight>Us</highlight>",
+    "subtitle": "Visit us, call us or find us online. We're here to serve you the very best South Indian cuisine in Frankfurt.",
+    "hours": {
+      "title": "Operational Hours",
+      "entries": [
+        { "label": "Tue - Fri", "value": "17:30 - 21:30" },
+        { "label": "Sat & Sun", "value": "11:30 - 14:30, 17:30 - 21:30" },
+        { "label": "Mon", "value": "Closed" }
+      ]
+    },
+    "address": {
+      "title": "Address",
+      "lines": [
+        "Trümpertstraße 18",
+        "60489 Frankfurt am Main",
+        "Rödelheim"
+      ],
+      "mapTitle": "AARAPPAR Indian Restaurant location",
+      "mapSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40178.60245771533!2d8.537106513977035!3d50.12766987455033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0934d333c46d%3A0x15c1044ed6dd33a3!2sAarappar%20Indisches%20Restaurant!5e1!3m2!1sen!2sin!4v1758961088990!5m2!1sen!2sin"
+    },
+    "contact": {
+      "title": "Contact",
+      "items": [
+        { "label": "Primary", "value": "+49 69 21939837" },
+        { "label": "Secondary", "value": "+49 175 4286101" },
+        { "label": "Email", "value": "aarapparrodelheim@aarappar.de" }
+      ]
+    }
+  },
+  "CustomerFeedback": {
+    "title": "What Our Customers Say",
+    "subtitle": "Discover why our guests keep coming back for authentic South Indian flavours and exceptional service.",
+    "controls": {
+      "prev": "Previous review",
+      "next": "Next review",
+      "goto": "Go to review {index}"
+    }
+  },
+  "Footer": {
+    "brand": "AARAPPAR Indian Restaurant",
+    "tagline": "Flavours straight from home",
+    "quickLinksTitle": "Quick Links",
+    "links": [
+      { "label": "Menu", "href": "/menu" },
+      { "label": "Reservations", "href": "/reservation" },
+      { "label": "Catering", "href": "/catering" },
+      { "label": "About Us", "href": "/about" }
+    ],
+    "contact": {
+      "title": "Contact Us",
+      "addressLines": [
+        "Trümpertstraße 18",
+        "60489 Frankfurt am Main – Rödelheim"
+      ],
+      "details": [
+        { "label": "Primary", "value": "+49 69 21939837" },
+        { "label": "Secondary", "value": "+49 175 4286101" },
+        { "label": "Email", "value": "aarapparrodelheim@aarappar.de" }
+      ]
+    },
+    "cookies": {
+      "message": "We only use essential cookies",
+      "separator": "- please see our",
+      "policy": "Privacy Policy",
+      "terminator": "."
+    },
+    "copyright": "All Rights Reserved."
+  },
+  "CookieNotice": {
+    "title": "Your Privacy",
+    "description": "We only use technically necessary cookies to keep this website running (for example for navigation or ordering). No analytics or marketing cookies are set. For more details, see our <link>Privacy Policy</link>.",
+    "checkboxLabel": "Essential cookies (required)",
+    "button": "OK",
+    "aria": {
+      "dialog": "Cookie notice",
+      "checkbox": "Essential cookies (required)",
+      "button": "Acknowledge cookie notice"
+    }
+  },
+  "Metadata": {
+    "title": "AARAPPAR Indian Restaurant",
+    "description": "Discover modern Indian dining in Frankfurt – authentic flavours, contemporary atmosphere, easy reservations and bespoke catering."
+  },
+  "AboutPage": {
+    "title": "About AARAPPAR",
+    "paragraphs": [
+      "Welcome to AARAPPAR, where culinary craftsmanship meets contemporary design. Our restaurant was founded with the goal of bringing the warmth of South Indian hospitality to Frankfurt.",
+      "Every dish is prepared with carefully selected ingredients, vibrant spices and an eye for presentation. Our dining room combines modern lines with rich colour accents to mirror the balance of tradition and innovation on the plate.",
+      "Whether you join us for a relaxed dinner, a festive celebration or a quick lunch break, we strive to make every visit memorable with attentive service and unforgettable flavours."
+    ]
+  },
+  "OrderConfirmation": {
+    "title": "Thank you for your order!",
+    "message": "Your order was submitted successfully. We will contact you shortly."
+  },
+  "MenuPage": {
+    "searchPlaceholder": "Search for items...",
+    "noResults": "No items found.",
+    "soldOut": "Sold out",
+    "unavailable": "Unavailable"
+  }
+}

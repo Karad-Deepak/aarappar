@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/app/components/LocalizedLink";
 import delivery from "@/public/delivery.png";
 
 // Reusable Button Component with Hover Effect
@@ -85,3 +85,4 @@ export default function DeliverySection() {
     </section>
   );
 }
+

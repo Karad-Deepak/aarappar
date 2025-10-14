@@ -1,9 +1,8 @@
 "use client";
 import Nav from "@/app/components/Nav";
-
-import Footer from "../components/Footer";
-import ReserveTable from "../components/ReserveTable";
-import ConnectSection from "../components/ConnectSection";
+import Footer from "@/app/components/Footer";
+import ReserveTable from "@/app/components/ReserveTable";
+import ConnectSection from "@/app/components/ConnectSection";
 
 function page() {
   return (

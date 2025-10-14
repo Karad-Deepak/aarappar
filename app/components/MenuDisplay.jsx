@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import QuantityControl from "./QuantityControl";
 import { toTitleCase } from "@/app/utils/string";
 import chicken from "@/public/chicken.webp";
 import Biryani from "@/public/Biryani.webp";
+import { useTranslations } from "next-intl";
 
 // Helper: group items by key
 function groupBy(arr, key) {
@@ -26,13 +27,14 @@ function isSoldout(value) {
 function normalizeCategoryLabel(label) {
   if (!label) return "";
   let s = String(label).toLowerCase();
-  s = s.replace(/[–—]/g, "-"); // unify dashes
+  s = s.replace(/[â€“â€”]/g, "-"); // unify dashes
   s = s.replace(/\s*\|\s*/g, " | "); // normalize pipe spacing
   s = s.replace(/\s+/g, " ").trim(); // collapse spaces
   return s;
 }
 
 export default function MenuDisplay({ menudata }) {
+  const t = useTranslations("MenuPage");
   const [searchTerm, setSearchTerm] = useState("");
 
   // show all items, including sold-out ones
@@ -46,15 +48,15 @@ export default function MenuDisplay({ menudata }) {
   // refined user-friendly order
   const categoryOrder = [
     "Soups",
-    "Vorspeisen | Appetizers – Vegetarisch",
+    "Vorspeisen | Appetizers â€“ Vegetarisch",
     "Eier Vorspeisen | Egg Appetizers",
-    "Vorspeisen | Appetizers – Non Vegetarisch",
-    "Our Dosa Specials (knusprige, Gefüllte Reis-Crepes aus Südindien) (nur am Abends | Only in the Evenings)",
-    "Our Steam Specials / Unsere Dampf-Spezialitäten (nur am Abends | Only in the Evenings)",
+    "Vorspeisen | Appetizers â€“ Non Vegetarisch",
+    "Our Dosa Specials (knusprige, GefÃ¼llte Reis-Crepes aus SÃ¼dindien) (nur am Abends | Only in the Evenings)",
+    "Our Steam Specials / Unsere Dampf-SpezialitÃ¤ten (nur am Abends | Only in the Evenings)",
     "Vegetarische & Vegan Curries",
     "Non-Vegetarische Curries",
     "Rice & Biryani",
-    "Parotta (unsere Parotta-Spezialitäten) (nur am Abends | Only in the Evenings)",
+    "Parotta (unsere Parotta-SpezialitÃ¤ten) (nur am Abends | Only in the Evenings)",
     "Indian Breads (nur am Abends | Only in the Evenings)",
     "Kids Menu",
     "Soft Drinks",
@@ -68,7 +70,7 @@ export default function MenuDisplay({ menudata }) {
     ["vegetarisch", "veg appetizers", "vegetarian appetizers"],
     ["non vegetarisch", "non-vegetarisch", "non vegetarian appetizers"],
     ["dosa", "dosa specials"],
-    ["steam", "steamed", "dampf", "dampf-spezialitäten", "steam specials"],
+    ["steam", "steamed", "dampf", "dampf-spezialitÃ¤ten", "steam specials"],
     ["vegetarische", "vegan", "veg curries", "vegetarian curries"],
     [
       "non-vegetarische",
@@ -164,13 +166,13 @@ export default function MenuDisplay({ menudata }) {
         <input
           type="text"
           className="w-full max-w-md p-2 rounded-full border focus:ring-2 focus:ring-red-500"
-          placeholder="Search for items..."
+          placeholder={t("searchPlaceholder")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       {searchTerm && filtered.length === 0 && (
-        <p className="text-center text-gray-500">No items found.</p>
+        <p className="text-center text-gray-500">{t("noResults")}</p>
       )}
 
       {searchTerm ? (
@@ -200,7 +202,7 @@ export default function MenuDisplay({ menudata }) {
                     {item.item_name}
                     {item.soldout && (
                       <span className="ml-2 text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
-                        SOLD OUT
+                        {t("soldOut")}
                       </span>
                     )}
                   </span>
@@ -209,7 +211,7 @@ export default function MenuDisplay({ menudata }) {
                       item.soldout ? "text-gray-400" : "text-indigo-700"
                     }`}
                   >
-                    €{parseFloat(item.price).toFixed(2)}
+                    â‚¬{parseFloat(item.price).toFixed(2)}
                   </span>
                 </div>
                 {item.description && (
@@ -273,7 +275,7 @@ export default function MenuDisplay({ menudata }) {
                                   {item.item_name}
                                   {item.soldout && (
                                     <span className="ml-2 text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
-                                      Unavailable
+                                      {t("unavailable")}
                                     </span>
                                   )}
                                 </span>
@@ -284,7 +286,7 @@ export default function MenuDisplay({ menudata }) {
                                       : "text-indigo-800"
                                   }`}
                                 >
-                                  €{parseFloat(item.price).toFixed(2)}
+                                  â‚¬{parseFloat(item.price).toFixed(2)}
                                 </span>
                               </div>
                               {item.description && (
@@ -317,3 +319,8 @@ export default function MenuDisplay({ menudata }) {
     </div>
   );
 }
+
+
+
+
+

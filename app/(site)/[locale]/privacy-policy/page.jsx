@@ -1,7 +1,6 @@
-// pages/privacy-policy.js
-
-import Footer from "../components/Footer";
-import Nav from "../components/Nav";
+﻿// pages/privacy-policy.js
+import Footer from "@/app/components/Footer";
+import Nav from "@/app/components/Nav";
 
 export default function PrivacyPolicy() {
   return (
@@ -95,3 +94,4 @@ export default function PrivacyPolicy() {
     </>
   );
 }
+

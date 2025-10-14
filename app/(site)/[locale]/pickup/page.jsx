@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useCart } from "@/app/components/CartContext";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 import { createPickupOrder } from "@/app/lib/actions";
 import { motion } from "framer-motion";
-import Nav from "../components/Nav";
+import Nav from "@/app/components/Nav";
 
 export default function PickupPage() {
   const { cart, clearCart } = useCart();
