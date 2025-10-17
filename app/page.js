@@ -19,7 +19,13 @@ export default async function Page() {
   return (
     <>
       {/* Render the popup if it is active */}
-      {popup && popup.active && <PopupModal content={popup.content} />}
+      {popup && popup.active && (
+        <PopupModal
+          type={popup.type}
+          content={popup.content}
+          imageUrl={popup.image_url}
+        />
+      )}
       <CookieNotice />
       <HeaderSection />
       <main>

@@ -292,15 +292,11 @@ export default function ReserveTable() {
                 }}
                 minDate={new Date()}
                 dateFormat="dd MMM yyyy"
+                filterDate={(date) => date.getDay() !== 1} // Disable all Mondays
                 className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
                 placeholderText="Choose a date"
               />
             </div>
-            {selectedDate && selectedDate.getDay() === 1 && (
-              <p className="mt-2 text-red-500 text-center">
-                Sorry, we are closed on Mondays.
-              </p>
-            )}
           </div>
 
           {/* Time Slot Selection */}
