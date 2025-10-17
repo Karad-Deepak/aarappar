@@ -240,25 +240,139 @@ export async function fetchPopupSettings() {
   return data[0] || null;
 }
 
+// Upload popup image to Supabase Storage
+export async function uploadPopupImage(formData) {
+  "use server";
+  const file = formData.get("file");
+
+  if (!file) {
+    throw new Error("No file provided");
+  }
+
+  // Validate file size (max 500KB)
+  const maxSize = 500 * 1024; // 500KB in bytes
+  if (file.size > maxSize) {
+    throw new Error("File size exceeds 500KB limit");
+  }
+
+  // Validate file type (only images)
+  const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif"];
+  if (!allowedTypes.includes(file.type)) {
+    throw new Error("Invalid file type. Only JPEG, PNG, WEBP, and GIF are allowed");
+  }
+
+  try {
+    // Convert file to buffer for Supabase upload
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    // Create unique filename
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+
+    // Upload to Supabase Storage
+    const { data, error } = await supabase.storage
+      .from("popup-images")
+      .upload(fileName, buffer, {
+        contentType: file.type,
+        upsert: false,
+      });
+
+    if (error) {
+      console.error("Upload error:", error);
+      throw new Error("Failed to upload image");
+    }
+
+    // Get public URL
+    const { data: { publicUrl } } = supabase.storage
+      .from("popup-images")
+      .getPublicUrl(data.path);
+
+    return { success: true, url: publicUrl, path: data.path };
+  } catch (error) {
+    console.error("Error in uploadPopupImage:", error);
+    throw new Error(error.message || "Failed to upload image");
+  }
+}
+
+// Delete popup image from Supabase Storage
+export async function deletePopupImage(imagePath) {
+  "use server";
+
+  if (!imagePath) {
+    return { success: true, message: "No image to delete" };
+  }
+
+  try {
+    // Extract filename from full URL or path
+    const fileName = imagePath.includes("/")
+      ? imagePath.split("/").pop()
+      : imagePath;
+
+    const { error } = await supabase.storage
+      .from("popup-images")
+      .remove([fileName]);
+
+    if (error) {
+      console.error("Delete error:", error);
+      throw new Error("Failed to delete image");
+    }
+
+    return { success: true, message: "Image deleted successfully" };
+  } catch (error) {
+    console.error("Error in deletePopupImage:", error);
+    throw new Error(error.message || "Failed to delete image");
+  }
+}
+
 // Update the popup settings
 export async function updatePopupSettings(formData) {
   "use server";
   const id = formData.get("id");
+  const type = formData.get("type"); // 'content' or 'image'
   const content = formData.get("content");
+  const imageUrl = formData.get("image_url");
+  const oldImageUrl = formData.get("old_image_url"); // To delete old image
   const active = formData.get("active") === "on" ? true : false;
 
-  const { error } = await supabase
-    .from("popup_settings")
-    .update({ content, active })
-    .eq("id", id);
-  if (error) throw new Error("Failed to update popup settings");
+  try {
+    // If switching from image to content, delete the old image
+    if (type === "content" && oldImageUrl) {
+      try {
+        await deletePopupImage(oldImageUrl);
+      } catch (err) {
+        console.error("Error deleting old image:", err);
+        // Continue even if delete fails
+      }
+    }
 
-  // Revalidate the home page (or admin page if needed)
-  revalidatePath("/");
-  revalidatePath("/admin/popup-settings");
+    // Prepare update data based on type
+    const updateData = {
+      type,
+      active,
+      content: type === "content" ? content : null,
+      image_url: type === "image" ? imageUrl : null,
+    };
 
-  // Return a message for inline feedback (this will be returned to a client component)
-  return { message: "Popup settings updated successfully" };
+    const { error } = await supabase
+      .from("popup_settings")
+      .update(updateData)
+      .eq("id", id);
+
+    if (error) {
+      console.error("Update error:", error);
+      throw new Error("Failed to update popup settings");
+    }
+
+    // Revalidate the home page and admin page
+    revalidatePath("/");
+    revalidatePath("/admin/popup-settings");
+
+    return { success: true, message: "Popup settings updated successfully" };
+  } catch (error) {
+    console.error("Error in updatePopupSettings:", error);
+    throw new Error(error.message || "Failed to update popup settings");
+  }
 }
 export async function createOrder(formData) {
   "use server";
