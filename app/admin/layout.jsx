@@ -16,21 +16,21 @@ export default function AdminLayout({ children }) {
 
   // Function to determine link styles dynamically
   const getLinkClasses = (path) =>
-    `block transition-all duration-300 px-4 py-2 rounded-2xl text-sm lg:text-xl font-semibold 
+    `block transition-all duration-300 px-4 py-2 rounded-2xl text-sm lg:text-xl font-semibold
     ${
       pathname === path
         ? "bg-normalbg text-white"
-        : "text-white hover:bg-rose-800 hover:text-white"
+        : "text-gray-700 hover:bg-gray-200 hover:text-gray-900"
     }`;
 
   return (
-    <div className="min-h-screen bg-darkbg text-white ">
-      <header className="bg-black shadow-md">
+    <div className="min-h-screen bg-white text-gray-900 ">
+      <header className="bg-gray-100 shadow-md border-b border-gray-300">
         <div className="max-w-7xl  mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between h-16 ">
           {/* Logo / Branding */}
           <div className="flex-shrink-0 ">
             <Link href="/admin">
-              <span className="text-2xl font-bold text-normalbg">
+              <span className="text-xl font-bold text-normalbg">
                 Admin Dashboard
               </span>
             </Link>
@@ -50,7 +50,7 @@ export default function AdminLayout({ children }) {
               className={getLinkClasses("/admin/pickups")}
             >
               <FaTruck className="inline mr-2" />
-              Pickups
+              Online Orders
             </Link>
             <Link
               href="/admin/catering"
@@ -78,7 +78,7 @@ export default function AdminLayout({ children }) {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen((prev) => !prev)}
-              className="text-white focus:outline-none"
+              className="text-gray-900 focus:outline-none"
             >
               <svg
                 className="w-8 h-8"
@@ -107,7 +107,7 @@ export default function AdminLayout({ children }) {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-y-0 left-0 w-1/2 bg-black shadow-lg z-50 md:hidden"
+            className="fixed inset-y-0 left-0 w-1/2 bg-white shadow-lg z-50 md:hidden border-r border-gray-300"
           >
             <div className="p-4 space-y-4 mt-5">
               <Link
@@ -125,7 +125,7 @@ export default function AdminLayout({ children }) {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <FaTruck className="inline mr-2" />
-                Pickups
+                Online Orders
               </Link>
               <Link
                 href="/admin/catering"

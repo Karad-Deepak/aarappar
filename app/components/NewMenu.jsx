@@ -67,10 +67,10 @@ export default function NewMenu({ menuItems, addMenuItem }) {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="p-6 bg-gray-900 border border-gray-700 rounded-lg shadow-lg">
+            <div className="p-6 bg-white border border-gray-300 rounded-lg shadow-lg">
               {submitted ? (
                 <div className="text-center">
-                  <p className="mb-4 text-green-500">{message}</p>
+                  <p className="mb-4 text-green-600">{message}</p>
                   <button
                     onClick={handleClose}
                     className="px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition duration-200 ease-in-out"
@@ -80,25 +80,25 @@ export default function NewMenu({ menuItems, addMenuItem }) {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} method="POST">
-                  <h2 className="text-xl font-semibold text-gray-100 mb-4">
+                  <h2 className="text-xl font-semibold text-gray-900 mb-4">
                     Add New Menu Item
                   </h2>
                   {message && (
-                    <p className="mb-4 text-red-500 text-center">{message}</p>
+                    <p className="mb-4 text-red-600 text-center">{message}</p>
                   )}
                   <div className="mb-4">
-                    <label className="block text-base font-medium text-gray-200 mb-1">
+                    <label className="block text-base font-medium text-gray-900 mb-1">
                       Item Name
                     </label>
                     <input
                       type="text"
                       name="item_name"
                       required
-                      className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div className="mb-4">
-                    <label className="block text-base font-medium text-gray-200 mb-1">
+                    <label className="block text-base font-medium text-gray-900 mb-1">
                       Price (€)
                     </label>
                     <input
@@ -106,21 +106,21 @@ export default function NewMenu({ menuItems, addMenuItem }) {
                       step="0.01"
                       name="price"
                       required
-                      className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div className="mb-4">
-                    <label className="block text-base font-medium text-gray-200 mb-1">
+                    <label className="block text-base font-medium text-gray-900 mb-1">
                       Description
                     </label>
                     <textarea
                       name="description"
                       rows="4"
-                      className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     ></textarea>
                   </div>
                   <div className="mb-4">
-                    <label className="block text-base font-medium text-gray-200 mb-1">
+                    <label className="block text-base font-medium text-gray-900 mb-1">
                       Category
                     </label>
                     <select
@@ -128,7 +128,7 @@ export default function NewMenu({ menuItems, addMenuItem }) {
                       required
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="" disabled>
                         Select category
@@ -142,13 +142,13 @@ export default function NewMenu({ menuItems, addMenuItem }) {
                   </div>
                   {subcategories.length > 0 && (
                     <div className="mb-4">
-                      <label className="block text-base font-medium text-gray-200 mb-1">
+                      <label className="block text-base font-medium text-gray-900 mb-1">
                         Subcategory
                       </label>
                       <select
                         name="subcategory"
                         required
-                        className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >
                         <option value="" disabled>
                           Select subcategory
@@ -172,7 +172,7 @@ export default function NewMenu({ menuItems, addMenuItem }) {
                     <button
                       type="button"
                       onClick={handleClose}
-                      className="px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded transition duration-200 ease-in-out"
+                      className="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold rounded transition duration-200 ease-in-out"
                     >
                       Cancel
                     </button>

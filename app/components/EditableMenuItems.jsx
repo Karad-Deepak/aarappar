@@ -68,23 +68,23 @@ export default function EditableMenuItem({ item }) {
       <div className="w-full px-2 mb-4">
         <form
           onSubmit={handleSubmit}
-          className="p-3 lg:p-6 bg-gray-900 border border-gray-700 rounded-lg shadow-lg"
+          className="p-3 lg:p-6 bg-white border border-gray-300 rounded-lg shadow-lg"
         >
           <input type="hidden" name="id" value={item.id} />
           <div className="mb-4">
-            <label className="block text-base font-medium text-gray-200 mb-1">
+            <label className="block text-base font-medium text-gray-900 mb-1">
               Item Name
             </label>
             <input
               type="text"
               name="item_name"
               defaultValue={item.item_name}
-              className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-base font-medium text-gray-200 mb-1">
+            <label className="block text-base font-medium text-gray-900 mb-1">
               Price (€)
             </label>
             <input
@@ -92,42 +92,42 @@ export default function EditableMenuItem({ item }) {
               step="0.01"
               name="price"
               defaultValue={item.price}
-              className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-base font-medium text-gray-200 mb-1">
+            <label className="block text-base font-medium text-gray-900 mb-1">
               Description
             </label>
             <textarea
               name="description"
               defaultValue={item.description}
               rows="4"
-              className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
           </div>
           <div className="mb-4">
-            <label className="block text-base font-medium text-gray-200 mb-1">
+            <label className="block text-base font-medium text-gray-900 mb-1">
               Category
             </label>
             <input
               type="text"
               name="category"
               defaultValue={item.category}
-              className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-base font-medium text-gray-200 mb-1">
+            <label className="block text-base font-medium text-gray-900 mb-1">
               Subcategory
             </label>
             <input
               type="text"
               name="subcategory"
               defaultValue={item.subcategory}
-              className="w-full p-3 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="flex justify-end items-center space-x-2 lg:space-x-5">
@@ -141,7 +141,7 @@ export default function EditableMenuItem({ item }) {
             <button
               type="button"
               onClick={() => setIsEditing(false)}
-              className="px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded transition duration-200 ease-in-out"
+              className="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold rounded transition duration-200 ease-in-out"
             >
               Cancel
             </button>
@@ -178,13 +178,13 @@ export default function EditableMenuItem({ item }) {
     <div className="w-full px-2 mb-4">
       <div
         onClick={() => setIsEditing(true)}
-        className={`cursor-pointer p-4 bg-gray-900 border border-gray-700 rounded-lg shadow hover:bg-gray-800 ${
+        className={`cursor-pointer p-4 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-50 ${
           soldout ? "opacity-60" : ""
         }`}
       >
-        <h3 className="text-xl text-gray-200">{item.item_name}</h3>
+        <h3 className="text-xl text-gray-900">{item.item_name}</h3>
         {soldout && (
-          <span className="text-sm text-red-500 font-bold">Sold Out</span>
+          <span className="text-sm text-red-600 font-bold">Sold Out</span>
         )}
       </div>
     </div>

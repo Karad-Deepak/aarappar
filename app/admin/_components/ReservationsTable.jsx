@@ -132,9 +132,9 @@ export default function ReservationsTable({
   }
 
   return (
-    <div className="p-4 text-white min-h-screen">
+    <div className="p-4 text-gray-900 min-h-screen">
       <div className="mb-4">
-        <label className="block text-sm font-medium text-red-500 mb-2">
+        <label className="block text-sm font-medium text-red-600 mb-2">
           Filter by Date:
         </label>
         {mounted && (
@@ -145,7 +145,7 @@ export default function ReservationsTable({
               setSelectedTimeSlot("");
             }}
             placeholderText="Select a date"
-            className="p-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600"
+            className="p-2 rounded bg-white text-gray-900 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600"
             dateFormat="dd/MM/yyyy"
           />
         )}
@@ -155,7 +155,7 @@ export default function ReservationsTable({
               setSelectedDate(null);
               setSelectedTimeSlot("");
             }}
-            className="mt-2 text-xs text-red-400 underline ml-5"
+            className="mt-2 text-xs text-red-600 underline ml-5"
           >
             Clear Filter
           </button>
@@ -163,8 +163,8 @@ export default function ReservationsTable({
       </div>
 
       {selectedDate && (
-        <div className="mb-6 p-4 bg-gray-800 rounded-lg">
-          <h3 className="text-lg font-bold text-red-500 mb-2">
+        <div className="mb-6 p-4 bg-gray-100 rounded-lg border border-gray-300">
+          <h3 className="text-lg font-bold text-red-600 mb-2">
             Summary for {format(selectedDate, "dd/MM/yyyy")}
           </h3>
           <p className="mb-4">
@@ -172,7 +172,7 @@ export default function ReservationsTable({
             <span className="font-semibold">{totalGuestsForDay}</span>
           </p>
           {daySlots.length === 0 ? (
-            <p className="text-red-400 text-center">
+            <p className="text-red-600 text-center">
               We are closed on Mondays!
             </p>
           ) : (
@@ -186,7 +186,7 @@ export default function ReservationsTable({
                     className={`p-2 rounded-lg border transition-colors ${
                       selectedTimeSlot === slot
                         ? "bg-red-600 text-white"
-                        : "bg-gray-700 text-white"
+                        : "bg-white text-gray-900 border-gray-300"
                     }`}
                   >
                     <div className="flex flex-col items-center">
@@ -205,29 +205,29 @@ export default function ReservationsTable({
 
       <div className="overflow-x-auto">
         <motion.table
-          className="min-w-full border-collapse bg-gray-950 shadow-lg rounded-sm"
+          className="min-w-full border-collapse bg-white shadow-lg rounded-sm border border-gray-300"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <thead className="bg-gray-700">
+          <thead className="bg-gray-200">
             <tr>
-              <th className="px-3 py-2 border-b text-left text-sm">ID</th>
-              <th className="px-3 py-2 border-b text-left text-sm">Name</th>
-              <th className="px-3 py-2 border-b text-left text-sm">Phone</th>
-              <th className="px-3 py-2 border-b text-left text-sm">
+              <th className="px-3 py-2 border-b border-gray-300 text-left text-sm">ID</th>
+              <th className="px-3 py-2 border-b border-gray-300 text-left text-sm">Name</th>
+              <th className="px-3 py-2 border-b border-gray-300 text-left text-sm">Phone</th>
+              <th className="px-3 py-2 border-b border-gray-300 text-left text-sm">
                 Time Slot
               </th>
-              <th className="px-3 py-2 border-b text-left text-sm">Guests</th>
-              <th className="px-3 py-2 border-b text-left text-sm">Message</th>
-              <th className="px-3 py-2 border-b text-left text-sm">
+              <th className="px-3 py-2 border-b border-gray-300 text-left text-sm">Guests</th>
+              <th className="px-3 py-2 border-b border-gray-300 text-left text-sm">Message</th>
+              <th className="px-3 py-2 border-b border-gray-300 text-left text-sm">
                 Created At
               </th>
-              <th className="px-3 py-2 border-b text-left text-sm">Status</th>
-              <th className="px-3 py-2 border-b text-left text-sm">Action</th>
+              <th className="px-3 py-2 border-b border-gray-300 text-left text-sm">Status</th>
+              <th className="px-3 py-2 border-b border-gray-300 text-left text-sm">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-700">
+          <tbody className="divide-y divide-gray-300">
             {sortedReservations.length > 0 ? (
               sortedReservations.map((res) => (
                 <motion.tr
@@ -235,24 +235,24 @@ export default function ReservationsTable({
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="hover:bg-gray-800"
+                  className="hover:bg-gray-50"
                 >
-                  <td className="px-3 py-2 border-b text-sm">{res.id}</td>
-                  <td className="px-3 py-2 border-b text-sm">
+                  <td className="px-3 py-2 border-b border-gray-300 text-sm">{res.id}</td>
+                  <td className="px-3 py-2 border-b border-gray-300 text-sm">
                     {`${res.salutation} ${res.first_name} ${res.last_name}`}
                   </td>
-                  <td className="px-3 py-2 border-b text-sm">{res.phone}</td>
-                  <td className="px-3 py-2 border-b text-sm font-bold text-indigo-500">
+                  <td className="px-3 py-2 border-b border-gray-300 text-sm">{res.phone}</td>
+                  <td className="px-3 py-2 border-b border-gray-300 text-sm font-bold text-indigo-600">
                     {res.time_slot}
                   </td>
-                  <td className="px-3 py-2 border-b text-sm">{res.guests}</td>
-                  <td className="px-3 py-2 border-b text-sm">{res.message}</td>
-                  <td className="px-3 py-2 border-b text-sm">
+                  <td className="px-3 py-2 border-b border-gray-300 text-sm">{res.guests}</td>
+                  <td className="px-3 py-2 border-b border-gray-300 text-sm">{res.message}</td>
+                  <td className="px-3 py-2 border-b border-gray-300 text-sm">
                     {res.created_at
                       ? format(new Date(res.created_at), "dd/MM/yyyy HH:mm")
                       : ""}
                   </td>
-                  <td className="px-3 py-2 border-b text-sm">
+                  <td className="px-3 py-2 border-b border-gray-300 text-sm">
                     <select
                       value={res.status}
                       onChange={async (e) => {
@@ -274,7 +274,7 @@ export default function ReservationsTable({
                           );
                         }
                       }}
-                      className="bg-gray-800 text-white p-1 rounded"
+                      className="bg-white text-gray-900 p-1 rounded border border-gray-300"
                     >
                       <option value="booked">Booked</option>
                       <option value="seated">Seated</option>
@@ -282,7 +282,7 @@ export default function ReservationsTable({
                       <option value="cancelled">Cancelled</option>
                     </select>
                   </td>
-                  <td className="px-3 py-2 border-b text-xs">
+                  <td className="px-3 py-2 border-b border-gray-300 text-xs">
                     <DeleteButton
                       id={res.id}
                       deletionAction={deleteReservationAction}
@@ -294,7 +294,7 @@ export default function ReservationsTable({
               ))
             ) : (
               <tr>
-                <td colSpan="9" className="px-3 py-2 text-center text-xs">
+                <td colSpan="9" className="px-3 py-2 text-center text-xs border-b border-gray-300">
                   No reservations found.
                 </td>
               </tr>

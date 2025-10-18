@@ -143,7 +143,7 @@ export default function PopupSettingsForm({ popup }) {
 
       {/* Type Selection */}
       <div className="space-y-3">
-        <label className="block font-medium text-gray-300 text-lg">Popup Type</label>
+        <label className="block font-medium text-gray-900 text-lg">Popup Type</label>
         <div className="flex gap-6">
           <label className="inline-flex items-center cursor-pointer">
             <input
@@ -154,7 +154,7 @@ export default function PopupSettingsForm({ popup }) {
               onChange={handleTypeChange}
               className="form-radio h-5 w-5 text-rose-500 focus:ring-rose-500"
             />
-            <span className="ml-3 text-gray-300 text-base">Text Content</span>
+            <span className="ml-3 text-gray-900 text-base">Text Content</span>
           </label>
           <label className="inline-flex items-center cursor-pointer">
             <input
@@ -165,7 +165,7 @@ export default function PopupSettingsForm({ popup }) {
               onChange={handleTypeChange}
               className="form-radio h-5 w-5 text-rose-500 focus:ring-rose-500"
             />
-            <span className="ml-3 text-gray-300 text-base">Image Only</span>
+            <span className="ml-3 text-gray-900 text-base">Image Only</span>
           </label>
         </div>
       </div>
@@ -173,19 +173,19 @@ export default function PopupSettingsForm({ popup }) {
       {/* Conditional Content Based on Type */}
       {selectedType === "content" ? (
         <div>
-          <label className="block font-medium text-gray-300 mb-2">Popup Content</label>
+          <label className="block font-medium text-gray-900 mb-2">Popup Content</label>
           <textarea
             name="content"
             value={contentValue}
             onChange={(e) => setContentValue(e.target.value)}
-            className="w-full p-3 bg-gray-800 text-white rounded-lg h-[45vh] border border-gray-700 focus:border-rose-500 focus:outline-none"
+            className="w-full p-3 bg-white text-gray-900 rounded-lg h-[45vh] border border-gray-300 focus:border-rose-500 focus:outline-none"
             rows="4"
             placeholder="Enter your popup content here..."
           ></textarea>
         </div>
       ) : (
         <div className="space-y-4">
-          <label className="block font-medium text-gray-300">Popup Image</label>
+          <label className="block font-medium text-gray-900">Popup Image</label>
 
           {/* Image Upload */}
           <div className="flex flex-col gap-4">
@@ -194,7 +194,7 @@ export default function PopupSettingsForm({ popup }) {
               accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
               onChange={handleImageChange}
               disabled={isUploading}
-              className="block w-full text-sm text-gray-300
+              className="block w-full text-sm text-gray-900
                 file:mr-4 file:py-2 file:px-4
                 file:rounded-lg file:border-0
                 file:text-sm file:font-semibold
@@ -203,16 +203,16 @@ export default function PopupSettingsForm({ popup }) {
                 file:cursor-pointer
                 disabled:opacity-50 disabled:cursor-not-allowed"
             />
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-600">
               Maximum file size: 500KB. Supported formats: JPEG, PNG, WEBP, GIF
             </p>
           </div>
 
           {/* Image Preview */}
           {imagePreview && (
-            <div className="relative border border-gray-700 rounded-lg p-4 bg-gray-800">
+            <div className="relative border border-gray-300 rounded-lg p-4 bg-gray-50">
               <div className="flex justify-between items-center mb-3">
-                <p className="text-sm font-medium text-gray-300">Preview:</p>
+                <p className="text-sm font-medium text-gray-900">Preview:</p>
                 <button
                   type="button"
                   onClick={handleDeleteImage}
@@ -237,7 +237,7 @@ export default function PopupSettingsForm({ popup }) {
       )}
 
       {/* Active Checkbox */}
-      <div className="pt-4 border-t border-gray-700">
+      <div className="pt-4 border-t border-gray-300">
         <label className="inline-flex items-center cursor-pointer">
           <input
             type="checkbox"
@@ -245,7 +245,7 @@ export default function PopupSettingsForm({ popup }) {
             defaultChecked={popup ? popup.active : false}
             className="form-checkbox h-5 w-5 text-rose-500 focus:ring-rose-500 rounded"
           />
-          <span className="ml-3 text-gray-300 text-base">Enable Popup (Show on homepage)</span>
+          <span className="ml-3 text-gray-900 text-base">Enable Popup (Show on homepage)</span>
         </label>
       </div>
 
@@ -262,8 +262,8 @@ export default function PopupSettingsForm({ popup }) {
         {message && (
           <div className={`flex-1 p-3 rounded-lg ${
             messageType === "error"
-              ? "bg-red-900/30 text-red-400 border border-red-700"
-              : "bg-green-900/30 text-green-400 border border-green-700"
+              ? "bg-red-100 text-red-700 border border-red-300"
+              : "bg-green-100 text-green-700 border border-green-300"
           }`}>
             {message}
           </div>
