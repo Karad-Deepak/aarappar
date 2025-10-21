@@ -143,5 +143,182 @@
     "noResults": "Keine Gerichte gefunden.",
     "soldOut": "Ausverkauft",
     "unavailable": "Nicht verfügbar"
+  },
+  "ReservationPage": {
+    "title": "Tisch reservieren",
+    "subtitle": "Reservieren Sie im Voraus einen Tisch für ein wunderbares kulinarisches Erlebnis.",
+    "form": {
+      "salutation": {
+        "label": "Anrede",
+        "placeholder": "Auswählen",
+        "options": {
+          "mr": "Herr",
+          "ms": "Frau",
+          "mrs": "Frau"
+        }
+      },
+      "firstName": {
+        "label": "Vorname",
+        "placeholder": "Geben Sie Ihren Vornamen ein"
+      },
+      "lastName": {
+        "label": "Nachname",
+        "placeholder": "Geben Sie Ihren Nachnamen ein"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "Geben Sie Ihre E-Mail ein"
+      },
+      "phone": {
+        "label": "Telefonnummer",
+        "placeholder": "Geben Sie Ihre Telefonnummer ein"
+      },
+      "date": {
+        "label": "Datum auswählen",
+        "placeholder": "Datum wählen"
+      },
+      "timeSlot": {
+        "label": "Zeitfenster auswählen",
+        "guestsRemaining": "{count} Plätze verfügbar",
+        "bookingFull": "Ausgebucht",
+        "noSlots": "Keine verfügbaren Zeitfenster für dieses Datum."
+      },
+      "guests": {
+        "label": "Anzahl der Gäste",
+        "placeholder": "Anzahl der Gäste eingeben"
+      },
+      "message": {
+        "label": "Nachricht (Optional)",
+        "placeholder": "Bitte geben Sie Anforderungen für Kindersitze oder besondere Wünsche an"
+      },
+      "submit": {
+        "button": "Jetzt reservieren",
+        "loading": "Reservierung wird durchgeführt..."
+      },
+      "mondayClosed": "Entschuldigung, montags haben wir geschlossen."
+    },
+    "validation": {
+      "salutationRequired": "Anrede ist erforderlich.",
+      "firstNameRequired": "Vorname ist erforderlich.",
+      "firstNameMinLength": "Vorname muss mindestens 2 Zeichen lang sein.",
+      "lastNameRequired": "Nachname ist erforderlich.",
+      "emailRequired": "E-Mail ist erforderlich.",
+      "emailInvalid": "Ungültige E-Mail-Adresse.",
+      "phoneRequired": "Telefonnummer ist erforderlich.",
+      "phoneInvalid": "Ungültige Telefonnummer.",
+      "timeSlotRequired": "Bitte wählen Sie ein Zeitfenster aus.",
+      "guestsRequired": "Mindestens ein Gast ist erforderlich."
+    },
+    "success": "Ihre Reservierung wurde erfolgreich vorgenommen!",
+    "error": "Bei der Übermittlung Ihrer Reservierung ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+  },
+  "CateringPage": {
+    "title": "Catering-Service",
+    "subtitle": "Verleihen Sie Ihren Veranstaltungen mit unserem exquisiten Catering-Service besonderen Glanz. Wir bieten eine Vielzahl von Menüs, die auf Ihre Wünsche zugeschnitten sind, für ein unvergessliches Erlebnis Ihrer Gäste.",
+    "form": {
+      "title": "Catering-Anfrage",
+      "name": {
+        "placeholder": "Ihr Name"
+      },
+      "phone": {
+        "placeholder": "Ihre Telefonnummer"
+      },
+      "message": {
+        "placeholder": "Ihre Nachricht"
+      },
+      "submit": {
+        "button": "Anfrage senden",
+        "loading": "Wird gesendet..."
+      }
+    },
+    "success": "Ihre Nachricht wurde erfolgreich gesendet!",
+    "error": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+  },
+  "CartPage": {
+    "title": "Ihr Warenkorb",
+    "emptyCart": {
+      "title": "Ihr Warenkorb ist leer.",
+      "message": "Bitte fügen Sie einige Artikel zu Ihrem Warenkorb hinzu, bevor Sie eine Bestellung aufgeben."
+    },
+    "item": {
+      "quantity": "Menge",
+      "remove": "Entfernen"
+    },
+    "totalPrice": "Gesamtpreis",
+    "checkout": {
+      "title": "Kasse",
+      "name": {
+        "label": "Name"
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "address": {
+        "label": "Adresse"
+      },
+      "submit": {
+        "button": "Bestellung absenden",
+        "loading": "Bestellung wird übermittelt..."
+      }
+    },
+    "validation": {
+      "nameRequired": "Name ist erforderlich.",
+      "nameMinLength": "Name muss mindestens 2 Zeichen lang sein.",
+      "phoneRequired": "Telefon ist erforderlich.",
+      "phoneInvalid": "Ungültige Telefonnummer.",
+      "addressRequired": "Adresse ist erforderlich.",
+      "addressMinLength": "Adresse muss mindestens 5 Zeichen lang sein."
+    },
+    "orderSuccess": "Bestellung erfolgreich übermittelt!",
+    "orderError": "Bestellübermittlung fehlgeschlagen: {error}"
+  },
+  "PickupPage": {
+    "title": "Abholbestellung",
+    "emptyCart": {
+      "title": "Ihr Warenkorb ist leer",
+      "message": "Bitte fügen Sie Artikel zu Ihrem Warenkorb hinzu, bevor Sie fortfahren."
+    },
+    "orderSummary": {
+      "title": "Bestellübersicht",
+      "quantity": "Menge",
+      "total": "Gesamt"
+    },
+    "form": {
+      "title": "Kundendaten",
+      "name": {
+        "label": "Name",
+        "placeholder": "Geben Sie Ihren Namen ein"
+      },
+      "phone": {
+        "label": "Telefonnummer",
+        "placeholder": "Geben Sie Ihre Telefonnummer ein"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "Geben Sie Ihre E-Mail ein (optional)"
+      },
+      "payment": {
+        "label": "Zahlungsmethode",
+        "payAtStore": "Zahlung im Geschäft",
+        "paypal": "PayPal",
+        "bankTransfer": "Banküberweisung"
+      },
+      "transactionId": {
+        "label": "Transaktions-ID",
+        "placeholder": "Transaktions-ID eingeben"
+      },
+      "submit": {
+        "button": "Bestellung aufgeben",
+        "loading": "Wird verarbeitet..."
+      }
+    },
+    "validation": {
+      "nameRequired": "Name ist erforderlich",
+      "phoneRequired": "Telefonnummer ist erforderlich",
+      "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein",
+      "transactionRequired": "Transaktions-ID ist erforderlich für {method}"
+    },
+    "success": "Bestellung erfolgreich aufgegeben!",
+    "error": "Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut."
   }
 }

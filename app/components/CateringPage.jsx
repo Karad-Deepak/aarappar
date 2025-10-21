@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { submitEnquiry } from "@/app/lib/actions"; // Adjust the path as needed
 import { useState, useTransition } from "react";
+import { useTranslations } from "next-intl";
 
 export default function CateringPage() {
+  const t = useTranslations("CateringPage");
   const [feedback, setFeedback] = useState("");
   const [isPending, startTransition] = useTransition();
 
@@ -15,13 +17,11 @@ export default function CateringPage() {
     startTransition(async () => {
       try {
         await submitEnquiry(formData);
-        setFeedback("Your message has been sent successfully!");
+        setFeedback(t("success"));
         event.target.reset();
       } catch (error) {
         console.error(error);
-        setFeedback(
-          "There was an error sending your message. Please try again later."
-        );
+        setFeedback(t("error"));
       }
     });
   }
@@ -35,7 +35,7 @@ export default function CateringPage() {
         transition={{ duration: 0.6 }}
         className="text-2xl md:text-4xl font-bold text-center text-primary"
       >
-        Catering Services
+        {t("title")}
       </motion.h1>
 
       {/* Information Section */}
@@ -45,9 +45,7 @@ export default function CateringPage() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="mt-6 text-sm md:text-lg text-center text-darkbg"
       >
-        Elevate your events with our exquisite catering services. We offer a
-        variety of menus customized to your preferences, ensuring an
-        unforgettable experience for your guests.
+        {t("subtitle")}
       </motion.p>
 
       {/* Inquiry Form */}
@@ -58,26 +56,26 @@ export default function CateringPage() {
         className="mt-12 max-w-lg mx-auto bg-darkbg p-6 rounded-2xl shadow-lg"
       >
         <h2 className="text-2xl font-semibold text-normalbg mb-4 text-center">
-          Catering Enquiry Form
+          {t("form.title")}
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             type="text"
             name="name"
-            placeholder="Your Name"
+            placeholder={t("form.name.placeholder")}
             className="p-3 bg-gray-800 text-white rounded-lg outline-none focus:ring-2 focus:ring-red-600"
             required
           />
           <input
             type="tel"
             name="phone"
-            placeholder="Your Phone Number"
+            placeholder={t("form.phone.placeholder")}
             className="p-3 bg-gray-800 text-white rounded-lg outline-none focus:ring-2 focus:ring-rose-500"
             required
           />
           <textarea
             name="message"
-            placeholder="Your Message"
+            placeholder={t("form.message.placeholder")}
             className="p-3 bg-gray-800 text-white rounded-lg outline-none focus:ring-2 focus:ring-rose-500 h-32"
             required
           ></textarea>
@@ -86,7 +84,7 @@ export default function CateringPage() {
             disabled={isPending}
             className="bg-normalbg hover:bg-rose-600 text-white font-bold py-3 rounded-lg transition-all"
           >
-            {isPending ? "Sending..." : "Send Enquiry"}
+            {isPending ? t("form.submit.loading") : t("form.submit.button")}
           </button>
         </form>
         {feedback && (

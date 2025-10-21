@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useTransition } from "react";
 import { useCart } from "@/app/components/CartContext";
@@ -6,8 +6,10 @@ import { useRouter } from "next-intl/client";
 import { createOrder } from "@/app/lib/actions";
 import Nav from "@/app/components/Nav";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function CartPage() {
+  const t = useTranslations("CartPage");
   const { cart, removeFromCart, clearCart } = useCart();
   const [customerName, setCustomerName] = useState("");
   const [phone, setPhone] = useState("");
@@ -28,21 +30,21 @@ export default function CartPage() {
     const errors = {};
 
     if (!customerName.trim()) {
-      errors.customerName = "Name is required.";
+      errors.customerName = t("validation.nameRequired");
     } else if (customerName.trim().length < 2) {
-      errors.customerName = "Name must be at least 2 characters.";
+      errors.customerName = t("validation.nameMinLength");
     }
 
     if (!phone.trim()) {
-      errors.phone = "Phone is required.";
+      errors.phone = t("validation.phoneRequired");
     } else if (!/^\+?\d{7,15}$/.test(phone.trim())) {
-      errors.phone = "Invalid phone number.";
+      errors.phone = t("validation.phoneInvalid");
     }
 
     if (!address.trim()) {
-      errors.address = "Address is required.";
+      errors.address = t("validation.addressRequired");
     } else if (address.trim().length < 5) {
-      errors.address = "Address must be at least 5 characters.";
+      errors.address = t("validation.addressMinLength");
     }
 
     return errors;
@@ -67,11 +69,11 @@ export default function CartPage() {
     startTransition(async () => {
       try {
         const result = await createOrder(formData);
-        setMessage(result.message);
+        setMessage(t("orderSuccess"));
         clearCart();
         router.push("/order-confirmation");
       } catch (error) {
-        setMessage("Order submission failed: " + error.message);
+        setMessage(t("orderError", { error: error.message }));
       }
     });
   };
@@ -83,10 +85,10 @@ export default function CartPage() {
         <div className="min-h-screen flex items-center justify-center bg-lightbg px-4">
           <div className="text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-darkbg">
-              Your cart is empty.
+              {t("emptyCart.title")}
             </h1>
             <p className="text-base sm:text-lg text-darkbg">
-              Please add some items to your cart before placing an order.
+              {t("emptyCart.message")}
             </p>
           </div>
         </div>
@@ -110,7 +112,7 @@ export default function CartPage() {
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-center text-darkbg">
-            Your Cart
+            {t("title")}
           </h1>
           <div className="space-y-4">
             {cart.map((item) => (
@@ -126,29 +128,29 @@ export default function CartPage() {
                     {item.item_name}
                   </p>
                   <p className="text-sm sm:text-base text-gray-600 ">
-                    Quantity: {item.quantity} × €{parseFloat(item.price).toFixed(2)}
+                    {t("item.quantity")}: {item.quantity} × €{parseFloat(item.price).toFixed(2)}
                   </p>
                 </div>
                 <button
                   onClick={() => removeFromCart(item.id)}
                   className="text-rose-500 hover:underline text-sm sm:text-base"
                 >
-                  Remove
+                  {t("item.remove")}
                 </button>
               </motion.div>
             ))}
           </div>
           <div className="mt-6 text-xl sm:text-2xl font-bold text-darkbg ">
-            Total Price: €{totalPrice.toFixed(2)}
+            {t("totalPrice")}: €{totalPrice.toFixed(2)}
           </div>
           <div className="mt-8">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-darkbg mb-4">
-              Checkout
+              {t("checkout.title")}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block mb-1 text-base sm:text-lg text-gray-700">
-                  Name
+                  {t("checkout.name.label")}
                 </label>
                 <input
                   type="text"
@@ -165,7 +167,7 @@ export default function CartPage() {
               </div>
               <div>
                 <label className="block mb-1 text-base sm:text-lg text-gray-700">
-                  Phone
+                  {t("checkout.phone.label")}
                 </label>
                 <input
                   type="tel"
@@ -180,7 +182,7 @@ export default function CartPage() {
               </div>
               <div>
                 <label className="block mb-1 text-base sm:text-lg text-gray-700">
-                  Address
+                  {t("checkout.address.label")}
                 </label>
                 <textarea
                   value={address}
@@ -198,7 +200,7 @@ export default function CartPage() {
                 disabled={isPending}
                 className="mt-4 w-full px-4 py-3 bg-red-900 hover:bg-rose-600 text-white font-semibold rounded transition duration-200"
               >
-                {isPending ? "Submitting Order..." : "Submit Order"}
+                {isPending ? t("checkout.submit.loading") : t("checkout.submit.button")}
               </button>
             </form>
             {message && (

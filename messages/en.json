@@ -143,5 +143,182 @@
     "noResults": "No items found.",
     "soldOut": "Sold out",
     "unavailable": "Unavailable"
+  },
+  "ReservationPage": {
+    "title": "Reserve Your Table",
+    "subtitle": "Book a table in advance to ensure a wonderful dining experience.",
+    "form": {
+      "salutation": {
+        "label": "Salutation",
+        "placeholder": "Select",
+        "options": {
+          "mr": "Mr",
+          "ms": "Ms",
+          "mrs": "Mrs"
+        }
+      },
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "Enter your first name"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Enter your last name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number"
+      },
+      "date": {
+        "label": "Select Date",
+        "placeholder": "Choose a date"
+      },
+      "timeSlot": {
+        "label": "Select Time Slot",
+        "guestsRemaining": "{count} guests remaining",
+        "bookingFull": "Booking is Full",
+        "noSlots": "No available time slots for this date."
+      },
+      "guests": {
+        "label": "Number of Guests",
+        "placeholder": "Enter number of guests"
+      },
+      "message": {
+        "label": "Message (Optional)",
+        "placeholder": "Please mention kids seats requirements or any special requests"
+      },
+      "submit": {
+        "button": "Reserve Now",
+        "loading": "Reserving..."
+      },
+      "mondayClosed": "Sorry, we are closed on Mondays."
+    },
+    "validation": {
+      "salutationRequired": "Salutation is required.",
+      "firstNameRequired": "First Name is required.",
+      "firstNameMinLength": "First Name must be at least 2 characters.",
+      "lastNameRequired": "Last Name is required.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Invalid email address.",
+      "phoneRequired": "Phone Number is required.",
+      "phoneInvalid": "Invalid phone number.",
+      "timeSlotRequired": "Please select a time slot.",
+      "guestsRequired": "At least one guest is required."
+    },
+    "success": "Your reservation has been successfully made!",
+    "error": "There was an error submitting your reservation. Please try again later."
+  },
+  "CateringPage": {
+    "title": "Catering Services",
+    "subtitle": "Elevate your events with our exquisite catering services. We offer a variety of menus customized to your preferences, ensuring an unforgettable experience for your guests.",
+    "form": {
+      "title": "Catering Enquiry Form",
+      "name": {
+        "placeholder": "Your Name"
+      },
+      "phone": {
+        "placeholder": "Your Phone Number"
+      },
+      "message": {
+        "placeholder": "Your Message"
+      },
+      "submit": {
+        "button": "Send Enquiry",
+        "loading": "Sending..."
+      }
+    },
+    "success": "Your message has been sent successfully!",
+    "error": "There was an error sending your message. Please try again later."
+  },
+  "CartPage": {
+    "title": "Your Cart",
+    "emptyCart": {
+      "title": "Your cart is empty.",
+      "message": "Please add some items to your cart before placing an order."
+    },
+    "item": {
+      "quantity": "Quantity",
+      "remove": "Remove"
+    },
+    "totalPrice": "Total Price",
+    "checkout": {
+      "title": "Checkout",
+      "name": {
+        "label": "Name"
+      },
+      "phone": {
+        "label": "Phone"
+      },
+      "address": {
+        "label": "Address"
+      },
+      "submit": {
+        "button": "Submit Order",
+        "loading": "Submitting Order..."
+      }
+    },
+    "validation": {
+      "nameRequired": "Name is required.",
+      "nameMinLength": "Name must be at least 2 characters.",
+      "phoneRequired": "Phone is required.",
+      "phoneInvalid": "Invalid phone number.",
+      "addressRequired": "Address is required.",
+      "addressMinLength": "Address must be at least 5 characters."
+    },
+    "orderSuccess": "Order submitted successfully!",
+    "orderError": "Order submission failed: {error}"
+  },
+  "PickupPage": {
+    "title": "Pickup Order",
+    "emptyCart": {
+      "title": "Your cart is empty",
+      "message": "Please add items to your cart before proceeding."
+    },
+    "orderSummary": {
+      "title": "Order Summary",
+      "quantity": "Quantity",
+      "total": "Total"
+    },
+    "form": {
+      "title": "Customer Details",
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email (optional)"
+      },
+      "payment": {
+        "label": "Payment Method",
+        "payAtStore": "Pay at Store",
+        "paypal": "PayPal",
+        "bankTransfer": "Bank Transfer"
+      },
+      "transactionId": {
+        "label": "Transaction ID",
+        "placeholder": "Enter transaction ID"
+      },
+      "submit": {
+        "button": "Place Order",
+        "loading": "Processing..."
+      }
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number",
+      "transactionRequired": "Transaction ID is required for {method}"
+    },
+    "success": "Order placed successfully!",
+    "error": "Failed to place order. Please try again."
   }
 }

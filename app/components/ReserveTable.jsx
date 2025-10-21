@@ -5,10 +5,17 @@ import { motion } from "framer-motion";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { submitReservation, fetchSlotAvailability } from "@/app/lib/actions";
-
-const salutations = ["Mr", "Ms", "Mrs"];
+import { useTranslations } from "next-intl";
 
 export default function ReserveTable() {
+  const t = useTranslations("ReservationPage");
+
+  const salutations = [
+    { value: "Mr", label: t("form.salutation.options.mr") },
+    { value: "Ms", label: t("form.salutation.options.ms") },
+    { value: "Mrs", label: t("form.salutation.options.mrs") }
+  ];
+
   const [formData, setFormData] = useState({
     salutation: "",
     firstName: "",
@@ -51,35 +58,35 @@ export default function ReserveTable() {
 
   const validate = () => {
     let newErrors = {};
-    if (!formData.salutation) newErrors.salutation = "Salutation is required.";
+    if (!formData.salutation) newErrors.salutation = t("validation.salutationRequired");
     if (!formData.firstName.trim()) {
-      newErrors.firstName = "First Name is required.";
+      newErrors.firstName = t("validation.firstNameRequired");
     } else if (formData.firstName.trim().length < 2) {
-      newErrors.firstName = "First Name must be at least 2 characters.";
+      newErrors.firstName = t("validation.firstNameMinLength");
     }
     if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last Name is required.";
+      newErrors.lastName = t("validation.lastNameRequired");
     }
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required.";
+      newErrors.email = t("validation.emailRequired");
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email.trim())
     ) {
-      newErrors.email = "Invalid email address.";
+      newErrors.email = t("validation.emailInvalid");
     }
     if (!formData.phone.trim()) {
-      newErrors.phone = "Phone Number is required.";
+      newErrors.phone = t("validation.phoneRequired");
     } else if (
       !/^\+?[0-9 ]{7,20}$/.test(formData.phone.trim()) ||
       formData.phone.replace(/[^0-9]/g, "").length < 7
     ) {
-      newErrors.phone = "Invalid phone number.";
+      newErrors.phone = t("validation.phoneInvalid");
     }
     if (!formData.time_slot) {
-      newErrors.time_slot = "Please select a time slot.";
+      newErrors.time_slot = t("validation.timeSlotRequired");
     }
     if (!formData.guests || Number(formData.guests) < 1) {
-      newErrors.guests = "At least one guest is required.";
+      newErrors.guests = t("validation.guestsRequired");
     }
     return newErrors;
   };
@@ -107,7 +114,7 @@ export default function ReserveTable() {
     startTransition(async () => {
       try {
         await submitReservation(data);
-        setFeedback("Your reservation has been successfully made!");
+        setFeedback(t("success"));
         // Reset form data and selections
         setFormData({
           salutation: "",
@@ -124,9 +131,7 @@ export default function ReserveTable() {
         setErrors({});
       } catch (error) {
         console.error(error);
-        setFeedback(
-          "There was an error submitting your reservation. Please try again later."
-        );
+        setFeedback(t("error"));
       }
     });
   }
@@ -161,7 +166,7 @@ export default function ReserveTable() {
           transition={{ duration: 0.6 }}
           className="text-3xl text-normalbg font-bold text-center mb-6"
         >
-          Reserve Your Table
+          {t("title")}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -169,7 +174,7 @@ export default function ReserveTable() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-gray-400 text-center mb-8"
         >
-          Book a table in advance to ensure a wonderful dining experience.
+          {t("subtitle")}
         </motion.p>
 
         <form onSubmit={handleSubmit} noValidate className="space-y-6">
@@ -177,7 +182,7 @@ export default function ReserveTable() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label htmlFor="salutation" className="block text-gray-300 mb-2">
-                <span className="text-red-500">*</span> Salutation
+                <span className="text-red-500">*</span> {t("form.salutation.label")}
               </label>
               <select
                 id="salutation"
@@ -187,10 +192,10 @@ export default function ReserveTable() {
                 required
                 className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
               >
-                <option value="">Select</option>
+                <option value="">{t("form.salutation.placeholder")}</option>
                 {salutations.map((sal) => (
-                  <option key={sal} value={sal}>
-                    {sal}
+                  <option key={sal.value} value={sal.value}>
+                    {sal.label}
                   </option>
                 ))}
               </select>
@@ -200,7 +205,7 @@ export default function ReserveTable() {
             </div>
             <div>
               <label htmlFor="firstName" className="block text-gray-300 mb-2">
-                <span className="text-red-500">*</span> First Name
+                <span className="text-red-500">*</span> {t("form.firstName.label")}
               </label>
               <input
                 id="firstName"
@@ -210,7 +215,7 @@ export default function ReserveTable() {
                 onChange={handleChange}
                 required
                 className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
-                placeholder="Enter your first name"
+                placeholder={t("form.firstName.placeholder")}
               />
               {errors.firstName && (
                 <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
@@ -218,7 +223,7 @@ export default function ReserveTable() {
             </div>
             <div>
               <label htmlFor="lastName" className="block text-gray-300 mb-2">
-                <span className="text-red-500">*</span> Last Name
+                <span className="text-red-500">*</span> {t("form.lastName.label")}
               </label>
               <input
                 id="lastName"
@@ -228,7 +233,7 @@ export default function ReserveTable() {
                 onChange={handleChange}
                 required
                 className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
-                placeholder="Enter your last name"
+                placeholder={t("form.lastName.placeholder")}
               />
               {errors.lastName && (
                 <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>
@@ -239,7 +244,7 @@ export default function ReserveTable() {
           {/* Email */}
           <div>
             <label htmlFor="email" className="block text-gray-300 mb-2">
-              <span className="text-red-500">*</span> Email
+              <span className="text-red-500">*</span> {t("form.email.label")}
             </label>
             <input
               id="email"
@@ -249,7 +254,7 @@ export default function ReserveTable() {
               onChange={handleChange}
               required
               className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
-              placeholder="Enter your email"
+              placeholder={t("form.email.placeholder")}
             />
             {errors.email && (
               <p className="mt-1 text-sm text-red-500">{errors.email}</p>
@@ -259,7 +264,7 @@ export default function ReserveTable() {
           {/* Phone */}
           <div>
             <label htmlFor="phone" className="block text-gray-300 mb-2">
-              <span className="text-red-500">*</span> Phone Number
+              <span className="text-red-500">*</span> {t("form.phone.label")}
             </label>
             <input
               id="phone"
@@ -269,7 +274,7 @@ export default function ReserveTable() {
               onChange={handleChange}
               required
               className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
-              placeholder="Enter your phone number"
+              placeholder={t("form.phone.placeholder")}
             />
             {errors.phone && (
               <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
@@ -279,7 +284,7 @@ export default function ReserveTable() {
           {/* Calendar for Date Selection */}
           <div>
             <label className="block text-gray-300 mb-2">
-              <span className="text-red-500">*</span> Select Date
+              <span className="text-red-500">*</span> {t("form.date.label")}
             </label>
             <div className="bg-gray-800 p-3 rounded-lg">
               <DatePicker
@@ -309,12 +314,12 @@ export default function ReserveTable() {
                   </span>
                 )}
                 className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
-                placeholderText="Choose a date"
+                placeholderText={t("form.date.placeholder")}
               />
             </div>
             {selectedDate && selectedDate.getDay() === 1 && (
               <p className="mt-2 text-red-500 text-center">
-                Sorry, we are closed on Mondays.
+                {t("form.mondayClosed")}
               </p>
             )}
           </div>
@@ -323,7 +328,7 @@ export default function ReserveTable() {
           {selectedDate && selectedDate.getDay() !== 1 && (
             <div>
               <label className="block text-gray-300 mb-2">
-                <span className="text-red-500">*</span> Select Time Slot
+                <span className="text-red-500">*</span> {t("form.timeSlot.label")}
               </label>
               {timeSlots.length > 0 ? (
                 <div className="flex flex-wrap gap-4 justify-center mt-2">
@@ -335,9 +340,9 @@ export default function ReserveTable() {
                     const remaining = 25 - booked;
                     let displayRemaining = "";
                     if (remaining <= 0) {
-                      displayRemaining = "Booking is Full";
+                      displayRemaining = t("form.timeSlot.bookingFull");
                     } else if (remaining <= 10) {
-                      displayRemaining = `${remaining} guests remaining`;
+                      displayRemaining = t("form.timeSlot.guestsRemaining", { count: remaining });
                     }
                     return (
                       <button
@@ -373,7 +378,7 @@ export default function ReserveTable() {
                 </div>
               ) : (
                 <p className="mt-2 text-center text-gray-400">
-                  No available time slots for this date.
+                  {t("form.timeSlot.noSlots")}
                 </p>
               )}
               {errors.time_slot && (
@@ -385,7 +390,7 @@ export default function ReserveTable() {
           {/* Number of Guests */}
           <div>
             <label htmlFor="guests" className="block text-gray-300 mb-2">
-              <span className="text-red-500">*</span> Number of Guests
+              <span className="text-red-500">*</span> {t("form.guests.label")}
             </label>
             <input
               id="guests"
@@ -396,7 +401,7 @@ export default function ReserveTable() {
               required
               min="1"
               className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
-              placeholder="Enter number of guests"
+              placeholder={t("form.guests.placeholder")}
             />
             {errors.guests && (
               <p className="mt-1 text-sm text-red-500">{errors.guests}</p>
@@ -406,14 +411,14 @@ export default function ReserveTable() {
           {/* Message (Optional) */}
           <div>
             <label htmlFor="message" className="block text-gray-300 mb-2">
-              Message (Optional)
+              {t("form.message.label")}
             </label>
             <textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Please mention kids seats requirements or any special requests"
+              placeholder={t("form.message.placeholder")}
               className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
               rows="4"
             ></textarea>
@@ -424,7 +429,7 @@ export default function ReserveTable() {
             disabled={isPending}
             className="w-full p-3 rounded-lg bg-normalbg text-white font-semibold text-lg hover:bg-rose-600 transition"
           >
-            {isPending ? "Reserving..." : "Reserve Now"}
+            {isPending ? t("form.submit.loading") : t("form.submit.button")}
           </button>
         </form>
         {feedback && (
