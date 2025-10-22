@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { toTitleCase } from "@/app/utils/string";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 // Hardcoded drinks data (example data)
 const drinksData = [
@@ -184,12 +185,13 @@ const groupByCategory = (data) =>
   }, {});
 
 export default function DrinksMenu() {
+  const t = useTranslations("DrinksMenu");
   const grouped = groupByCategory(drinksData);
 
   return (
     <div className="container mx-auto px-2 py-2 lg:px-4 lg:py-3">
       <h1 className="text-2xl lg:text-4xl font-bold text-center mb-8 text-primary">
-        Drinks Menu
+        {t("title")}
       </h1>
       {Object.entries(grouped).map(([category, items]) => (
         <details

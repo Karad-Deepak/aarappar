@@ -4,7 +4,6 @@ import {
   unstable_setRequestLocale,
   getTranslations,
 } from "next-intl/server";
-import FloatingLanguageSwitcher from "@/app/components/FloatingLanguageSwitcher";
 import intlConfig from "../../../next-intl.config";
 
 const siteUrl = "https://aarappar.de";
@@ -56,7 +55,6 @@ export default async function LocaleLayout({ children, params: { locale } }) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       {children}
-      <FloatingLanguageSwitcher />
     </NextIntlClientProvider>
   );
 }

@@ -143,9 +143,9 @@ export default function MenuDisplay({ menudata }) {
           />
         </motion.div>
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-primary">Menu</h1>
+          <h1 className="text-4xl font-bold text-primary">{t("title")}</h1>
           <p className="text-gray-950 hidden lg:block">
-            Delicious South Indian flavors, pure & natural.
+            {t("subtitle")}
           </p>
         </div>
         <motion.div
@@ -211,7 +211,7 @@ export default function MenuDisplay({ menudata }) {
                       item.soldout ? "text-gray-400" : "text-indigo-700"
                     }`}
                   >
-                    â‚¬{parseFloat(item.price).toFixed(2)}
+                    €{parseFloat(item.price).toFixed(2)}
                   </span>
                 </div>
                 {item.description && (
@@ -286,7 +286,7 @@ export default function MenuDisplay({ menudata }) {
                                       : "text-indigo-800"
                                   }`}
                                 >
-                                  â‚¬{parseFloat(item.price).toFixed(2)}
+                                  €{parseFloat(item.price).toFixed(2)}
                                 </span>
                               </div>
                               {item.description && (

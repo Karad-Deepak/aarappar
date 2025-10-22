@@ -5,7 +5,7 @@
       "home": { "label": "Startseite", "href": "/" },
       "menu": { "label": "Speisekarte", "href": "/menu" },
       "reservation": { "label": "Tisch reservieren", "href": "/reservation" },
-      "catering": { "label": "Catering", "href": "/catering" },
+      "catering": { "label": "Catering-Service", "href": "/catering" },
       "about": { "label": "Über uns", "href": "/about" }
     }
   },
@@ -88,7 +88,7 @@
     "links": [
       { "label": "Speisekarte", "href": "/menu" },
       { "label": "Reservierungen", "href": "/reservation" },
-      { "label": "Catering", "href": "/catering" },
+      { "label": "Catering-Service", "href": "/catering" },
       { "label": "Über uns", "href": "/about" }
     ],
     "contact": {
@@ -139,10 +139,78 @@
     "message": "Ihre Bestellung wurde erfolgreich übermittelt. Wir melden uns in Kürze bei Ihnen."
   },
   "MenuPage": {
+    "title": "Speisekarte",
+    "subtitle": "Köstliche südindische Aromen, rein & natürlich.",
     "searchPlaceholder": "Nach Gerichten suchen...",
     "noResults": "Keine Gerichte gefunden.",
     "soldOut": "Ausverkauft",
     "unavailable": "Nicht verfügbar"
+  },
+  "DrinksMenu": {
+    "title": "Getränkekarte",
+    "categories": {
+      "beers": "Biere",
+      "wein": "Wein",
+      "whiskey": "Whiskey",
+      "rum": "Rum",
+      "brandy": "Brandy",
+      "shooters": "Shooters",
+      "longDrinks": "Longdrinks"
+    }
+  },
+  "Gallery": {
+    "title": "Restaurant Galerie",
+    "subtitle": "Erleben Sie unser elegantes Interieur",
+    "previousSlide": "Vorheriges Bild",
+    "nextSlide": "Nächstes Bild",
+    "viewSlide": "Bild anzeigen"
+  },
+  "PrivacyPolicy": {
+    "title": "Datenschutzerklärung",
+    "lastUpdated": "Zuletzt aktualisiert: 16. März 2025",
+    "sections": {
+      "introduction": {
+        "title": "Einleitung",
+        "content": "Wir bei AARAPPAR Indisches Restaurant schätzen Ihre Privatsphäre und behandeln Ihre persönlichen Informationen verantwortungsvoll gemäß DSGVO und deutschen Datenschutzgesetzen."
+      },
+      "dataCollection": {
+        "title": "Daten, die wir erheben",
+        "items": [
+          "Name",
+          "E-Mail-Adresse",
+          "Telefonnummer",
+          "Adresse (für Lieferbestellungen)",
+          "Reservierungs-/Bestelldetails (Datum, Zeit, bestellte Artikel)"
+        ]
+      },
+      "purpose": {
+        "title": "Zweck der Datenerfassung",
+        "content": "Ihre Daten werden ausschließlich zur Bearbeitung von Tischreservierungen oder zur Erfüllung Ihrer Bestellungen erhoben. Sie werden ohne ausdrückliche Zustimmung niemals für andere Zwecke verwendet."
+      },
+      "storage": {
+        "title": "Datenspeicherung & Sicherheit",
+        "content": "Ihre Daten werden sicher gespeichert und vor unbefugtem Zugriff geschützt. Die Daten werden gelöscht, sobald sie nicht mehr benötigt werden oder auf Ihre Anfrage hin."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "content": "Wir verwenden keine Cookies, außer wesentlichen Cookies, die für die grundlegende Funktionalität unserer Reservierungs- oder Bestellsysteme erforderlich sind. Diese wesentlichen Cookies erfordern keine Ihre Zustimmung."
+      },
+      "rights": {
+        "title": "Ihre Rechte",
+        "intro": "Sie haben folgende Rechte gemäß DSGVO:",
+        "items": [
+          "Zugriff auf Ihre persönlichen Daten",
+          "Berichtigung Ihrer persönlichen Daten",
+          "Löschung Ihrer Daten beantragen",
+          "Widerspruch gegen die Datenverarbeitung"
+        ],
+        "contact": "Um Ihre Rechte auszuüben, kontaktieren Sie uns per E-Mail unter:"
+      },
+      "complaints": {
+        "title": "Kontakt & Beschwerden",
+        "content": "Wenn Sie Bedenken bezüglich des Datenschutzes haben, kontaktieren Sie uns bitte direkt. Sie haben auch das Recht, eine Beschwerde bei der zuständigen Aufsichtsbehörde in Deutschland einzureichen."
+      }
+    }
   },
   "ReservationPage": {
     "title": "Tisch reservieren",

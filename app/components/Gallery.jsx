@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const images = [
   "/interior2.webp",
@@ -13,6 +14,7 @@ const images = [
 ];
 
 export default function RestaurantGallery() {
+  const t = useTranslations("Gallery");
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -32,10 +34,10 @@ export default function RestaurantGallery() {
         id="gallery-title"
         className="text-2xl lg:text-5xl font-extrabold text-primary mb-4"
       >
-        Restaurant Gallery
+        {t("title")}
       </h2>
       <p className="text-sm lg:text-lg text-gray-900 mb-6">
-        Experience our elegant interiors
+        {t("subtitle")}
       </p>
 
       <div className="relative max-w-4xl mx-auto overflow-hidden rounded-lg  aspect-[16/9]">

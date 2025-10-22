@@ -139,10 +139,78 @@
     "message": "Your order was submitted successfully. We will contact you shortly."
   },
   "MenuPage": {
+    "title": "Menu",
+    "subtitle": "Delicious South Indian flavors, pure & natural.",
     "searchPlaceholder": "Search for items...",
     "noResults": "No items found.",
     "soldOut": "Sold out",
     "unavailable": "Unavailable"
+  },
+  "DrinksMenu": {
+    "title": "Drinks Menu",
+    "categories": {
+      "beers": "Beers",
+      "wein": "Wine",
+      "whiskey": "Whiskey",
+      "rum": "Rum",
+      "brandy": "Brandy",
+      "shooters": "Shooters",
+      "longDrinks": "Long Drinks"
+    }
+  },
+  "Gallery": {
+    "title": "Restaurant Gallery",
+    "subtitle": "Experience our elegant interiors",
+    "previousSlide": "Previous Slide",
+    "nextSlide": "Next Slide",
+    "viewSlide": "View Slide"
+  },
+  "PrivacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 16, 2025",
+    "sections": {
+      "introduction": {
+        "title": "Introduction",
+        "content": "We at AARAPPAR Indian Restaurant value your privacy and handle your personal information responsibly in accordance with GDPR and German data protection laws."
+      },
+      "dataCollection": {
+        "title": "Data We Collect",
+        "items": [
+          "Name",
+          "Email address",
+          "Phone number",
+          "Address (for delivery orders)",
+          "Reservation/order details (date, time, items ordered)"
+        ]
+      },
+      "purpose": {
+        "title": "Purpose of Data Collection",
+        "content": "Your data is collected solely to process table reservations or fulfill your orders. It will never be used for other purposes without explicit consent."
+      },
+      "storage": {
+        "title": "Data Storage & Security",
+        "content": "Your data is securely stored and protected against unauthorized access. Data will be deleted once it's no longer required, or upon your request."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "content": "We do not use cookies, except for essential cookies necessary for the basic functionality of our reservation or ordering systems. These essential cookies do not require your consent."
+      },
+      "rights": {
+        "title": "Your Rights",
+        "intro": "You have the following rights under GDPR:",
+        "items": [
+          "Access your personal data",
+          "Correct your personal data",
+          "Request deletion of your data",
+          "Object to data processing"
+        ],
+        "contact": "To exercise your rights, contact us via email at:"
+      },
+      "complaints": {
+        "title": "Contact & Complaints",
+        "content": "If you have concerns about data privacy, please contact us directly. You also have the right to lodge a complaint with the responsible supervisory authority in Germany."
+      }
+    }
   },
   "ReservationPage": {
     "title": "Reserve Your Table",

@@ -1,6 +1,6 @@
 const config = {
   locales: ["en", "de"],
-  defaultLocale: "de",
+  defaultLocale: "en",
   localePrefix: "always",
 } as const;
 
