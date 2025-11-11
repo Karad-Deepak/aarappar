@@ -461,6 +461,10 @@ export default function PickupPage() {
             >
               {isSubmitting ? "Submitting..." : "Submit Order"}
             </motion.button>
+            <p className="mt-3 text-sm font-semibold text-red-700 text-center border border-red-200 rounded-md bg-red-50 py-2 px-3">
+              Please call the restaurant after submitting to confirm your pickup
+              time.
+            </p>
           </motion.form>
         </motion.div>
       </motion.div>
