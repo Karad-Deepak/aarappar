@@ -482,6 +482,8 @@ export async function createPickupOrder(formData) {
   const customer_name = formData.get("customer_name");
   const customer_phone = formData.get("phone");
   const customer_email = formData.get("email");
+  const notesRaw = formData.get("notes") || "";
+  const notes = typeof notesRaw === "string" ? notesRaw.trim() : "";
   const items = formData.get("items"); // JSON string from cart
   const payment_method = formData.get("payment_method");
   const transaction_id = formData.get("transaction_id");
@@ -525,6 +527,7 @@ export async function createPickupOrder(formData) {
           customer_phone,
           customer_email, // include the email in the insert
           cart_items: parsedItems,
+          notes: notes || null,
           total_bill,
           order_status: "pending",
         },
@@ -555,6 +558,7 @@ export async function createPickupOrder(formData) {
       ...data,
       payment_method,
       transaction_id,
+      notes,
     };
     await sendPickupOrderEmail(emailPayload);
   } catch (err) {

@@ -83,6 +83,7 @@ export default function PickupsTable({ initialPickups }) {
                 </th>
                 <th className="py-1 md:py-2 px-2 md:px-4 border-b border-gray-300">Phone</th>
                 <th className="py-1 md:py-2 px-2 md:px-4 border-b border-gray-300">Items</th>
+                <th className="py-1 md:py-2 px-2 md:px-4 border-b border-gray-300">Notes</th>
                 <th className="py-1 md:py-2 px-2 md:px-4 border-b border-gray-300">Total</th>
                 <th className="py-1 md:py-2 px-2 md:px-4 border-b border-gray-300">Status</th>
                 <th className="py-1 md:py-2 px-2 md:px-4 border-b border-gray-300">
@@ -108,6 +109,13 @@ export default function PickupsTable({ initialPickups }) {
                           .map((item) => `${item.item_name} (${item.quantity})`)
                           .join(", ")
                       : "N/A"}
+                  </td>
+                  <td className="py-1 md:py-2 px-2 md:px-4 border-b border-gray-300 whitespace-pre-line">
+                    {order.notes && order.notes.trim() ? (
+                      order.notes
+                    ) : (
+                      <span className="text-gray-400 italic">No notes</span>
+                    )}
                   </td>
                   <td className="py-1 md:py-2 px-2 md:px-4 border-b border-gray-300">
                     €{parseFloat(order.total_bill).toFixed(2)}

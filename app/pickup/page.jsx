@@ -15,6 +15,7 @@ export default function PickupPage() {
   const [customerEmail, setCustomerEmail] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("pay_at_store");
   const [transactionId, setTransactionId] = useState("");
+  const [notes, setNotes] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -96,6 +97,7 @@ export default function PickupPage() {
     formData.append("items", JSON.stringify(cart));
     formData.append("payment_method", paymentMethod);
     formData.append("transaction_id", transactionId.trim());
+    formData.append("notes", notes.trim());
 
     try {
       // Call the server action to create a pickup order in Supabase
@@ -220,6 +222,23 @@ export default function PickupPage() {
                   {errors.customerEmail}
                 </p>
               )}
+            </motion.div>
+
+            {/* Notes Field */}
+            <motion.div variants={itemVariants}>
+              <label
+                htmlFor="orderNotes"
+                className="block text-sm sm:text-base md:text-lg font-medium text-gray-700 mb-1"
+              >
+                Notes (optional):
+              </label>
+              <textarea
+                id="orderNotes"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder="Add note for restaurant"
+                className="text-white bg-gray-800 w-full p-2 sm:p-3 md:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 min-h-[120px] resize-y"
+              />
             </motion.div>
 
             {/* Cart Items */}
@@ -462,7 +481,7 @@ export default function PickupPage() {
               {isSubmitting ? "Submitting..." : "Submit Order"}
             </motion.button>
             <p className="mt-3 text-sm font-semibold text-red-700 text-center border border-red-200 rounded-md bg-red-50 py-2 px-3">
-              Please call the restaurant after submitting to confirm your pickup
+              Please call the restaurant after submission to confirm your pickup
               time.
             </p>
           </motion.form>

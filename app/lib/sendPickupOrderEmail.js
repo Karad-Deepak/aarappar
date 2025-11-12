@@ -47,6 +47,16 @@ function getFriendlyPaymentMethod(method) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function escapeHtml(value) {
+  if (typeof value !== "string") return "";
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 /**
  * Sends a pickup order email notification to the admin.
  * @param {Object} data - The pickup order object from the database.
@@ -66,6 +76,7 @@ export async function sendPickupOrderEmail(data) {
     id,
     payment_method,
     transaction_id,
+    notes,
   } = data;
 
   const formattedCartItemsText = Array.isArray(cart_items)
@@ -111,6 +122,14 @@ export async function sendPickupOrderEmail(data) {
 
   const friendlyPaymentMethod = getFriendlyPaymentMethod(payment_method);
   const formattedTotal = formatCurrency(total_bill);
+  const formattedNotesText =
+    typeof notes === "string" && notes.trim().length > 0
+      ? notes.trim()
+      : "No additional notes provided.";
+  const formattedNotesHtml =
+    typeof notes === "string" && notes.trim().length > 0
+      ? escapeHtml(notes.trim()).replace(/\r?\n/g, "<br />")
+      : "<span style=\"color:#6b7280;\">No additional notes provided.</span>";
   const transactionRow = transaction_id
     ? `
               <tr>
@@ -127,7 +146,7 @@ export async function sendPickupOrderEmail(data) {
     replyTo: customer_email,
     text: `Aarappar - New Pickup Order\n\nCustomer: ${customer_name}\nPhone: ${customer_phone}\nEmail: ${customer_email}\nTotal: ${formattedTotal}\nPayment Method: ${friendlyPaymentMethod}${
       transaction_id ? `\nTransaction ID: ${transaction_id}` : ""
-    }\nItems:\n${formattedCartItemsText}`,
+    }\nNotes: ${formattedNotesText}\nItems:\n${formattedCartItemsText}`,
     html: `
       <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; padding: 20px; color: #333;">
         <div style="max-width: 700px; margin: auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.08);">
@@ -163,6 +182,10 @@ export async function sendPickupOrderEmail(data) {
                 </td>
               </tr>
               ${transactionRow}
+              <tr>
+                <td style="padding: 12px; font-weight: bold; border-bottom: 1px solid #eee;">Notes</td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee;">${formattedNotesHtml}</td>
+              </tr>
               <tr>
                 <td style="padding: 12px; font-weight: bold; border-bottom: 1px solid #eee;">Order ID</td>
                 <td style="padding: 12px; border-bottom: 1px solid #eee;">${id}</td>
