@@ -1,15 +1,16 @@
-import webpush from 'web-push';
 import { supabase } from './supabase';
-
-// Configure web-push with VAPID keys
-webpush.setVapidDetails(
-  process.env.VAPID_SUBJECT,
-  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
-  process.env.VAPID_PRIVATE_KEY
-);
 
 export async function sendPushNotification({ title, body, url, tag }) {
   try {
+    // Dynamic import to avoid build issues
+    const webpush = (await import('web-push')).default;
+
+    // Configure web-push with VAPID keys
+    webpush.setVapidDetails(
+      process.env.VAPID_SUBJECT,
+      process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+      process.env.VAPID_PRIVATE_KEY
+    );
     // Fetch all push subscriptions from database
     const { data: subscriptions, error } = await supabase
       .from('push_subscriptions')
