@@ -4,6 +4,7 @@ import { supabase } from "./supabase";
 import { sendReservationEmail } from "./sendReservationEmail";
 import { sendPickupOrderEmail } from "./sendPickupOrderEmail";
 import { sendEnquiryEmail } from "./sendEnquiryEmail";
+import { sendPushNotification } from "./sendPushNotification";
 
 export async function fetchMenu() {
   const { data, error } = await supabase.from("menu").select("*");
@@ -191,7 +192,18 @@ export async function submitReservation(formData) {
     await sendReservationEmail(data);
   } catch (err) {
     console.error("Error sending email notification:", err);
-    // Optionally, handle the error further.
+  }
+
+  // Send push notification to admin
+  try {
+    await sendPushNotification({
+      title: "New Reservation!",
+      body: `${firstName} ${lastName} - ${guests} guests`,
+      url: "/admin/reservations",
+      tag: "reservation"
+    });
+  } catch (err) {
+    console.error("Error sending push notification:", err);
   }
 
   return data;
@@ -563,8 +575,61 @@ export async function createPickupOrder(formData) {
     await sendPickupOrderEmail(emailPayload);
   } catch (err) {
     console.error("Error sending pickup order email notification:", err);
-    // Optionally handle the error further if needed.
+  }
+
+  // Send push notification to admin
+  try {
+    await sendPushNotification({
+      title: "New Pickup Order!",
+      body: `${customer_name} - €${total_bill.toFixed(2)}`,
+      url: "/admin/pickups",
+      tag: "pickup-order"
+    });
+  } catch (err) {
+    console.error("Error sending push notification:", err);
   }
 
   return data;
+}
+
+// ---------------------
+// Push Subscription Actions
+// ---------------------
+
+export async function savePushSubscription(subscription) {
+  const { endpoint, keys } = subscription;
+
+  const { data, error } = await supabase
+    .from("push_subscriptions")
+    .upsert(
+      {
+        endpoint,
+        p256dh: keys.p256dh,
+        auth: keys.auth,
+      },
+      { onConflict: "endpoint" }
+    )
+    .select()
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error saving push subscription:", error);
+    throw new Error("Failed to save push subscription");
+  }
+
+  return { success: true, data };
+}
+
+export async function deletePushSubscription(endpoint) {
+  const { error } = await supabase
+    .from("push_subscriptions")
+    .delete()
+    .eq("endpoint", endpoint);
+
+  if (error) {
+    console.error("Error deleting push subscription:", error);
+    throw new Error("Failed to delete push subscription");
+  }
+
+  return { success: true };
 }

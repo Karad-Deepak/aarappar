@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,14 +9,41 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaRegCalendarAlt, FaTruck } from "react-icons/fa";
 import { GiChefToque } from "react-icons/gi";
 import { FiEdit, FiSettings } from "react-icons/fi";
+import NotificationToggle from "./components/NotificationToggle";
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Register service worker and add manifest for PWA
+  useEffect(() => {
+    // Add manifest link for PWA
+    const manifestLink = document.createElement("link");
+    manifestLink.rel = "manifest";
+    manifestLink.href = "/admin-manifest.json";
+    document.head.appendChild(manifestLink);
+
+    // Register service worker
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/admin-sw.js", { scope: "/admin" })
+        .then((registration) => {
+          console.log("Admin SW registered:", registration.scope);
+        })
+        .catch((err) => {
+          console.error("Admin SW registration failed:", err);
+        });
+    }
+
+    return () => {
+      // Cleanup manifest link when leaving admin
+      document.head.removeChild(manifestLink);
+    };
+  }, []);
+
   // Function to determine link styles dynamically
   const getLinkClasses = (path) =>
-    `block transition-all duration-300 px-4 py-2 rounded-2xl text-sm lg:text-xl font-semibold
+    `block transition-all duration-300 px-3 py-2 rounded-2xl text-xs lg:text-sm font-semibold
     ${
       pathname === path
         ? "bg-normalbg text-white"
@@ -73,6 +100,7 @@ export default function AdminLayout({ children }) {
               <FiSettings className="inline mr-2" />
               Popup Settings
             </Link>
+            <NotificationToggle />
           </nav>
           {/* Mobile Hamburger Menu */}
           <div className="md:hidden">
@@ -151,6 +179,9 @@ export default function AdminLayout({ children }) {
                 <FiSettings className="inline mr-2" />
                 Popup Settings
               </Link>
+              <div className="mt-4 px-4">
+                <NotificationToggle />
+              </div>
             </div>
           </motion.aside>
         )}
