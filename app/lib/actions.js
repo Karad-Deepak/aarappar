@@ -248,7 +248,10 @@ export async function fetchPopupSettings() {
     .from("popup_settings")
     .select("*")
     .limit(1);
-  if (error) throw new Error("Failed to fetch popup settings");
+  if (error) {
+    console.error("Error fetching popup settings:", error);
+    return null; // Return null instead of throwing to prevent page crash
+  }
   return data[0] || null;
 }
 

@@ -145,22 +145,22 @@ export default function EditableMenuItem({ item }) {
             >
               Cancel
             </button>
-            {/* 
             <button
               type="button"
               onClick={(e) => {
                 e.preventDefault();
                 handleDelete();
               }}
-              className="px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded transition duration-200 ease-in-out"
+              disabled={isPending}
+              className="px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded transition duration-200 ease-in-out disabled:opacity-50"
             >
-              Delete
+              {isPending ? "Deleting..." : "Delete"}
             </button>
-            */}
             <button
               type="button"
               onClick={handleToggleSoldout}
-              className="px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition duration-200 ease-in-out"
+              disabled={isPending}
+              className="px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition duration-200 ease-in-out disabled:opacity-50"
             >
               {soldout ? "Mark as Available" : "Mark as Sold Out"}
             </button>
