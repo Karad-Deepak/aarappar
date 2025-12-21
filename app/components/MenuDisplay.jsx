@@ -22,6 +22,21 @@ function isSoldout(value) {
   return value === true || value === "true";
 }
 
+// Extract leading number from item name for sorting
+function extractItemNumber(itemName) {
+  const match = itemName.match(/^(\d+)/);
+  return match ? parseInt(match[1], 10) : Number.MAX_SAFE_INTEGER;
+}
+
+// Sort items by their leading number
+function sortItemsByNumber(items) {
+  return [...items].sort((a, b) => {
+    const numA = extractItemNumber(a.item_name);
+    const numB = extractItemNumber(b.item_name);
+    return numA - numB;
+  });
+}
+
 // Normalize category strings to improve matching between DB and desired order
 function normalizeCategoryLabel(label) {
   if (!label) return "";
@@ -180,7 +195,7 @@ export default function MenuDisplay({ menudata }) {
           animate="visible"
           variants={container}
         >
-          {filtered.map((item) => (
+          {sortItemsByNumber(filtered).map((item) => (
             <motion.div
               key={item.id}
               className={`bg-white text-red-500 p-4 rounded shadow flex flex-col justify-between transition ${
@@ -251,7 +266,7 @@ export default function MenuDisplay({ menudata }) {
                         </h3>
                       )}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {arr.map((item) => (
+                        {sortItemsByNumber(arr).map((item) => (
                           <motion.div
                             key={item.id}
                             className={`bg-white text-red-500 p-4 rounded shadow flex flex-col justify-between transition ${

@@ -636,3 +636,110 @@ export async function deletePushSubscription(endpoint) {
 
   return { success: true };
 }
+
+// ---------------------
+// Closed Dates Actions
+// ---------------------
+
+export async function fetchClosedDates() {
+  const { data, error } = await supabase
+    .from("closed_dates")
+    .select("*")
+    .order("closed_date", { ascending: true });
+
+  if (error) {
+    console.error("Error fetching closed dates:", error);
+    throw new Error("Failed to fetch closed dates");
+  }
+
+  return data;
+}
+
+export async function addClosedDate(formData) {
+  "use server";
+  const closed_date = formData.get("closed_date");
+  const reason = formData.get("reason");
+
+  const { data, error } = await supabase
+    .from("closed_dates")
+    .insert({
+      closed_date,
+      reason: reason || null,
+    })
+    .select()
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error adding closed date:", error);
+    throw new Error("Failed to add closed date");
+  }
+
+  revalidatePath("/admin/closed-dates");
+  return { success: true, data };
+}
+
+export async function deleteClosedDate(id) {
+  "use server";
+  const { error } = await supabase
+    .from("closed_dates")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Error deleting closed date:", error);
+    throw new Error("Failed to delete closed date");
+  }
+
+  revalidatePath("/admin/closed-dates");
+  return { success: true, message: "Closed date deleted successfully" };
+}
+
+export async function fetchFutureReservations() {
+  // Fetch all reservations
+  const { data, error } = await supabase
+    .from("reservations")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Error fetching future reservations:", error);
+    throw new Error("Failed to fetch future reservations");
+  }
+
+  // Get today's date at midnight (local timezone)
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Filter reservations to only include today and future dates
+  const futureReservations = data.filter((reservation) => {
+    // Parse the date from time_slot (format: "DD/MM/YYYY: HH:MM to HH:MM")
+    const dateMatch = reservation.time_slot.match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+
+    if (!dateMatch) return false;
+
+    const [, day, month, year] = dateMatch;
+    const reservationDate = new Date(year, month - 1, day);
+    reservationDate.setHours(0, 0, 0, 0);
+
+    // Include if reservation date is today or in the future
+    return reservationDate >= today;
+  });
+
+  // Sort by date (earliest first)
+  futureReservations.sort((a, b) => {
+    const dateA = a.time_slot.match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+    const dateB = b.time_slot.match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+
+    if (!dateA || !dateB) return 0;
+
+    const [, dayA, monthA, yearA] = dateA;
+    const [, dayB, monthB, yearB] = dateB;
+
+    const timeA = new Date(yearA, monthA - 1, dayA).getTime();
+    const timeB = new Date(yearB, monthB - 1, dayB).getTime();
+
+    return timeA - timeB;
+  });
+
+  return futureReservations;
+}

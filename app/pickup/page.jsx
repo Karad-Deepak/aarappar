@@ -19,6 +19,9 @@ export default function PickupPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // Check if today is Monday (0 = Sunday, 1 = Monday, etc.)
+  const isMonday = new Date().getDay() === 1;
+
   // Calculate the total bill based on cart items
   const totalBill = cart.reduce(
     (total, item) => total + parseFloat(item.price) * item.quantity,
@@ -474,12 +477,32 @@ export default function PickupPage() {
             {/* Submit Order Button */}
             <motion.button
               type="submit"
-              // disabled={isSubmitting}
-              className="w-full bg-red-900 text-white font-semibold py-2 sm:py-3 md:py-3 rounded hover:bg-red-950 transition duration-200"
+              disabled={isSubmitting || isMonday}
+              className={`w-full font-semibold py-2 sm:py-3 md:py-3 rounded transition duration-200 ${
+                isMonday
+                  ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                  : "bg-green-900 text-white hover:bg-red-950"
+              }`}
               variants={itemVariants}
             >
-              {isSubmitting ? "Submitting..." : "Submit Order"}
+              {isSubmitting
+                ? "Submitting..."
+                : isMonday
+                ? "Restaurant Closed on Monday"
+                : "Submit Order"}
             </motion.button>
+
+            {/* Monday Closed Notice */}
+            {isMonday && (
+              <motion.p
+                className="text-sm font-semibold text-amber-700 text-center border border-amber-200 rounded-md bg-amber-50 py-2 px-3"
+                variants={itemVariants}
+              >
+                We are closed on Mondays. Please place your order on another
+                day.
+              </motion.p>
+            )}
+
             <p className="mt-3 text-sm font-semibold text-red-700 text-center border border-red-200 rounded-md bg-red-50 py-2 px-3">
               Please call the restaurant after submission to confirm your pickup
               time.

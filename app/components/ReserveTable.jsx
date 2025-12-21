@@ -4,7 +4,7 @@ import { useState, useTransition, useEffect } from "react";
 import { motion } from "framer-motion";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { submitReservation, fetchSlotAvailability } from "@/app/lib/actions";
+import { submitReservation, fetchSlotAvailability, fetchClosedDates } from "@/app/lib/actions";
 
 const salutations = ["Mr", "Ms", "Mrs"];
 
@@ -25,6 +25,7 @@ export default function ReserveTable() {
   const [selectedDate, setSelectedDate] = useState(null); // Date object
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
   const [slotAvailability, setSlotAvailability] = useState({});
+  const [closedDates, setClosedDates] = useState([]);
 
   // Poll for slot availability every 60 seconds
   useEffect(() => {
@@ -39,6 +40,19 @@ export default function ReserveTable() {
     getAvailability();
     const intervalId = setInterval(getAvailability, 60000); // refresh every 60s
     return () => clearInterval(intervalId);
+  }, []);
+
+  // Fetch closed dates on mount
+  useEffect(() => {
+    async function getClosedDates() {
+      try {
+        const dates = await fetchClosedDates();
+        setClosedDates(dates);
+      } catch (error) {
+        console.error("Error fetching closed dates:", error.message);
+      }
+    }
+    getClosedDates();
   }, []);
 
   const handleChange = (e) => {
@@ -292,7 +306,23 @@ export default function ReserveTable() {
                 }}
                 minDate={new Date()}
                 dateFormat="dd MMM yyyy"
-                filterDate={(date) => date.getDay() !== 1} // Disable all Mondays
+                filterDate={(date) => {
+                  // Disable all Mondays
+                  if (date.getDay() === 1) return false;
+
+                  // Disable dates in closedDates list
+                  // Use local date to avoid timezone issues
+                  const year = date.getFullYear();
+                  const month = String(date.getMonth() + 1).padStart(2, '0');
+                  const day = String(date.getDate()).padStart(2, '0');
+                  const dateString = `${year}-${month}-${day}`;
+
+                  const isClosedDate = closedDates.some(
+                    (closedDate) => closedDate.closed_date === dateString
+                  );
+
+                  return !isClosedDate;
+                }}
                 className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-rose-500 focus:ring-rose-500"
                 placeholderText="Choose a date"
               />
