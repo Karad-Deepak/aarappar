@@ -1,6 +1,7 @@
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/app/components/CartContext";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -40,7 +41,10 @@ export default function RootLayout({ children }) {
         <meta name="robots" content="index, follow" />
       </head>
       <body className={` ${playfair.variable} antialiased`}>
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          {children}
+          <WhatsAppButton />
+        </CartProvider>
       </body>
     </html>
   );

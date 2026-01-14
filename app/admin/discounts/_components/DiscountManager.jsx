@@ -6,8 +6,9 @@ import {
   updateDiscount,
   toggleDiscountActive,
   deleteDiscount,
+  updateSiteSetting,
 } from "@/app/lib/actions";
-import { FiTrash2, FiEdit2, FiCheck, FiX, FiPercent, FiTag } from "react-icons/fi";
+import { FiTrash2, FiEdit2, FiCheck, FiX, FiPercent, FiTag, FiShoppingBag, FiToggleLeft, FiToggleRight } from "react-icons/fi";
 
 const CATEGORY_SHORT_NAMES = {
   Soups: "Soups",
@@ -33,12 +34,14 @@ function getShortCategoryName(category) {
   return CATEGORY_SHORT_NAMES[category] || category;
 }
 
-export default function DiscountManager({ discounts, categories, menuItems }) {
+export default function DiscountManager({ discounts, categories, menuItems, initialPickupsEnabled }) {
   const [isCreating, setIsCreating] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [pickupsEnabled, setPickupsEnabled] = useState(initialPickupsEnabled);
+  const [pickupLoading, setPickupLoading] = useState(false);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -136,6 +139,19 @@ export default function DiscountManager({ discounts, categories, menuItems }) {
     }));
   };
 
+  const handleTogglePickups = async () => {
+    setPickupLoading(true);
+    try {
+      const newValue = !pickupsEnabled;
+      await updateSiteSetting("pickups_enabled", newValue.toString());
+      setPickupsEnabled(newValue);
+    } catch (err) {
+      console.error("Error updating pickup setting:", err);
+      alert("Failed to update setting");
+    }
+    setPickupLoading(false);
+  };
+
   // Calculate preview prices
   const getPreviewItems = () => {
     if (!formData.value || isNaN(parseFloat(formData.value))) return [];
@@ -182,6 +198,57 @@ export default function DiscountManager({ discounts, categories, menuItems }) {
           {error}
         </div>
       )}
+
+      {/* Online Pickup Orders Toggle */}
+      <div className="bg-white border-2 border-gray-200 rounded-xl p-5 shadow-sm">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className={`p-3 rounded-full ${pickupsEnabled ? "bg-green-100" : "bg-red-100"}`}>
+              <FiShoppingBag className={`text-xl ${pickupsEnabled ? "text-green-600" : "text-red-600"}`} />
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-900">Online Pickup Orders</h3>
+              <p className="text-sm text-gray-500">
+                {pickupsEnabled
+                  ? "Customers can place pickup orders"
+                  : "Pickup orders are currently disabled"}
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={handleTogglePickups}
+            disabled={pickupLoading}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${
+              pickupsEnabled
+                ? "bg-green-500 hover:bg-green-600 text-white"
+                : "bg-red-500 hover:bg-red-600 text-white"
+            } ${pickupLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+          >
+            {pickupLoading ? (
+              "Updating..."
+            ) : pickupsEnabled ? (
+              <>
+                <FiToggleRight className="text-xl" />
+                Enabled
+              </>
+            ) : (
+              <>
+                <FiToggleLeft className="text-xl" />
+                Disabled
+              </>
+            )}
+          </button>
+        </div>
+
+        {!pickupsEnabled && (
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+            <p className="text-sm text-amber-700 font-medium">
+              Customers see &quot;We are not accepting orders right now&quot; and cannot submit orders.
+            </p>
+          </div>
+        )}
+      </div>
 
       {/* Active Discount Banner */}
       {activeDiscount && (

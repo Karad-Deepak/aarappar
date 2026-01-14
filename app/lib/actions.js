@@ -907,3 +907,47 @@ export async function deleteDiscount(id) {
   revalidatePath("/menu");
   return { success: true, message: "Discount deleted successfully" };
 }
+
+// ---------------------
+// Site Settings Actions
+// ---------------------
+
+export async function fetchSiteSetting(key) {
+  try {
+    const { data, error } = await supabase
+      .from("site_settings")
+      .select("value")
+      .eq("key", key)
+      .maybeSingle();
+
+    if (error) {
+      // Table might not exist, return null (default to enabled)
+      console.error(`Error fetching setting ${key}:`, error.message || error);
+      return null;
+    }
+
+    return data?.value ?? null;
+  } catch (err) {
+    // Handle case where table doesn't exist
+    console.error(`Error fetching setting ${key}:`, err.message || err);
+    return null;
+  }
+}
+
+export async function updateSiteSetting(key, value) {
+  "use server";
+  const { data, error } = await supabase
+    .from("site_settings")
+    .upsert({ key, value }, { onConflict: "key" })
+    .select()
+    .maybeSingle();
+
+  if (error) {
+    console.error(`Error updating setting ${key}:`, error);
+    throw new Error(`Failed to update setting ${key}`);
+  }
+
+  revalidatePath("/admin/settings");
+  revalidatePath("/pickup");
+  return { success: true, data };
+}

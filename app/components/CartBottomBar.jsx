@@ -35,7 +35,7 @@ export default function CartBottomBar() {
         </span>
         <button
           onClick={handleProceedClick}
-          className="bg-white text-normalbg font-bold px-4 py-2 rounded"
+          className="bg-white text-normalbg font-bold px-4 py-2 rounded mr-14"
         >
           Proceed to Cart
         </button>
