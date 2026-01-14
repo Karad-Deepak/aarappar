@@ -11,13 +11,29 @@ export function CartProvider({ children }) {
     setCart((prevCart) => {
       const existingItem = prevCart.find((i) => i.id === item.id);
       if (existingItem) {
-        // Increase quantity by one
+        // Increase quantity by one, keeping the price info from the item being added
         return prevCart.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === item.id
+            ? {
+                ...i,
+                quantity: i.quantity + 1,
+                // Update price info in case discount changed
+                price: item.price,
+                original_price: item.original_price || item.price,
+                discount_applied: item.discount_applied,
+              }
+            : i
         );
       }
       // Add item with initial quantity 1
-      return [...prevCart, { ...item, quantity: 1 }];
+      return [
+        ...prevCart,
+        {
+          ...item,
+          quantity: 1,
+          original_price: item.original_price || item.price,
+        },
+      ];
     });
   };
 

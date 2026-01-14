@@ -86,7 +86,7 @@ export default function Hero() {
                   4.8
                 </span>
                 <span className="text-gray-900 text-xs sm:text-sm lg:text-base font-medium">
-                  (100+ reviews)
+                  (160+ reviews)
                 </span>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function Hero() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/menu"
-              className="w-full sm:w-auto inline-block px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-green-600 via-green-600 to-green-600 hover:from-green-700 hover:via-green-800 hover:to-green-900 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-green-600/30 text-white"
+              className="w-full sm:w-auto min-w-[160px] sm:min-w-[180px] text-center inline-block px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-green-600 via-green-600 to-green-600 hover:from-green-700 hover:via-green-800 hover:to-green-900 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 border border-green-600/30 text-white"
             >
               Order Now
             </Link>
@@ -119,7 +119,7 @@ export default function Hero() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/reservation"
-              className="w-full sm:w-auto inline-block px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-500 hover:from-yellow-600 hover:via-yellow-700 hover:to-yellow-800 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 text-black"
+              className="w-full sm:w-auto min-w-[160px] sm:min-w-[180px] text-center inline-block px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-500 hover:from-yellow-600 hover:via-yellow-700 hover:to-yellow-800 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 text-black"
             >
               Make Reservation
             </Link>

@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // Import react icons
 import { FaRegCalendarAlt, FaTruck } from "react-icons/fa";
 import { GiChefToque } from "react-icons/gi";
-import { FiEdit, FiSettings } from "react-icons/fi";
+import { FiEdit, FiSettings, FiPercent } from "react-icons/fi";
 import NotificationToggle from "./components/NotificationToggle";
 
 export default function AdminLayout({ children }) {
@@ -94,6 +94,13 @@ export default function AdminLayout({ children }) {
               Change Menu
             </Link>
             <Link
+              href="/admin/discounts"
+              className={getLinkClasses("/admin/discounts")}
+            >
+              <FiPercent className="inline mr-2" />
+              Discounts
+            </Link>
+            <Link
               href="/admin/popup-settings"
               className={getLinkClasses("/admin/popup-settings")}
             >
@@ -170,6 +177,14 @@ export default function AdminLayout({ children }) {
               >
                 <FiEdit className="inline mr-2" />
                 Change Menu
+              </Link>
+              <Link
+                href="/admin/discounts"
+                className={getLinkClasses("/admin/discounts")}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FiPercent className="inline mr-2" />
+                Discounts
               </Link>
               <Link
                 href="/admin/popup-settings"

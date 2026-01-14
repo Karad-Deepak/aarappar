@@ -2,14 +2,61 @@
 
 import { useCart } from "./CartContext";
 
-export default function QuantityControl({ item, disabled = false }) {
+// Helper to check if discount applies to a category
+function categoryMatchesDiscount(itemCategory, discount) {
+  if (!discount) return false;
+  if (discount.applies_to === "all") return true;
+  if (!discount.categories || discount.categories.length === 0) return false;
+
+  const normalizedItemCat = (itemCategory || "").toLowerCase();
+  return discount.categories.some((cat) => {
+    const normalizedCat = cat.toLowerCase();
+    return (
+      normalizedItemCat.includes(normalizedCat) ||
+      normalizedCat.includes(normalizedItemCat)
+    );
+  });
+}
+
+// Calculate discounted price
+function calculateDiscountedPrice(originalPrice, discount) {
+  if (!discount) return originalPrice;
+  const price = parseFloat(originalPrice);
+
+  if (discount.type === "percentage") {
+    return Math.max(0, price * (1 - discount.value / 100));
+  } else {
+    return Math.max(0, price - discount.value);
+  }
+}
+
+export default function QuantityControl({ item, disabled = false, activeDiscount = null }) {
   const { cart, addToCart, decreaseQuantity } = useCart();
   const currentItem = cart.find((i) => i.id === item.id);
   const quantity = currentItem ? currentItem.quantity : 0;
 
   const handleAdd = () => {
     if (!disabled) {
-      addToCart(item);
+      // Calculate if discount applies and the discounted price
+      const hasDiscount = categoryMatchesDiscount(item.category, activeDiscount);
+      const originalPrice = parseFloat(item.price);
+      const discountedPrice = hasDiscount
+        ? calculateDiscountedPrice(originalPrice, activeDiscount)
+        : originalPrice;
+
+      // Add item with both original and discounted price info
+      const itemWithDiscount = {
+        ...item,
+        original_price: originalPrice,
+        price: discountedPrice,
+        discount_applied: hasDiscount
+          ? activeDiscount.type === "percentage"
+            ? `${activeDiscount.value}%`
+            : `€${activeDiscount.value}`
+          : null,
+      };
+
+      addToCart(itemWithDiscount);
     }
   };
 

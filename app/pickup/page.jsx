@@ -28,6 +28,14 @@ export default function PickupPage() {
     0
   );
 
+  // Calculate total savings from discounts
+  const totalSavings = cart.reduce((savings, item) => {
+    const originalPrice = parseFloat(item.original_price || item.price);
+    const currentPrice = parseFloat(item.price);
+    const itemSavings = (originalPrice - currentPrice) * item.quantity;
+    return savings + Math.max(0, itemSavings);
+  }, 0);
+
   // Framer Motion variants
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -250,39 +258,63 @@ export default function PickupPage() {
                 Your Cart Items
               </h2>
               <div className="space-y-2 sm:space-y-3 md:space-y-4">
-                {cart.map((item) => (
-                  <motion.div
-                    key={item.id}
-                    className="flex justify-between items-center border-b pb-1"
-                    variants={itemVariants}
-                  >
-                    <div>
-                      <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800">
-                        {item.item_name}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-500">
-                        Quantity: {item.quantity}
-                      </p>
-                    </div>
-                    <div className="text-sm sm:text-base md:text-lg font-bold text-gray-800">
-                      €{(parseFloat(item.price) * item.quantity).toFixed(2)}
-                    </div>
-                  </motion.div>
-                ))}
+                {cart.map((item) => {
+                  const hasDiscount = item.discount_applied && item.original_price && parseFloat(item.original_price) !== parseFloat(item.price);
+                  return (
+                    <motion.div
+                      key={item.id}
+                      className="flex justify-between items-center border-b pb-1"
+                      variants={itemVariants}
+                    >
+                      <div>
+                        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800">
+                          {item.item_name}
+                          {hasDiscount && (
+                            <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                              {item.discount_applied} off
+                            </span>
+                          )}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-gray-500">
+                          Quantity: {item.quantity}
+                          {hasDiscount && (
+                            <span className="ml-2">
+                              <span className="line-through text-gray-400">€{parseFloat(item.original_price).toFixed(2)}</span>
+                              <span className="text-green-600 ml-1">€{parseFloat(item.price).toFixed(2)} each</span>
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                      <div className="text-sm sm:text-base md:text-lg font-bold text-gray-800">
+                        €{(parseFloat(item.price) * item.quantity).toFixed(2)}
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
 
             {/* Total Bill */}
             <motion.div
-              className="flex justify-between items-center border-t pt-2 sm:pt-4"
+              className="border-t pt-2 sm:pt-4"
               variants={itemVariants}
             >
-              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
-                Total:
-              </h2>
-              <span className="text-lg sm:text-xl md:text-2xl font-bold">
-                €{totalBill.toFixed(2)}
-              </span>
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
+                  Total:
+                </h2>
+                <span className="text-lg sm:text-xl md:text-2xl font-bold">
+                  €{totalBill.toFixed(2)}
+                </span>
+              </div>
+              {totalSavings > 0 && (
+                <div className="flex justify-between items-center mt-2 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+                  <span className="text-green-700 font-medium">You saved:</span>
+                  <span className="text-green-700 font-bold text-lg">
+                    €{totalSavings.toFixed(2)}
+                  </span>
+                </div>
+              )}
             </motion.div>
 
             {/* Payment Options */}
@@ -506,6 +538,11 @@ export default function PickupPage() {
             <p className="mt-3 text-sm font-semibold text-red-700 text-center border border-red-200 rounded-md bg-red-50 py-2 px-3">
               Please call the restaurant after submission to confirm your pickup
               time.
+            </p>
+            <p className="mt-2 text-xs text-gray-500 text-center">
+              <span className="font-medium">Restaurant Timings:</span><br />
+              Tue - Fri: 17:30 - 21:30<br />
+              Sat & Sun: 11:30 - 14:30, 17:30 - 21:30
             </p>
           </motion.form>
         </motion.div>

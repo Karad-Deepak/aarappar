@@ -7,6 +7,34 @@ import { toTitleCase } from "@/app/utils/string";
 import chicken from "@/public/chicken.webp";
 import Biryani from "@/public/Biryani.webp";
 
+// Helper to check if discount applies to a category
+function categoryMatchesDiscount(itemCategory, discount) {
+  if (!discount) return false;
+  if (discount.applies_to === "all") return true;
+  if (!discount.categories || discount.categories.length === 0) return false;
+
+  const normalizedItemCat = (itemCategory || "").toLowerCase();
+  return discount.categories.some((cat) => {
+    const normalizedCat = cat.toLowerCase();
+    return (
+      normalizedItemCat.includes(normalizedCat) ||
+      normalizedCat.includes(normalizedItemCat)
+    );
+  });
+}
+
+// Calculate discounted price
+function calculateDiscountedPrice(originalPrice, discount) {
+  if (!discount) return originalPrice;
+  const price = parseFloat(originalPrice);
+
+  if (discount.type === "percentage") {
+    return Math.max(0, price * (1 - discount.value / 100));
+  } else {
+    return Math.max(0, price - discount.value);
+  }
+}
+
 // Helper: group items by key
 function groupBy(arr, key) {
   return arr.reduce((acc, item) => {
@@ -47,7 +75,7 @@ function normalizeCategoryLabel(label) {
   return s;
 }
 
-export default function MenuDisplay({ menudata }) {
+export default function MenuDisplay({ menudata, activeDiscount = null }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   // show all items, including sold-out ones
@@ -206,7 +234,7 @@ export default function MenuDisplay({ menudata }) {
               <div>
                 <div className="flex justify-between">
                   <span
-                    className={`font-semibold text-lg ${
+                    className={`font-bold text-lg ${
                       item.soldout
                         ? "text-gray-500 line-through"
                         : "text-gray-950"
@@ -219,13 +247,24 @@ export default function MenuDisplay({ menudata }) {
                       </span>
                     )}
                   </span>
-                  <span
-                    className={`font-bold ${
-                      item.soldout ? "text-gray-400" : "text-indigo-700"
-                    }`}
-                  >
-                    €{parseFloat(item.price).toFixed(2)}
-                  </span>
+                  {!item.soldout && categoryMatchesDiscount(item.category, activeDiscount) ? (
+                    <span className="flex flex-col items-end">
+                      <span className="text-gray-400 line-through text-xs">
+                        €{parseFloat(item.price).toFixed(2)}
+                      </span>
+                      <span className="font-bold text-green-600">
+                        €{calculateDiscountedPrice(item.price, activeDiscount).toFixed(2)}
+                      </span>
+                    </span>
+                  ) : (
+                    <span
+                      className={`font-bold ${
+                        item.soldout ? "text-gray-400" : "text-indigo-700"
+                      }`}
+                    >
+                      €{parseFloat(item.price).toFixed(2)}
+                    </span>
+                  )}
                 </div>
                 {item.description && (
                   <p
@@ -237,7 +276,11 @@ export default function MenuDisplay({ menudata }) {
                   </p>
                 )}
               </div>
-              <QuantityControl item={item} disabled={item.soldout} />
+              <QuantityControl
+                item={item}
+                disabled={item.soldout}
+                activeDiscount={activeDiscount}
+              />
             </motion.div>
           ))}
         </motion.div>
@@ -279,7 +322,7 @@ export default function MenuDisplay({ menudata }) {
                             <div>
                               <div className="flex justify-between">
                                 <span
-                                  className={`font-semibold text-sm lg:text-lg ${
+                                  className={`font-bold text-sm lg:text-lg ${
                                     item.soldout
                                       ? "text-gray-500 "
                                       : "text-gray-900"
@@ -292,15 +335,26 @@ export default function MenuDisplay({ menudata }) {
                                     </span>
                                   )}
                                 </span>
-                                <span
-                                  className={`font-bold ${
-                                    item.soldout
-                                      ? "text-gray-400"
-                                      : "text-indigo-800"
-                                  }`}
-                                >
-                                  €{parseFloat(item.price).toFixed(2)}
-                                </span>
+                                {!item.soldout && categoryMatchesDiscount(item.category, activeDiscount) ? (
+                                  <span className="flex flex-col items-end">
+                                    <span className="text-gray-400 line-through text-xs">
+                                      €{parseFloat(item.price).toFixed(2)}
+                                    </span>
+                                    <span className="font-bold text-green-600">
+                                      €{calculateDiscountedPrice(item.price, activeDiscount).toFixed(2)}
+                                    </span>
+                                  </span>
+                                ) : (
+                                  <span
+                                    className={`font-bold ${
+                                      item.soldout
+                                        ? "text-gray-400"
+                                        : "text-indigo-800"
+                                    }`}
+                                  >
+                                    €{parseFloat(item.price).toFixed(2)}
+                                  </span>
+                                )}
                               </div>
                               {item.description && (
                                 <p
@@ -317,6 +371,7 @@ export default function MenuDisplay({ menudata }) {
                             <QuantityControl
                               item={item}
                               disabled={item.soldout}
+                              activeDiscount={activeDiscount}
                             />
                           </motion.div>
                         ))}

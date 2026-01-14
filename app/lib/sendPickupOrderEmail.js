@@ -85,7 +85,13 @@ export async function sendPickupOrderEmail(data) {
           const name = item.item_name || `Item ${index + 1}`;
           const qty = Number(item.quantity || 0);
           const price = Number(item.price || 0);
+          const originalPrice = Number(item.original_price || item.price || 0);
           const subtotal = price * qty;
+          const hasDiscount = item.discount_applied && originalPrice !== price;
+
+          if (hasDiscount) {
+            return `- ${name}  |  Qty: ${qty}  |  Original: ${formatCurrency(originalPrice)} → Now: ${formatCurrency(price)} (${item.discount_applied} off)  |  Subtotal: ${formatCurrency(subtotal)}`;
+          }
           return `- ${name}  |  Qty: ${qty}  |  Price: ${formatCurrency(
             price
           )}  |  Subtotal: ${formatCurrency(subtotal)}`;
@@ -99,14 +105,19 @@ export async function sendPickupOrderEmail(data) {
           const name = item.item_name || `Item ${index + 1}`;
           const qty = Number(item.quantity || 0);
           const price = Number(item.price || 0);
+          const originalPrice = Number(item.original_price || item.price || 0);
           const subtotal = price * qty;
+          const hasDiscount = item.discount_applied && originalPrice !== price;
+
+          const priceCell = hasDiscount
+            ? `<span style="text-decoration:line-through; color:#999; font-size:12px;">${formatCurrency(originalPrice)}</span><br/><span style="color:#16a34a; font-weight:600;">${formatCurrency(price)}</span>`
+            : formatCurrency(price);
+
           return `
               <tr>
-                <td style="padding:10px 12px; border-bottom:1px solid #eee;">${name}</td>
+                <td style="padding:10px 12px; border-bottom:1px solid #eee;">${name}${hasDiscount ? `<br/><span style="font-size:11px; color:#16a34a;">(${item.discount_applied} off)</span>` : ''}</td>
                 <td style="padding:10px 12px; border-bottom:1px solid #eee; text-align:center;">${qty}</td>
-                <td style="padding:10px 12px; border-bottom:1px solid #eee; text-align:right;">${formatCurrency(
-                  price
-                )}</td>
+                <td style="padding:10px 12px; border-bottom:1px solid #eee; text-align:right;">${priceCell}</td>
                 <td style="padding:10px 12px; border-bottom:1px solid #eee; text-align:right; font-weight:600;">${formatCurrency(
                   subtotal
                 )}</td>

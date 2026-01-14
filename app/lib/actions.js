@@ -743,3 +743,167 @@ export async function fetchFutureReservations() {
 
   return futureReservations;
 }
+
+// ---------------------
+// Discount Actions
+// ---------------------
+
+export async function fetchActiveDiscount() {
+  const { data, error } = await supabase
+    .from("discounts")
+    .select("*")
+    .eq("active", true)
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error fetching active discount:", error);
+    return null;
+  }
+
+  return data;
+}
+
+export async function fetchAllDiscounts() {
+  const { data, error } = await supabase
+    .from("discounts")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Error fetching discounts:", error);
+    throw new Error("Failed to fetch discounts");
+  }
+
+  return data;
+}
+
+export async function createDiscount(formData) {
+  "use server";
+  const name = formData.get("name");
+  const type = formData.get("type");
+  const value = parseFloat(formData.get("value"));
+  const applies_to = formData.get("applies_to");
+  const categoriesRaw = formData.get("categories");
+
+  let categories = [];
+  if (applies_to === "categories" && categoriesRaw) {
+    try {
+      categories = JSON.parse(categoriesRaw);
+    } catch {
+      categories = [];
+    }
+  }
+
+  const { data, error } = await supabase
+    .from("discounts")
+    .insert({
+      name,
+      type,
+      value,
+      applies_to,
+      categories,
+      active: false,
+    })
+    .select()
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error creating discount:", error);
+    throw new Error("Failed to create discount");
+  }
+
+  revalidatePath("/admin/discounts");
+  return { success: true, data };
+}
+
+export async function updateDiscount(formData) {
+  "use server";
+  const id = formData.get("id");
+  const name = formData.get("name");
+  const type = formData.get("type");
+  const value = parseFloat(formData.get("value"));
+  const applies_to = formData.get("applies_to");
+  const categoriesRaw = formData.get("categories");
+
+  let categories = [];
+  if (applies_to === "categories" && categoriesRaw) {
+    try {
+      categories = JSON.parse(categoriesRaw);
+    } catch {
+      categories = [];
+    }
+  }
+
+  const { data, error } = await supabase
+    .from("discounts")
+    .update({
+      name,
+      type,
+      value,
+      applies_to,
+      categories,
+    })
+    .eq("id", id)
+    .select()
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error updating discount:", error);
+    throw new Error("Failed to update discount");
+  }
+
+  revalidatePath("/admin/discounts");
+  revalidatePath("/menu");
+  return { success: true, data };
+}
+
+export async function toggleDiscountActive(id, active) {
+  "use server";
+
+  // If activating, first deactivate all other discounts
+  if (active) {
+    const { error: deactivateError } = await supabase
+      .from("discounts")
+      .update({ active: false })
+      .neq("id", id);
+
+    if (deactivateError) {
+      console.error("Error deactivating other discounts:", deactivateError);
+      throw new Error("Failed to deactivate other discounts");
+    }
+  }
+
+  const { data, error } = await supabase
+    .from("discounts")
+    .update({ active })
+    .eq("id", id)
+    .select()
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error toggling discount:", error);
+    throw new Error("Failed to toggle discount");
+  }
+
+  revalidatePath("/admin/discounts");
+  revalidatePath("/menu");
+  return { success: true, data };
+}
+
+export async function deleteDiscount(id) {
+  "use server";
+  const { error } = await supabase
+    .from("discounts")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Error deleting discount:", error);
+    throw new Error("Failed to delete discount");
+  }
+
+  revalidatePath("/admin/discounts");
+  revalidatePath("/menu");
+  return { success: true, message: "Discount deleted successfully" };
+}

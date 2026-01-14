@@ -23,6 +23,14 @@ export default function CartPage() {
     0
   );
 
+  // Calculate total savings from discounts
+  const totalSavings = cart.reduce((savings, item) => {
+    const originalPrice = parseFloat(item.original_price || item.price);
+    const currentPrice = parseFloat(item.price);
+    const itemSavings = (originalPrice - currentPrice) * item.quantity;
+    return savings + Math.max(0, itemSavings);
+  }, 0);
+
   // Validate form fields
   const validateForm = () => {
     const errors = {};
@@ -113,34 +121,57 @@ export default function CartPage() {
             Your Cart
           </h1>
           <div className="space-y-4">
-            {cart.map((item) => (
-              <motion.div
-                key={item.id}
-                className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border rounded-lg bg-gray-50"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                <div className="mb-2 sm:mb-0">
-                  <p className="font-semibold text-lg sm:text-xl text-darkbg">
-                    {item.item_name}
-                  </p>
-                  <p className="text-sm sm:text-base text-gray-600 ">
-                    Quantity: {item.quantity} x €
-                    {parseFloat(item.price).toFixed(2)}
-                  </p>
-                </div>
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="text-rose-500 hover:underline text-sm sm:text-base"
+            {cart.map((item) => {
+              const hasDiscount = item.discount_applied && item.original_price && parseFloat(item.original_price) !== parseFloat(item.price);
+              return (
+                <motion.div
+                  key={item.id}
+                  className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border rounded-lg bg-gray-50"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
                 >
-                  Remove
-                </button>
-              </motion.div>
-            ))}
+                  <div className="mb-2 sm:mb-0">
+                    <p className="font-semibold text-lg sm:text-xl text-darkbg">
+                      {item.item_name}
+                      {hasDiscount && (
+                        <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                          {item.discount_applied} off
+                        </span>
+                      )}
+                    </p>
+                    <p className="text-sm sm:text-base text-gray-600">
+                      Quantity: {item.quantity} x{" "}
+                      {hasDiscount ? (
+                        <>
+                          <span className="line-through text-gray-400">€{parseFloat(item.original_price).toFixed(2)}</span>
+                          <span className="text-green-600 ml-1">€{parseFloat(item.price).toFixed(2)}</span>
+                        </>
+                      ) : (
+                        <>€{parseFloat(item.price).toFixed(2)}</>
+                      )}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-rose-500 hover:underline text-sm sm:text-base"
+                  >
+                    Remove
+                  </button>
+                </motion.div>
+              );
+            })}
           </div>
-          <div className="mt-6 text-xl sm:text-2xl font-bold text-darkbg ">
-            Total Price: €{totalPrice.toFixed(2)}
+          <div className="mt-6">
+            <div className="text-xl sm:text-2xl font-bold text-darkbg">
+              Total Price: €{totalPrice.toFixed(2)}
+            </div>
+            {totalSavings > 0 && (
+              <div className="mt-2 bg-green-50 border border-green-200 rounded-lg px-4 py-2 flex justify-between items-center">
+                <span className="text-green-700 font-medium">You saved:</span>
+                <span className="text-green-700 font-bold text-lg">€{totalSavings.toFixed(2)}</span>
+              </div>
+            )}
           </div>
           <div className="mt-8">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-darkbg mb-4">
